@@ -55,20 +55,7 @@ public class MainActivity extends BaseActivity {
         ConfigFragment.getInstance().init().start(CSFragment.class).build();
 
     }
+    
 
 
-//    @Override
-//    public void onClick(View view) {
-//        switch (view.getId()) {
-//            case R.id.btnOne:
-//                fragmentmanager= getSupportFragmentManager();
-//                ConfigFragment.getInstance().init().start(CSFragment.class).build();
-//                break;
-//
-//            case R.id.btnTwo:
-//                fragmentmanager= getSupportFragmentManager();
-//                ConfigFragment.getInstance().init().start(CSTwofragment.class).build();
-//                break;
-//        }
-//    }
 }

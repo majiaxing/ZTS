@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.example.lenovo.ztsandroid.App;
 import com.example.lenovo.ztsandroid.R;
 import com.example.lenovo.ztsandroid.base.BaseFragment;
 
@@ -22,7 +23,7 @@ public class CSTwofragment extends BaseFragment {
     @Override
     protected void init(View view) {
     imagTwo = view.findViewById(R.id.ImageTwo);
-        Glide.with(this).load("com/photoAlbum/page/performance/img/2015/12/28/1451292351735_203.jpg").into(imagTwo);
+        Glide.with(this).load("http://p1.img.cctvpic.com/photoAlbum/page/performance/img/2015/12/28/1451290603994_440.jpg").into(imagTwo);
     }
 
     @Override

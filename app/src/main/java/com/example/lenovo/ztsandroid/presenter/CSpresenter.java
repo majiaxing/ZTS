@@ -5,6 +5,7 @@ import com.example.lenovo.ztsandroid.model.biz.CSModel;
 import com.example.lenovo.ztsandroid.model.biz.CSModelImpl;
 import com.example.lenovo.ztsandroid.model.entity.CeSBean;
 import com.example.lenovo.ztsandroid.net.callback.MyNetWorkCallback;
+import com.example.lenovo.ztsandroid.utils.MyLog;
 
 /**
  * Created by Lenovo on 2018/10/24.
@@ -27,6 +28,7 @@ public class CSpresenter implements CScotract.Presenter {
             @Override
             public void onSuccess(CeSBean ceSBean) {
                 view.getManager(ceSBean);
+                MyLog.e("aaaa",ceSBean.toString());
             }
 
             @Override

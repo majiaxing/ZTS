@@ -1,5 +1,6 @@
 package com.example.lenovo.ztsandroid.model.biz;
 
+import com.example.lenovo.ztsandroid.config.Urls;
 import com.example.lenovo.ztsandroid.model.entity.CeSBean;
 import com.example.lenovo.ztsandroid.net.HttpFactroy;
 import com.example.lenovo.ztsandroid.net.callback.MyNetWorkCallback;
@@ -13,6 +14,6 @@ public class CSModelImpl implements CSModel {
     public void getLiveChinaUrl(String url, MyNetWorkCallback<CeSBean> callback) {
 
         HttpFactroy.create().
-                get("http://www.ipanda.com/kehuduan/liebiao/badaling/index.json",null,callback);
+                get(Urls.CSUrls,null,callback);
     }
 }

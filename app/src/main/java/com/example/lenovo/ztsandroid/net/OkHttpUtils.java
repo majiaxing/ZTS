@@ -3,9 +3,12 @@ package com.example.lenovo.ztsandroid.net;
 
 import com.example.lenovo.ztsandroid.App;
 import com.example.lenovo.ztsandroid.net.callback.MyNetWorkCallback;
+import com.example.lenovo.ztsandroid.utils.ACache;
+import com.example.lenovo.ztsandroid.utils.MyLog;
 import com.google.gson.Gson;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.Map;
@@ -60,7 +63,9 @@ public class OkHttpUtils implements IHttp {
             Set<String> keys = params.keySet();
             for (String key : keys) {
                 String value = params.get(key);
+
                 sb.append(key).append("=").append(value).append("&");
+                MyLog.e("请求数据",params.toString());
             }
             url = sb.deleteCharAt(sb.length()-1).toString();
         }
@@ -156,6 +161,8 @@ public class OkHttpUtils implements IHttp {
         Type[] actualTypeArguments = ((ParameterizedType) types[0]).getActualTypeArguments();
         Type type = actualTypeArguments[0];
         T t = gson.fromJson(jsonData,type);
+//        ACache aCache = ACache.get(App.activity);
+//        aCache.put(t.getClass().getSimpleName(), (Serializable) t);
         return t;
     }
 

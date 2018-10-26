@@ -5,6 +5,7 @@ package com.example.lenovo.ztsandroid.config;
  */
 
 public class Urls {
-
+    //测试接口
+    public static final String CSUrls = "http://www.ipanda.com/kehuduan/liebiao/badaling/index.json";
 
 }

@@ -17,43 +17,25 @@ import com.example.lenovo.ztsandroid.utils.ConfigFragment;
 
 public class MainTwoActivity extends BaseActivity {
 
-    private Button btnOne,btnTwo;
-    private FrameLayout Framelayout;
-    private FragmentManager fragmentmanager;
 
     @Override
     protected int getLayoutId() {
-        return R.layout.activity_main;
+        return R.layout.login_activity;
     }
 
     @Override
     protected void initView() {
-        btnOne = (Button) findViewById(R.id.btnOne);
-        btnTwo = (Button) findViewById(R.id.btnTwo);
-        Framelayout = (FrameLayout) findViewById(R.id.FrameLayout);
+
     }
 
     @Override
     public void initData() {
-        btnOne.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                fragmentmanager= getSupportFragmentManager();
-                ConfigFragment.getInstance().init().start(CSFragment.class).build();
-            }
-        });
-        btnTwo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                fragmentmanager= getSupportFragmentManager();
-                ConfigFragment.getInstance().init().start(CSTwofragment.class).build();
-            }
-        });
+
     }
 
     @Override
     public void loadData() {
-        ConfigFragment.getInstance().init().start(CSFragment.class).build();
+
 
     }
 }

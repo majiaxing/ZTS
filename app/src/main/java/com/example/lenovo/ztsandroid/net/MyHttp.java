@@ -1,11 +1,10 @@
 package com.example.lenovo.ztsandroid.net;
 
 import com.example.lenovo.ztsandroid.net.callback.INetWorkCallback;
+import com.example.lenovo.ztsandroid.net.callback.NNetWorkCallback;
 import com.example.lenovo.ztsandroid.net.callback.NetWorkCallback;
 
 import java.util.Map;
-
-
 
 
 /**
@@ -21,11 +20,11 @@ public interface MyHttp {
     <T> void doget(String url, Map<String, String> params, NetWorkCallback callback);
 
     //获取手机验证码
-    <T> void getSjYam(String url, Map<String, String> params, NetWorkCallback callback);
+    <T> void getSjYam(String url, Map<String, String> params, NNetWorkCallback callback);
 
     //手机号注册
-    <T> void Register(String url, Map<String, String> params, NetWorkCallback callback);
+    <T> void Register(String url, Map<String, String> params, NNetWorkCallback callback);
     //邮箱注册
-    <T> void EmailRegister(String url, Map<String, String> params, NetWorkCallback callback);
+    <T> void EmailRegister(String url, Map<String, String> params, NNetWorkCallback callback);
 
 }

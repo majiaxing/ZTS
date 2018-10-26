@@ -7,6 +7,7 @@ import android.graphics.drawable.Drawable;
  */
 
 public interface NetWorkCallback {
+
     void OnSucess(Drawable drawable);
 
     void OnError(int ErrorCode, String ErrorMsg);
