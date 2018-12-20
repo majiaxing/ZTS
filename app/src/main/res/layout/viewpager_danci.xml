@@ -181,7 +181,16 @@
                 android:layout_height="wrap_content">
 
 
-
+            <com.example.lenovo.ztsandroid.view.RippleIntroView
+                android:id="@+id/Ripple"
+                android:layout_width="140px"
+                android:layout_height="140px"
+                android:clickable="true"
+                android:fitsSystemWindows="true"
+                android:background="#fff"
+                android:layout_marginLeft="150px"
+                android:gravity="center"
+                >
 
             <CheckBox
                 android:id="@+id/Ly_btn"
@@ -189,10 +198,9 @@
                 android:layout_height="116px"
                 android:background="@drawable/luyin_selector"
                 android:button="@null"
-                android:layout_marginLeft="150px"
+
                 />
-
-
+            </com.example.lenovo.ztsandroid.view.RippleIntroView>
             </RelativeLayout>
 
         </LinearLayout>

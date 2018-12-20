@@ -42,6 +42,7 @@ import com.example.lenovo.ztsandroid.utils.HMACTest;
 import com.example.lenovo.ztsandroid.utils.MyLog;
 import com.example.lenovo.ztsandroid.utils.YP_BF_Utils;
 import com.example.lenovo.ztsandroid.view.CustomProgressDialog;
+import com.example.lenovo.ztsandroid.view.RippleIntroView;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -93,7 +94,7 @@ public class DanCi_fragment extends BaseFragment implements View.OnClickListener
     private TextView pf_fs;
     private RatingBar xinx_bar;
     private TextView gl_;
-
+    private RippleIntroView rippleIntroView;
 
     @Override
     protected int getLayoutId() {
@@ -123,6 +124,8 @@ public class DanCi_fragment extends BaseFragment implements View.OnClickListener
         xinx_bar = view.findViewById(R.id.Xinx_bar);
         next_t = view.findViewById(R.id.next_T);
         bf_ly = view.findViewById(R.id.BF_LY);
+        rippleIntroView = view.findViewById(R.id.Ripple);
+
 
         CheckBox BF_zt = view.findViewById(R.id.BF_zt);
         CheckBox Ly_btn = view.findViewById(R.id.Ly_btn);
@@ -547,7 +550,7 @@ public class DanCi_fragment extends BaseFragment implements View.OnClickListener
                 if (b[0]){
 
                     stopAudioRecord();
-
+                    rippleIntroView.setColor(this.getResources().getColor(R.color.colorWhite));
                     b[0] = false;
 
                 }else {
@@ -557,6 +560,8 @@ public class DanCi_fragment extends BaseFragment implements View.OnClickListener
                     presenter = new ZhiL_Csh_Fy_Presenter(this);
                     presenter.setUrlsZhiL("0",word,System.currentTimeMillis() + "","1","4.0");
                     b[0] = true;
+                    rippleIntroView.setColor(this.getResources().getColor(R.color.text_color_red));
+
                 }
 
 //                relativeLayout.setVisibility(View.VISIBLE);

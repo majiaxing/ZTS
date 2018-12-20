@@ -1,0 +1,372 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/pe_gray"
+    >
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="380px"
+    android:background="@mipmap/qrdd_bg"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="204px"
+        android:orientation="horizontal"
+        android:paddingBottom="45px"
+        android:gravity="center_vertical"
+        android:background="@drawable/huiyuan"
+        >
+
+        <ImageView
+            android:id="@+id/back_jt"
+            android:layout_width="45px"
+            android:layout_height="45px"
+            android:src="@mipmap/back_jt"
+            android:layout_gravity="center"
+            android:layout_marginLeft="48px"
+            android:layout_marginTop="30px"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="375px"
+            android:text="确认定单"
+            android:textSize="54px"
+            android:textColor="#ffffff"
+            android:layout_marginTop="30px"
+            />
+
+    </LinearLayout>
+</LinearLayout>
+
+    <LinearLayout
+        android:layout_width="980px"
+        android:layout_height="196px"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="282px"
+        android:background="@color/colorWhite"
+        android:orientation="horizontal"
+        android:id="@+id/linearLayout">
+        
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginLeft="40px"
+            >
+            <TextView
+                android:id="@+id/DQ_nj"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="银川初中"
+                android:layout_marginTop="40px"
+                android:layout_marginBottom="30px"
+                android:textSize="54px"
+                android:textColor="#333333"
+                />
+
+                <TextView
+                android:id="@+id/SM_"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="英语听说读写全方位训练系统"
+                android:textSize="36px"
+                android:textColor="#999999"
+                />
+        </LinearLayout>
+
+        
+        <Button
+            android:id="@+id/VIP_btn"
+            android:layout_width="200px"
+            android:layout_height="100px"
+            android:background="@mipmap/vip"
+            android:layout_marginLeft="220px"
+            android:layout_marginTop="40px"
+            />
+        
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="980px"
+        android:layout_height="370px"
+        android:layout_below="@+id/linearLayout"
+        android:layout_alignLeft="@+id/linearLayout"
+        android:layout_alignStart="@+id/linearLayout"
+        android:layout_marginTop="40px"
+        android:background="@color/colorWhite"
+        android:orientation="horizontal"
+        android:id="@+id/linearLayout2">
+
+        <LinearLayout
+            android:id="@+id/One_N"
+            android:layout_width="0px"
+            android:layout_height="290px"
+            android:layout_weight="1"
+            android:background="@mipmap/one_nian"
+            android:layout_marginLeft="40px"
+            android:layout_marginTop="40px"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            >
+            <TextView
+                android:id="@+id/one_n"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1年"
+                android:textSize="54px"
+                android:textColor="#333333"
+                android:layout_marginTop="42px"
+                />
+
+
+
+                <TextView
+                    android:id="@+id/Fy_M_S"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="￥298"
+                    android:textSize="60px"
+                    android:textColor="#ff0000"
+                    android:layout_marginTop="42px"
+                    />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/two_n"
+            android:layout_width="0px"
+            android:layout_height="290px"
+            android:layout_weight="1"
+            android:background="@mipmap/two_nian"
+            android:layout_marginLeft="90px"
+            android:layout_marginTop="40px"
+            android:orientation="vertical"
+            android:gravity="center"
+            >
+            <TextView
+                android:id="@+id/two_nian"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2年"
+                android:textSize="54px"
+                android:textColor="#333333"
+                   android:layout_marginTop="42px"
+                />
+
+
+                <TextView
+                    android:id="@+id/FyTX_M_o"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="￥596"
+                    android:textSize="36px"
+                    android:textColor="#aaaaaa"
+                    android:layout_marginTop="30px"
+                    />
+
+
+
+
+                <TextView
+                    android:id="@+id/FyT_M_o"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="￥506"
+                    android:textSize="60px"
+                    android:textColor="#ff0000"
+                    />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/Three_N"
+            android:layout_width="0px"
+            android:layout_height="290px"
+            android:layout_weight="1"
+            android:background="@mipmap/two_nian"
+            android:layout_marginLeft="90px"
+            android:layout_marginTop="40px"
+            android:layout_marginRight="40px"
+            android:orientation="vertical"
+            android:gravity="center"
+            >
+
+            <TextView
+                android:id="@+id/three_n"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2年"
+                android:textSize="54px"
+                android:textColor="#333333"
+                android:layout_marginTop="42px"
+                />
+
+
+                <TextView
+                    android:id="@+id/FyTX_M_S"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="￥596"
+                    android:textSize="36px"
+                    android:textColor="#aaaaaa"
+                    android:layout_marginTop="30px"
+                    />
+
+
+
+                <TextView
+                    android:id="@+id/FyT_M_S"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="￥506"
+                    android:textSize="60px"
+                    android:textColor="#ff0000"
+
+                    />
+
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="980px"
+        android:layout_height="346px"
+        android:layout_marginTop="19dp"
+        android:orientation="vertical"
+        android:layout_below="@+id/linearLayout2"
+        android:layout_alignLeft="@+id/linearLayout2"
+        android:layout_alignStart="@+id/linearLayout2">
+
+
+
+
+        <LinearLayout
+            android:id="@+id/Ban_JI"
+            android:layout_width="980px"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@color/colorWhite"
+            android:padding="40px"
+            >
+
+            <TextView
+                android:id="@+id/Banj_X"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="班级"
+                android:textSize="36px"
+                android:textColor="#333333"
+
+                />
+
+            <TextView
+                android:id="@+id/QXZ_bj"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="一年级一班"
+                android:textSize="36px"
+                android:textColor="#999999"
+                android:layout_marginLeft="640px"
+                />
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/Nian_JI"
+            android:layout_width="980px"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="40px"
+            android:background="@color/colorWhite"
+            android:layout_marginTop="30px"
+            >
+
+            <TextView
+                android:id="@+id/Nianj_X"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="老师"
+                android:textSize="36px"
+                android:textColor="#333333"
+                />
+
+            <TextView
+                android:id="@+id/QXZ_nj"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="马老师"
+                android:textSize="36px"
+                android:textColor="#999999"
+                android:layout_marginLeft="640px"
+                android:gravity="center"
+                />
+
+        </LinearLayout>
+
+</LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="150px"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:gravity="center_vertical"
+        >
+
+        <CheckBox
+            android:id="@+id/C_btn"
+            android:layout_width="45px"
+            android:layout_height="45px"
+            android:background="@drawable/check_box_selector"
+            android:button="@null"
+            android:layout_marginLeft="54px"
+            android:checked="true"
+            />
+
+            <TextView
+                android:id="@+id/T_Y"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="同意"
+                android:layout_marginLeft="20px"
+                android:textSize="36px"
+                />
+
+                <TextView
+                    android:id="@+id/G_mai_xy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="《购买协议》"
+                    android:textSize="36px"
+                    android:textColor="@color/yzml"
+                    />
+
+            
+                <Button
+                    android:id="@+id/ZhiF_btn"
+                    android:layout_width="414px"
+                    android:layout_height="150px"
+                    android:layout_marginLeft="288px"
+                    android:background="@mipmap/zf_btn"
+                    android:text="支付并激活"
+                    android:textSize="48px"
+                    android:textColor="#ffffff"
+                    />
+    </LinearLayout>
+
+
+</RelativeLayout>
