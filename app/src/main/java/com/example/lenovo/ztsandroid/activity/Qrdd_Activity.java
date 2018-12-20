@@ -2,6 +2,7 @@ package com.example.lenovo.ztsandroid.activity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.os.Message;
 import android.util.Log;
@@ -151,7 +152,8 @@ public class Qrdd_Activity extends BaseActivity {
 //                editor2.commit();
 //            }
 //        }
-
+        FyTXMO.getPaint().setFlags(Paint. STRIKE_THRU_TEXT_FLAG );
+        FyTXMS.getPaint().setFlags(Paint. STRIKE_THRU_TEXT_FLAG );
 
     }
 
