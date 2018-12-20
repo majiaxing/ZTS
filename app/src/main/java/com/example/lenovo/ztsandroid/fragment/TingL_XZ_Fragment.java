@@ -1,5 +1,6 @@
 package com.example.lenovo.ztsandroid.fragment;
 
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,6 +22,7 @@ import com.example.lenovo.ztsandroid.base.BaseFragment;
 import com.example.lenovo.ztsandroid.model.entity.TingL_TK_Bean;
 import com.example.lenovo.ztsandroid.utils.MyLog;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import butterknife.BindView;
@@ -110,10 +112,46 @@ public class TingL_XZ_Fragment extends BaseFragment {
     android.widget.LinearLayout XXD;
     private Bundle bundle;
     private ArrayList<TingL_TK_Bean.DataBean.ListenQuestionListBean.ListenOptionListBean> mlist = new ArrayList<>();
-
+    private String relative_path;
+    private String word_video;
+    private MediaPlayer mPlayer = new MediaPlayer();  //用于播放音频
     @Override
     protected int getLayoutId() {
         return R.layout.viewpager_xuanz;
+    }
+
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (mPlayer == null){
+            mPlayer = new MediaPlayer();
+        }
+        if (!isVisibleToUser){
+//            mediaPlayer.start();
+            mPlayer.stop();
+        }else {
+            try {
+                mPlayer = null;
+                mPlayer = new MediaPlayer();
+
+                relative_path = bundle.getString("relative_path");
+                word_video = bundle.getString("word_video");
+                String bofUrl = "https://zts100.com/demo/file/download"+"/?"+"Relative_path="+relative_path+"&"+"type=2"+"&"+"fileName="+word_video;
+                mPlayer.setDataSource(bofUrl);
+                MyLog.e("sahdisauhdiuahdiuaw",bofUrl);
+
+                //3 准备播放
+                mPlayer.prepareAsync();
+                mPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+                    @Override
+                    public void onPrepared(MediaPlayer mediaPlayer) {
+                    }
+                });
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     @Override
@@ -136,9 +174,11 @@ public class TingL_XZ_Fragment extends BaseFragment {
 
         String listen_optionContent = list.get(0).getListen_optionContent();
         String listen_optionPhotoes = list.get(0).getListen_optionPhotoes();
+
+
         String title = bundle.getString("title");
-        String relative_path = bundle.getString("relative_path");
         String ertitle = bundle.getString("ertitle");
+        relative_path = bundle.getString("relative_path");
         TMTitle.setText(title);
 
         if (listen_optionContent != null) {

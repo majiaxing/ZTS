@@ -20,6 +20,7 @@ import com.example.lenovo.ztsandroid.model.entity.YB_XQ_four_Bean;
 import com.example.lenovo.ztsandroid.model.entity.YB_XQ_one_Bean;
 import com.example.lenovo.ztsandroid.model.entity.YB_XQ_three_Bean;
 import com.example.lenovo.ztsandroid.presenter.YinB_Xq_Presenter;
+import com.example.lenovo.ztsandroid.view.MyGridView;
 
 import java.util.ArrayList;
 
@@ -35,7 +36,7 @@ import butterknife.Unbinder;
 public class YB_four_fragment extends BaseFragment implements YB_XiangQ_Cotract.View{
 
     @BindView(R.id.Grid_ZM_he)
-    GridView GridZMHe;
+    MyGridView GridZMHe;
     @BindView(R.id.TZ_YX_o)
     Button TZYXO;
     Unbinder unbinder;

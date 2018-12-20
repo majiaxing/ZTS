@@ -10,7 +10,7 @@ public class Kw_erji_list_Bean {
 
 
     /**
-     * data : [{"text_id":"1","save_path":"1_2_7_1_1/kewen/1/","text_title":"Good morning","save":"1_2_7_1_1"},{"text_id":"2","save_path":"1_2_7_1_1/kewen/2/","text_title":"What is color is it","save":"1_2_7_1_1"},{"text_id":"3","save_path":"1_2_7_1_1/kewen/3/","text_title":"My name is Lisa","save":"1_2_7_1_1"},{"text_id":"4","save_path":"1_2_7_1_1/kewen/4/","text_title":"What happen","save":"1_2_7_1_1"},{"text_id":"851f48b4-3ddd-4d10-80f1-0497b5fbe2a5","save_path":"1_2_7_1_1/kewen/851f48b4-3ddd-4d10-80f1-0497b5fbe2a5/","text_title":"i love u for baby","save":"1_2_7_1_1"},{"text_id":"ad8c2bb3-60be-4b1b-8450-a9473649f4d8","save_path":"1_2_7_1_1/kewen/ad8c2bb3-60be-4b1b-8450-a9473649f4d8/","text_title":"i love u for baby","save":"1_2_7_1_1"},{"text_id":"f96beaad-0357-469f-b7e0-5b3d86c139b8","save_path":"1_2_7_1_1/kewen/f96beaad-0357-469f-b7e0-5b3d86c139b8/","text_title":"1","save":"1_2_7_1_1"}]
+     * data : [{"text_id":"16ea2bc7-752e-42a9-8563-3ed9e4b1b01b","text_title":"Aron Ralston  2","practice":0,"save":"1_2_8_2_2001","Relative_path":"1_2_8_2_2001/kewen/16ea2bc7-752e-42a9-8563-3ed9e4b1b01b/"},{"text_id":"5837344e-4d60-450e-9638-d1cf96737a31","text_title":"Saving an old man  1","practice":0,"save":"1_2_8_2_2001","Relative_path":"1_2_8_2_2001/kewen/5837344e-4d60-450e-9638-d1cf96737a31/"},{"text_id":"637633ba-42cb-452e-96f1-e44e8e141ffa","text_title":"Climbing 1","practice":0,"save":"1_2_8_2_2001","Relative_path":"1_2_8_2_2001/kewen/637633ba-42cb-452e-96f1-e44e8e141ffa/"},{"text_id":"84536e6b-7b15-4dae-b376-818e2843d147","text_title":"Seeing a doctor","practice":0,"save":"1_2_8_2_2001","Relative_path":"1_2_8_2_2001/kewen/84536e6b-7b15-4dae-b376-818e2843d147/"},{"text_id":"9d2cb57e-f308-496c-a614-f3a5ddee5876","text_title":"Aron Ralston 3","practice":0,"save":"1_2_8_2_2001","Relative_path":"1_2_8_2_2001/kewen/9d2cb57e-f308-496c-a614-f3a5ddee5876/"},{"text_id":"dc5dff20-8b08-44fa-b4b1-a4a0c88ecce1","text_title":"Saving an old man 3","practice":0,"save":"1_2_8_2_2001","Relative_path":"1_2_8_2_2001/kewen/dc5dff20-8b08-44fa-b4b1-a4a0c88ecce1/"},{"text_id":"e3f9ad82-31e1-4c44-9809-5671ed1742f5","text_title":"Aron Ralston 1","practice":0,"save":"1_2_8_2_2001","Relative_path":"1_2_8_2_2001/kewen/e3f9ad82-31e1-4c44-9809-5671ed1742f5/"},{"text_id":"ec847036-b6b2-43e4-93e4-b707f49587a7","text_title":"Saving an Old Man","practice":0,"save":"1_2_8_2_2001","Relative_path":"1_2_8_2_2001/kewen/ec847036-b6b2-43e4-93e4-b707f49587a7/"},{"text_id":"f591157e-f442-46cb-a99e-4f4a19acbc38","text_title":"Climbing 2","practice":0,"save":"1_2_8_2_2001","Relative_path":"1_2_8_2_2001/kewen/f591157e-f442-46cb-a99e-4f4a19acbc38/"},{"text_id":"fa7444c3-fb48-455f-b32d-dffdcca7da9a","text_title":"Saving an old man  2","practice":0,"save":"1_2_8_2_2001","Relative_path":"1_2_8_2_2001/kewen/fa7444c3-fb48-455f-b32d-dffdcca7da9a/"}]
      * data2 : null
      * data3 : null
      * pageInfo : null
@@ -105,16 +105,18 @@ public class Kw_erji_list_Bean {
 
     public static class DataBean {
         /**
-         * text_id : 1
-         * save_path : 1_2_7_1_1/kewen/1/
-         * text_title : Good morning
-         * save : 1_2_7_1_1
+         * text_id : 16ea2bc7-752e-42a9-8563-3ed9e4b1b01b
+         * text_title : Aron Ralston  2
+         * practice : 0
+         * save : 1_2_8_2_2001
+         * Relative_path : 1_2_8_2_2001/kewen/16ea2bc7-752e-42a9-8563-3ed9e4b1b01b/
          */
 
         private String text_id;
-        private String save_path;
         private String text_title;
+        private int practice;
         private String save;
+        private String Relative_path;
 
         public String getText_id() {
             return text_id;
@@ -122,14 +124,6 @@ public class Kw_erji_list_Bean {
 
         public void setText_id(String text_id) {
             this.text_id = text_id;
-        }
-
-        public String getSave_path() {
-            return save_path;
-        }
-
-        public void setSave_path(String save_path) {
-            this.save_path = save_path;
         }
 
         public String getText_title() {
@@ -140,12 +134,28 @@ public class Kw_erji_list_Bean {
             this.text_title = text_title;
         }
 
+        public int getPractice() {
+            return practice;
+        }
+
+        public void setPractice(int practice) {
+            this.practice = practice;
+        }
+
         public String getSave() {
             return save;
         }
 
         public void setSave(String save) {
             this.save = save;
+        }
+
+        public String getRelative_path() {
+            return Relative_path;
+        }
+
+        public void setRelative_path(String Relative_path) {
+            this.Relative_path = Relative_path;
         }
     }
 }

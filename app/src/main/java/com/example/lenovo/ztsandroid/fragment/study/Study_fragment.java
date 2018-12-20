@@ -198,16 +198,9 @@ public class Study_fragment extends BaseFragment implements JiaoC_xz_Cotract.Vie
                     editor.putString("上下册", sxc);
                     editor.commit();
                     MyLog.e("保存的数据",jclx + Nj_jc + sxc);
-
-
-
-
-
                 }else {
                     if (!sp.getString("教材", null).equals(jclx) ||!sp.getString("年级", null).equals(Nj_jc) || !sp.getString("上下册", null).equals(sxc)) {
-
                         editor.clear();
-
                         TextBanb.setText(jclx);
                         TextNianJ.setText(Nj_jc);
                         TextSXiaC.setText(sxc);
@@ -217,11 +210,8 @@ public class Study_fragment extends BaseFragment implements JiaoC_xz_Cotract.Vie
                         editor.commit();
                         MyLog.e("保存的数据",jclx + Nj_jc + sxc);
 
-
                     }
                 }
-
-
 
                 popupWindow.dismiss();
                 adapter.notifyDataSetChanged();
@@ -236,13 +226,10 @@ public class Study_fragment extends BaseFragment implements JiaoC_xz_Cotract.Vie
         presenter = new JiaoC_Presenter(this);
         presenter.start();
         presenter.SetUrl(null);
-
         presenter = new XiaoX_content_Presenter(this);
         String stuid = String.valueOf(App.stuid);
         presenter.start();
         presenter.SetUrl(stuid);
-
-
     }
 
     @Override

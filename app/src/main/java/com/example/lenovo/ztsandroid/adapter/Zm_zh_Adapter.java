@@ -53,14 +53,10 @@ public class Zm_zh_Adapter extends BaseAdapter {
             viewHolder.textView = view.findViewById(R.id.zm_item);
             viewHolder.Listview = view.findViewById(R.id.List_dc_zh_item);
 
-//            viewHolder.zh_O = view.findViewById(R.id.zh_O);
-//            viewHolder.text_O = view.findViewById(R.id.text_O);
             view.setTag(viewHolder);
         }else {
             viewHolder = (ViewHolder) view.getTag();
         }
-
-
 
         YB_XQ_four_Bean.DataBean liveBean = channels.get(i);
         viewHolder.textView.setText(liveBean.getYb_symbol());

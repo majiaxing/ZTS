@@ -162,6 +162,7 @@ public class DuiH_Sy_Activity extends BaseActivity implements DuiH_XQ_Cotract.Vi
         switch (view.getId()) {
             case R.id.back_jt:
                 PopupW(view, "确认退出对话学习，退出后将保存进度");
+                PopupDimiss();
                 break;
             case R.id.title:
                 break;

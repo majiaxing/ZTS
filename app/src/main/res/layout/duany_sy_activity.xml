@@ -71,6 +71,14 @@
     </RelativeLayout>
 
 
+    <TextView
+        android:id="@+id/text_X"
+        android:layout_width="match_parent"
+        android:layout_height="40px"
+        android:background="@color/pe_gray"
+        />
+
+
     <android.support.v4.view.ViewPager
         android:id="@+id/danci_viewPager"
         android:layout_width="match_parent"

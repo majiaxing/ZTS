@@ -51,7 +51,6 @@ public class YBxq_two_fragment extends BaseFragment implements YB_XiangQ_Cotract
 
     @Override
     protected void init(View view) {
-
         RDH = view.findViewById(R.id.R_D_H);
         RZR = view .findViewById(R.id.R_Z_R);
         XZFy = view.findViewById(R.id.XZ_fy);

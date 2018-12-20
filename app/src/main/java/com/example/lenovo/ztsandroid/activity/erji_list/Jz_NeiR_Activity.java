@@ -72,6 +72,7 @@ public class Jz_NeiR_Activity extends BaseActivity implements Juz_list_Cotract.V
                 Intent intent = new Intent(App.activity,JuZ_Sy_Activity.class);
                 intent.putExtra("title",Xx);
                 intent.putExtra("sentence_id",sentence_id);
+                intent.putExtra("Relative_path",list.get(i).getRelative_path());
                 intent.putExtra("type",type);
                 startActivity(intent);
 

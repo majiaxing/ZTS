@@ -86,7 +86,6 @@ public class Tingl_NeiR_Activity  extends BaseActivity implements TingL_erj_Cotr
                             startActivity(intent1);
                             break;
                     }
-
             }
         });
     }

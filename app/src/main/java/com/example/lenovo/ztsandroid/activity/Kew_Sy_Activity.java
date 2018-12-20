@@ -63,6 +63,7 @@ public class Kew_Sy_Activity extends BaseActivity implements Kw_Xq_Cotract.View{
     private String text_id;
     private Bundle bundle;
     private String type;
+    private String relative_path;
 
     @Override
     protected int getLayoutId() {
@@ -77,32 +78,8 @@ public class Kew_Sy_Activity extends BaseActivity implements Kw_Xq_Cotract.View{
         String mtitle = intent.getStringExtra("title");
         type = intent.getStringExtra("type");
 //        title.setText(mtitle);
+        relative_path = intent.getStringExtra("relative_path");
 
-
-
-        danciViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-
-            }
-
-            @Override
-            public void onPageSelected(int position) {
-                Log.e("BBBBB","BBBBBBB");
-//                YinY_Utils.stop_onclick(danciViewPager);
-//                Bundle bundle = new Bundle();
-//                bundle.putBoolean("btnZT",false);
-//                keW_fragment.setArguments(bundle);
-
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-
-
-            }
-        });
     }
 
     @Override
@@ -196,6 +173,7 @@ public class Kew_Sy_Activity extends BaseActivity implements Kw_Xq_Cotract.View{
                 break;
             case R.id.back_jt:
                 PopupW(view, "确认退出课文朗读？退出后将保存进度");
+                PopupDimiss();
                 break;
         }
     }
@@ -219,11 +197,11 @@ public class Kew_Sy_Activity extends BaseActivity implements Kw_Xq_Cotract.View{
                     bundle.putString("word_id",text_id);
                     bundle.putString("type",type);
 
-                    bundle.putString("word_id", xq_bean.getData().get(i).getText_video());
+                    bundle.putString("word_video", xq_bean.getData().get(i).getText_video());
                     bundle.putString("type",text_id );
+                    bundle.putString("relative_path",relative_path);
 
                     keW_fragment.setParams(bundle);
-
                     list.add(keW_fragment);
                 }
 

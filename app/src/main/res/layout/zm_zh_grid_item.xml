@@ -41,7 +41,13 @@
         </LinearLayout>
 
         </LinearLayout>
+    <TextView
 
+        android:id="@+id/Text_X"
+        android:layout_width="match_parent"
+        android:layout_height="5px"
+        android:background="@color/pe_gray"
+        />
 
     <com.example.lenovo.ztsandroid.view.MyListView
         android:id="@+id/List_dc_zh_item"
@@ -49,5 +55,9 @@
         android:layout_height="wrap_content"
         android:divider="@null"
         ></com.example.lenovo.ztsandroid.view.MyListView>
+
+
+
+
 
         </LinearLayout>

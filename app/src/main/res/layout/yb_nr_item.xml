@@ -1,22 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite"
+    >
 
 
 
 
 
-
+<LinearLayout
+    android:layout_width="300px"
+    android:layout_height="100px"
+    android:orientation="vertical"
+    android:layout_marginTop="50px"
+    
+    
+    >
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20px"
         android:orientation="horizontal"
-        android:gravity="center"
-        android:layout_marginTop="30px"
-
 
         >
         <TextView
@@ -27,13 +33,28 @@
             android:textSize="48px"
             android:textColor="#333333"
             />
-        <ImageView
-            android:id="@+id/bf_O"
-            android:layout_width="32px"
-            android:layout_height="32px"
-            android:background="@drawable/yinliangda__"
-            android:layout_marginLeft="20px"
-            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:orientation="horizontal"
+            android:layout_gravity="center_vertical"
+            >
+
+            <ImageView
+                android:id="@+id/bf_O"
+                android:layout_width="32px"
+                android:layout_height="32px"
+                android:background="@drawable/yinliangda__"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="90px"
+
+                />
+
+        </LinearLayout>
+
+
     </LinearLayout>
 
 
@@ -51,9 +72,7 @@
 
 
 
-
-
-
+</LinearLayout>
 
 
 

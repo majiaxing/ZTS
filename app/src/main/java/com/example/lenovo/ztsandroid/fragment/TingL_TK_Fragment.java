@@ -1,5 +1,6 @@
 package com.example.lenovo.ztsandroid.fragment;
 
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,7 +17,9 @@ import com.example.lenovo.ztsandroid.R;
 import com.example.lenovo.ztsandroid.adapter.TianK_Adapter;
 import com.example.lenovo.ztsandroid.base.BaseFragment;
 import com.example.lenovo.ztsandroid.model.entity.TingL_XQ_xz_Bean;
+import com.example.lenovo.ztsandroid.utils.MyLog;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import butterknife.BindView;
@@ -63,7 +66,10 @@ public class TingL_TK_Fragment extends BaseFragment {
     private Bundle bundle;
     private ArrayList<TingL_XQ_xz_Bean.DataBean> mlist = new ArrayList<>();
     private TianK_Adapter listadapter;
+    private MediaPlayer mPlayer = new MediaPlayer();  //用于播放音频
 
+    private String relative_path;
+    private String word_video;
     @Override
     protected int getLayoutId() {
         return R.layout.tingl_tk_fragment;
@@ -93,6 +99,51 @@ public class TingL_TK_Fragment extends BaseFragment {
         ChongZ.setVisibility(View.GONE);
     }
 
+
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (mPlayer == null){
+            mPlayer = new MediaPlayer();
+        }
+        if (!isVisibleToUser){
+//            mediaPlayer.start();
+            mPlayer.stop();
+        }else {
+            try {
+                mPlayer = null;
+                mPlayer = new MediaPlayer();
+
+                relative_path = bundle.getString("Relative_path");
+                word_video = bundle.getString("word_video");
+
+                String bofUrl = "https://zts100.com/demo/file/download"+"/?"+"Relative_path="+relative_path+"&"+"type=2"+"&"+"fileName="+word_video;
+                mPlayer.setDataSource(bofUrl);
+                MyLog.e("sahdisauhdiuahdiuaw",bofUrl);
+
+
+                //3 准备播放
+                mPlayer.prepareAsync();
+                mPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+                    @Override
+                    public void onPrepared(MediaPlayer mediaPlayer) {
+
+                    }
+                });
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+
+
+
+
+
+
+
     @Override
     protected void loadData() {
 
@@ -116,11 +167,27 @@ public class TingL_TK_Fragment extends BaseFragment {
         super.onDestroyView();
         unbinder.unbind();
     }
-
+    private Boolean bool[] = {false};
     @OnClick({R.id.BF_zt, R.id.TJ_Xyt, R.id.next_T,R.id.XYT, R.id.ChongZ})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.BF_zt:
+
+                if (bool[0]){
+                    if (mPlayer.isPlaying()){
+                        MyLog.e("lalall","ahahahahh");
+                        mPlayer.pause();
+                    }
+                    bool[0] = false;
+                }else {
+                    if (!mPlayer.isPlaying()){
+                        MyLog.e("holle dnsjk","ahahahahh");
+                        mPlayer.start();
+                    }
+                    bool[0] = true;
+                }
+
+
                 break;
             case R.id.TJ_Xyt:
 

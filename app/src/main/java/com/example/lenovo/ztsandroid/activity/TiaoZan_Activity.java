@@ -33,6 +33,7 @@ import com.example.lenovo.ztsandroid.presenter.DanC_Presenter;
 import com.example.lenovo.ztsandroid.presenter.YB_One_Xq_Presenter;
 import com.example.lenovo.ztsandroid.presenter.YB_Tiaoz_Presenter;
 import com.example.lenovo.ztsandroid.utils.BackPopupUtils;
+import com.example.lenovo.ztsandroid.utils.MyLog;
 
 import java.util.ArrayList;
 
@@ -44,7 +45,6 @@ import butterknife.OnClick;
  * Created by Administrator on 2018/12/7.
  */
 public class TiaoZan_Activity extends BaseActivity implements YB_XiangQ_Cotract.View {
-
 
 
     @BindView(R.id.back_jt)
@@ -169,16 +169,19 @@ public class TiaoZan_Activity extends BaseActivity implements YB_XiangQ_Cotract.
                     bundle = new Bundle();
                     bundle.putString("word",yb_xq_one_bean.getData().get(i).getYb_word());
                     bundle.putString("word_tran",yb_xq_one_bean.getData().get(i).getYb_translate());
+                    bundle.putString("Relative_path",yb_xq_one_bean.getData().get(i).getRelative_path());
+                    bundle.putString("word_video",yb_xq_one_bean.getData().get(i).getYb_Avideo());
+
+
+                    MyLog.e("打击我企鹅",yb_xq_one_bean.getData().get(i).getYb_word() + ""+yb_xq_one_bean.getData().get(i).getYb_translate() );
+
+
                     danCi_fragment.setParams(bundle);
                     list.add(danCi_fragment);
                 }
                 adapter = new ViewPagerAdapter(getSupportFragmentManager(),list);
                 viewPager.setAdapter(adapter);
-
-
-
                 nlist.addAll(yb_xq_one_bean.getData());
-
 
             }
         });

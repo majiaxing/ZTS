@@ -48,6 +48,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.net.URLEncoder;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
@@ -98,10 +99,6 @@ public class KeW_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.Vie
     private MediaRecorder mediaRecorder = new MediaRecorder();  //用于录音
     private File file = new File("/mnt/sdcard", System.currentTimeMillis()+".mp3");  //创建一个临时的音频文件
     private MediaPlayer mPlayer = new MediaPlayer();  //用于播放音频
-    private long currenttime;  //用于确定当前录音时间
-    private boolean isrecording = false;  //用于判断当前是否在录音
-    private boolean Isplaying = false;  //用于判断是否正在处于播放录音状
-
     private String word_id;
     private String type;
     private ZhiL_Yuyin_Cotract.Presenter presenter;
@@ -133,10 +130,12 @@ public class KeW_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.Vie
                 mPlayer = null;
                 mPlayer = new MediaPlayer();
 
-                relative_path = bundle.getString("Relative_path");
+                relative_path = bundle.getString("relative_path");
                 word_video = bundle.getString("word_video");
 
-                String bofUrl = "https://zts100.com/demo/file/download"+"/?"+"Relative_path="+relative_path+"&"+"type=2"+"&"+"fileName="+word_video;
+                String s = URLEncoder.encode(word_video, "utf-8").replaceAll("\\+", "%20");
+
+                String bofUrl = "https://zts100.com/demo/file/download"+"/?"+"Relative_path="+relative_path+"&"+"type=2"+"&"+"fileName="+s;
                 mPlayer.setDataSource(bofUrl);
                 MyLog.e("sahdisauhdiuahdiuaw",bofUrl);
 

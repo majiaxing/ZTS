@@ -10,7 +10,7 @@ public class YB_XQ_three_Bean {
 
 
     /**
-     * data : [{"symbol":"/iː/","ybtype":"长元音","video":""}]
+     * data : [{"symbol":"ɑ:","ybtype":"后元音","video":"","Relative_path":"yinbiao/8/"}]
      * data2 : null
      * data3 : null
      * pageInfo : null
@@ -105,14 +105,16 @@ public class YB_XQ_three_Bean {
 
     public static class DataBean {
         /**
-         * symbol : /iː/
-         * ybtype : 长元音
+         * symbol : ɑ:
+         * ybtype : 后元音
          * video :
+         * Relative_path : yinbiao/8/
          */
 
         private String symbol;
         private String ybtype;
         private String video;
+        private String Relative_path;
 
         public String getSymbol() {
             return symbol;
@@ -136,6 +138,14 @@ public class YB_XQ_three_Bean {
 
         public void setVideo(String video) {
             this.video = video;
+        }
+
+        public String getRelative_path() {
+            return Relative_path;
+        }
+
+        public void setRelative_path(String Relative_path) {
+            this.Relative_path = Relative_path;
         }
     }
 }

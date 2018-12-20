@@ -44,21 +44,21 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="116px"
-                android:layout_marginTop="40px"
+                android:layout_marginTop="100px"
                 android:orientation="horizontal"
                 android:gravity="center_vertical"
                 >
-                    
+
                 <CheckBox
                     android:id="@+id/BF_cs_fay"
-                    android:layout_width="70px"
-                    android:layout_height="70px"
-                    android:layout_marginLeft="292px"
-                    android:background="@drawable/bf"
+                    android:layout_width="116px"
+                    android:layout_height="116px"
+                    android:layout_marginLeft="370px"
+                    android:background="@drawable/bf_ly_selector"
                     android:button="@null"
+
                     />
-                
-                
+
                 <CheckBox
                     android:id="@+id/Cs_fay_lY"
                     android:layout_width="116px"
@@ -68,14 +68,6 @@
                     android:button="@null"
                     />
 
-                <CheckBox
-                    android:id="@+id/B_fang_self"
-                    android:layout_width="70px"
-                    android:layout_height="70px"
-                    android:layout_marginLeft="120px"
-                    android:background="@drawable/bf_ly_selector"
-                    android:button="@null"
-                    />
 
             </LinearLayout>
 

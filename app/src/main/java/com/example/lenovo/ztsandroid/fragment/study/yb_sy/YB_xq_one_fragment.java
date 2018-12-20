@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.lenovo.ztsandroid.App;
 import com.example.lenovo.ztsandroid.R;
 import com.example.lenovo.ztsandroid.activity.TiaoZan_Activity;
@@ -51,6 +52,8 @@ public class YB_xq_one_fragment extends BaseFragment implements YB_XiangQ_Cotrac
     ImageView YBXxImage;
 
     Button TZYXO;
+
+    ImageView Image;
     private YB_XiangQ_Cotract.Presenter presenter;
     private MyListview_Adapter madapter;
     private ArrayList<YB_XQ_one_Bean.DataBean> list = new ArrayList<>();
@@ -61,6 +64,7 @@ public class YB_xq_one_fragment extends BaseFragment implements YB_XiangQ_Cotrac
 
     private String yb_avideo;
     private String relativePath;
+    private String photo;
 
     @Override
     protected int getLayoutId() {
@@ -78,10 +82,16 @@ public class YB_xq_one_fragment extends BaseFragment implements YB_XiangQ_Cotrac
         BFOneXuanZ = view.findViewById(R.id.BF_One_Xuanz);
         BFTwoXuanZ = view.findViewById(R.id.BF_Two_Xuanz);
         FanY = view.findViewById(R.id.yb_one_item);
+
+        Image = view.findViewById(R.id.YB_xx_image);
+
         BFOne.setOnClickListener(this);
         BFTwo.setOnClickListener(this);
         TZYXO.setOnClickListener(this);
         bf_btn.setOnClickListener(this);
+
+
+
     }
 
     @Override
@@ -92,7 +102,6 @@ public class YB_xq_one_fragment extends BaseFragment implements YB_XiangQ_Cotrac
         presenter.SetUrl(yBid, "1" ,"1");
 
     }
-
 
     public void setVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
@@ -106,17 +115,15 @@ public class YB_xq_one_fragment extends BaseFragment implements YB_XiangQ_Cotrac
             try {
                 mPlayer = null;
                 mPlayer = new MediaPlayer();
-
                 String bofUrl = "https://zts100.com/demo/file/download"+"/?"+"Relative_path="+relativePath+"&"+"type=2"+"&"+"fileName="+yb_avideo;
                 mPlayer.setDataSource(bofUrl);
                 MyLog.e("sahdisauhdiuahdiuaw",bofUrl);
                 //3 准备播放
                 mPlayer.prepareAsync();
-                mPlayer.start();
                 mPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
                     @Override
                     public void onPrepared(MediaPlayer mediaPlayer) {
-
+                        mPlayer.start();
                     }
                 });
             } catch (IOException e) {
@@ -156,13 +163,17 @@ public class YB_xq_one_fragment extends BaseFragment implements YB_XiangQ_Cotrac
         final String yb_text = yb_xq_one_bean.getData().get(0).getYb_translate();
         yb_avideo = yb_xq_one_bean.getData().get(0).getYb_Avideo();
         relativePath = yb_xq_one_bean.getData().get(0).getRelative_path();
-
+        photo = yb_xq_one_bean.getData().get(0).getYb_photoes();
         App.activity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
 
                 Dc.setText(yb_word);
                 FanY.setText(yb_text);
+                String str = "https://zts100.com/demo/file/download" + "/?" + "Relative_path=" + relativePath + "&" + "type=1" + "&" + "fileName=" +photo;
+                MyLog.e("ASDHAS",str);
+                Glide.with(App.activity).load(str).into(YBXxImage);
+
 
             }
         });

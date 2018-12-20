@@ -14,6 +14,7 @@ import com.example.lenovo.ztsandroid.adapter.Xuanz_Adapter;
 import com.example.lenovo.ztsandroid.base.BaseFragment;
 import com.example.lenovo.ztsandroid.model.entity.Read_XQ_Bean;
 import com.example.lenovo.ztsandroid.utils.MyLog;
+import com.example.lenovo.ztsandroid.view.MyListView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +33,7 @@ public class Read_fragment extends BaseFragment {
     @BindView(R.id.Item_sm)
     TextView textSm;
     @BindView(R.id.Tm_ListView)
-    ListView TmListView;
+    MyListView TmListView;
     @BindView(R.id.Ti_J_ChaK)
     TextView TiJChaK;
     Unbinder unbinder;
@@ -41,6 +42,7 @@ public class Read_fragment extends BaseFragment {
     private Read_XuanZ_T_Adapter listadapter;
     private ArrayList<Read_XQ_Bean.DataBean.ReadQuestionListBean> mList = new ArrayList<>();
     @Override
+
     protected int getLayoutId() {
         return R.layout.read_feagment;
     }

@@ -40,6 +40,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.net.URLEncoder;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -120,7 +121,13 @@ public class Duany_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.V
                 relative_path = bundle.getString("Relative_path");
                 word_video = bundle.getString("word_video");
 
-                String bofUrl = "https://zts100.com/demo/file/download"+"/?"+"Relative_path="+relative_path+"&"+"type=2"+"&"+"fileName="+word_video;
+                String s = URLEncoder.encode(word_video, "utf-8").replaceAll("\\+", "%20");
+
+                String bofUrl = "https://zts100.com/demo/file/download"+"/?"+"Relative_path="+relative_path+"&"+"type=2"+"&"+"fileName="+s;
+
+
+
+
                 mPlayer.setDataSource(bofUrl);
                 MyLog.e("sahdisauhdiuahdiuaw",bofUrl);
                 //3 准备播放

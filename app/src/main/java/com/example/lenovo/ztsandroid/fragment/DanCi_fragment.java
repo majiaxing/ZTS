@@ -41,6 +41,7 @@ import com.example.lenovo.ztsandroid.utils.ConvertUtil;
 import com.example.lenovo.ztsandroid.utils.HMACTest;
 import com.example.lenovo.ztsandroid.utils.MyLog;
 import com.example.lenovo.ztsandroid.utils.YP_BF_Utils;
+import com.example.lenovo.ztsandroid.view.CustomProgressDialog;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -250,6 +251,8 @@ public class DanCi_fragment extends BaseFragment implements View.OnClickListener
         String toBase64 = Base64Encoder.encode(bytes, CharsetUtil.CHARSET_ISO_8859_1);
 
         if (sessionId != null){
+            mProgressDialog = new CustomProgressDialog(App.activity);
+            mProgressDialog.show();
             presenter = new PinC_Fay_presenter(this);
             presenter.seturlZhiL("1", "1", "2","1",toBase64, sessionId);
         }
@@ -481,7 +484,6 @@ public class DanCi_fragment extends BaseFragment implements View.OnClickListener
                 mPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
                     @Override
                     public void onPrepared(MediaPlayer mediaPlayer) {
-
                     }
                 });
             } catch (IOException e) {
@@ -489,8 +491,6 @@ public class DanCi_fragment extends BaseFragment implements View.OnClickListener
             }
         }
     }
-
-
     @Override
     public void setParams(Bundle bundle) {
         this.bundle = bundle;
@@ -557,7 +557,6 @@ public class DanCi_fragment extends BaseFragment implements View.OnClickListener
                     presenter = new ZhiL_Csh_Fy_Presenter(this);
                     presenter.setUrlsZhiL("0",word,System.currentTimeMillis() + "","1","4.0");
                     b[0] = true;
-
                 }
 
 //                relativeLayout.setVisibility(View.VISIBLE);
@@ -577,7 +576,7 @@ public class DanCi_fragment extends BaseFragment implements View.OnClickListener
                 break;
         }
     }
-
+    private CustomProgressDialog mProgressDialog;
     private float f;
     private void JsonDemo(String string) {
 
@@ -604,6 +603,7 @@ public class DanCi_fragment extends BaseFragment implements View.OnClickListener
                         pf_fs.setText(str);
                         relativeLayout.setVisibility(View.VISIBLE);
                         next_t.setVisibility(View.VISIBLE);
+
                         float i = ConvertUtil.convertToFloat(str,f);
                         MyLog.e("评估出来的分数" ,i + "");
 
@@ -619,25 +619,31 @@ public class DanCi_fragment extends BaseFragment implements View.OnClickListener
                         xinx_bar.setRating(in);
                         xinx_bar.setNumStars(5);
                         xinx_bar.setMax(5);
-
+                        mProgressDialog.dismiss();
                     }
                 });
 
                 presenter = new Lu_SC_Stdey_Presenter(this);
-                presenter.SetU(App.stuid,word_id,System.currentTimeMillis()+".mp3","60",type);
+                presenter.SetU(App.stuid,word_id,System.currentTimeMillis()+".mp3",str,type);
+
 
             }else {
                 App.activity.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
+                        mProgressDialog.dismiss();
                         Toast.makeText(App.activity,"请正常朗读",Toast.LENGTH_SHORT).show();
                     }
                 });
                 return;
             }
+
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
+
+
     }
 
 
@@ -669,6 +675,8 @@ public class DanCi_fragment extends BaseFragment implements View.OnClickListener
         JsonDemo(pinC_fay_bean);
 
 
+
+
     }
 
     @Override
@@ -684,7 +692,6 @@ public class DanCi_fragment extends BaseFragment implements View.OnClickListener
     public void getWJSC(SC_YX_Bean sc_yx_bean) {
 
     }
-
     @Override
     public void showmessage(String str) {
     }

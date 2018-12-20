@@ -10,7 +10,7 @@ public class Juz_erj_Bean {
 
 
     /**
-     * data : [{"save_path":"1_2_7_1_1/jvzi/05ec16a8-07a6-4da9-acf8-72a357ffcbf3/","sentence_id":"05ec16a8-07a6-4da9-acf8-72a357ffcbf3","sentence_name":"2222222222222","save":"1_2_7_1_1"}]
+     * data : [{"practice":"0/10","sentence_id":"1932bac1-be10-43bc-85df-ae00a5620f58","sentence_name":"Sentences","save":"1_2_8_2_2003","Relative_path":"1_2_8_2_2003/jvzi/1932bac1-be10-43bc-85df-ae00a5620f58/"}]
      * data2 : null
      * data3 : null
      * pageInfo : null
@@ -105,23 +105,25 @@ public class Juz_erj_Bean {
 
     public static class DataBean {
         /**
-         * save_path : 1_2_7_1_1/jvzi/05ec16a8-07a6-4da9-acf8-72a357ffcbf3/
-         * sentence_id : 05ec16a8-07a6-4da9-acf8-72a357ffcbf3
-         * sentence_name : 2222222222222
-         * save : 1_2_7_1_1
+         * practice : 0/10
+         * sentence_id : 1932bac1-be10-43bc-85df-ae00a5620f58
+         * sentence_name : Sentences
+         * save : 1_2_8_2_2003
+         * Relative_path : 1_2_8_2_2003/jvzi/1932bac1-be10-43bc-85df-ae00a5620f58/
          */
 
-        private String save_path;
+        private String practice;
         private String sentence_id;
         private String sentence_name;
         private String save;
+        private String Relative_path;
 
-        public String getSave_path() {
-            return save_path;
+        public String getPractice() {
+            return practice;
         }
 
-        public void setSave_path(String save_path) {
-            this.save_path = save_path;
+        public void setPractice(String practice) {
+            this.practice = practice;
         }
 
         public String getSentence_id() {
@@ -146,6 +148,14 @@ public class Juz_erj_Bean {
 
         public void setSave(String save) {
             this.save = save;
+        }
+
+        public String getRelative_path() {
+            return Relative_path;
+        }
+
+        public void setRelative_path(String Relative_path) {
+            this.Relative_path = Relative_path;
         }
     }
 }

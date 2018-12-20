@@ -1,6 +1,7 @@
 package com.example.lenovo.ztsandroid.activity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -20,6 +21,10 @@ import com.example.lenovo.ztsandroid.presenter.TingL_Xq_xz_Presenter;
 import com.example.lenovo.ztsandroid.utils.BackPopupUtils;
 import com.example.lenovo.ztsandroid.utils.MyLog;
 import com.example.lenovo.ztsandroid.utils.Xuanz_NR_Utils;
+import com.google.android.gms.appindexing.Action;
+import com.google.android.gms.appindexing.AppIndex;
+import com.google.android.gms.appindexing.Thing;
+import com.google.android.gms.common.api.GoogleApiClient;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -32,7 +37,7 @@ import butterknife.OnClick;
  * Created by Administrator on 2018/11/7.
  */
 
-public class TingL_TK_TK_Activity extends BaseActivity implements TingL_XQ_xz_Cotract.View{
+public class TingL_TK_TK_Activity extends BaseActivity implements TingL_XQ_xz_Cotract.View {
 
 
     @BindView(R.id.back_jt)
@@ -49,6 +54,13 @@ public class TingL_TK_TK_Activity extends BaseActivity implements TingL_XQ_xz_Co
     private String sentence_id;
     private String Title1;
     private Bundle bundle;
+    /**
+     * ATTENTION: This was auto-generated to implement the App Indexing API.
+     * See https://g.co/AppIndexing/AndroidStudio for more information.
+     */
+    private GoogleApiClient client;
+    private String relative_path;
+
     @Override
     protected int getLayoutId() {
         return R.layout.tingl_tk_sy_activity;
@@ -61,7 +73,8 @@ public class TingL_TK_TK_Activity extends BaseActivity implements TingL_XQ_xz_Co
         Intent intent = getIntent();
         Title1 = intent.getStringExtra("title");
         sentence_id = intent.getStringExtra("listen_id");
-        MyLog.e("AdsDSc传过来的数据",sentence_id);
+        relative_path = intent.getStringExtra("relative_path");
+        MyLog.e("AdsDSc传过来的数据", sentence_id);
 
     }
 
@@ -82,8 +95,10 @@ public class TingL_TK_TK_Activity extends BaseActivity implements TingL_XQ_xz_Co
         super.onCreate(savedInstanceState);
         // TODO: add setContentView(...) invocation
         ButterKnife.bind(this);
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
-
 
 
     @OnClick({R.id.back_jt, R.id.title})
@@ -93,23 +108,21 @@ public class TingL_TK_TK_Activity extends BaseActivity implements TingL_XQ_xz_Co
                 BackPopupUtils.PopupW(view, "确认退出选择练习？退出后将保存进度");
                 break;
             case R.id.title:
-                Xuanz_NR_Utils.upPopupWindow(view,title);
+//                Xuanz_NR_Utils.upPopupWindow(view,title);
                 break;
         }
     }
 
 
-
     @Override
     public void getManager(final TingL_XQ_xz_Bean xqbean) {
 
-//
     }
 
     @Override
     public void getManager(final TingL_TK_Bean xqbean) {
 
-        MyLog.e("QWE@#$",xqbean.toString()+"");
+        MyLog.e("QWE@#$", xqbean.toString() + "");
 
 
         App.activity.runOnUiThread(new Runnable() {
@@ -120,7 +133,10 @@ public class TingL_TK_TK_Activity extends BaseActivity implements TingL_XQ_xz_Co
                     TingL_XZ_Fragment fragment = new TingL_XZ_Fragment();
                     bundle = new Bundle();
                     bundle.putSerializable("list", (Serializable) xqbean.getData());
-                    bundle.putString("title",xqbean.getData().get(0).getListen_text());
+                    bundle.putString("title", xqbean.getData().get(0).getListen_text());
+
+
+
                     fragment.setParams(bundle);
                     list.add(fragment);
                 }
@@ -142,5 +158,41 @@ public class TingL_TK_TK_Activity extends BaseActivity implements TingL_XQ_xz_Co
     @Override
     public void setBasePresenter(TingL_XQ_xz_Cotract.Presenter presenter) {
 
+    }
+
+    /**
+     * ATTENTION: This was auto-generated to implement the App Indexing API.
+     * See https://g.co/AppIndexing/AndroidStudio for more information.
+     */
+    public Action getIndexApiAction() {
+        Thing object = new Thing.Builder()
+                .setName("TingL_TK_TK_ Page") // TODO: Define a title for the content shown.
+                // TODO: Make sure this auto-generated URL is correct.
+                .setUrl(Uri.parse("http://[ENTER-YOUR-URL-HERE]"))
+                .build();
+        return new Action.Builder(Action.TYPE_VIEW)
+                .setObject(object)
+                .setActionStatus(Action.STATUS_TYPE_COMPLETED)
+                .build();
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        client.connect();
+        AppIndex.AppIndexApi.start(client, getIndexApiAction());
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        AppIndex.AppIndexApi.end(client, getIndexApiAction());
+        client.disconnect();
     }
 }

@@ -42,6 +42,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.net.URLEncoder;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
@@ -406,7 +407,8 @@ public class DuiH_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.Vi
         relativeLayout.setVisibility(View.GONE);
 
     }
-    int numb = 0;
+
+
     public void setVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
         if (mPlayer == null) {
@@ -416,9 +418,6 @@ public class DuiH_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.Vi
 //            mediaPlayer.start();
             mPlayer.stop();
         } else {
-
-
-
             try {
                 relativepath = bundle.getString("Relative_path");
                 juese_video = (ArrayList<String>) bundle.getSerializable("Juese_videoList");
@@ -426,24 +425,18 @@ public class DuiH_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.Vi
 //                for (int i = 0; i<juese_video.size();i++){
                     mPlayer = null;
                     mPlayer = new MediaPlayer();
-                final String bofUrl = "https://zts100.com/demo/file/download"+"/?"+"Relative_path="+relativepath+"&"+"type=2"+"&"+"fileName="+juese_video.get(numb);
+                    String s = URLEncoder.encode(juese_video.get(1), "utf-8").replaceAll("\\+", "%20");
+
+                final String bofUrl = "https://zts100.com/demo/file/download"+"/?"+"Relative_path="+relativepath+"&"+"type=2"+"&"+"fileName="+s;
                 MyLog.e("拼接好的 播放 Url",bofUrl);
                 mPlayer.setDataSource(bofUrl);
                     //3 准备播放
-                    mPlayer.prepare();
-                    mPlayer.start();
-
-                    mPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                    mPlayer.prepareAsync();
+                    mPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
                         @Override
-                        public void onCompletion(MediaPlayer mp) {
-                              numb = numb+1;
-                                if(numb > 6) {
-                                    return;
-                                }else {
-                                    mPlayer.start();
-
-                                }
-                            }
+                        public void onPrepared(MediaPlayer mp) {
+                            mPlayer.start();
+                        }
                     });
 //                }
             } catch (IOException e) {
@@ -490,15 +483,15 @@ public class DuiH_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.Vi
                 if (bool[0]) {
                     if (mPlayer.isPlaying()) {
                         MyLog.e("lalall", "ahahahahh");
-                        mPlayer.pause();
 
+                        mPlayer.pause();
                     }
                     bool[0] = false;
                 } else {
                     if (!mPlayer.isPlaying()) {
                         MyLog.e("holle dnsjk", "ahahahahh");
-                        setVisibleHint(true);
 
+                        setVisibleHint(true);
 
                     }
                     bool[0] = true;

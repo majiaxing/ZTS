@@ -14,6 +14,7 @@ import com.example.lenovo.ztsandroid.adapter.ViewPagerAdapter;
 import com.example.lenovo.ztsandroid.base.BaseActivity;
 import com.example.lenovo.ztsandroid.cotract.TingL_XQ_xz_Cotract;
 import com.example.lenovo.ztsandroid.fragment.TingL_TK_Fragment;
+import com.example.lenovo.ztsandroid.model.entity.Spinner_Bean;
 import com.example.lenovo.ztsandroid.model.entity.TingL_TK_Bean;
 import com.example.lenovo.ztsandroid.model.entity.TingL_XQ_xz_Bean;
 import com.example.lenovo.ztsandroid.presenter.TingL_Xq_xz_Presenter;
@@ -48,6 +49,8 @@ public class TingL_TK_Activity extends BaseActivity implements TingL_XQ_xz_Cotra
     private String sentence_id;
     private String Title1;
     private Bundle bundle;
+    private ArrayList<Spinner_Bean> nlist = new ArrayList<>();
+    private String relative_path;
 
     @Override
     protected int getLayoutId() {
@@ -60,6 +63,7 @@ public class TingL_TK_Activity extends BaseActivity implements TingL_XQ_xz_Cotra
         Intent intent = getIntent();
         Title1 = intent.getStringExtra("title");
         sentence_id = intent.getStringExtra("listen_id");
+        relative_path = intent.getStringExtra("relative_path");
         MyLog.e("AdsDSc传过来的数据", sentence_id);
 
 
@@ -102,6 +106,15 @@ public class TingL_TK_Activity extends BaseActivity implements TingL_XQ_xz_Cotra
                     bundle = new Bundle();
                     bundle.putSerializable("list", (Serializable) xqbean.getData());
 //                    bundle.putString("title",xqbean.getData().get(0).getListen_name());
+
+                    bundle.putString("word_video", xqbean.getData().get(0).getListen_video());
+                    bundle.putString("Relative_path",relative_path);
+
+
+                    MyLog.e("传过去的路经 ——文件名",xqbean.getData().get(0).getListen_video() + ""+relative_path);
+
+
+
                     fragment.setParams(bundle);
                     list.add(fragment);
                 }
@@ -136,7 +149,7 @@ public class TingL_TK_Activity extends BaseActivity implements TingL_XQ_xz_Cotra
                 BackPopupUtils.PopupDimiss();
                 break;
             case R.id.title:
-                Xuanz_NR_Utils.upPopupWindow(view,title);
+                Xuanz_NR_Utils.upPopupWindow(view,title ,nlist);
                 break;
         }
     }

@@ -6,7 +6,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RadioButton;
 import android.widget.TextView;
 
 import com.example.lenovo.ztsandroid.R;
@@ -56,17 +58,24 @@ public class Read_XuanZ_T_Adapter extends BaseAdapter {
             viewHolder = new ViewHolder();
             convertView = LayoutInflater.from(context).inflate(R.layout.read_xianz_item,null);
             viewHolder.textView = convertView.findViewById(R.id.Item_Tm);
-            viewHolder.radio_A = convertView.findViewById(R.id.Xuanz_btn_A);
-            viewHolder.radio_B = convertView.findViewById(R.id.Xuanz_btn_B);
-            viewHolder.radio_C = convertView.findViewById(R.id.Xuanz_btn_C);
-            viewHolder.radio_D = convertView.findViewById(R.id.Xuanz_btn_D);
             viewHolder.text_A = convertView.findViewById(R.id.Xuanz_nr_A);
             viewHolder.text_B = convertView.findViewById(R.id.Xuanz_nr_B);
             viewHolder.text_C = convertView.findViewById(R.id.Xuanz_nr_C);
             viewHolder.text_D = convertView.findViewById(R.id.Xuanz_nr_D);
+
+            viewHolder.BF_A_Xuanz = convertView.findViewById(R.id.BF_A_Xuanz);
+            viewHolder.BF_B_Xuanz = convertView.findViewById(R.id.BF_B_Xuanz);
+            viewHolder.BF_C_Xuanz = convertView.findViewById(R.id.BF_C_Xuanz);
+            viewHolder.BF_D_Xuanz = convertView.findViewById(R.id.BF_D_Xuanz);
+
+
+            viewHolder.XXA = convertView.findViewById(R.id.XXA);
+            viewHolder.XXB = convertView.findViewById(R.id.XXB);
+            viewHolder.XXC = convertView.findViewById(R.id.XXC);
+            viewHolder.XXD = convertView.findViewById(R.id.XXD);
+
             mHashMap.put(position, convertView);
             convertView.setTag(viewHolder);
-
         }else {
             convertView = (View) mHashMap.get(position);
             viewHolder = (ViewHolder) convertView.getTag();
@@ -88,43 +97,50 @@ public class Read_XuanZ_T_Adapter extends BaseAdapter {
 
 
         final ViewHolder finalViewHolder = viewHolder;
-        viewHolder.radio_A.setOnClickListener(new View.OnClickListener() {
+        viewHolder.XXA.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finalViewHolder.radio_A.setChecked(true);
-                finalViewHolder.radio_B.setChecked(false);
-                finalViewHolder.radio_C.setChecked(false);
-                finalViewHolder.radio_D.setChecked(false);
+                finalViewHolder.BF_A_Xuanz.setVisibility(View.VISIBLE);
+                finalViewHolder.BF_B_Xuanz.setVisibility(View.GONE);
+                finalViewHolder.BF_C_Xuanz.setVisibility(View.GONE);
+                finalViewHolder.BF_D_Xuanz.setVisibility(View.GONE);
+
+//                onItemlick.onlick(v,liveBean.getHw_answerId());
 
             }
         });
-        viewHolder.radio_B.setOnClickListener(new View.OnClickListener() {
+        viewHolder.XXB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finalViewHolder.radio_A.setChecked(false);
-                finalViewHolder.radio_B.setChecked(true);
-                finalViewHolder.radio_C.setChecked(false);
-                finalViewHolder.radio_D.setChecked(false);
+                finalViewHolder.BF_A_Xuanz.setVisibility(View.GONE);
+                finalViewHolder.BF_B_Xuanz.setVisibility(View.VISIBLE);
+                finalViewHolder.BF_C_Xuanz.setVisibility(View.GONE);
+                finalViewHolder.BF_D_Xuanz.setVisibility(View.GONE);
+//                onItemlick.onlick(v,liveBean.getHw_answerId());
             }
         });
-        viewHolder.radio_C.setOnClickListener(new View.OnClickListener() {
+        viewHolder.XXC.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finalViewHolder.radio_A.setChecked(false);
-                finalViewHolder.radio_B.setChecked(false);
-                finalViewHolder.radio_C.setChecked(true);
-                finalViewHolder.radio_D.setChecked(false);
+                finalViewHolder.BF_A_Xuanz.setVisibility(View.GONE);
+                finalViewHolder.BF_B_Xuanz.setVisibility(View.GONE);
+                finalViewHolder.BF_C_Xuanz.setVisibility(View.VISIBLE);
+                finalViewHolder.BF_D_Xuanz.setVisibility(View.GONE);
+//                onItemlick.onlick(v,liveBean.getHw_answerId());
             }
         });
-        viewHolder.radio_D.setOnClickListener(new View.OnClickListener() {
+        viewHolder.XXD.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finalViewHolder.radio_A.setChecked(false);
-                finalViewHolder.radio_B.setChecked(false);
-                finalViewHolder.radio_C.setChecked(false);
-                finalViewHolder.radio_D.setChecked(true);
+
+                finalViewHolder.BF_A_Xuanz.setVisibility(View.GONE);
+                finalViewHolder.BF_B_Xuanz.setVisibility(View.GONE);
+                finalViewHolder.BF_C_Xuanz.setVisibility(View.GONE);
+                finalViewHolder.BF_D_Xuanz.setVisibility(View.VISIBLE);
+//                onItemlick.onlick(v,liveBean.getHw_answerId());
             }
         });
+
 
 
 
@@ -134,7 +150,9 @@ public class Read_XuanZ_T_Adapter extends BaseAdapter {
 
     static class ViewHolder {
         public TextView textView;
-        public CheckBox radio_A,radio_B ,radio_C ,radio_D;
+        public RadioButton radio_A,radio_B ,radio_C ,radio_D;
+        private RadioButton BF_A_Xuanz, BF_B_Xuanz,BF_C_Xuanz,BF_D_Xuanz;
         private TextView text_A,text_B,text_C,text_D;
+        private LinearLayout XXA,XXB,XXC,XXD;
     }
 }

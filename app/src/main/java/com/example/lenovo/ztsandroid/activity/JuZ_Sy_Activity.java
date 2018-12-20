@@ -67,6 +67,7 @@ public class JuZ_Sy_Activity extends BaseActivity implements Juz_XQ_Cotract.View
     private List_Juz_Adapter Gadapter;
     private ListView listView;
     private String type;
+    private String relative_path;
 
     @Override
     protected int getLayoutId() {
@@ -81,7 +82,7 @@ public class JuZ_Sy_Activity extends BaseActivity implements Juz_XQ_Cotract.View
         Title1 = intent.getStringExtra("title");
         sentence_id = intent.getStringExtra("sentence_id");
         type = intent.getStringExtra("type");
-
+        relative_path = intent.getStringExtra("Relative_path");
 
 
     }
@@ -166,6 +167,8 @@ public class JuZ_Sy_Activity extends BaseActivity implements Juz_XQ_Cotract.View
                     bundle.putString("han",xqbean.getData().get(i).getSentence_zw());
                     MyLog.e("句子数据",xqbean.getData().get(i).getSentence_yw());
                     bundle.putString("word_id",sentence_id);
+                    bundle.putString("word_video",xqbean.getData().get(i).getSentence_video());
+                    bundle.putString("Relative_path",relative_path);
                     bundle.putString("type",type);
                     fragment.setParams(bundle);
                     list.add(fragment);

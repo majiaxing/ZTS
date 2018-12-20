@@ -16,6 +16,7 @@
 
 
         <LinearLayout
+            android:id="@+id/back_jt"
             android:layout_width="90px"
             android:layout_height="90px"
             android:layout_marginLeft="48px"
@@ -23,7 +24,7 @@
             android:gravity="bottom"
             >
         <ImageView
-            android:id="@+id/back_jt"
+
             android:layout_width="45px"
             android:layout_height="45px"
             android:src="@drawable/back_xg_tt"
@@ -34,6 +35,16 @@
             />
         </LinearLayout>
 
+        <LinearLayout
+            android:id="@+id/linear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="30px"
+            >
+
 
         <TextView
             android:id="@+id/title"
@@ -43,25 +54,24 @@
             android:textSize="54px"
             android:textColor="#fff"
             android:background="@null"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:layout_marginTop="30px"
+
             />
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="30px"
+            android:layout_height="30px"
             android:src="@drawable/xialak_btn"
             android:layout_centerVertical="true"
             android:layout_toRightOf="@+id/title"
             android:layout_toEndOf="@+id/title"
             android:layout_marginLeft="20px"
-            android:layout_marginTop="30px"
+            android:layout_marginTop="20px"
             />
-
+        </LinearLayout>
     </RelativeLayout>
     <TextView
+        android:id="@+id/Text_XX"
         android:layout_width="match_parent"
         android:layout_height="40px"
         android:background="@color/pe_gray"

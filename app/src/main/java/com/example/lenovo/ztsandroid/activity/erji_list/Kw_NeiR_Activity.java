@@ -19,6 +19,7 @@ import com.example.lenovo.ztsandroid.model.entity.Kw_Bean;
 import com.example.lenovo.ztsandroid.model.entity.Kw_erji_list_Bean;
 import com.example.lenovo.ztsandroid.model.entity.Spinner_Bean;
 import com.example.lenovo.ztsandroid.presenter.Kw_erji_Presenter;
+import com.example.lenovo.ztsandroid.utils.MyLog;
 
 import java.util.ArrayList;
 
@@ -66,10 +67,13 @@ public class Kw_NeiR_Activity extends BaseActivity implements KeW_list_Cotract.V
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 String  Xx = list.get(i).getText_title();
                 String text_id = list.get(i).getText_id();
+                String relative_path = list.get(i).getRelative_path();
                 Intent intent = new Intent(App.activity,Kew_Sy_Activity.class);
                 intent.putExtra("title",Xx);
                 intent.putExtra("text_id",text_id);
                 intent.putExtra("type",type);
+                intent.putExtra("relative_path",relative_path);
+                MyLog.e("要传过去的数据",relative_path);
                 startActivity(intent);
 
 

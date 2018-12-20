@@ -28,11 +28,11 @@ public class Xuanz_NR_Utils {
     public static ListView listView;
     public static List_popup_Adapter Gadapter;
     public static PopupWindow popupWindow;
-    public static ArrayList<Spinner_Bean> nlist = new ArrayList<>();
+//    public static ArrayList<Spinner_Bean> nlist = new ArrayList<>();
 
-    public static void upPopupWindow(View view ,TextView text) {
+    public static void upPopupWindow(View view ,TextView text ,ArrayList<Spinner_Bean> nlist) {
         View v = LayoutInflater.from(App.activity).inflate(R.layout.danc_popup_qh, null);
-        popupView(v ,text);
+        popupView(v ,text,nlist);
         popupWindow = new PopupWindow(v, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         popupWindow.setFocusable(true);
         popupWindow.setBackgroundDrawable(new BitmapDrawable()); // 响应返回键必须的语句
@@ -40,13 +40,13 @@ public class Xuanz_NR_Utils {
 
     }
 
-    public static void popupView(View v , final TextView text) {
+    public static void popupView(View v , final TextView text , final ArrayList<Spinner_Bean> nlist) {
 
         listView = v.findViewById(R.id.popup_listview);
 
-        for (int i = 1; i <= 10; i++) {
-            nlist.add(new Spinner_Bean("name" + i));
-        }
+//        for (int i = 1; i <= 10; i++) {
+//            nlist.add(new Spinner_Bean("name" + i));
+//        }
 
         Gadapter = new List_popup_Adapter(App.activity, nlist);
         listView.setAdapter(Gadapter);

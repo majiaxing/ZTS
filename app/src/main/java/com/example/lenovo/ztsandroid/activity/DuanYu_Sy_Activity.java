@@ -49,6 +49,8 @@ public class DuanYu_Sy_Activity extends BaseActivity implements Dy_erj_Cotract.V
     ViewPager danciViewPager;
     @BindView(R.id.linearLayout)
     LinearLayout linearLayout;
+    @BindView(R.id.text_X)
+    TextView textX;
     private ViewPagerAdapter adapter;
     private ArrayList<Fragment> list = new ArrayList<>();
     private ArrayList<Dy_Xq_Bean.DataBean> nlist = new ArrayList<>();
@@ -127,7 +129,7 @@ public class DuanYu_Sy_Activity extends BaseActivity implements Dy_erj_Cotract.V
     }
 
 
-    @OnClick({R.id.back_jt,R.id.linearLayout})
+    @OnClick({R.id.back_jt, R.id.linearLayout})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.back_jt:
@@ -135,7 +137,7 @@ public class DuanYu_Sy_Activity extends BaseActivity implements Dy_erj_Cotract.V
                 BackPopupUtils.PopupDimiss();
                 break;
             case R.id.linearLayout:
-                upPopupWindow(view);
+                upPopupWindow(textX);
                 break;
         }
     }
@@ -152,11 +154,11 @@ public class DuanYu_Sy_Activity extends BaseActivity implements Dy_erj_Cotract.V
                     bundle = new Bundle();
                     bundle.putString("yin", xqBean.getData().get(i).getPhrase());
                     bundle.putString("han", xqBean.getData().get(i).getPhrase_tran());
-                    bundle.putString("word_id",xqBean.getData().get(i).getPhrase_id());
-                    bundle.putString("type",xqBean.getData().get(i).getType());
+                    bundle.putString("word_id", xqBean.getData().get(i).getPhrase_id());
+                    bundle.putString("type", xqBean.getData().get(i).getType());
 
-                    bundle.putString("Relative_path",xqBean.getData().get(i).getRelative_path());
-                    bundle.putString("word_video",xqBean.getData().get(i).getPhrase_video());
+                    bundle.putString("Relative_path", xqBean.getData().get(i).getRelative_path());
+                    bundle.putString("word_video", xqBean.getData().get(i).getPhrase_video());
 
                     duany_fragment.setParams(bundle);
                     list.add(duany_fragment);

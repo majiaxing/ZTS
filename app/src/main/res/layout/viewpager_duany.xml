@@ -6,11 +6,6 @@
     >
 
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="40px"
-        android:background="@color/pe_gray"
-        />
 
 
     <RelativeLayout
@@ -31,7 +26,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Good_morning"
-                    android:textSize="72px"
+                    android:textSize="56px"
                     android:textColor="#333333"
                     android:layout_marginLeft="20px"
                     android:layout_centerHorizontal="true"

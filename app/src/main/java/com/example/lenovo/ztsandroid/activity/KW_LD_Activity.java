@@ -63,16 +63,15 @@ public class KW_LD_Activity extends BaseActivity implements KeW_list_Cotract.Vie
 
         final Intent intent = getIntent();
         extra = intent.getStringExtra("title");
+        MyLog.e("lalalalallsahduaw",extra);
         jclx = intent.getStringExtra("教材");
         nj_jc = intent.getStringExtra("年级");
         sxc = intent.getStringExtra("上下册");
         listen_type = intent.getStringExtra("listen_type");
         Log.e("获取到的数据", jclx + nj_jc + sxc);
         MyLog.e("略略略",listen_type+" ");
-
         String stuid = String.valueOf(App.stuid);
         switch (extra){
-
             case "text":
                 title.setText("课文");
                 new KeW_list_Presenter(this);
@@ -102,32 +101,29 @@ public class KW_LD_Activity extends BaseActivity implements KeW_list_Cotract.Vie
                 break;
 
             case "listen":
-                title.setText("听力");
-                MyLog.e("lalla",listen_type);
+
 
                     switch (listen_type){
                         case "1":
                             new KeW_list_Presenter(this);
                               presenter.SetUrl(jclx,nj_jc,sxc,extra,"1",stuid);
                              MyLog.e("lalla",listen_type);
+                            title.setText("听力选择");
                             break;
                         case "2":
                             new KeW_list_Presenter(this);
                              presenter.SetUrl(jclx, nj_jc, sxc, extra, "2", stuid);
                              MyLog.e("lalla",listen_type);
+                            title.setText("听力填空");
 
                             break;
                     }
+                break;
+
             case "read":
-
-
                 title.setText("阅读");
                 new KeW_list_Presenter(this);
                 presenter.SetUrl(jclx,nj_jc,sxc,extra,null,stuid);
-
-
-
-
             break;
         }
 
