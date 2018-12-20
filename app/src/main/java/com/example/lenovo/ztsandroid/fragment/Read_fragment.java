@@ -1,16 +1,16 @@
 package com.example.lenovo.ztsandroid.fragment;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.lenovo.ztsandroid.App;
 import com.example.lenovo.ztsandroid.R;
 import com.example.lenovo.ztsandroid.adapter.Read_XuanZ_T_Adapter;
-import com.example.lenovo.ztsandroid.adapter.Xuanz_Adapter;
 import com.example.lenovo.ztsandroid.base.BaseFragment;
 import com.example.lenovo.ztsandroid.model.entity.Read_XQ_Bean;
 import com.example.lenovo.ztsandroid.utils.MyLog;
@@ -21,6 +21,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import butterknife.Unbinder;
 
 /**
@@ -41,6 +42,7 @@ public class Read_fragment extends BaseFragment {
     private Bundle bundle;
     private Read_XuanZ_T_Adapter listadapter;
     private ArrayList<Read_XQ_Bean.DataBean.ReadQuestionListBean> mList = new ArrayList<>();
+
     @Override
 
     protected int getLayoutId() {
@@ -63,7 +65,7 @@ public class Read_fragment extends BaseFragment {
         DuanWNr.setText(read_content);
         textSm.setText(read_text);
 
-        listadapter = new Read_XuanZ_T_Adapter(App.activity,mList);
+        listadapter = new Read_XuanZ_T_Adapter(App.activity, mList);
         TmListView.setAdapter(listadapter);
         listadapter.notifyDataSetChanged();
 
@@ -91,5 +93,17 @@ public class Read_fragment extends BaseFragment {
     public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();
+    }
+
+    @OnClick(R.id.Ti_J_ChaK)
+    public void onViewClicked() {
+        ArrayList<String> answer = listadapter.getAnswer();
+        if (answer != null) {
+            for (int i = 0; i < answer.size(); i++) {
+                Log.e("tag==answer","答案="+answer.get(i));
+            }
+        }else {
+            Toast.makeText(getActivity(),"有未选择的答案",Toast.LENGTH_SHORT).show();
+        }
     }
 }

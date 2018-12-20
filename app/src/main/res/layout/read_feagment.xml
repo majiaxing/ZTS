@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorWhite"
-    >
-
+    android:orientation="vertical">
 
 
     <RelativeLayout
@@ -13,89 +12,74 @@
 
 
         <ScrollView
+            android:overScrollMode="never"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
-<RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="40px"
-        android:background="@color/pe_gray"
-        />
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_marginLeft="62px"
-        android:layout_marginRight="60px"
-        >
-
-        <TextView
-            android:id="@+id/DuanW_Nr"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="King Athamus of northern Greece had two children， Phrixus and Helle．After he left his first wife and mar ried Ino，a wicked woman，the two children received all the cruel treatment that a stepmother coulddevise ，At one timethe kingdom was ruined by a famine．"
-        android:textSize="36px"
-            android:textColor="#333333"
-        android:layout_marginTop="64px"
-        android:lineSpacingExtra="10sp"
-        android:layout_marginBottom="76px"
-            />
-    
-        <TextView
-            android:id="@+id/Item_sm"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="阅读短文，请从下面选项中选出最佳答案"
-            android:textSize="36px"
-            android:textColor="#333333"
-            />
-
-            <com.example.lenovo.ztsandroid.view.MyListView
-                android:id="@+id/Tm_ListView"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="61px"
-                android:layout_marginBottom="153px"
-                >
-            </com.example.lenovo.ztsandroid.view.MyListView>
+                android:layout_height="wrap_content">
 
-    </LinearLayout>
-
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="40px"
+                    android:background="@color/pe_gray" />
 
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="62px"
+                    android:layout_marginRight="60px"
+                    android:orientation="vertical">
 
-</RelativeLayout>
+                    <TextView
+                        android:id="@+id/DuanW_Nr"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="76px"
+                        android:layout_marginTop="64px"
+                        android:lineSpacingExtra="10sp"
+                        android:text="King Athamus of northern Greece had two children， Phrixus and Helle．After he left his first wife and mar ried Ino，a wicked woman，the two children received all the cruel treatment that a stepmother coulddevise ，At one timethe kingdom was ruined by a famine．"
+                        android:textColor="#333333"
+                        android:textSize="36px" />
+
+                    <TextView
+                        android:id="@+id/Item_sm"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="阅读短文，请从下面选项中选出最佳答案"
+                        android:textColor="#333333"
+                        android:textSize="36px" />
+
+                    <com.example.lenovo.ztsandroid.view.MyListView
+                        android:id="@+id/Tm_ListView"
+                        android:divider="@null"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="153px"
+                        android:layout_marginTop="61px"/>
+
+                </LinearLayout>
+
+
+            </RelativeLayout>
         </ScrollView>
 
 
-
-    <TextView
-        android:id="@+id/Ti_J_ChaK"
-        android:layout_width="match_parent"
-        android:layout_height="153px"
-        android:background="@drawable/tj_chakan_bg"
-        android:gravity="center"
-        android:text="提交并查看结果"
-        android:textSize="48px"
-        android:textColor="#ffffff"
-        android:layout_alignParentBottom="true"
-        />
-
-
-
+        <TextView
+            android:id="@+id/Ti_J_ChaK"
+            android:layout_width="match_parent"
+            android:layout_height="153px"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/tj_chakan_bg"
+            android:gravity="center"
+            android:text="提交并查看结果"
+            android:textColor="#ffffff"
+            android:textSize="48px" />
 
 
     </RelativeLayout>
-
-
-
-
-
 
 
 </RelativeLayout>

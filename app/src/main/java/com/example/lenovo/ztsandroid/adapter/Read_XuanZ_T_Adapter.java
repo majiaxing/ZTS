@@ -5,17 +5,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.CheckBox;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
 import com.example.lenovo.ztsandroid.R;
 import com.example.lenovo.ztsandroid.model.entity.Read_XQ_Bean;
-import com.example.lenovo.ztsandroid.model.entity.Read_erj_Bean;
-import com.example.lenovo.ztsandroid.model.entity.Spinner_T_Bean;
-import com.example.lenovo.ztsandroid.view.MyListView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -27,11 +22,14 @@ import java.util.HashMap;
 public class Read_XuanZ_T_Adapter extends BaseAdapter {
     private Context context;
     public ArrayList<Read_XQ_Bean.DataBean.ReadQuestionListBean> channels;
+    private ArrayList<String> answer = new ArrayList<>();
     private ZuoY_Xuanz_Adapter adapter;
-
     public Read_XuanZ_T_Adapter(Context context, ArrayList<Read_XQ_Bean.DataBean.ReadQuestionListBean> channels) {
         this.context = context;
         this.channels = channels;
+        for (int i = 0; i < channels.size(); i++) {
+            answer.add("");
+        }
     }
 
 
@@ -51,7 +49,7 @@ public class Read_XuanZ_T_Adapter extends BaseAdapter {
     }
     private HashMap mHashMap = new HashMap();
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
 
         ViewHolder viewHolder = null;
         if (mHashMap.get(position) == null ){
@@ -100,6 +98,7 @@ public class Read_XuanZ_T_Adapter extends BaseAdapter {
         viewHolder.XXA.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                answer.set(position,"A");
                 finalViewHolder.BF_A_Xuanz.setVisibility(View.VISIBLE);
                 finalViewHolder.BF_B_Xuanz.setVisibility(View.GONE);
                 finalViewHolder.BF_C_Xuanz.setVisibility(View.GONE);
@@ -112,6 +111,7 @@ public class Read_XuanZ_T_Adapter extends BaseAdapter {
         viewHolder.XXB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                answer.set(position,"B");
                 finalViewHolder.BF_A_Xuanz.setVisibility(View.GONE);
                 finalViewHolder.BF_B_Xuanz.setVisibility(View.VISIBLE);
                 finalViewHolder.BF_C_Xuanz.setVisibility(View.GONE);
@@ -122,6 +122,7 @@ public class Read_XuanZ_T_Adapter extends BaseAdapter {
         viewHolder.XXC.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                answer.set(position,"C");
                 finalViewHolder.BF_A_Xuanz.setVisibility(View.GONE);
                 finalViewHolder.BF_B_Xuanz.setVisibility(View.GONE);
                 finalViewHolder.BF_C_Xuanz.setVisibility(View.VISIBLE);
@@ -132,7 +133,7 @@ public class Read_XuanZ_T_Adapter extends BaseAdapter {
         viewHolder.XXD.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                answer.set(position,"D");
                 finalViewHolder.BF_A_Xuanz.setVisibility(View.GONE);
                 finalViewHolder.BF_B_Xuanz.setVisibility(View.GONE);
                 finalViewHolder.BF_C_Xuanz.setVisibility(View.GONE);
@@ -145,6 +146,15 @@ public class Read_XuanZ_T_Adapter extends BaseAdapter {
 
 
         return convertView;
+    }
+
+    public ArrayList<String>  getAnswer() {
+        for (int i = 0; i < answer.size(); i++) {
+            if (answer.get(i).equals("")){
+                return null;
+            }
+        }
+        return answer;
     }
 
 
