@@ -2,6 +2,8 @@ package com.example.lenovo.ztsandroid;
 
 import android.app.Activity;
 import android.app.Application;
+import android.content.Context;
+import android.media.AudioManager;
 import android.net.wifi.hotspot2.pps.Credential;
 import android.support.annotation.RequiresApi;
 import android.widget.RadioGroup;
@@ -59,8 +61,8 @@ public class App extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-
-
+        AudioManager audioManager = (AudioManager)this.getSystemService(Context.AUDIO_SERVICE);
+        audioManager.setSpeakerphoneOn(true);
 //        // 实例化一个认证对象，入参需要传入腾讯云账户secretId，secretKey
 //        Credential cred = new Credential();
 //

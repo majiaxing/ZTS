@@ -24,14 +24,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
-            <RadioButton
+            <TextView
                 android:id="@+id/BF_A"
                 android:layout_width="40px"
                 android:layout_height="40px"
-                android:background="@drawable/weixuanz"
-                android:button="@null" />
+                android:background="@drawable/weixuanz" />
 
-            <RadioButton
+            <TextView
                 android:id="@+id/BF_A_Xuanz"
                 android:layout_width="33px"
                 android:layout_height="33px"
@@ -67,14 +66,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
-            <RadioButton
+            <TextView
                 android:id="@+id/BF_B"
                 android:layout_width="40px"
                 android:layout_height="40px"
                 android:background="@drawable/weixuanz"
                 android:button="@null" />
 
-            <RadioButton
+            <TextView
                 android:id="@+id/BF_B_Xuanz"
                 android:layout_width="33px"
                 android:layout_height="33px"
@@ -109,14 +108,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
-            <RadioButton
+            <TextView
                 android:id="@+id/BF_C"
                 android:layout_width="40px"
                 android:layout_height="40px"
                 android:background="@drawable/weixuanz"
                 android:button="@null" />
 
-            <RadioButton
+            <TextView
                 android:id="@+id/BF_C_Xuanz"
                 android:layout_width="33px"
                 android:layout_height="33px"
@@ -153,14 +152,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
-            <RadioButton
+            <TextView
                 android:id="@+id/BF_D"
                 android:layout_width="40px"
                 android:layout_height="40px"
                 android:background="@drawable/weixuanz"
                 android:button="@null" />
 
-            <RadioButton
+            <TextView
                 android:id="@+id/BF_D_Xuanz"
                 android:layout_width="33px"
                 android:layout_height="33px"

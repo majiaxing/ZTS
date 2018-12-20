@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
-import android.widget.RadioButton;
 import android.widget.TextView;
 
 import com.example.lenovo.ztsandroid.R;
@@ -160,8 +159,8 @@ public class Read_XuanZ_T_Adapter extends BaseAdapter {
 
     static class ViewHolder {
         public TextView textView;
-        public RadioButton radio_A,radio_B ,radio_C ,radio_D;
-        private RadioButton BF_A_Xuanz, BF_B_Xuanz,BF_C_Xuanz,BF_D_Xuanz;
+        public TextView radio_A,radio_B ,radio_C ,radio_D;
+        private TextView BF_A_Xuanz, BF_B_Xuanz,BF_C_Xuanz,BF_D_Xuanz;
         private TextView text_A,text_B,text_C,text_D;
         private LinearLayout XXA,XXB,XXC,XXD;
     }

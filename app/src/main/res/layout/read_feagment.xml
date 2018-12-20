@@ -53,6 +53,7 @@
                         android:textSize="36px" />
 
                     <com.example.lenovo.ztsandroid.view.MyListView
+                        android:listSelector="@color/transparent"
                         android:id="@+id/Tm_ListView"
                         android:divider="@null"
                         android:layout_width="match_parent"
