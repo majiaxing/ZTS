@@ -54,7 +54,7 @@ public class Login_Activity extends BaseActivity implements Logincotract.View{
 
     @Override
     protected void initView() {
-        sp = this.getSharedPreferences("userInfo", App.activity.MODE_WORLD_READABLE);
+        sp = this.getSharedPreferences("userInfo", App.activity.MODE_PRIVATE);
         editor = sp.edit();
 
         App.stuid = sp.getString("stuid", "");
@@ -74,14 +74,6 @@ public class Login_Activity extends BaseActivity implements Logincotract.View{
     @Override
     public void loadData() {
         new Login_Presenter(this);
-    }
-
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
     }
 
     @OnClick({R.id.A_wangjiBtn, R.id.loginBtn})
