@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="57px"
+        android:background="@color/colorWhite"
+        >
+
+
+
+
+        <ImageView
+            android:layout_width="244px"
+            android:layout_height="270px"
+            android:src="@drawable/kw_image"
+            android:scaleType="centerCrop"
+            />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="270px"
+        >
+
+        <TextView
+            android:id="@+id/NR_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="*******"
+            android:layout_marginTop="40px"
+            android:layout_marginLeft="40px"
+            android:textSize="48px"
+            android:textColor="#333333"
+
+            />
+
+        <TextView
+            android:id="@+id/Tilte_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="未练习"
+            android:layout_marginTop="40px"
+            android:layout_below="@+id/NR_item"
+            android:layout_alignLeft="@+id/NR_item"
+            android:layout_alignStart="@+id/NR_item"
+            android:textSize="36px"
+            android:textColor="#999999"
+            />
+
+        <!--<ImageView-->
+            <!--android:id="@+id/Image_nr_item"-->
+            <!--android:layout_width="136px"-->
+            <!--android:layout_height="134px"-->
+            <!--android:src="@drawable/bg_wlx"-->
+            <!--android:layout_alignParentTop="true"-->
+            <!--android:layout_alignParentRight="true"-->
+            <!--android:layout_alignParentEnd="true"-->
+
+            <!--/>-->
+
+        <TextView
+            android:id="@+id/jdu_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="已完成33%"
+            android:textSize="36px"
+            android:textColor="#43b8cD"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginRight="40px"
+            android:visibility="gone"
+            />
+
+    </RelativeLayout>
+    </LinearLayout>
+
+</LinearLayout>

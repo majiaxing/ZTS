@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite"
+    >
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="660px"
+            android:orientation="vertical"
+            android:background="@drawable/huiyuan"
+            android:gravity="center_horizontal"
+            >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="我的"
+            android:layout_marginTop="80px"
+            android:textColor="#ffffff"
+            android:textSize="54px"
+
+            />
+
+            <RelativeLayout
+                android:layout_width="244px"
+                android:layout_height="245px"
+                android:layout_marginTop="72px"
+                >
+
+                <ImageView
+                    android:id="@+id/Toux"
+                    android:layout_width="244px"
+                    android:layout_height="245px"
+                    android:src="@drawable/tx_wk"
+                    />
+
+                <com.example.lenovo.ztsandroid.view.CircleImageView
+                    android:layout_width="106px"
+                    android:layout_height="122px"
+                    android:layout_centerVertical="true"
+                    android:layout_centerHorizontal="true"
+                    android:id="@+id/circleImageView"
+                    android:src="@mipmap/tx"
+                    />
+
+
+            </RelativeLayout>
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="39px"
+                >
+
+                <TextView
+                    android:id="@+id/YH_m"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="187****1474"
+                    android:textColor="#ffffff"
+                    android:textSize="36px"
+                    />
+
+                <ImageView
+                    android:id="@+id/XiuGaiZL"
+                    android:layout_width="44px"
+                    android:layout_height="41px"
+                    android:layout_marginLeft="30px"
+                    android:src="@drawable/bj_yhm"
+                    />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/KEhuZhT"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="您目前为非会员"
+                android:layout_marginTop="20px"
+                android:textColor="#ffffff"
+                android:textSize="36px"
+                />
+
+
+
+        </LinearLayout>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="30px"
+                android:background="@color/pe_gray"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="231px"
+                android:orientation="vertical"
+                android:weightSum="2"
+                >
+                
+                <LinearLayout
+                    android:id="@+id/WD_vip"
+                    android:layout_width="match_parent"
+                    android:layout_height="0px"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    >
+                
+                    <ImageView
+                        android:layout_width="58px"
+                        android:layout_height="48px"
+                        android:layout_marginLeft="49px"
+                        android:src="@drawable/vip_ka"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="我的会员"
+                        android:layout_marginLeft="33px"
+                        android:textSize="36px"
+                        android:textColor="#333"
+                        />
+
+                    <ImageView
+                        android:layout_width="16px"
+                        android:layout_height="32px"
+                        android:layout_marginLeft="732px"
+                        android:src="@drawable/fh"
+                        />
+
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/GouM_vip"
+                    android:layout_width="match_parent"
+                    android:layout_height="0px"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    >
+
+                    <ImageView
+                        android:layout_width="58px"
+                        android:layout_height="48px"
+                        android:layout_marginLeft="49px"
+                        android:src="@drawable/goumaivip"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="购买会员"
+                        android:layout_marginLeft="33px"
+                        android:textSize="36px"
+                        android:textColor="#333"
+                        />
+
+                    <ImageView
+                        android:layout_width="16px"
+                        android:layout_height="32px"
+                        android:layout_marginLeft="732px"
+                        android:src="@drawable/fh"
+                        />
+
+
+
+                </LinearLayout>
+                
+                
+                
+            </LinearLayout>
+
+
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="30px"
+        android:background="@color/pe_gray"
+        />
+
+
+    <LinearLayout
+        android:id="@+id/She_Z"
+        android:layout_width="match_parent"
+        android:layout_height="117px"
+        android:gravity="center_vertical"
+        >
+
+        <ImageView
+            android:layout_width="58px"
+            android:layout_height="48px"
+            android:layout_marginLeft="49px"
+            android:src="@drawable/shezhi"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="设置"
+            android:layout_marginLeft="33px"
+            android:textSize="36px"
+            android:textColor="#333"
+            />
+
+        <ImageView
+            android:layout_width="16px"
+            android:layout_height="32px"
+            android:layout_marginLeft="804px"
+            android:src="@drawable/fh"
+            />
+
+
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="204px"
+        android:orientation="horizontal"
+        android:layout_gravity="center_vertical"
+        android:gravity="center_vertical"
+        android:background="@drawable/huiyuan"
+        >
+        <ImageView
+            android:id="@+id/Back"
+            android:layout_width="24px"
+            android:layout_height="57px"
+            android:src="@drawable/back_xg_tt"
+            android:layout_marginLeft="54px"
+            android:layout_marginTop="30px"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="找回密码"
+            android:textSize="54px"
+            android:layout_gravity="center"
+            android:textColor="#fff"
+            android:layout_marginLeft="386px"
+            android:layout_marginTop="30px"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginTop="119px"
+        android:layout_marginLeft="119px"
+        android:layout_marginRight="110px"
+
+        >
+
+        <EditText
+            android:id="@+id/YHM_"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="请输入账号"
+            android:textSize="36px"
+            android:background="@null"
+            android:textColorHint="#ADADAD"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="4px"
+            android:background="@color/pe_gray"
+            android:layout_marginTop="30px"
+            />
+
+
+        <EditText
+            android:id="@+id/SJH_"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="请输入您的手机号码"
+            android:textSize="36px"
+            android:background="@null"
+            android:textColorHint="#ADADAD"
+            android:layout_marginTop="77px"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="4px"
+            android:background="@color/pe_gray"
+            android:layout_marginTop="30px"
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="77px"
+            android:orientation="horizontal"
+            >
+
+            <EditText
+                android:id="@+id/YZM_"
+                android:layout_width="400px"
+                android:layout_height="wrap_content"
+                android:hint="请输入验证码"
+                android:textSize="36px"
+                android:background="@null"
+                android:textColorHint="#ADADAD"
+
+                />
+
+            <com.example.lenovo.ztsandroid.utils.CountDownButton
+                android:id="@+id/HQ_"
+                android:layout_width="293px"
+                android:layout_height="74px"
+                android:background="@mipmap/cz"
+                android:text="获取验证码"
+                android:textColor="@color/colorWhite"
+                android:textSize="36px"
+                android:layout_marginLeft="150px"
+                />
+
+
+        </LinearLayout>
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="4px"
+            android:background="@color/pe_gray"
+            android:layout_marginTop="20px"
+            />
+
+
+        <EditText
+            android:id="@+id/ZC_Sr_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="请输入新的密码"
+            android:textSize="36px"
+            android:background="@null"
+            android:textColorHint="#ADADAD"
+            android:layout_marginTop="79px"
+            />
+
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="4px"
+            android:background="@color/pe_gray"
+            android:layout_marginTop="30px"
+            />
+        <Button
+            android:id="@+id/CZ_"
+            android:layout_width="839px"
+            android:layout_height="115px"
+            android:background="@mipmap/yzm"
+            android:layout_marginTop="80px"
+            android:textSize="48px"
+            android:text="重置密码"
+            android:textColor="@color/colorWhite"
+
+            />
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

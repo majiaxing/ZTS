@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="204px"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:background="@drawable/huiyuan"
+        >
+
+        <ImageView
+            android:id="@+id/back_jt"
+            android:layout_width="45px"
+            android:layout_height="45px"
+            android:src="@drawable/back_xg_tt"
+            android:layout_gravity="center"
+            android:layout_marginLeft="48px"
+            android:layout_marginTop="30px"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="375px"
+            android:text="加入班级"
+            android:textSize="54px"
+            android:textColor="#FFF"
+            android:layout_marginTop="30px"
+
+            />
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="40px"
+        android:background="@color/pe_gray"
+        />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_marginTop="159px"
+            android:layout_marginLeft="189px"
+            >
+
+
+            <EditText
+                android:id="@+id/SR_ls"
+                android:layout_width="714px"
+                android:layout_height="wrap_content"
+                android:hint="请输入班级ID或老师手机号"
+                android:textSize="36px"
+                android:textColor="#999999"
+                android:background="@null"
+                android:layout_marginTop="40px"
+                />
+                
+            
+                <Button
+                    android:id="@+id/Jr_bj_btn"
+                    android:layout_width="713px"
+                    android:layout_height="93px"
+                    android:background="@drawable/qr_bg_g"
+                    android:text="加入班级"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="36px"
+                    android:layout_marginTop="77px"
+                    />
+
+        </LinearLayout>
+
+</LinearLayout>

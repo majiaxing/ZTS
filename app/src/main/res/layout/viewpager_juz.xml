@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerHorizontal="true"
+        android:background="@color/colorWhite"
+        >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="66px"
+            android:gravity="center"
+            android:layout_marginLeft="89px"
+            android:id="@+id/linearLayout8">
+
+            <TextView
+                android:id="@+id/zhuS"
+                android:layout_width="850px"
+                android:layout_height="wrap_content"
+                android:text="注释"
+                android:textSize="32px"
+                android:textColor="#43b8cD"
+                android:gravity="right"
+
+                />
+
+
+
+            <CheckBox
+                android:id="@+id/K_G"
+                android:layout_width="66px"
+                android:layout_height="37px"
+                android:button="@null"
+                android:background="@drawable/kai_guan_selecter"
+                />
+
+        </LinearLayout>
+
+
+        <ListView
+            android:id="@+id/Danc_list"
+            android:layout_width="match_parent"
+            android:layout_height="1300px"
+            android:layout_below="@+id/linearLayout8"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="45px"
+            android:layout_marginTop="30dp"
+            android:layout_marginRight="47px"
+            android:divider="#00000000"
+            >
+
+        </ListView>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="200px"
+            android:orientation="horizontal"
+            android:layout_gravity="center_horizontal"
+            android:layout_alignParentBottom="true"
+            android:gravity="center_horizontal"
+            >
+
+            <CheckBox
+                android:id="@+id/BF_zt"
+                android:layout_width="116px"
+                android:layout_height="116px"
+                android:background="@drawable/bf_zt_selector"
+                android:button="@null"
+
+                />
+
+
+            <CheckBox
+                android:id="@+id/Ly_btn"
+                android:layout_width="116px"
+                android:layout_height="116px"
+                android:background="@drawable/luyin_selector"
+                android:button="@null"
+                android:layout_marginLeft="150px"
+                />
+
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/relativeLayout"
+            android:layout_width="890px"
+            android:layout_height="230px"
+            android:background="@drawable/yj_jx"
+            android:layout_marginTop="800px"
+            android:layout_alignTop="@+id/Danc_list"
+            android:layout_centerHorizontal="true"
+            android:visibility="gone"
+            >
+
+            <TextView
+                android:id="@+id/PF_fs"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="65分"
+                android:layout_marginTop="30px"
+                android:layout_marginLeft="40px"
+                android:textSize="48px"
+                android:textColor="@color/colorWhite"
+                />
+
+
+            <TextView
+                android:id="@+id/GL_"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="加油，继续努力"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="40px"
+                android:layout_marginTop="30px"
+                android:textColor="@color/colorWhite"
+                android:textSize="48px"
+                />
+
+
+            <RatingBar
+                android:id="@+id/Xinx_bar"
+                android:layout_width="wrap_content"
+                android:layout_height="100px"
+                android:layout_marginTop="100px"
+                android:layout_marginLeft="40px"
+                android:numStars="5"
+                android:stepSize="1"
+                style="@style/roomRatingBar"
+                />
+
+            <LinearLayout
+                android:id="@+id/BF_LY"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="40px"
+                android:layout_marginTop="150px"
+                >
+                <CheckBox
+
+                    android:layout_width="40px"
+                    android:layout_height="40px"
+                    android:background="@drawable/bd_bf_selector"
+                    android:button="@null"
+                    android:layout_marginTop="10px"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="我的录音"
+                    android:textSize="36px"
+                    android:textColor="@color/colorWhite"
+                    android:layout_marginLeft="20px"
+                    />
+            </LinearLayout>
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+
+
+
+
+
+
+</LinearLayout>

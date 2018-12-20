@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+    <TextView
+        android:background="@color/pe_gray"
+        android:layout_width="match_parent"
+        android:layout_height="38px" />
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+        <RelativeLayout
+            android:layout_width="850px"
+            android:layout_height="1093px"
+            android:layout_centerHorizontal="true"
+            android:background="@color/colorWhite"
+            android:id="@+id/relativeLayout2">
+
+        <TextView
+            android:id="@+id/Nr_danci"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="sit"
+            android:textSize="150px"
+            android:textColor="#333333"
+            android:layout_marginTop="124px"
+            android:layout_centerHorizontal="true"
+            />
+
+
+            <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1/11"
+            android:textSize="36px"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:id="@+id/textView3"
+            android:layout_marginTop="1020px"
+                />
+
+            <Button
+            android:id="@+id/next_T"
+            android:layout_width="172px"
+            android:layout_height="80px"
+            android:text="下一题"
+            android:textSize="36px"
+            android:textColor="#333"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="70px"
+            android:background="@drawable/btn_bg_next"
+            android:layout_marginTop="1000px"
+                />
+
+            <TextView
+                android:id="@+id/dc_jx_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="36px"
+                android:textColor="#333333"
+                android:layout_marginTop="70px"
+                android:layout_below="@+id/linearLayout3"
+                android:layout_centerHorizontal="true"
+                />
+
+            <LinearLayout
+                android:id="@+id/linearLayout3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_below="@+id/Nr_danci"
+                android:layout_alignEnd="@+id/next_T"
+                android:layout_marginEnd="47dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="50px"
+                >
+
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <RadioButton
+                        android:id="@+id/BF_One"
+                        android:layout_width="49px"
+                        android:layout_height="49px"
+                        android:src="@drawable/yinliangda"
+                        android:button="@null"
+                        android:background="@drawable/weixuanz"
+                        />
+
+                    <RadioButton
+                        android:id="@+id/BF_One_Xuanz"
+                        android:layout_width="33px"
+                        android:layout_height="33px"
+                        android:src="@drawable/yinliangda"
+                        android:button="@null"
+                        android:background="@drawable/xxxz"
+                        android:layout_centerInParent="true"
+                        />
+
+
+                </RelativeLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="美[sit]"
+                    android:textSize="30px"
+                    android:layout_marginLeft="20px"
+                    />
+
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="100px"
+                    >
+
+                    <RadioButton
+                        android:id="@+id/BF_Two"
+                        android:layout_width="49px"
+                        android:layout_height="49px"
+                        android:src="@drawable/yinliangda"
+                        android:button="@null"
+                        android:background="@drawable/weixuanz"
+                        />
+
+                    <RadioButton
+                        android:id="@+id/BF_Two_Xuanz"
+                        android:layout_width="33px"
+                        android:layout_height="33px"
+                        android:src="@drawable/yinliangda"
+                        android:button="@null"
+                        android:background="@drawable/xxxz"
+                        android:layout_centerInParent="true"
+                        android:visibility="gone"
+                        />
+
+
+                </RelativeLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="英[sit]"
+                    android:layout_marginLeft="20px"
+                    android:textSize="30px"
+                    />
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center_horizontal"
+            android:layout_below="@+id/relativeLayout2"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="130px"
+            android:id="@+id/linearLayout7">
+
+            <CheckBox
+                android:id="@+id/BF_zt"
+                android:layout_width="116px"
+                android:layout_height="116px"
+                android:background="@drawable/bf_zt_selector"
+                android:button="@null"
+
+                />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+
+
+
+            <CheckBox
+                android:id="@+id/Ly_btn"
+                android:layout_width="116px"
+                android:layout_height="116px"
+                android:background="@drawable/luyin_selector"
+                android:button="@null"
+                android:layout_marginLeft="150px"
+                />
+
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="890px"
+        android:layout_height="230px"
+        android:background="@drawable/huiyuan"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true">
+
+
+        <TextView
+        android:id="@+id/PF_fs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="65分"
+        android:layout_marginTop="30px"
+        android:layout_marginLeft="40px"
+        android:textSize="48px"
+        android:textColor="@color/colorWhite"
+        />
+
+        <TextView
+            android:id="@+id/GL_"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="加油，继续努力"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="40px"
+        android:layout_marginTop="30px"
+        android:textColor="@color/colorWhite"
+        android:textSize="48px"
+
+        />
+
+        <RatingBar
+            android:id="@+id/Xinx_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="100px"
+        android:layout_marginTop="100px"
+        android:layout_marginLeft="40px"
+        android:numStars="5"
+        android:stepSize="1"
+        style="@style/roomRatingBar"
+        />
+
+        <LinearLayout
+        android:id="@+id/BF_LY"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="40px"
+        android:layout_marginTop="150px"
+
+        >
+
+        <CheckBox
+
+        android:layout_width="40px"
+        android:layout_height="40px"
+        android:background="@drawable/bd_bf_selector"
+        android:button="@null"
+        android:layout_marginTop="10px"
+        />
+        <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="我的录音"
+        android:textSize="36px"
+        android:textColor="@color/colorWhite"
+        android:layout_marginLeft="20px"
+        />
+        </LinearLayout>
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+
+        <!--<RelativeLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content">-->
+
+
+
+            <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="1/11"-->
+                <!--android:textSize="36px"-->
+                <!--android:layout_centerHorizontal="true"-->
+                <!--android:gravity="center"-->
+                <!--android:id="@+id/textView3" />-->
+
+            <!--<Button-->
+                <!--android:id="@+id/next_T"-->
+                <!--android:layout_width="172px"-->
+                <!--android:layout_height="80px"-->
+                <!--android:text="下一题"-->
+                <!--android:textSize="36px"-->
+                <!--android:textColor="#333"-->
+                <!--android:layout_alignParentRight="true"-->
+                <!--android:layout_marginRight="120px"-->
+                <!--android:background="@drawable/btn_bg_next"-->
+                <!--/>-->
+
+
+        <!--</RelativeLayout>-->
+
+
+
+            <!--/>-->
+
+
+
+    <!--</LinearLayout>-->
+
+
+</LinearLayout>

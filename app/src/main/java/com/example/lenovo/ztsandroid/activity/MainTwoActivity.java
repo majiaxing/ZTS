@@ -20,7 +20,7 @@ public class MainTwoActivity extends BaseActivity {
 
     @Override
     protected int getLayoutId() {
-        return R.layout.login_activity;
+        return R.layout.activity_zhuyemian;
     }
 
     @Override

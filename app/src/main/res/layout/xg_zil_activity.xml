@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/linear_parent">
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="204px"
+        android:orientation="horizontal"
+        android:background="@drawable/huiyuan"
+        android:gravity="center_vertical"
+        >
+
+
+        <ImageView
+            android:id="@+id/back_jt"
+            android:layout_width="45px"
+            android:layout_height="45px"
+            android:src="@drawable/back_xg_tt"
+            android:layout_marginLeft="48px"
+            android:layout_marginTop="30px"
+
+            />
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="345px"
+            android:text="修改资料"
+            android:textSize="54px"
+            android:textColor="#fff"
+            android:background="@null"
+            android:layout_marginTop="30px"
+            />
+
+
+
+    </LinearLayout>
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="30px"
+        android:background="@color/pe_gray"
+        />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="627px"
+        android:orientation="vertical"
+        android:weightSum="4"
+        android:background="@color/colorWhite"
+        >
+
+        <LinearLayout
+            android:id="@+id/touxiang_xg"
+            android:layout_width="match_parent"
+            android:layout_height="0px"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            >
+
+            <TextView
+                android:id="@+id/XG_Toux_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="头像"
+                android:textSize="36px"
+                android:textColor="#333"
+                android:layout_marginLeft="48px"
+                />
+
+            <com.example.lenovo.ztsandroid.view.CircleImageView
+                android:id="@+id/XG_toux_image"
+                android:layout_width="103px"
+                android:layout_height="103px"
+                android:layout_marginLeft="750px"
+                android:src="@drawable/a_bg"
+                />
+
+            <ImageView
+                android:layout_width="16px"
+                android:layout_height="32px"
+                android:src="@drawable/fh"
+                android:layout_marginLeft="35px"
+                />
+
+
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/mingc_xg"
+            android:layout_width="match_parent"
+            android:layout_height="0px"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            >
+
+            <TextView
+                android:id="@+id/XG_mingc_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="名称"
+                android:textSize="36px"
+                android:textColor="#333"
+                android:layout_marginLeft="48px"
+                />
+
+            <TextView
+                android:id="@+id/XG_YonghMs"
+                android:layout_width="260px"
+                android:layout_height="103px"
+                android:layout_marginLeft="640px"
+                android:text="188****1234"
+                android:gravity="center"
+
+                />
+
+
+            <ImageView
+                android:layout_width="16px"
+                android:layout_height="32px"
+                android:src="@drawable/fh"
+
+                />
+
+
+
+
+        </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/xued_xg"
+            android:layout_width="match_parent"
+            android:layout_height="0px"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            >
+
+            <TextView
+                android:id="@+id/XG_xued_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="学段"
+                android:textSize="36px"
+                android:textColor="#333"
+                android:layout_marginLeft="48px"
+                />
+
+            <TextView
+                android:id="@+id/XG_Xd"
+                android:layout_width="170px"
+                android:layout_height="103px"
+                android:layout_marginLeft="690px"
+                android:text="初中"
+                android:gravity="center"
+
+                />
+
+
+            <ImageView
+                android:layout_width="16px"
+                android:layout_height="32px"
+                android:src="@drawable/fh"
+                android:layout_marginLeft="35px"
+                />
+
+
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/nianji_xg"
+            android:layout_width="match_parent"
+            android:layout_height="0px"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            >
+
+            <TextView
+                android:id="@+id/XG_nj_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="年级"
+                android:textSize="36px"
+                android:textColor="#333"
+                android:layout_marginLeft="48px"
+                />
+
+            <TextView
+                android:id="@+id/XG_Nj"
+                android:layout_width="170px"
+                android:layout_height="103px"
+                android:layout_marginLeft="690px"
+                android:text="九年级"
+                android:gravity="center"
+
+                />
+
+
+            <ImageView
+                android:layout_width="16px"
+                android:layout_height="32px"
+                android:src="@drawable/fh"
+                android:layout_marginLeft="35px"
+                />
+
+
+
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+
+
+
+
+</LinearLayout>

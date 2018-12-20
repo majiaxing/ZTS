@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    >
+
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="20px"
+        android:background="@color/pe_gray"
+        />
+
+        
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="481px"
+            android:background="@color/colorWhite"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            >
+            <TextView
+                android:id="@+id/YB_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="[I]"
+                android:textSize="100px"
+                android:textColor="#333333"
+                android:layout_marginTop="60px"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="点击按钮，开始录音"
+                android:textSize="36px"
+                android:textColor="#999999"
+                android:layout_marginTop="40px"
+                />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="116px"
+                android:layout_marginTop="40px"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                >
+                    
+                <CheckBox
+                    android:id="@+id/BF_cs_fay"
+                    android:layout_width="70px"
+                    android:layout_height="70px"
+                    android:layout_marginLeft="292px"
+                    android:background="@drawable/bf"
+                    android:button="@null"
+                    />
+                
+                
+                <CheckBox
+                    android:id="@+id/Cs_fay_lY"
+                    android:layout_width="116px"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="120px"
+                    android:background="@drawable/ly_selector"
+                    android:button="@null"
+                    />
+
+                <CheckBox
+                    android:id="@+id/B_fang_self"
+                    android:layout_width="70px"
+                    android:layout_height="70px"
+                    android:layout_marginLeft="120px"
+                    android:background="@drawable/bf_ly_selector"
+                    android:button="@null"
+                    />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+         <Button
+            android:id="@+id/TZ_YX_t"
+            android:layout_width="561px"
+            android:layout_height="100px"
+            android:background="@drawable/btn_bg"
+            android:layout_marginTop="700px"
+            android:text="挑战一下"
+            android:textColor="@color/colorWhite"
+            />
+
+</LinearLayout>

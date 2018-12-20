@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:descendantFocusability = "blocksDescendants"
+    >
+
+
+
+
+
+
+    <CheckBox
+        android:id="@+id/BanJ_XZ"
+        android:layout_width="245px"
+        android:layout_height="80px"
+        android:button="@null"
+        android:background="@drawable/bj_xz_selector"
+        android:text="7年级1班"
+        android:gravity="center"
+        android:textColor="#000"
+        android:textSize="36px"
+        android:clickable = "false"
+        />
+    
+
+
+</LinearLayout>

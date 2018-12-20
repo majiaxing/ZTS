@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">ZTS(Android)</string>
+
+    <string-array name="spinnername">
+    <item>北京</item>
+    <item>上海 </item>
+    <item>广州</item>
+    <item>深圳</item>
+    <item>宁夏</item>
+</string-array>
+
 </resources>

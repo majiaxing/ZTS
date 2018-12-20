@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    
+    <TextView
+        android:id="@+id/YB_text"
+        android:layout_width="300px"
+        android:layout_height="400px"
+        android:gravity="center"
+        android:text="i"
+        android:textSize="100px"
+        android:textColor="#ffffff"
+        android:background="@mipmap/grid_item_bg"
+        android:layout_marginTop="40px"
+        android:layout_marginLeft="40px"
+        />
+    
+    
+</LinearLayout>

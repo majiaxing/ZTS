@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    >
+
+
+    <LinearLayout
+        android:layout_width="680px"
+        android:layout_height="550px"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:background="@color/colorWhite"
+        >
+        <ImageView
+            android:id="@+id/Q_X"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:src="@drawable/quxiao"
+            android:layout_marginTop="30px"
+            android:layout_marginRight="30px"
+            />
+
+        <TextView
+            android:id="@+id/text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+                android:text="标记为已读"
+            android:textColor="#ff0000"
+            android:textSize="48px"
+            android:layout_marginTop="105px"
+
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="此操作将会全部未读消息标记为已读"
+            android:layout_marginTop="60px"
+            />
+    
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="120px"
+            android:layout_marginTop="118px"
+
+            >
+            
+            <TextView
+                android:id="@+id/qx_btn"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@color/colorWhite"
+                android:layout_weight="1"
+                android:text="取消"
+                android:textSize="48px"
+                android:textColor="#666666"
+                android:gravity="center"
+                />
+            
+            <TextView
+                android:id="@+id/qd_btn"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@color/colorWhite"
+                android:layout_weight="1"
+                android:text="确定"
+                android:textSize="48px"
+                android:textColor="#666666"
+                android:gravity="center"
+                />
+
+
+            
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</LinearLayout>

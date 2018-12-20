@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+
+
+    <ListView
+        android:id="@+id/popup_listview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorWhite"
+        android:layout_marginBottom="153px"
+        ></ListView>
+
+
+    <TextView
+        android:id="@+id/Ti_J_ChaK"
+        android:layout_width="match_parent"
+        android:layout_height="153px"
+        android:background="@drawable/huiyuan"
+        android:gravity="center"
+        android:text="提交并查看结果"
+        android:textSize="48px"
+        android:textColor="#ffffff"
+        android:layout_alignParentBottom="true"
+        />
+
+
+
+
+
+</RelativeLayout>

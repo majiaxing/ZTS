@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="204px"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:background="@drawable/huiyuan"
+        >
+
+        <ImageView
+            android:id="@+id/back_jt"
+            android:layout_width="45px"
+            android:layout_height="45px"
+            android:src="@drawable/back_xg_tt"
+            android:layout_gravity="center"
+            android:layout_marginLeft="48px"
+            />
+
+        <TextView
+            android:id="@+id/Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="375px"
+            android:text="缓存清理"
+            android:textSize="54px"
+            android:textColor="#333333"
+            />
+
+
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="30px"
+        android:background="@color/pe_gray"
+        />
+
+
+
+    <LinearLayout
+        android:id="@+id/Sbh"
+        android:layout_width="match_parent"
+        android:layout_height="130px"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="所有试题"
+            android:textSize="36px"
+            android:textColor="#999999"
+            android:layout_marginLeft="69px"
+            />
+
+        
+        <Button
+            android:id="@+id/Q_L_btn"
+            android:layout_width="172px"
+            android:layout_height="81px"
+            android:layout_marginLeft="648px"
+            android:background="@drawable/bg_la"
+            android:text="清理"
+            android:textColor="#0069ff"
+            android:textSize="36px"
+            />
+        
+        
+    </LinearLayout>
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/pe_gray"
+        />
+
+</LinearLayout>

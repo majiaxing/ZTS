@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/Liner"
+    >
+
+
+        <TextView
+            android:id="@+id/nr"
+            android:layout_width="402px"
+            android:layout_height="87px"
+            android:background="@drawable/popup_item_selector"
+            android:text="人教版七年级上册"
+            android:gravity="center"
+            android:textSize="36px"
+            android:textColor="#333333"
+            android:layout_marginTop="59px"
+            android:layout_marginLeft="49px"
+            android:horizontalSpacing="182px"
+            />
+
+
+</LinearLayout>

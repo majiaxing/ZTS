@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="37px"
+        android:layout_marginLeft="46px"
+        android:orientation="vertical"
+        >
+
+
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        >
+
+        <TextView
+            android:layout_width="11px"
+            android:layout_height="63px"
+            android:background="#43B8C0"
+            />
+
+        <TextView
+            android:id="@+id/ZY_data"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="今日作业"
+            android:layout_marginLeft="19px"
+            />
+
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:id="@+id/layout"
+        android:layout_width="987px"
+        android:layout_height="333px"
+        android:background="@drawable/zy_list_item_bg_w"
+        android:layout_marginTop="41px"
+        android:orientation="vertical"
+        >
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40px"
+            android:layout_marginLeft="42px"
+            android:gravity="center_vertical"
+            >
+
+            <TextView
+                android:id="@+id/ZT_wc"
+                android:layout_width="139px"
+                android:layout_height="52px"
+                android:text="待完成"
+                android:textSize="30px"
+                android:gravity="center"
+                android:background="@drawable/daiwc"
+                android:visibility="gone"
+                />
+            <TextView
+                android:id="@+id/ZT_wc_W"
+                android:layout_width="139px"
+                android:layout_height="52px"
+                android:text="已完成"
+                android:textSize="30px"
+                android:gravity="center"
+                android:background="@drawable/ywanc"
+                />
+
+
+            <TextView
+                android:id="@+id/ZY_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="作业1"
+                android:textSize="36px"
+                android:layout_marginLeft="218px"
+                android:layout_centerVertical="true"
+                />
+
+
+        </RelativeLayout>
+
+
+        <LinearLayout
+            android:id="@+id/linear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="40px"
+            android:layout_marginLeft="42px"
+            android:gravity="center"
+            >
+
+
+            <TextView
+                android:id="@+id/FenS"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="90.0"
+                android:textColor="#43B8C0"
+                android:textSize="48px"
+                />
+
+             <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="/100分"
+                android:textColor="#999999"
+                android:textSize="36px"
+                />
+
+
+
+        </LinearLayout>
+
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="35px"
+            android:layout_marginLeft="42px"
+            >
+
+            <TextView
+                android:id="@+id/Jz_Data"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="截止日期：2018年11月23日"
+                android:textSize="36px"
+                android:textColor="#999999"
+                android:layout_centerVertical="true"
+                />
+
+
+            <TextView
+                android:id="@+id/ZT_WC"
+                android:layout_width="203px"
+                android:layout_height="73px"
+                android:text="去完成"
+                android:textColor="#34B8C0"
+                android:gravity="center"
+                android:background="@drawable/weiwc"
+                android:layout_gravity="right"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginRight="40px"
+                />
+
+
+        </RelativeLayout>
+
+
+
+
+    </LinearLayout>
+
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

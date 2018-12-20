@@ -1,7 +1,10 @@
 package com.example.lenovo.ztsandroid.base;
 
+import android.app.Activity;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +20,33 @@ import butterknife.Unbinder;
 public abstract class BaseFragment extends Fragment {
     private boolean isFirst = true;
     protected Unbinder unbinder;
+
+
+
+    private static final int REQUEST_EXTERNAL_STORAGE = 1;
+    private static final int REQUEST_EXTERNAL_STORAGET = 2;
+    private static String[] PERMISSIONS_STORAGE = {
+            "android.permission.READ_EXTERNAL_STORAGE",
+            "android.permission.WRITE_EXTERNAL_STORAGE",
+            "android.permission.RECORD_AUDIO"};
+
+
+    public static void verifyStoragePermissions(Activity activity) {
+
+        try {
+            //检测是否有写的权限
+            int permission = ActivityCompat.checkSelfPermission(activity,
+                    "android.permission.WRITE_EXTERNAL_STORAGE");
+            if (permission != PackageManager.PERMISSION_GRANTED) {
+                // 没有写的权限，去申请写的权限，会弹出对话框
+                ActivityCompat.requestPermissions(activity, PERMISSIONS_STORAGE,REQUEST_EXTERNAL_STORAGE);
+                ActivityCompat.requestPermissions(activity, PERMISSIONS_STORAGE,REQUEST_EXTERNAL_STORAGET);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 
     @Nullable
     @Override
@@ -81,4 +111,7 @@ public abstract class BaseFragment extends Fragment {
         super.onDestroyView();
         unbinder.unbind();
     }
+
+
+
 }

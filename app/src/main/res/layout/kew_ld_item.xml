@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    
+    
+    <RelativeLayout
+        android:layout_width="472px"
+        android:layout_height="300px"
+        android:layout_marginLeft="42px"
+        android:layout_marginTop="40px"
+        >
+
+
+
+    <ImageView
+        android:id="@+id/kw_image_item"
+        android:layout_width="472px"
+        android:layout_height="300px"
+        android:src="@drawable/kw_image"
+        android:layout_alignParentLeft="true"
+
+        />
+
+        <TextView
+            android:id="@+id/Kw_zt"
+            android:layout_width="150px"
+            android:layout_height="50px"
+            android:text="未练习"
+            android:textSize="30px"
+            android:textColor="#ffffff"
+            android:background="@drawable/zt_bg"
+            android:gravity="center"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginRight="10px"
+            android:layout_marginBottom="20px" />
+
+    </RelativeLayout>
+    <TextView
+        android:id="@+id/kw_title_item"
+        android:layout_width="472px"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="42px"
+        android:layout_marginTop="20px"
+        android:text="Starter Unit 1"
+        android:textSize="48px"
+        android:textColor="#333333"
+        android:gravity="center_horizontal"
+        />
+    <TextView
+        android:id="@+id/kw_nr_item"
+        android:layout_width="472px"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="42px"
+        android:layout_marginTop="20px"
+        android:text="Good morning"
+        android:textSize="36px"
+        android:textColor="#666666"
+        android:gravity="center_horizontal"
+        />
+    
+    
+</LinearLayout>

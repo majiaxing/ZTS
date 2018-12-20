@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/pe_gray"
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="204px"
+        android:orientation="horizontal"
+        android:background="@drawable/huiyuan"
+        android:gravity="center_vertical"
+        >
+
+
+
+        <LinearLayout
+            android:layout_width="90px"
+            android:layout_height="90px"
+            android:layout_marginLeft="48px"
+            android:layout_marginTop="30px"
+            android:gravity="bottom"
+            >
+        <ImageView
+            android:id="@+id/back_jt"
+            android:layout_width="45px"
+            android:layout_height="45px"
+            android:src="@drawable/back_xg_tt"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="30px"
+
+            />
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Text"
+            android:textSize="54px"
+            android:textColor="#fff"
+            android:background="@null"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="30px"
+            />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/xialak_btn"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/title"
+            android:layout_toEndOf="@+id/title"
+            android:layout_marginLeft="20px"
+            android:layout_marginTop="30px"
+            />
+
+    </RelativeLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="40px"
+        android:background="@color/pe_gray"
+        />
+            
+    <android.support.v4.view.ViewPager
+
+        android:id="@+id/view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        >
+
+
+    </android.support.v4.view.ViewPager>
+
+
+
+
+
+</LinearLayout>

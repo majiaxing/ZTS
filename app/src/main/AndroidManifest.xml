@@ -1,8 +1,24 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.1" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.lenovo.ztsandroid">
 
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>）
+    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+
+
+
+
+
 
     <application
         android:name = ".App"
@@ -10,14 +26,82 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
+
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.MainTwoActivity">
+        <activity android:name=".activity.SplashActivity">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".activity.YindaoActivity"/>
+        <activity android:name=".activity.Login_Activity"/>
+        <activity android:name=".activity.WJ_Activity"/>
+        <activity android:name=".activity.Mian_Activity"/>
+        <activity android:name=".activity.My_E_Activity"/>
+        <activity android:name=".activity.E_Ka_X_Activity"/>
+        <activity android:name=".activity.Qrdd_Activity"  android:launchMode="singleTop"/>
+        <activity android:name=".activity.TJ_Vip_Avtivity"/>
+        <activity android:name=".activity.GM_E_Activity"/>
+        <activity android:name=".activity.Xuan_Z_XX_Activity"/>
+        <activity android:name=".activity.Xuan_Z_NJ_Activity"/>
+        <activity android:name=".activity.Xuan_Z_Bj_Activity"/>
+        <activity android:name=".activity.XX_Activity"/>
+        <activity android:name=".activity.XiaoX_XQ_Activity"/>
+        <activity android:name=".activity.YB_SY_Activity"/>
+        <activity android:name=".activity.YB_XQ_Activity"/>
+        <activity android:name=".activity.ZN_ZW_Activity"/>
+        <activity android:name=".activity.ZN_Zw_xq_Activity"/>
+        <activity android:name=".activity.KW_LD_Activity"/>
+        <activity android:name=".activity.erji_list.Kw_NeiR_Activity"/>
+        <activity android:name=".activity.DanC_Sy_Activity"/>
+        <activity android:name=".activity.DuanYu_Sy_Activity"/>
+        <activity android:name=".activity.JuZ_Sy_Activity"/>
+        <activity android:name=".activity.DuiH_Sy_Activity"/>
+        <activity android:name=".activity.Kew_Sy_Activity"/>
+        <activity android:name=".activity.Xuanz_Sy_Activity"/>
+        <activity android:name=".activity.erji_list.Jz_NeiR_Activity"/>
+        <activity android:name=".activity.erji_list.DuiH_NeiR_Activity"/>
+        <activity android:name=".activity.erji_list.Tingl_NeiR_Activity"/>
+        <activity android:name=".activity.TingL_TK_Xz_Activity"/>
+        <activity android:name=".activity.TingL_TK_Activity"/>
+        <activity android:name=".activity.erji_list.Read_erj_Activity"/>
+        <activity android:name=".activity.Read_sy_Activity"/>
+        <activity android:name=".activity.Qr_tj_Activity"/>
+        <activity android:name=".activity.JiaR_BanJ_Activity"/>
+        <activity android:name=".activity.C_Jr_bj_Activity" android:launchMode="singleTask"/>
+        <activity android:name=".activity.ZuoYml_Activity"/>
+        <activity android:name=".activity.SheZ_Activity"/>
+        <activity android:name=".activity.ChY_SB_Activity"/>
+        <activity android:name=".activity.HuanC_clian_Activity"/>
+        <activity android:name=".activity.ZY_Kw_Activity"/>
+        <activity android:name=".activity.Xiugai_Activity"/>
+        <activity android:name=".activity.JiaR_XuanZ_Activity"/>
+        <activity android:name=".activity.TiaoZan_Activity"/>
+        <activity android:name=".fragment.task.er_ym.DC_ErJFragment"/>
+        <activity android:name=".fragment.task.er_ym.DuanY_ErJFragment"/>
+        <activity android:name=".fragment.task.er_ym.YueD_ErJFragment"/>
+        <activity android:name=".fragment.task.er_ym.Juz_ErJFragment"/>
+        <activity android:name=".fragment.task.er_ym.Kw_ErJFragment"/>
+        <activity android:name=".fragment.task.er_ym.YB_ErJFragment"/>
+        <activity android:name=".fragment.task.er_ym.DuiH_ErJFragment"/>
+        <activity android:name=".activity.ZuoY_Activity"/>
+        <activity android:name=".fragment.task.er_ym.TingL_TK_ErJFragment"/>
+        <activity android:name=".fragment.task.er_ym.TingL_XZ_ErJFragment"/>
+        <activity android:name=".activity.XiuG_Password_Activity"/>
+
+
+
+        <meta-data android:name="design_width" android:value="1080"></meta-data>
+        <meta-data android:name="design_height" android:value="1920"></meta-data>
+
+
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
     </application>
+
 
 </manifest>

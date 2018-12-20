@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+
+    <TextView
+        android:id="@+id/Item_Tm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="1.Chen Na's English name is ___"
+        />
+
+
+            <LinearLayout
+                android:id="@+id/XXA"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginTop="40px"
+                >
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <RadioButton
+                        android:id="@+id/BF_A"
+                        android:layout_width="40px"
+                        android:layout_height="40px"
+                        android:button="@null"
+                        android:background="@drawable/weixuanz"
+                        />
+
+                    <RadioButton
+                        android:id="@+id/BF_A_Xuanz"
+                        android:layout_width="33px"
+                        android:layout_height="33px"
+                        android:button="@null"
+                        android:background="@drawable/xxxz"
+                        android:layout_centerInParent="true"
+                        android:visibility="gone"
+                        />
+
+                </RelativeLayout>
+
+
+                <TextView
+                android:id="@+id/Xuanz_nr_A"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20px"
+                android:text="A.Class.1"
+                android:textSize="36px"
+                android:textColor="#333"
+                />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/XXB"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="40px"
+                android:gravity="center_vertical"
+                >
+
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <RadioButton
+                        android:id="@+id/BF_B"
+                        android:layout_width="40px"
+                        android:layout_height="40px"
+                        android:button="@null"
+                        android:background="@drawable/weixuanz"
+                        />
+
+                    <RadioButton
+                        android:id="@+id/BF_B_Xuanz"
+                        android:layout_width="33px"
+                        android:layout_height="33px"
+                        android:button="@null"
+                        android:background="@drawable/xxxz"
+                        android:layout_centerInParent="true"
+                        android:visibility="gone"
+                        />
+
+                </RelativeLayout>
+                <TextView
+                    android:id="@+id/Xuanz_nr_B"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20px"
+                    android:text="B.Class.1"
+                    android:textSize="36px"
+                    android:textColor="#333"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/XXC"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="40px"
+                android:gravity="center_vertical"
+                >
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <RadioButton
+                        android:id="@+id/BF_C"
+                        android:layout_width="40px"
+                        android:layout_height="40px"
+                        android:button="@null"
+                        android:background="@drawable/weixuanz"
+                        />
+
+                    <RadioButton
+                        android:id="@+id/BF_C_Xuanz"
+                        android:layout_width="33px"
+                        android:layout_height="33px"
+                        android:button="@null"
+                        android:background="@drawable/xxxz"
+                        android:layout_centerInParent="true"
+                        android:visibility="gone"
+                        />
+
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/Xuanz_nr_C"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20px"
+                    android:text="C.Class.1"
+                    android:textSize="36px"
+                    android:textColor="#333"
+                    />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/XXD"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="40px"
+                android:gravity="center_vertical"
+                >
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <RadioButton
+                        android:id="@+id/BF_D"
+                        android:layout_width="40px"
+                        android:layout_height="40px"
+                        android:button="@null"
+                        android:background="@drawable/weixuanz"
+                        />
+
+                    <RadioButton
+                        android:id="@+id/BF_D_Xuanz"
+                        android:layout_width="33px"
+                        android:layout_height="33px"
+                        android:button="@null"
+                        android:background="@drawable/xxxz"
+                        android:layout_centerInParent="true"
+                        android:visibility="gone"
+                        />
+
+                </RelativeLayout>
+                <TextView
+                    android:id="@+id/Xuanz_nr_D"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20px"
+                    android:text="D.Class.1"
+                    android:textSize="36px"
+                    android:textColor="#333"
+                    />
+
+            </LinearLayout>
+
+</LinearLayout>

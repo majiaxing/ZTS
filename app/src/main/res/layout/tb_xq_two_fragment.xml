@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:background="@color/colorWhite"
+    >
+
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="20px"
+        android:background="@color/pe_gray"
+        />
+
+    <LinearLayout
+        android:layout_width="987px"
+        android:layout_height="544px"
+        android:orientation="vertical"
+        >
+
+
+        <LinearLayout
+            android:id="@+id/XZ_fy"
+            android:layout_width="match_parent"
+            android:layout_height="80px"
+            android:orientation="horizontal"
+            android:weightSum="2"
+            android:background="@drawable/radioproup_bg"
+            >
+
+        <CheckBox
+            android:id="@+id/R_D_H"
+            android:layout_width="0px"
+            android:layout_height="80px"
+            android:button="@null"
+            android:text="发音动画"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:textSize="36px"
+            android:textColor="@drawable/text"
+            android:background="@drawable/yb_xq_selector"
+            android:checked="true"
+            />
+
+            <CheckBox
+            android:id="@+id/R_Z_R"
+            android:layout_width="0px"
+            android:layout_height="80px"
+            android:button="@null"
+            android:text="真人发音"
+            android:gravity="center"
+            android:textSize="36px"
+            android:layout_weight="1"
+            android:background="@drawable/yb_xq_selector"
+            android:textColor="@drawable/text"
+            />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="40px"
+            android:orientation="horizontal"
+            >
+
+            <ImageView
+                android:layout_width="344px"
+                android:layout_height="344px"
+                android:src="@drawable/tuc"
+                android:scaleType="centerCrop"
+                />
+
+            <TextView
+                android:id="@+id/YB_Nr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="***********************************************************************************************************************************"
+                android:layout_marginLeft="40px"
+                android:textSize="36px"
+                android:textColor="#333333"
+                />
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+
+    <Button
+        android:id="@+id/TZ_YX_t"
+        android:layout_width="561px"
+        android:layout_height="100px"
+        android:background="@drawable/btn_bg"
+        android:layout_marginTop="700px"
+        android:text="挑战一下"
+        android:textColor="@color/colorWhite"
+        />
+
+
+
+
+</LinearLayout>

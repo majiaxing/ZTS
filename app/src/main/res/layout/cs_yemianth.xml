@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+     android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/colorWhite"
+    >
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="204px"
+        android:gravity="center"
+        android:background="@drawable/quanj_title"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="作业"
+            android:textSize="54px"
+            android:textColor="#fff"
+            android:layout_marginTop="30px"
+            />
+    </LinearLayout>
+
+
+    
+    
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="4px"
+        android:background="#DDDDDD"
+
+
+        />
+    
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        >
+
+
+
+
+    
+
+    <ImageView
+        android:layout_width="283px"
+        android:layout_height="402px"
+        android:src="@drawable/zy_f_bg"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="   暂无班级
+期待你的加入"
+        android:layout_marginRight="20px"
+        android:lineSpacingExtra="37px"
+        android:layout_marginTop="59px"
+        android:textSize="36px"
+        android:textColor="#333"
+        />
+
+    <Button
+        android:id="@+id/Jr_Bj"
+        android:layout_width="293px"
+        android:layout_height="73px"
+        android:background="@drawable/jia_r_bj"
+        android:text="加入班级"
+        android:textSize="36px"
+        android:textColor="#43B8C0"
+        android:layout_marginTop="59px"
+        />
+
+    </LinearLayout>
+
+
+
+
+</LinearLayout>

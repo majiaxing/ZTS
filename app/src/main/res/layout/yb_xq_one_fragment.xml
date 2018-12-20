@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    >
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="635px"
+        android:layout_marginTop="40px"
+        android:background="@color/colorWhite"
+        >
+
+        <LinearLayout
+            android:layout_width="680px"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:id="@+id/linearLayout4">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/Dc"
+                android:text="Shit"
+                android:textSize="54px"
+                android:textColor="#333333"
+                android:layout_marginLeft="40px"
+                android:layout_marginTop="48px"
+                />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginLeft="40px"
+                android:layout_marginTop="30px"
+                >
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    >
+
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+
+
+
+                    <RadioButton
+                        android:id="@+id/BF_One"
+                        android:layout_width="49px"
+                        android:layout_height="49px"
+                        android:src="@drawable/yinliangda"
+                        android:button="@null"
+                        android:background="@drawable/redio_f"
+                        />
+                        <RadioButton
+                        android:id="@+id/BF_One_Xuanz"
+                        android:layout_width="33px"
+                        android:layout_height="33px"
+                        android:src="@drawable/yinliangda"
+                        android:button="@null"
+                        android:background="@drawable/redio_t"
+                        android:layout_centerInParent="true"
+                        />
+
+
+                    </RelativeLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="美[sit]"
+                        android:textSize="30px"
+                        android:layout_marginLeft="20px"
+                        />
+
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="100px"
+                        >
+
+                    <RadioButton
+                        android:id="@+id/BF_Two"
+                        android:layout_width="49px"
+                        android:layout_height="49px"
+                        android:src="@drawable/yinliangda"
+                        android:button="@null"
+                        android:background="@drawable/redio_f"
+                        />
+                        <RadioButton
+                            android:id="@+id/BF_Two_Xuanz"
+                            android:layout_width="33px"
+                            android:layout_height="33px"
+                            android:src="@drawable/yinliangda"
+                            android:button="@null"
+                            android:background="@drawable/redio_t"
+                            android:layout_centerInParent="true"
+                            android:visibility="gone"
+                            />
+
+
+                    </RelativeLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="英[sit]"
+                        android:layout_marginLeft="20px"
+                        android:textSize="30px"
+                        />
+
+                </LinearLayout>
+
+
+
+
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/yb_one_item"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="vt.(使) 坐；"
+                android:textSize="36px"
+                android:layout_marginBottom="35px"
+                android:textColor="#666666"
+                android:divider="@null"
+                android:layout_marginLeft="50px"
+                android:layout_marginTop="35px"
+                />
+
+
+        </LinearLayout>
+
+
+        <ImageView
+            android:id="@+id/YB_xx_image"
+            android:layout_width="300px"
+            android:layout_height="300px"
+            android:src="@drawable/tuc"
+            android:layout_marginTop="39px"
+            android:layout_marginRight="47px"
+            android:layout_alignParentTop="true"
+            android:layout_toEndOf="@+id/linearLayout4" />
+
+        <CheckBox
+            android:id="@+id/BF_Btn"
+            android:layout_width="116px"
+            android:layout_height="116px"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="62px"
+            android:button="@null"
+            android:background="@drawable/bf_ly_selector"
+            />
+
+
+    </RelativeLayout>
+
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="20px"
+            android:background="@color/pe_gray"
+            />
+
+
+    <Button
+        android:id="@+id/TZ_YX_o"
+        android:layout_width="561px"
+        android:layout_height="100px"
+        android:background="@drawable/btn_bg"
+        android:layout_marginTop="500px"
+        android:text="挑战一下"
+        android:textColor="@color/colorWhite"
+        />
+
+
+
+
+</LinearLayout>

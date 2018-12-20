@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite"
+    >
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="204px"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:background="@drawable/huiyuan"
+        >
+
+        <ImageView
+            android:id="@+id/back_jt"
+            android:layout_width="45px"
+            android:layout_height="45px"
+            android:src="@drawable/back_xg_tt"
+            android:layout_gravity="center"
+            android:layout_marginLeft="48px"
+            android:layout_marginTop="30px"
+            />
+
+        <TextView
+            android:id="@+id/Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="375px"
+            android:text="设置"
+            android:textSize="54px"
+            android:textColor="#fff"
+            android:layout_marginTop="30px"
+            />
+
+
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="30px"
+        android:background="@color/pe_gray"
+        />
+
+
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="590px"
+        android:orientation="vertical"
+        android:weightSum="5"
+        >
+
+        <LinearLayout
+            android:id="@+id/XiuG_password"
+            android:layout_width="match_parent"
+            android:layout_height="0px"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            >
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="修改密码"
+                android:layout_marginLeft="33px"
+                android:textSize="36px"
+                android:textColor="#333"
+                android:id="@+id/textView4" />
+
+
+
+
+            <ImageView
+                android:layout_width="16px"
+                android:layout_height="32px"
+                android:layout_marginLeft="822px"
+                android:src="@drawable/fh"
+                />
+
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/Chang_Yong_Sb"
+            android:layout_width="match_parent"
+            android:layout_height="0px"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            >
+
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="常用设备"
+                android:layout_marginLeft="33px"
+                android:textSize="36px"
+                android:textColor="#333"
+                />
+
+            <ImageView
+                android:layout_width="16px"
+                android:layout_height="32px"
+                android:layout_marginLeft="822px"
+                android:src="@drawable/fh"
+                />
+
+
+
+        </LinearLayout>
+
+  <LinearLayout
+            android:id="@+id/HuanC_gl"
+            android:layout_width="match_parent"
+            android:layout_height="0px"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            >
+
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="缓存管理"
+                android:layout_marginLeft="33px"
+                android:textSize="36px"
+                android:textColor="#333"
+                />
+
+            <ImageView
+                android:layout_width="16px"
+                android:layout_height="32px"
+                android:layout_marginLeft="822px"
+                android:src="@drawable/fh"
+                />
+
+
+
+        </LinearLayout>
+
+  <LinearLayout
+            android:id="@+id/JC_Gx"
+            android:layout_width="match_parent"
+            android:layout_height="0px"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            >
+
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="检查更新"
+                android:layout_marginLeft="33px"
+                android:textSize="36px"
+                android:textColor="#333"
+                />
+
+            <ImageView
+                android:layout_width="16px"
+                android:layout_height="32px"
+                android:layout_marginLeft="822px"
+                android:src="@drawable/fh"
+                />
+
+
+
+        </LinearLayout>
+
+  <LinearLayout
+            android:id="@+id/Gy_mine"
+            android:layout_width="match_parent"
+            android:layout_height="0px"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            >
+
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="关于我们"
+                android:layout_marginLeft="33px"
+                android:textSize="36px"
+                android:textColor="#333"
+                />
+
+            <ImageView
+                android:layout_width="16px"
+                android:layout_height="32px"
+                android:layout_marginLeft="822px"
+                android:src="@drawable/fh"
+                />
+        </LinearLayout>
+    </LinearLayout>
+
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="30px"
+        android:background="@color/pe_gray"
+        />
+
+    <TextView
+        android:id="@+id/TuiC_login"
+        android:layout_width="match_parent"
+        android:layout_height="157px"
+        android:text="退出登录"
+        android:gravity="center"
+        android:textColor="#ff0000"
+        android:textSize="48px"
+        />
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/pe_gray"
+        />
+
+
+
+</LinearLayout>

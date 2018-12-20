@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:id="@+id/FrameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"></FrameLayout>
+
+    <RadioGroup
+        android:id="@+id/FrameLayout_contentGroup"
+        android:layout_width="match_parent"
+        android:layout_height="150px"
+        android:orientation="horizontal"
+        android:weightSum="3"
+        android:background="@color/colorWhite"
+        >
+
+        <RadioButton
+            android:id="@+id/btn_Study"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/studdy_selector"
+            android:drawablePadding="10px"
+            android:button="@null"
+            android:checked="true"
+            android:gravity="center"
+            android:text="学习"
+            android:textSize="29px"
+            />
+
+        <RadioButton
+            android:id="@+id/btn_task"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawableTop="@drawable/task_selector"
+            android:gravity="center"
+            android:drawablePadding="10px"
+            android:textSize="29px"
+            android:text="作业" />
+
+        <RadioButton
+            android:id="@+id/btn_Myself"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawableTop="@drawable/myself_selector"
+            android:gravity="center"
+            android:textSize="29px"
+            android:drawablePadding="10px"
+            android:text="我" />
+
+    </RadioGroup>
+</LinearLayout>

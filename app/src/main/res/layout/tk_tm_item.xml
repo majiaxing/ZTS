@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="40px"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="80px"
+        >
+
+        <TextView
+            android:id="@+id/Tk_Nr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="sajdhkasdhask__dads  "
+            />
+
+            
+        <EditText
+            android:id="@+id/edit_TK"
+            android:layout_width="298px"
+            android:layout_height="60px"
+            android:layout_marginTop="21px"
+            android:background="@drawable/edit_bg"
+            android:hint="请输入答案 "
+            android:textSize="30px"
+            android:gravity="center"
+            android:textColor="#999"
+
+            />
+        
+
+    </LinearLayout>
+
+
+
+
+</LinearLayout>

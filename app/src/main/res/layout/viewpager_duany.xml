@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    >
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="40px"
+        android:background="@color/pe_gray"
+        />
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+        <RelativeLayout
+            android:layout_width="850px"
+            android:layout_height="1093px"
+            android:layout_centerHorizontal="true"
+            android:background="@color/colorWhite"
+            android:id="@+id/relativeLayout2">
+
+
+
+                <TextView
+                    android:id="@+id/duany_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Good_morning"
+                    android:textSize="72px"
+                    android:textColor="#333333"
+                    android:layout_marginLeft="20px"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    />
+
+            <TextView
+                android:id="@+id/Fy_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20px"
+                android:text="早上好！"
+                android:textSize="48px"
+                android:textColor="#333"
+                android:layout_below="@+id/duany_text"
+                android:layout_centerHorizontal="true"
+                />
+
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1/11"
+                android:textSize="36px"
+                android:layout_centerHorizontal="true"
+                android:gravity="center"
+                android:id="@+id/textView3"
+                android:layout_marginTop="1020px"
+                />
+
+            <Button
+                android:id="@+id/next_T"
+                android:layout_width="172px"
+                android:layout_height="80px"
+                android:text="下一题"
+                android:textSize="36px"
+                android:textColor="#333"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="70px"
+                android:background="@drawable/btn_bg_next"
+                android:layout_marginTop="1000px"
+                />
+
+
+
+
+        </RelativeLayout>
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center_horizontal"
+            android:layout_below="@+id/relativeLayout2"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="130px"
+            android:id="@+id/linearLayout6">
+
+            <CheckBox
+                android:id="@+id/BF_zt"
+                android:layout_width="116px"
+                android:layout_height="116px"
+                android:background="@drawable/bf_zt_selector"
+                android:button="@null"
+
+                />
+
+
+            <CheckBox
+                android:id="@+id/Ly_btn"
+                android:layout_width="116px"
+                android:layout_height="116px"
+                android:background="@drawable/luyin_selector"
+                android:button="@null"
+                android:layout_marginLeft="150px"
+                />
+
+
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/relativeLayout"
+            android:layout_width="890px"
+            android:layout_height="230px"
+            android:background="@drawable/yj_jx"
+            android:layout_above="@+id/linearLayout6"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="35dp"
+            android:visibility="gone"
+            >
+
+
+            <TextView
+                android:id="@+id/PF_fs"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="65分"
+                android:layout_marginTop="30px"
+                android:layout_marginLeft="40px"
+                android:textSize="48px"
+                android:textColor="@color/colorWhite"
+                />
+
+            <TextView
+                android:id="@+id/GL_"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="加油，继续努力"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="40px"
+                android:layout_marginTop="30px"
+                android:textColor="@color/colorWhite"
+                android:textSize="48px"
+
+                />
+
+            <RatingBar
+                android:id="@+id/Xinx_bar"
+                android:layout_width="wrap_content"
+                android:layout_height="100px"
+                android:layout_marginTop="100px"
+                android:layout_marginLeft="40px"
+                android:numStars="5"
+                android:stepSize="1"
+                style="@style/roomRatingBar"
+                />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="40px"
+                android:layout_marginTop="100px"
+
+                >
+                <CheckBox
+                    android:id="@+id/BF_LY"
+                    android:layout_width="40px"
+                    android:layout_height="40px"
+                    android:background="@drawable/bd_bf_selector"
+                    android:button="@null"
+                    android:layout_marginTop="10px"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="我的录音"
+                    android:textSize="36px"
+                    android:textColor="@color/colorWhite"
+                    android:layout_marginLeft="20px"
+                    />
+            </LinearLayout>
+        </RelativeLayout>
+        s
+
+
+
+
+    </RelativeLayout>
+
+
+</LinearLayout>

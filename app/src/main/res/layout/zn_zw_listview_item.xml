@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="60px"
+    >
+
+
+    <ImageView
+        android:id="@+id/znzw_litm_image"
+        android:layout_width="190px"
+        android:layout_height="230px"
+        android:src="@drawable/im"
+        />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginLeft="30px"
+            >
+            <TextView
+                android:id="@+id/item_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1.公共事业（应用文）"
+                android:textSize="36px"
+                android:textColor="#333333"
+                />
+            <TextView
+                android:id="@+id/neirong_Jieshao"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="***********************************************************************************************************"
+                android:layout_marginRight="49px"
+                android:textSize="24px"
+                android:textColor="#999999"
+                android:layout_marginTop="34px"
+                />
+
+                <TextView
+                    android:id="@+id/ZT_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="未练习"
+                    android:textSize="24px"
+                    android:textColor="#ff6d2c"
+                    android:layout_marginTop="38px"
+                    />
+
+        </LinearLayout>
+
+</LinearLayout>
+
+
+</LinearLayout>

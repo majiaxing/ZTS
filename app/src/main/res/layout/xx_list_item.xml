@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/lin"
+    android:descendantFocusability="blocksDescendants"
+    >
+
+    <LinearLayout
+        android:id="@+id/linear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@color/colorWhite"
+        >
+
+        <RelativeLayout
+            android:layout_width="130px"
+            android:layout_height="130px"
+            android:layout_marginTop="60px"
+            android:layout_marginLeft="50px"
+            >
+
+            <com.example.lenovo.ztsandroid.view.CircleImageView
+                android:id="@+id/A_Image_TX"
+                android:layout_width="130px"
+                android:layout_height="130px"
+                android:src="@mipmap/cs"
+                />
+
+            <TextView
+                android:id="@+id/Wd_Ts"
+                android:layout_width="40px"
+                android:layout_height="40px"
+                android:layout_gravity="right"
+                android:text="1"
+                android:background="@mipmap/wd_bg"
+                android:gravity="center"
+                android:textSize="30px"
+                android:textColor="#ffffff"
+                android:layout_alignParentRight="true"
+
+                />
+
+
+
+        </RelativeLayout>
+
+
+
+
+        <LinearLayout
+            android:layout_width="550px"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="70px"
+            android:layout_marginLeft="40px"
+            >
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="系统消息"
+                android:textSize="48px"
+                android:textColor="#333333"
+                />
+
+            <TextView
+                android:id="@+id/neirong"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30px"
+                android:text="2018秋季半程冲刺系统班开始报名"
+                android:textSize="36px"
+                android:textColor="#666666"
+                />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+
+            <TextView
+                android:id="@+id/data"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="70px"
+                android:layout_marginTop="70px"
+                android:text="2018-11-01"
+                />
+
+            <CheckBox
+                android:id="@+id/XuanZ_item"
+                android:layout_width="40px"
+                android:layout_height="40px"
+                android:button="@null"
+                android:background="@drawable/check_box_selector"
+                android:layout_marginLeft="228px"
+                android:layout_marginTop="40px"
+
+                />
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+    <!--<TextView-->
+        <!--android:layout_width="819px"-->
+        <!--android:layout_height="4px"-->
+        <!--android:background="@color/pe_gray"-->
+        <!--android:layout_marginLeft="214px"-->
+        <!--/>-->
+
+</LinearLayout>

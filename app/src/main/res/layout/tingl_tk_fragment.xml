@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="40px"
+        android:background="@color/pe_gray"
+        />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+
+
+
+
+        <RelativeLayout
+            android:layout_width="850px"
+            android:layout_height="1093px"
+            android:background="@color/colorWhite"
+            android:id="@+id/relativeLayout2"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true">
+
+
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1/11"
+                android:textSize="36px"
+                android:layout_centerHorizontal="true"
+                android:gravity="center"
+                android:id="@+id/textView3"
+                android:layout_marginTop="1020px"
+                />
+
+            <Button
+                android:id="@+id/next_T"
+                android:layout_width="172px"
+                android:layout_height="80px"
+                android:text="下一题"
+                android:textSize="36px"
+                android:textColor="#333"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="70px"
+                android:background="@drawable/btn_bg_next"
+                android:layout_marginTop="1000px"
+                android:visibility="gone"
+                />
+
+            <ScrollView
+                android:layout_width="wrap_content"
+                android:layout_height="1000px">
+
+
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/TM_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="请根据录音选择正确答案"
+                        android:layout_marginTop="100px"
+                        android:layout_marginLeft="60px"
+                        android:textSize="36px"
+                        android:textColor="#333333"
+                        />
+
+                    <RelativeLayout
+                        android:id="@+id/linear_layout_xz"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:divider="@null"
+                        android:layout_below="@+id/TM_title"
+                        android:layout_alignLeft="@+id/TM_title"
+                        android:layout_alignStart="@+id/TM_title"
+                        >
+
+                        <ListView
+                            android:id="@+id/Xz_list"
+                            android:layout_width="700px"
+                            android:layout_height="600px"
+                            android:divider="@null"
+
+                            />
+
+                    </RelativeLayout>
+
+
+
+
+                    <LinearLayout
+                        android:id="@+id/LinearLayout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_below="@+id/linear_layout_xz"
+                        android:layout_alignLeft="@+id/linear_layout_xz"
+                        android:layout_alignStart="@+id/linear_layout_xz"
+                        android:layout_marginTop="100px"
+                        >
+
+                        <TextView
+                            android:id="@+id/JX_"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="解析:"
+                            android:textSize="36px"
+                            android:textColor="#43bBcD"
+                            />
+
+                        <ListView
+                            android:id="@+id/JX_list"
+                            android:layout_width="700px"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/JX_"
+                            android:layout_alignLeft="@+id/JX_"
+                            android:layout_alignStart="@+id/JX_"
+                            android:layout_marginTop="30px"/>
+
+
+                    </LinearLayout>
+                </RelativeLayout>
+            </ScrollView>
+        </RelativeLayout>
+
+        <Button
+            android:id="@+id/TJ_Xyt"
+            android:layout_width="208px"
+            android:layout_height="84px"
+            android:background="@drawable/tijiao_selector"
+            android:layout_marginLeft="56px"
+            android:button="@null"
+            android:text="提交"
+            android:gravity="center"
+            android:textColor="#fff"
+            android:textSize="36px"
+            android:layout_alignBottom="@+id/linearLayout5"
+            android:layout_toEndOf="@+id/linearLayout5"
+            android:layout_marginBottom="15px"
+            />
+
+        <Button
+            android:id="@+id/XYT"
+            android:layout_width="208px"
+            android:layout_height="84px"
+            android:background="@drawable/tijiao_selector"
+            android:layout_marginLeft="56px"
+            android:button="@null"
+            android:text="下一题"
+            android:gravity="center"
+            android:textColor="#fff"
+            android:textSize="36px"
+            android:layout_alignBottom="@+id/linearLayout5"
+            android:layout_toEndOf="@+id/linearLayout5"
+            android:layout_marginBottom="15px"
+            android:visibility="gone"
+            />
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center_horizontal"
+            android:layout_below="@+id/relativeLayout2"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/linearLayout5">
+
+            <CheckBox
+                android:id="@+id/BF_zt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="110px"
+                android:background="@drawable/bf_zt_selector"
+                android:button="@null"
+                />
+
+        </LinearLayout>
+
+
+        <Button
+            android:id="@+id/ChongZ"
+            android:layout_width="207px"
+            android:layout_height="83px"
+            android:gravity="center"
+            android:textSize="36px"
+            android:layout_marginEnd="61px"
+            android:layout_alignBottom="@+id/linearLayout5"
+            android:layout_toStartOf="@+id/linearLayout5"
+            android:text="重做"
+            android:background="@drawable/chongz"
+            android:textColor="#43B8C0"
+            android:layout_marginBottom="10px"
+            />
+
+
+    </RelativeLayout>
+
+
+
+
+
+
+
+
+
+</LinearLayout>

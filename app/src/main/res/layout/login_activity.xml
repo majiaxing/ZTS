@@ -2,86 +2,79 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@mipmap/login_background"
+    >
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="90px">
-
-        <ImageView
-            android:id="@+id/A_Fan"
-            android:layout_width="35px"
-            android:layout_height="match_parent"
-            android:layout_marginHorizontal="20px"
-            android:src="@drawable/common_google_signin_btn_icon_dark"
-            android:layout_marginTop="10px"
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="登录智听说"
-            android:layout_centerHorizontal="true"
-            android:textSize="30px"
-            android:layout_marginTop="30px"
-            ></TextView>
-    </RelativeLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:layout_marginTop="100px"
+        android:layout_marginTop="150px"
         android:layout_marginLeft="80px"
         android:layout_marginRight="80px"
+        android:gravity="center_horizontal"
         >
+
+
+        <com.example.lenovo.ztsandroid.view.CircleImageView
+            android:id="@+id/A_Image_TX"
+            android:layout_width="348px"
+            android:layout_height="348px"
+            android:layout_gravity="center"
+            android:src="@mipmap/tx"
+            />
 
         <EditText
             android:id="@+id/A_edit_one"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="请输入你的手机号"
+            android:layout_width="843px"
+            android:layout_height="115px"
+            android:hint="请输入账号"
             android:textColorHint="#ADADAD"
-            android:textSize="30px"
-            android:gravity="top"
+            android:textSize="36px"
+            android:layout_marginTop="80px"
+            android:drawableLeft="@mipmap/username"
+            android:layout_gravity="center"
+            android:background="@mipmap/edittext_background"
+            android:paddingLeft="74px"
+            android:drawablePadding="34px"
             />
-        <!--<TextView-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="0.5px"-->
-            <!--android:background="#ADADAD"-->
-            <!--/>-->
+
         <EditText
             android:id="@+id/A_edit_two"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="843px"
+            android:layout_height="115px"
             android:hint="请输入密码"
             android:textColorHint="#ADADAD"
-            android:textSize="30px"
+            android:textSize="36px"
             android:layout_marginTop="50px"
-            android:gravity="top"
-            />
-        <!--<TextView-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="0.5px"-->
-            <!--android:background="#ADADAD"-->
-            <!--/>-->
-        <Button
-            android:id="@+id/loginBtn"
-            android:layout_width="match_parent"
-            android:layout_height="80px"
-            android:background="@drawable/login_btn_shape"
-            android:text="登录"
-            android:textColor="@color/colorWhite"
-            android:layout_marginTop="100px"
-            android:textSize="30px" />
+            android:drawableLeft="@mipmap/password"
+            android:paddingLeft="74px"
+            android:drawablePadding="34px"
+            android:background="@mipmap/edittext_background"/>
+
+
+
 
         <TextView
             android:id="@+id/A_wangjiBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="忘记密码"
-            android:layout_marginLeft="240px"
-            android:layout_marginTop="70px"
+            android:text="忘记密码?"
+            android:layout_marginTop="39px"
+            android:gravity="right"
+            android:textColor="@color/colorWhite"
             />
+        <Button
+            android:id="@+id/loginBtn"
+            android:layout_width="839px"
+            android:layout_height="115px"
+            android:background="@mipmap/btn_backround"
+            android:text="登录"
+            android:textColor="@color/colorWhite"
+            android:layout_marginTop="38px"
+            android:textSize="48px" />
 
     </LinearLayout>
 

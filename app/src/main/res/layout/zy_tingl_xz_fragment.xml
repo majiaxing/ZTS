@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="40px"
+        android:background="@color/pe_gray"
+        />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center_horizontal"
+            android:layout_below="@+id/relativeLayout2"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="120px"
+            >
+
+            <CheckBox
+                android:id="@+id/BF_zt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="110px"
+                android:background="@drawable/bf_zt_selector"
+                android:button="@null"
+                />
+
+            <Button
+                android:id="@+id/TJ_Xyt"
+                android:layout_width="150px"
+                android:layout_height="70px"
+                android:layout_marginTop="110px"
+                android:layout_marginLeft="58px"
+                android:background="@drawable/tijiao_selector"
+                android:button="@null"
+                android:text="提交"
+                android:gravity="center"
+                android:textColor="#fff"
+                android:textSize="36px"
+                />
+
+
+
+
+
+
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="850px"
+            android:layout_height="1093px"
+            android:background="@color/colorWhite"
+            android:id="@+id/relativeLayout2"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true">
+
+
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1/11"
+                android:textSize="36px"
+                android:layout_centerHorizontal="true"
+                android:gravity="center"
+                android:id="@+id/textView3"
+                android:layout_marginTop="1020px"
+                />
+
+            <Button
+                android:id="@+id/next_T"
+                android:layout_width="172px"
+                android:layout_height="80px"
+                android:text="下一题"
+                android:textSize="36px"
+                android:textColor="#333"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="70px"
+                android:background="@drawable/btn_bg_next"
+                android:layout_marginTop="1000px"
+                android:visibility="gone"
+                />
+
+            <ScrollView
+                android:layout_width="wrap_content"
+                android:layout_height="1000px">
+
+
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/TM_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="请根据录音选择正确答案"
+                        android:layout_marginTop="100px"
+                        android:layout_marginLeft="60px"
+                        android:textSize="36px"
+                        android:textColor="#333333"
+                        />
+
+                    <LinearLayout
+                        android:id="@+id/linear_layout_xz"
+                        android:layout_width="700px"
+                        android:layout_height="500px"
+                        android:orientation="vertical"
+                        android:layout_below="@+id/TM_title"
+                        android:layout_alignLeft="@+id/TM_title"
+                        android:layout_alignStart="@+id/TM_title"
+                        >
+
+
+                        <TextView
+                            android:id="@+id/Item_Tm"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="1.Chen Na's English name is ___"
+                            android:layout_marginTop="45px"
+                            />
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:layout_marginTop="40px"
+                            >
+                            <CheckBox
+                                android:id="@+id/Xuanz_btn_A"
+                                android:layout_width="43px"
+                                android:layout_height="43px"
+                                android:button="@null"
+                                android:background="@drawable/xuanz_selector"
+                                />
+
+                            <TextView
+                                android:id="@+id/Xuanz_nr_A"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="20px"
+                                android:text="A.Class.1"
+                                android:textSize="36px"
+                                android:textColor="#333"
+                                />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_marginTop="40px"
+                            android:gravity="center_vertical"
+                            >
+
+
+                            <CheckBox
+                                android:id="@+id/Xuanz_btn_B"
+                                android:layout_width="43px"
+                                android:layout_height="43px"
+                                android:button="@null"
+                                android:background="@drawable/xuanz_selector"
+                                />
+                            <TextView
+                                android:id="@+id/Xuanz_nr_B"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="20px"
+                                android:text="B.Class.1"
+                                android:textSize="36px"
+                                android:textColor="#333"
+                                />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_marginTop="40px"
+                            android:gravity="center_vertical"
+                            >
+
+                            <CheckBox
+                                android:id="@+id/Xuanz_btn_C"
+                                android:layout_width="43px"
+                                android:layout_height="43px"
+                                android:button="@null"
+                                android:background="@drawable/xuanz_selector"
+                                />
+                            <TextView
+                                android:id="@+id/Xuanz_nr_C"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="20px"
+                                android:text="C.Class.1"
+                                android:textSize="36px"
+                                android:textColor="#333"
+                                />
+
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_marginTop="40px"
+                            android:gravity="center_vertical"
+                            android:visibility="gone"
+                            >
+
+                            <CheckBox
+                                android:id="@+id/Xuanz_btn_D"
+                                android:layout_width="43px"
+                                android:layout_height="43px"
+                                android:button="@null"
+                                android:background="@drawable/xuanz_selector"
+                                />
+                            <TextView
+                                android:id="@+id/Xuanz_nr_D"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="20px"
+                                android:text="D.Class.1"
+                                android:textSize="36px"
+                                android:textColor="#333"
+                                />
+
+                        </LinearLayout>
+
+
+
+                    </LinearLayout>
+
+
+
+
+                    <LinearLayout
+                        android:id="@+id/LinearLayout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_below="@+id/linear_layout_xz"
+                        android:layout_alignLeft="@+id/linear_layout_xz"
+                        android:layout_alignStart="@+id/linear_layout_xz"
+                        android:layout_marginTop="100px"
+                        >
+
+                        <TextView
+                            android:id="@+id/JX_"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="解析:"
+                            android:textSize="36px"
+                            android:textColor="#43bBcD"
+                            android:visibility="gone"
+                            />
+
+                        <ListView
+                            android:id="@+id/JX_list"
+                            android:layout_width="700px"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/JX_"
+                            android:layout_alignLeft="@+id/JX_"
+                            android:layout_alignStart="@+id/JX_"
+                            android:layout_marginTop="30px"/>
+
+
+                    </LinearLayout>
+                </RelativeLayout>
+            </ScrollView>
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+
+
+
+</LinearLayout>

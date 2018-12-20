@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="204px"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:background="@drawable/huiyuan"
+
+        >
+        <LinearLayout
+            android:id="@+id/back_jt"
+            android:layout_width="90px"
+            android:layout_height="90px"
+            android:layout_marginLeft="48px"
+            android:layout_marginTop="30px"
+            android:gravity="center"
+
+            >
+            <ImageView
+
+                android:layout_width="45px"
+                android:layout_height="45px"
+                android:src="@drawable/back_xg_tt"
+                android:layout_centerHorizontal="true"
+
+
+
+                />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="305px"
+            android:text="消息中心"
+            android:textSize="54px"
+            android:textColor="#FFFFFF"
+            android:layout_marginTop="30px"
+            />
+
+            <TextView
+                android:id="@+id/QBYD"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="编辑"
+                android:gravity="right"
+                android:textSize="36px"
+                android:textColor="#FFF"
+                android:layout_marginRight="49px"
+                android:layout_marginTop="30px"
+                />
+    </LinearLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/linearLayout_Duquxiaox"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:background="@color/pe_gray"
+            >
+
+
+
+            <android.support.design.widget.TabLayout
+                android:id="@+id/DuquXiaox_tab"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:tabBackground="@color/colorWhite"
+                app:tabIndicatorHeight="5px"
+                app:tabMinWidth="50px"
+                app:tabIndicatorColor="@color/colortext"
+                app:tabSelectedTextColor="@color/colortext"
+                app:tabTextAppearance="@style/TabLayoutTextStyle"
+                app:tabTextColor="@color/colorGrayBlack"
+                android:background="@color/colorWhite"
+                app:tabMaxWidth="0dp"
+                app:tabGravity="fill"
+                app:tabMode="fixed"
+                />
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="4px"
+                    android:background="@color/pe_gray"
+                    />
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/DuquXiaox_pager"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    >
+
+                </android.support.v4.view.ViewPager>
+
+
+                <LinearLayout
+                    android:id="@+id/ZT_LinearLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="200px"
+                    android:layout_alignParentBottom="true"
+                    android:background="@color/colorWhite"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+
+                    >
+
+                    <CheckBox
+                        android:id="@+id/Quanx"
+                        android:layout_width="40px"
+                        android:layout_height="40px"
+                        android:button="@null"
+                        android:background="@drawable/check_box_selector"
+                        android:layout_marginLeft="48px"
+                        />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20px"
+                        android:text="全选"
+                        android:textColor="#999"
+                        android:textSize="36px"
+                        />
+
+
+                    <Button
+                        android:id="@+id/BiaoW_Yd"
+                        android:layout_width="250px"
+                        android:layout_height="70px"
+                        android:text="标为已读"
+                        android:background="@drawable/yd_btn_bg"
+                        android:layout_marginLeft="294px"
+                        android:textSize="36px"
+                        android:textColor="#ffae00"
+                        />
+
+                    <Button
+                        android:id="@+id/BiaoW_Sc"
+                        android:layout_width="250px"
+                        android:layout_height="70px"
+                        android:text="删除"
+                        android:background="@drawable/sc_btn_bg"
+                        android:layout_marginLeft="60px"
+                        android:textSize="36px"
+                        android:textColor="#ff0000"
+                        />
+
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+
+            
+            
+            </LinearLayout>
+
+
+
+        <LinearLayout
+            android:id="@+id/linearLayout_Kxx"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:background="@color/pe_gray"
+            android:visibility="gone"
+            >
+
+            <ImageView
+                android:layout_width="716px"
+                android:layout_height="562px"
+                android:src="@drawable/zwxx"
+                android:layout_marginLeft="182px"
+                android:layout_marginTop="316px"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="128px"
+                android:text="暂时还没有消息~"
+                android:textSize="36px"
+                android:textColor="#999999"
+                android:layout_gravity="center_horizontal"
+                />
+        </LinearLayout>
+
+
+
+
+
+    </RelativeLayout>
+
+
+
+    
+
+
+
+
+
+
+</LinearLayout>

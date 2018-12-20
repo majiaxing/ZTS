@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite"
+    >
+
+   <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="204px"
+    android:orientation="horizontal"
+       android:gravity="center_vertical"
+    android:background="@drawable/huiyuan"
+    >
+
+    <ImageView
+        android:id="@+id/back_jt"
+        android:layout_width="45px"
+        android:layout_height="45px"
+        android:src="@drawable/back_xg_tt"
+        android:layout_gravity="center"
+        android:layout_marginLeft="48px"
+        android:layout_marginTop="30px"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="375px"
+        android:text="选择学校"
+        android:textSize="54px"
+        android:textColor="#fff"
+        android:layout_marginTop="30px"
+        />
+</LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="40px"
+            android:layout_marginLeft="68px"
+            android:gravity="center_vertical"
+            android:paddingBottom="34px"
+            >
+
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+
+                <Spinner
+                    android:id="@+id/XX_Shenj_Dq_spinner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    ></Spinner>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10px"
+                    android:layout_marginTop="20px"
+                    android:src="@drawable/xl_sj"
+                    />
+
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginLeft="282px"
+                >
+
+
+                <Spinner
+                    android:id="@+id/XX_Sj_Dq_spinner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    ></Spinner>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10px"
+                    android:layout_marginTop="20px"
+                    android:src="@drawable/xl_sj"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginLeft="270px"
+                >
+
+
+                <Spinner
+                    android:id="@+id/XX_XJ_spinner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    ></Spinner>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20px"
+                    android:layout_marginTop="10px"
+                    android:src="@drawable/xl_sj"
+                    />
+            </LinearLayout>
+
+    </LinearLayout>
+
+
+
+    <EditText
+        android:id="@+id/SS_Edit"
+        android:layout_width="990px"
+        android:layout_height="60px"
+        android:layout_marginLeft="50px"
+        android:hint="请输入关键词搜索"
+        android:gravity="center_vertical"
+        android:drawableRight="@drawable/ss"
+        android:paddingRight="50px"
+        android:background="@drawable/ss_k"
+        android:textSize="30px"
+        android:paddingLeft="20px"
+        android:layout_marginBottom="40px"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="40px"
+        android:background="#eeeeee"
+        />
+
+        <ListView
+            android:id="@+id/List_XX"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </ListView>
+
+
+</LinearLayout>

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="204px"
+        android:background="@drawable/huiyuan"
+        android:gravity="center_vertical"
+        >
+        <ImageView
+            android:id="@+id/back_jt"
+            android:layout_width="45px"
+            android:layout_height="45px"
+            android:src="@drawable/back_xg_tt"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="48px"
+            android:layout_marginTop="30px"
+            />
+        <TextView
+            android:id="@+id/Xiao_XQ"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="消息中心"
+            android:textSize="54px"
+            android:textColor="#fff"
+            android:layout_centerVertical="true"
+             android:layout_centerHorizontal="true"
+            android:layout_marginTop="30px"
+            android:layout_marginLeft="350px"
+            />
+
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/pe_gray"
+        android:orientation="horizontal"
+        >
+
+        <com.example.lenovo.ztsandroid.view.CircleImageView
+            android:id="@+id/A_Image_TX"
+            android:layout_width="130px"
+            android:layout_height="130px"
+            android:src="@drawable/zuoy"
+            android:layout_marginTop="142px"
+            android:layout_marginLeft="46px"
+            />
+
+        <TextView
+            android:id="@+id/data_zs"
+            android:layout_width="280px"
+            android:layout_height="50px"
+            android:layout_marginTop="50px"
+            android:text="11.01 12.25"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/data_bg"
+            android:textSize="34px"
+            android:textColor="#ffffff"
+            android:gravity="center"
+            />
+
+
+        <LinearLayout
+            android:layout_width="706px"
+            android:layout_height="300px"
+            android:background="@drawable/xx_kuang"
+            android:layout_marginLeft="26px"
+            android:layout_alignTop="@+id/A_Image_TX"
+            android:layout_toRightOf="@+id/A_Image_TX"
+            android:layout_toEndOf="@+id/A_Image_TX"
+            >
+
+            <TextView
+                android:id="@+id/Xx_neirong"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="您好，xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+                android:textSize="36px"
+                android:textColor="#333333"
+                android:gravity="center"
+                android:layout_marginLeft="30px"
+                android:layout_marginRight="20px"
+                />
+
+        </LinearLayout>
+
+
+
+    </RelativeLayout>
+
+
+
+
+
+
+
+
+
+</LinearLayout>

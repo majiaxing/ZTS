@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="200px"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:background="@drawable/huiyuan"
+        >
+        <ImageView
+            android:id="@+id/back_jt"
+            android:layout_width="45px"
+            android:layout_height="45px"
+            android:src="@drawable/back_xg_tt"
+            android:layout_marginLeft="48px"
+            android:layout_marginTop="30px"
+            />
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="375px"
+            android:text="作业"
+            android:textSize="54px"
+            android:textColor="#fff"
+            android:background="@null"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="30px"
+
+            />
+
+
+
+
+
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="4px"
+        android:background="@color/pe_gray"
+        />
+
+    <RelativeLayout
+        android:id="@+id/LeiX"
+        android:layout_width="match_parent"
+        android:layout_height="114px"
+        android:background="@color/colorWhite"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/LeiXin"
+            android:layout_centerVertical="true"
+            android:text="课文"
+            android:layout_marginLeft="48px"
+            android:textSize="36px"
+            android:textColor="#333"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/YeShu"
+            android:layout_centerVertical="true"
+            android:text="1"
+            android:textSize="36px"
+            android:textColor="#43B8C0"
+            android:layout_marginRight="90px"
+            android:layout_alignParentRight="true"
+
+            />
+
+            <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/Zongyeshu"
+            android:layout_centerVertical="true"
+            android:text="/30"
+            android:textSize="36px"
+            android:textColor="#333"
+            android:layout_marginRight="33px"
+            android:layout_alignParentRight="true"
+            />
+
+
+
+
+
+    </RelativeLayout>
+
+
+    <FrameLayout
+        android:id="@+id/FrameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"></FrameLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</LinearLayout>

@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite"
+    >
+
+
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="204px"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:background="@drawable/huiyuan"
+        >
+
+        <LinearLayout
+            android:id="@+id/back_jt"
+            android:layout_width="90px"
+            android:layout_height="90px"
+            android:layout_marginLeft="48px"
+            android:layout_marginTop="30px"
+            android:gravity="bottom">
+            <ImageView
+
+                android:layout_width="45px"
+                android:layout_height="45px"
+                android:src="@drawable/back_xg_tt"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="30px"
+
+                />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="作业1"
+            android:textSize="54px"
+            android:textColor="#fff"
+            android:layout_marginTop="30px"
+            />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="174px"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        >
+
+        <TextView
+            android:id="@+id/QB_T"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="共22道题"
+            android:layout_marginLeft="48px"
+            android:textColor="#666666"
+            android:textSize="36px"
+            />
+        <TextView
+            android:id="@+id/WC_T"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="已完成22道题"
+            android:layout_marginLeft="48px"
+            android:textColor="#666666"
+            android:textSize="36px"
+            />
+        <TextView
+            android:id="@+id/WZ_T"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="未完成2道题"
+            android:layout_marginLeft="48px"
+            android:textColor="#666666"
+            android:textSize="36px"
+            />
+
+        </LinearLayout>
+        
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="4px"
+        android:background="@color/pe_gray"/>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <ListView
+            android:id="@+id/ZuoY_LX"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="153px"
+            >
+        </ListView>
+
+
+
+    <TextView
+        android:id="@+id/Ti_J_ChaK"
+        android:layout_width="match_parent"
+        android:layout_height="153px"
+        android:background="@drawable/tj_chakan_bg"
+        android:gravity="center"
+        android:text="提交并查看结果"
+        android:textSize="48px"
+        android:textColor="#ffffff"
+        android:layout_alignParentBottom="true"
+        />
+
+    </RelativeLayout>
+
+</LinearLayout>

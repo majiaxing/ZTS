@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/bgth"
+        android:scaleType="fitXY"
+        />
+
+
+    <TextView
+        android:layout_width="110dp"
+        android:layout_height="30dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="16dp"
+        android:layout_marginLeft="140dp"
+        android:background="@drawable/ljty"
+        android:layout_centerHorizontal="true"
+        android:text="立即体验"
+        android:gravity="center"
+        android:id="@+id/mText"/>
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_alignBottom="@+id/mText"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="160px"
+        android:gravity="center"
+        android:layout_centerInParent="true"
+        >
+
+        <ImageView
+            android:layout_width="20px"
+            android:layout_height="20px"
+            android:src="@drawable/dibu_yd_wxz"
+           />
+
+        <ImageView
+            android:layout_width="20px"
+            android:layout_height="20px"
+            android:src="@drawable/dibu_yd_wxz"
+            android:layout_marginLeft="30px"
+             />
+
+        <ImageView
+            android:layout_width="20px"
+            android:layout_height="20px"
+            android:src="@drawable/dibu_yd"
+            android:layout_marginLeft="30px"
+             />
+
+
+    </LinearLayout>
+
+
+</RelativeLayout>

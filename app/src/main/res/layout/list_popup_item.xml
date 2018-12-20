@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <TextView
+        android:id="@+id/Nr_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="name"
+        android:textColor="#333"
+        android:textSize="36px"
+        android:layout_marginLeft="60px"
+        android:padding="40px"
+        />
+
+    <TextView
+        android:id="@+id/Zt_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="未练习"
+        android:textSize="36px"
+        android:layout_alignBottom="@+id/Nr_item"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="70px"
+        android:padding="40px"
+        android:textColor="#999999"
+        />
+
+
+</RelativeLayout>

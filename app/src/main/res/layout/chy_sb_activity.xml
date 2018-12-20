@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    >
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="204px"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:background="@drawable/huiyuan"
+        >
+
+        <ImageView
+            android:id="@+id/back_jt"
+            android:layout_width="45px"
+            android:layout_height="45px"
+            android:src="@drawable/back_xg_tt"
+            android:layout_gravity="center"
+            android:layout_marginLeft="48px"
+            android:layout_marginTop="30px"
+            />
+
+        <TextView
+            android:id="@+id/Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="375px"
+            android:text="常用设备"
+            android:textSize="54px"
+            android:textColor="#333333"
+            android:layout_marginTop="30px"
+            />
+
+
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="30px"
+        android:background="@color/pe_gray"
+        />
+
+    
+    
+    <TextView
+        android:id="@+id/Sbh"
+        android:layout_width="match_parent"
+        android:layout_height="130px"
+        android:text="当前账号已关联的常用设备：小米 max"
+        android:gravity="center"
+        />
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/pe_gray"
+        />
+
+</LinearLayout>

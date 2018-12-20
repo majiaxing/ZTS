@@ -22,5 +22,72 @@
         <!-- 设置屏幕变暗 -->
     </style>
 
+    <!--位于中间dialog的风格-->
+    <style name="DialogCentre">
+        <!--设置dialog的背景-->
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <!--设置Dialog的windowFrame框为无-->
+        <item name="android:windowFrame">@null</item>
+        <!--设置无标题-->
+        <item name="android:windowNoTitle">true</item>
+        <!--是否浮现在activity之上-->
+        <item name="android:windowIsFloating">true</item>
+        <!--是否半透明-->
+        <item name="android:windowIsTranslucent">true</item>
+        <!--设置窗口内容不覆盖-->
+        <item name="android:windowContentOverlay">@null</item>
+        <!--设置动画，在这里使用让它继承系统的Animation.Dialog-->
+        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
+        <!--背景是否模糊显示-->
+        <item name="android:backgroundDimEnabled">true</item>
+    </style>
+
+
+    <style name="TabLayoutTextStyle">
+        <item name="android:textSize">36px</item>
+    </style>
+
+
+    <style name="roomRatingBar" parent="@android:style/Widget.RatingBar">
+        <item name="android:progressDrawable">@drawable/xinxin_bj</item>
+        <item name="android:minHeight">20px</item>
+        <item name="android:maxHeight">20px</item>
+    </style>
+
+
+    <style name="Custom" parent="@android:style/Theme.Dialog">
+        <!-- windowFrame框为无 -->
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <!-- 除去背景 -->
+        <item name="android:windowBackground">@drawable/bg_transparent</item>
+        <!-- 是否浮现在activity之上 -->
+        <item name="android:windowIsFloating">true</item>
+        <!-- 是否半透明 -->
+        <item name="android:windowIsTranslucent">false</item>
+        <!-- 去掉覆盖层 -->
+        <item name="android:windowContentOverlay">@null</item>
+        <!-- 设置背景颜色 -->
+        <item name="android:background">@drawable/bg_transparent</item>
+        <item name="android:backgroundDimEnabled">true</item>
+    </style>
+
+    <style name="BarItem">
+        <item name="android:gravity">center</item>
+        <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+
+
+    <style name="mprogress_horizontal">
+        <item name="android:indeterminateOnly">false</item>
+        <item name="android:progressDrawable">@drawable/seekbar_horizontal</item><!-- 滑动条颜色-->
+        <item name="android:indeterminateDrawable">@android:drawable/progress_indeterminate_horizontal</item>
+        <item name="android:minHeight">5dip</item>
+        <item name="android:maxHeight">5dip</item>
+    </style>
+
 
 </resources>

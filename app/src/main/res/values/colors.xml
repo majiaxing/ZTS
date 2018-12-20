@@ -9,8 +9,34 @@
     <color name="live_china_grak">#656565</color>
     <color name="pe_text_bg_gray">#5d5d5d</color>
     <color name="pe_bg_light_blue">#E6EBEF</color>
-    <color name="pe_gray">#808080</color>
+    <color name="pe_gray">#f4f3f3</color>
     <color name="black">#30e451</color>
+    <color name="yzml">#51bbc2</color>
+    <color name="colortext">#43b8c0</color>
     <color name="transparent">#00000000</color> <!-- 透明 -->
+    <color name="ywceng">#ff6b2c</color>
+    <color name="text_color_red">#ffff4444</color>
+    <color name="text_color">#00000000</color>
+
+    <!-- Activity background color -->
+    <drawable name="class_zero_background">#7f040000</drawable>
+
+    <!-- text color -->
+    <drawable name="text_color_red">#ffff4444</drawable>
+    <drawable name="text_color_black">#ff000000</drawable>
+    <color name="text_hairline">#ffcccccc</color>
+    <color name="message_count_color">#66333333</color>
+
+    <!-- Chat "sent time" text background -->
+    <color name="timestamp_color">#bf000000</color>
+
+    <!-- the background color used for unread conversation -->
+    <color name="unread_bgcolor">#ffffffff</color>
+    <color name="read_bgcolor">#ffeeeeee</color>
+
+    <color name="widget_sender_text_color_read">#555555</color>
+    <color name="widget_sender_text_color_unread">#333333</color>
+    <color name="widget_subject_text_color_read">#777777</color>
+    <color name="widget_subject_text_color_unread">#555555</color>
 
 </resources>
