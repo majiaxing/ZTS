@@ -53,19 +53,14 @@ public class Yb_dancizuhe_Adapter extends BaseAdapter{
             convertView = LayoutInflater.from(context).inflate(R.layout.yb_nr_item,null);
             holder.zh_O = convertView.findViewById(R.id.zh_O);
             holder.text_O = convertView.findViewById(R.id.text_O);
-
-
             convertView.setTag(holder);
         }else {
             holder = (Holder) convertView.getTag();
         }
 
-
-
         YB_XQ_four_Bean.DataBean.WordBean liveBean = list.get(position);
         holder.zh_O.setText(liveBean.getYb_sym_word());
         holder.text_O.setText("["+liveBean.getYb_sym_tran()+"]");
-
         return convertView;
     }
 }

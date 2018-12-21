@@ -47,4 +47,6 @@ dependencies {
 
     compile files('libs/hutool-all-4.3.0.jar')
     compile 'com.android.support:multidex:1.0.1'
+    compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.30'
+
 }

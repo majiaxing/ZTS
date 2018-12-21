@@ -67,11 +67,6 @@ import static android.R.id.list;
  */
 public class KeW_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.View{
 
-
-    @BindView(R.id.CK_zs)
-    LinearLayout CKZs;
-    @BindView(R.id.next_T)
-    Button nextT;
     @BindView(R.id.Xinx_bar)
     RatingBar XinxBar;
     @BindView(R.id.PinF_Text)
@@ -468,7 +463,7 @@ public class KeW_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.Vie
         word_id = bundle.getString("word_id");
         type = bundle.getString("type");
 
-        JzNr.setText(nr);
+        JzNr.setText(nr.trim());
         FyText.setText(fy);
 
         FyText.setVisibility(View.GONE);
@@ -508,11 +503,10 @@ public class KeW_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.Vie
     final Boolean[] b = {false};
     private Boolean[] aBoolean = {false};
     private Boolean[] bool  = {false};
-    @OnClick({R.id.next_T, R.id.K_G, R.id.BF_zt, R.id.Ly_btn})
+    @OnClick({ R.id.K_G, R.id.BF_zt, R.id.Ly_btn})
     public void onViewClicked(View view) {
         switch (view.getId()) {
-            case R.id.next_T:
-                break;
+
             case R.id.K_G:
                 break;
             case R.id.BF_zt:
@@ -625,7 +619,7 @@ public class KeW_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.Vie
                 presenter.SetU(App.stuid, word_id, System.currentTimeMillis() + ".mp3", str, type);
 
                 relativeLayout.setVisibility(View.VISIBLE);
-                nextT.setVisibility(View.VISIBLE);
+
 
             }else {
                 App.activity.runOnUiThread(new Runnable() {

@@ -46,6 +46,7 @@ public class Zm_zh_Adapter extends BaseAdapter {
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
+
         ViewHolder viewHolder = null;
         if (view == null){
             viewHolder = new ViewHolder();
@@ -57,7 +58,6 @@ public class Zm_zh_Adapter extends BaseAdapter {
         }else {
             viewHolder = (ViewHolder) view.getTag();
         }
-
         YB_XQ_four_Bean.DataBean liveBean = channels.get(i);
         viewHolder.textView.setText(liveBean.getYb_symbol());
 

@@ -1,223 +1,158 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
-    >
-
-
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="140px"
-        android:background="@color/pe_gray"
-        />
+    android:background="#efefef"
+    android:orientation="vertical">
 
     <ScrollView
-        android:layout_width="853px"
-        android:layout_height="1096px">
-
-    <RelativeLayout
-        android:layout_width="853px"
-        android:layout_height="1096px"
-        android:layout_centerHorizontal="true"
+        android:scrollbars="none"
+        android:overScrollMode="never"
         android:background="@color/colorWhite"
-        >
-
-        <LinearLayout
-            android:id="@+id/CK_zs"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30px"
-            android:orientation="horizontal"
-            >
-        </LinearLayout>
-
-        <!--<TextView-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:text="1/11"-->
-        <!--android:textSize="36px"-->
-        <!--android:layout_centerHorizontal="true"-->
-        <!--android:gravity="center"-->
-        <!--android:id="@+id/textView3"-->
-        <!--android:layout_marginTop="1020px"-->
-        <!--/>-->
-
-        <Button
-            android:id="@+id/next_T"
-            android:layout_width="172px"
-            android:layout_height="80px"
-            android:text="下一题"
-            android:textSize="36px"
-            android:textColor="#333"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="70px"
-            android:background="@drawable/btn_bg_next"
-            android:layout_marginTop="1000px"
-            android:visibility="gone"
-            />
-
-
+        android:paddingRight="25dp"
+        android:paddingLeft="25dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="400dp">
 
         <RelativeLayout
-            android:id="@+id/relativeLayout"
-            android:layout_width="703px"
-            android:layout_height="153px"
-            android:background="@drawable/jx_bg_pf"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="235dp"
-            android:visibility="gone"
-            >
-
-
-            <ImageView
-                android:layout_width="114px"
-                android:layout_height="114px"
-                android:layout_marginLeft="73px"
-                android:layout_marginTop="19px"
-
-                />
-
-
-            <RatingBar
-                android:id="@+id/Xinx_bar"
-                android:layout_width="wrap_content"
-                android:layout_height="60px"
-                android:numStars="5"
-                android:stepSize="1"
-                style="@style/roomRatingBar"
-                android:layout_marginRight="87px"
-                android:layout_marginEnd="87px"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true" />
-
-            <TextView
-                android:id="@+id/PinF_Text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="68分"
-                android:layout_above="@+id/Xinx_bar"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true"
-                android:layout_marginRight="89px"
-                android:layout_marginEnd="89px"
-                android:layout_marginBottom="16px"
-                android:textSize="48px"
-                android:textColor="#ffffff"
-                />
-
-
-
-        </RelativeLayout>
-
-
-        <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginLeft="89px"
-            >
+            android:layout_centerHorizontal="true"
+            android:background="@color/colorWhite">
+
+            <RelativeLayout
+                android:id="@+id/relativeLayout"
+                android:layout_width="703px"
+                android:layout_height="153px"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="235dp"
+                android:background="@drawable/jx_bg_pf"
+                android:visibility="gone">
+
+                <ImageView
+                    android:layout_width="114px"
+                    android:layout_height="114px"
+                    android:layout_marginLeft="73px"
+                    android:layout_marginTop="19px"
+                    />
+                <RatingBar
+                    android:id="@+id/Xinx_bar"
+                    style="@style/roomRatingBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="60px"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginEnd="87px"
+                    android:layout_marginRight="87px"
+                    android:numStars="5"
+                    android:stepSize="1" />
+
+                <TextView
+                    android:id="@+id/PinF_Text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_above="@+id/Xinx_bar"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginBottom="16px"
+                    android:layout_marginEnd="89px"
+                    android:layout_marginRight="89px"
+                    android:text="68分"
+                    android:textColor="#ffffff"
+                    android:textSize="48px" />
+
+
+            </RelativeLayout>
 
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="66px"
-                android:gravity="center_vertical"
-                >
+                android:orientation="vertical">
+                <LinearLayout
+                    android:gravity="center_vertical"
+                    android:layout_gravity="right"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="66px"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/zhuS"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="right"
+                        android:text="注释"
+                        android:textColor="#0069ff"
+                        android:textSize="32px"
+                        />
+
+                    <CheckBox
+                        android:id="@+id/K_G"
+                        android:layout_width="35dp"
+                        android:layout_height="15dp"
+                        android:layout_marginRight="10dp"
+                        android:background="@drawable/kai_guan_selecter"
+                        android:button="@null" />
+                </LinearLayout>
+
 
                 <TextView
-                    android:id="@+id/zhuS"
-                    android:layout_width="650px"
+                    android:id="@+id/Jz_nr"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="注释"
-                    android:textSize="32px"
-                    android:textColor="#0069ff"
-                    android:gravity="right"
-
+                    android:layout_marginTop="46px"
+                    android:text="***************************"
+                    android:textColor="#333333"
+                    android:textSize="54px"
                     />
-
-                <CheckBox
-                    android:id="@+id/K_G"
-                    android:layout_width="66px"
-                    android:layout_height="37px"
-                    android:button="@null"
-                    android:background="@drawable/kai_guan_selecter"
-                    android:layout_marginRight="62px"
-                    />
-
+                <TextView
+                    android:id="@+id/Fy_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30px"
+                    android:text="*************************************"
+                    android:textColor="#0069ff" />
             </LinearLayout>
-
-
-            <TextView
-                android:id="@+id/Jz_nr"
-                android:layout_width="700px"
-                android:layout_height="wrap_content"
-                android:text="***************************"
-                android:textSize="54px"
-                android:textColor="#333333"
-                android:layout_marginTop="46px"
-
-                />
-
-
-
-            <TextView
-                android:id="@+id/Fy_text"
-                android:layout_width="700px"
-                android:layout_height="wrap_content"
-                android:textColor="#0069ff"
-                android:text="*************************************"
-                android:layout_marginTop="30px" />
-
-        </LinearLayout>
-    </RelativeLayout>
-
-        </ScrollView>
-
+        </RelativeLayout>
+    </ScrollView>
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:gravity="center"
+        android:id="@+id/linearLayout6"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_gravity="center_horizontal"
         android:layout_below="@+id/relativeLayout2"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="120px"
-        android:id="@+id/linearLayout6">
+        android:layout_marginTop="40dp"
+        android:orientation="horizontal">
 
         <CheckBox
             android:id="@+id/BF_zt"
-            android:layout_width="116px"
-            android:layout_height="116px"
-            android:layout_marginTop="110px"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:background="@drawable/bf_zt_selector"
             android:button="@null"
-
             />
-
 
         <CheckBox
+            android:layout_marginLeft="50dp"
             android:id="@+id/Ly_btn"
-            android:layout_width="116px"
-            android:layout_height="116px"
-            android:layout_marginTop="110px"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:background="@drawable/luyin_selector"
-            android:button="@null"
-            android:layout_marginLeft="150px"
-            />
+            android:button="@null" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="准备录音"
-            android:layout_marginTop="110px"
-            android:layout_marginLeft="31px"
-            />
+            android:layout_marginLeft="10dp"
+            android:text="准备录音" />
 
 
     </LinearLayout>
