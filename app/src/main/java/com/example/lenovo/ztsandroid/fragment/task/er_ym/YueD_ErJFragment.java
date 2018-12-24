@@ -228,6 +228,9 @@ public class YueD_ErJFragment extends BaseActivity implements ZuoY_Yd_Cotract.Vi
                     for (int i = 0; i < read_questionList.size(); i++) {
                         List<ZuoY_Yd_Bean.DataBean.TypeListBean.ReadQuestionListBean.ReadOptionListBean> read_optionList = read_questionList.get(i).getRead_optionList();
                         hw_answerId = read_questionList.get(i).getHw_answerId();
+
+                        MyLog.e("hw_answerId",hw_answerId);
+
                         String read_question = read_questionList.get(i).getRead_question();
                         String read_answer = read_questionList.get(i).getRead_answer();
 
@@ -255,6 +258,7 @@ public class YueD_ErJFragment extends BaseActivity implements ZuoY_Yd_Cotract.Vi
                     bundle.putString("hw_type",hw_type);
                     bundle.putString("hw_content",hw_content);
                     bundle.putString("hwid",hwid);
+                    bundle.putString("hw_answerId",hw_answerId);
                     zy_yueDu_fragment.setParams(bundle);
                     nlist.add(zy_yueDu_fragment);
                 }

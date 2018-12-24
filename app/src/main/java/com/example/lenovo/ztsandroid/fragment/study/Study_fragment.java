@@ -126,7 +126,6 @@ public class Study_fragment extends BaseFragment implements JiaoC_xz_Cotract.Vie
     protected void init(View view) {
 
 
-
         sp = App.activity.getSharedPreferences("userInfo", App.activity.MODE_WORLD_READABLE);
         editor = sp.edit();
 
@@ -265,7 +264,7 @@ public class Study_fragment extends BaseFragment implements JiaoC_xz_Cotract.Vie
                 startActivity(intent1);
                 break;
             case R.id.linear:
-                upPopupWindow(view);
+                upPopupWindow(line);
 
                 break;
             case R.id.Yin_Biao:

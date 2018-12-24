@@ -97,7 +97,6 @@ public class ZY_Kw_Activity extends BaseActivity implements TiJiao_ZY_Cotract.Vi
     private YueD_ErJFragment yueDErJFragment = new YueD_ErJFragment();
     private String hw_content;
 
-
     private TiJiao_ZY_Cotract.Presenter presenter;
     private String typeList;
     private String save_path;

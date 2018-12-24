@@ -32,7 +32,7 @@
         android:id="@+id/TZ_YX_o"
         android:layout_width="561px"
         android:layout_height="100px"
-        android:background="@drawable/btn_bg"
+        android:background="@drawable/tz_yx"
         android:layout_marginTop="100px"
         android:text="挑战一下"
         android:textColor="@color/colorWhite"

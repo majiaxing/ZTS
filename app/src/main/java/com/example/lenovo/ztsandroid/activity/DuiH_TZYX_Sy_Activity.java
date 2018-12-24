@@ -21,6 +21,7 @@ import com.example.lenovo.ztsandroid.adapter.ViewPagerAdapter;
 import com.example.lenovo.ztsandroid.base.BaseActivity;
 import com.example.lenovo.ztsandroid.cotract.DuiH_XQ_Cotract;
 import com.example.lenovo.ztsandroid.fragment.DuiH_Fragment;
+import com.example.lenovo.ztsandroid.fragment.DuiH_TZYX_Fragment;
 import com.example.lenovo.ztsandroid.model.entity.DuiH_XQ_Bean;
 import com.example.lenovo.ztsandroid.presenter.DuiH_XQ_Presenter;
 import com.example.lenovo.ztsandroid.utils.MyLog;
@@ -36,7 +37,7 @@ import butterknife.OnClick;
  * Created by Administrator on 2018/11/7.
  */
 
-public class DuiH_Sy_Activity extends BaseActivity implements DuiH_XQ_Cotract.View {
+public class DuiH_TZYX_Sy_Activity extends BaseActivity implements DuiH_XQ_Cotract.View {
 
 
     @BindView(R.id.back_jt)
@@ -53,7 +54,7 @@ public class DuiH_Sy_Activity extends BaseActivity implements DuiH_XQ_Cotract.Vi
     private String talk_id;
     private DuiH_XQ_Cotract.Presenter presenter;
     private Bundle bundle;
-    private DuiH_Fragment fragment;
+    private DuiH_TZYX_Fragment fragment;
     private String save_path;
     private ArrayList<String> videolist = new ArrayList<>();
 
@@ -70,7 +71,7 @@ public class DuiH_Sy_Activity extends BaseActivity implements DuiH_XQ_Cotract.Vi
         talk_id = intent.getStringExtra("talk_id");
         save_path = intent.getStringExtra("relative_path");
 
-        MyLog.e("传过来的save_path",save_path + "");
+        MyLog.e("传过来的save_path",save_path + "" + talk_id + title1);
 
     }
 
@@ -85,6 +86,7 @@ public class DuiH_Sy_Activity extends BaseActivity implements DuiH_XQ_Cotract.Vi
     public static LinearLayout FanH;
 
     public static void PopupW(View view, String str) {
+
 
         final View inflate = View.inflate(App.activity, R.layout.back_popup, null);
         popupWindow = new PopupWindow(inflate, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -177,7 +179,7 @@ public class DuiH_Sy_Activity extends BaseActivity implements DuiH_XQ_Cotract.Vi
 
                 for (int i = 0; i < duiHXqBean.getData().size(); i++) {
 
-                    fragment = new DuiH_Fragment();
+                    fragment = new DuiH_TZYX_Fragment();
                     bundle = new Bundle();
 
                     if (isJS){
@@ -194,7 +196,6 @@ public class DuiH_Sy_Activity extends BaseActivity implements DuiH_XQ_Cotract.Vi
 
                     bundle.putString("Relative_path",save_path);
 
-                    bundle.putString("title",title1);
 
                     videolist.add(duiHXqBean.getData().get(i).getJuese_video());
 

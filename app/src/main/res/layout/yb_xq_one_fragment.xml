@@ -56,7 +56,6 @@
                         android:id="@+id/BF_One"
                         android:layout_width="49px"
                         android:layout_height="49px"
-                        android:src="@drawable/yinliangda"
                         android:button="@null"
                         android:background="@drawable/redio_f"
                         />
@@ -64,9 +63,8 @@
                         android:id="@+id/BF_One_Xuanz"
                         android:layout_width="33px"
                         android:layout_height="33px"
-                        android:src="@drawable/yinliangda"
                         android:button="@null"
-                        android:background="@drawable/redio_t"
+                        android:background="@drawable/yd_g"
                         android:layout_centerInParent="true"
                         />
 
@@ -101,7 +99,7 @@
                             android:layout_height="33px"
                             android:src="@drawable/yinliangda"
                             android:button="@null"
-                            android:background="@drawable/redio_t"
+                            android:background="@drawable/yd_g"
                             android:layout_centerInParent="true"
                             android:visibility="gone"
                             />
@@ -148,8 +146,8 @@
             android:layout_height="300px"
             android:src="@drawable/tuc"
             android:layout_marginTop="39px"
-            android:layout_marginRight="47px"
             android:layout_alignParentTop="true"
+            android:layout_marginLeft="40px"
             android:layout_toEndOf="@+id/linearLayout4" />
 
         <CheckBox
@@ -160,7 +158,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="62px"
             android:button="@null"
-            android:background="@drawable/bf_ly_selector"
+            android:background="@drawable/bf_zt_selector"
             />
 
 
@@ -177,7 +175,7 @@
         android:id="@+id/TZ_YX_o"
         android:layout_width="561px"
         android:layout_height="100px"
-        android:background="@drawable/btn_bg"
+        android:background="@drawable/tz_yx"
         android:layout_marginTop="500px"
         android:text="挑战一下"
         android:textColor="@color/colorWhite"

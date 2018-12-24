@@ -14,8 +14,7 @@
         android:textColor="#ffffff"
         android:background="@mipmap/grid_item_bg"
         android:layout_marginTop="40px"
-        android:layout_marginLeft="40px"
+        android:layout_marginLeft="30px"
         />
-    
-    
+
 </LinearLayout>

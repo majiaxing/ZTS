@@ -8,7 +8,7 @@
         android:id="@+id/Item_Tm"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:paddingTop="30px"
         android:text="1.Chen Na's English name is ___" />
 
     <LinearLayout
@@ -16,7 +16,7 @@
         android:id="@+id/XXA"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40px"
+        android:paddingTop="40px"
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
@@ -57,7 +57,7 @@
         android:id="@+id/XXB"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40px"
+        android:paddingTop="40px"
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
@@ -100,7 +100,7 @@
         android:id="@+id/XXC"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40px"
+        android:paddingTop="40px"
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
@@ -144,7 +144,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
-        android:layout_marginTop="40px"
+        android:paddingTop="40px"
         android:gravity="center_vertical"
         android:orientation="horizontal">
 

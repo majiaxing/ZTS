@@ -272,40 +272,42 @@ public class XX_Activity extends BaseActivity implements XX_Cotract.View {
     @Override
     public void getManager(final XiaoX_Bean xiaoX_bean) {
 
+
+
+
         App.activity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
 
-                if (xiaoX_bean.getData() == null){
+                if (xiaoX_bean.getData().size() == 0) {
                     linearLayoutKxx.setVisibility(View.VISIBLE);
+                    QBYD.setVisibility(View.INVISIBLE);
+                    return;
+                } else {
+                    list1 = new ArrayList();
+                    list1.addAll(xiaoX_bean.getData());
+                    bundle = new Bundle();
+                    bundle.putSerializable("list", list1);
+//                MyLog.e("准备传过去的数据",list1.get(0).getNewtype() + "");
+
+                    fragment1.setParams(bundle);
+                    fragment2.setParams(bundle);
+
+                    fragments.add(fragment1);
+                    fragments.add(fragment2);
+
+
+                    adapter = new XX_FragmentAdapter(getSupportFragmentManager(), fragments);
+                    DuquXiaoxPager.setAdapter(adapter);
+                    DuquXiaoxTab.setupWithViewPager(DuquXiaoxPager);
+
+                    DuquXiaoxTab.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            setIndicator(DuquXiaoxTab, 60, 60);
+                        }
+                    });
                 }
-
-                list1 = new ArrayList();
-                list1.addAll(xiaoX_bean.getData());
-                bundle = new Bundle();
-                bundle.putSerializable("list", list1);
-                MyLog.e("准备传过去的数据",list1.get(0).getNewtype() + "");
-
-                fragment1.setParams(bundle);
-                fragment2.setParams(bundle);
-
-                fragments.add(fragment1);
-                fragments.add(fragment2);
-
-
-
-                adapter = new XX_FragmentAdapter(getSupportFragmentManager(), fragments);
-                DuquXiaoxPager.setAdapter(adapter);
-                DuquXiaoxTab.setupWithViewPager(DuquXiaoxPager);
-
-//
-                DuquXiaoxTab.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        setIndicator(DuquXiaoxTab, 60, 60);
-                    }
-                });
-//
             }
         });
     }

@@ -11,10 +11,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -22,12 +22,14 @@ import android.widget.Toast;
 
 import com.example.lenovo.ztsandroid.App;
 import com.example.lenovo.ztsandroid.R;
+import com.example.lenovo.ztsandroid.adapter.Juz_Adapter;
 import com.example.lenovo.ztsandroid.base.BaseFragment;
 import com.example.lenovo.ztsandroid.cotract.ZhiL_Yuyin_Cotract;
+import com.example.lenovo.ztsandroid.model.entity.DuiH_XQ_Bean;
 import com.example.lenovo.ztsandroid.model.entity.SC_YX_Bean;
 import com.example.lenovo.ztsandroid.model.entity.Stdey_Bean;
 import com.example.lenovo.ztsandroid.model.entity.YuYinPinG_Bean;
-import com.example.lenovo.ztsandroid.presenter.Lu_SC_Stdey_dy_Presenter;
+import com.example.lenovo.ztsandroid.presenter.Lu_SC_Stdey_dh_Presenter;
 import com.example.lenovo.ztsandroid.presenter.Lu_Study_Presenter;
 import com.example.lenovo.ztsandroid.presenter.PinC_Fay_presenter;
 import com.example.lenovo.ztsandroid.presenter.ZhiL_Csh_Fy_Presenter;
@@ -35,6 +37,7 @@ import com.example.lenovo.ztsandroid.utils.ConvertUtil;
 import com.example.lenovo.ztsandroid.utils.MyLog;
 import com.example.lenovo.ztsandroid.view.RippleIntroView;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -44,6 +47,8 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URLEncoder;
+import java.text.DecimalFormat;
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -56,17 +61,17 @@ import cn.hutool.core.util.CharsetUtil;
 /**
  * Created by Administrator on 2018/11/12.
  */
-public class Duany_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.View {
-    @BindView(R.id.duany_text)
-    TextView duanyText;
-    @BindView(R.id.Fy_text)
-    TextView FyText;
-    @BindView(R.id.textView3)
-    TextView textView3;
-    @BindView(R.id.next_T)
-    Button nextT;
-    @BindView(R.id.relativeLayout2)
-    RelativeLayout relativeLayout2;
+public class DuiH_TZYX_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.View {
+
+
+    //    @BindView(R.id.zhuS)
+//    TextView zhuS;
+//    @BindView(R.id.K_G)
+//    CheckBox KG;
+//    @BindView(R.id.linearLayout8)
+//    LinearLayout linearLayout8;
+    @BindView(R.id.Ly_btn)
+    CheckBox LyBtn;
     @BindView(R.id.PF_fs)
     TextView PFFs;
     @BindView(R.id.GL_)
@@ -74,14 +79,14 @@ public class Duany_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.V
     @BindView(R.id.Xinx_bar)
     RatingBar XinxBar;
     @BindView(R.id.BF_LY)
-    CheckBox BFLY;
+    LinearLayout BFLY;
     @BindView(R.id.relativeLayout)
     RelativeLayout relativeLayout;
+    Unbinder unbinder;
+    @BindView(R.id.Danc_list)
+    ListView DancList;
     @BindView(R.id.BF_zt)
     CheckBox BFZt;
-    @BindView(R.id.Ly_btn)
-    CheckBox LyBtn;
-    Unbinder unbinder;
     @BindView(R.id.Ripple)
     RippleIntroView Ripple;
     @BindView(R.id.PinF_jd)
@@ -90,80 +95,58 @@ public class Duany_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.V
     TextView TextJz;
     @BindView(R.id.linear)
     LinearLayout linear;
-    @BindView(R.id.linearLayout6)
-    LinearLayout linearLayout6;
+    Unbinder unbinder1;
 
+    private Juz_Adapter myadapter;
+    private ArrayList<DuiH_XQ_Bean.DataBean> mlist = new ArrayList<>();
     private Bundle bundle;
 
-
-    private MediaRecorder mediaRecorder = new MediaRecorder();  //用于录音
-    //    System.currentTimeMillis()+
-    private File file = new File("/mnt/sdcard", "holle.mp3"); //创建一个临时的音频文件
     private MediaPlayer mPlayer = new MediaPlayer();  //用于播放音频
-
     private String word_id;
     private String type;
     private ZhiL_Yuyin_Cotract.Presenter presenter;
     private String save_path;
-    private String relative_path;
-    private String word_video;
-    private String sessionId;
-    private String text1;
+    private String relativepath;
+    private Boolean isShow = false;
     private String str;
-    private String yin;
+    private String sessionId;
+    private ArrayList<String> juese_video;
+    private String relative_path;
+    private String title;
+
 
     @Override
     protected int getLayoutId() {
-        return R.layout.viewpager_duany;
+        return R.layout.viewpager_juz_tzyx;
     }
-
-
+    private Animation hyperspaceJumpAnimation;
     @Override
-    public void setUserVisibleHint(boolean isVisibleToUser) {
-        super.setUserVisibleHint(isVisibleToUser);
-        if (mPlayer == null) {
-            mPlayer = new MediaPlayer();
-        }
-        if (!isVisibleToUser) {
-//            mediaPlayer.start();
-            mPlayer.stop();
-        } else {
-            try {
-                mPlayer = null;
-                mPlayer = new MediaPlayer();
-                relative_path = bundle.getString("Relative_path");
-                word_video = bundle.getString("word_video");
+    protected void init(View view) {
 
-                String s = URLEncoder.encode(word_video, "utf-8").replaceAll("\\+", "%20");
+        ArrayList<DuiH_XQ_Bean.DataBean> list = (ArrayList<DuiH_XQ_Bean.DataBean>) bundle.getSerializable("list");
+        mlist.addAll(list);
 
-                String bofUrl = "https://zts100.com/demo/file/download" + "/?" + "Relative_path=" + relative_path + "&" + "type=2" + "&" + "fileName=" + s;
+        word_id = bundle.getString("word_id");
+        type = bundle.getString("type");
+        relative_path = bundle.getString("Relative_path");
+        title = bundle.getString("title");
 
 
-                mPlayer.setDataSource(bofUrl);
-                MyLog.e("sahdisauhdiuahdiuaw", bofUrl);
-                //3 准备播放
-                mPlayer.prepareAsync();
-                mPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-                    @Override
-                    public void onPrepared(MediaPlayer mediaPlayer) {
-                    }
-                });
-                mPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-                    @Override
-                    public void onCompletion(MediaPlayer mp) {
+        ListView listView = view.findViewById(R.id.Danc_list);
+        myadapter = new Juz_Adapter(App.activity, mlist);
+        listView.setAdapter(myadapter);
 
-                        MyLog.e("CheckBox_状态",BFZt.isChecked() + "");
-                        BFZt.setChecked(false);
+        creatAudioRecord();
+        relativeLayout.setVisibility(View.GONE);
 
-                    }
-                });
+        hyperspaceJumpAnimation = AnimationUtils.loadAnimation(App.activity, R.anim.loading_animation);
+        // 使用ImageView显示动画
+        PinFJd.startAnimation(hyperspaceJumpAnimation);
 
 
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
+
     }
+
 
     private static final String TAG = "AudioRecordActivity";
     private int bufferSizeInBytes = 0;//缓冲区大小
@@ -200,6 +183,88 @@ public class Duany_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.V
         //创建播放实例
         mediaPlayer = new MediaPlayer();
     }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        // TODO: inflate a fragment view
+        View rootView = super.onCreateView(inflater, container, savedInstanceState);
+        unbinder1 = ButterKnife.bind(this, rootView);
+        return rootView;
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        unbinder1.unbind();
+    }
+
+    @OnClick({R.id.BF_zt, R.id.Ly_btn, R.id.BF_LY})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.BF_zt:
+                if (bool[0]) {
+                    if (mPlayer.isPlaying()) {
+                        MyLog.e("lalall", "ahahahahh");
+                        mPlayer.pause();
+                    }
+                    bool[0] = false;
+                } else {
+                    if (!mPlayer.isPlaying()) {
+                        MyLog.e("holle dnsjk", "ahahahahh");
+                        setVisibleHint(true);
+                    }
+                    bool[0] = true;
+                }
+                break;
+            case R.id.Ly_btn:
+                Log.e("AAAAAAAAAAAA", "WWWWWWWWWWWWWWWWWX");
+                if (b[0]) {
+                    stopAudioRecord();
+                    b[0] = false;
+                    Ripple.setColor(this.getResources().getColor(R.color.colorWhite));
+                } else {
+//
+                    startAudioRecord();
+                    presenter = new ZhiL_Csh_Fy_Presenter(this);
+                    presenter.setUrlsZhiL("1", mlist.get(0).getJuese_yw(), System.currentTimeMillis() + "", "1", "4.0");
+                    b[0] = true;
+                    Ripple.setColor(this.getResources().getColor(R.color.text_color_red));
+                }
+                break;
+            case R.id.BF_LY:
+
+                if (aBoolean[0]) {
+                    if (mediaPlayer.isPlaying()) {
+
+                        pause();
+                    }
+                    aBoolean[0] = false;
+
+                } else {
+                    if (!mediaPlayer.isPlaying()) {
+                        playMusic();
+                    }
+                    aBoolean[0] = true;
+
+                }
+                break;
+        }
+    }
+
+//    @Override
+//    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+//        // TODO: inflate a fragment view
+//        View rootView = super.onCreateView(inflater, container, savedInstanceState);
+//        unbinder = ButterKnife.bind(this, rootView);
+//        return rootView;
+//    }
+//
+//    @Override
+//    public void onDestroyView() {
+//        super.onDestroyView();
+//        unbinder.unbind();
+//    }
+
 
     private final class PrepareListener implements MediaPlayer.OnPreparedListener {
 
@@ -244,6 +309,11 @@ public class Duany_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.V
         }
     }
 
+    private void pause() {
+        mediaPlayer.pause();
+//        playhandler.removeCallbacks(runnable_3);
+//        play.setImageResource(ic_media_play);
+    }
 
     /**
      * 开始录制音频
@@ -272,14 +342,13 @@ public class Duany_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.V
 
         byte[] bytes = FileUtil.readBytes(file);
         String toBase64 = Base64Encoder.encode(bytes, CharsetUtil.CHARSET_ISO_8859_1);
-
         if (sessionId != null) {
 
             linear.setVisibility(View.VISIBLE);
             LyBtn.setVisibility(View.GONE);
 
             presenter = new PinC_Fay_presenter(this);
-            presenter.seturlZhiL("0", "1", "", "", toBase64, sessionId);
+            presenter.seturlZhiL("1", "1", "2", "1", toBase64, sessionId);
         }
     }
 
@@ -288,6 +357,7 @@ public class Duany_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.V
 
             System.out.println("stopRecord");
             isRecord = false;//停止文件写入
+//            Toast.makeText(App.activity, "录音成功", Toast.LENGTH_SHORT).show();
             audioRecord.stop();
             audioRecord.release();//释放资源
             audioRecord = null;
@@ -441,43 +511,55 @@ public class Duany_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.V
     }
 
 
-    private void pause() {
-        mediaPlayer.pause();
-//        playhandler.removeCallbacks(runnable_3);
-//        play.setImageResource(ic_media_play);
-    }
 
-    private Animation hyperspaceJumpAnimation;
-    @Override
-    protected void init(View view) {
+    public void setVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (mPlayer == null) {
+            mPlayer = new MediaPlayer();
+        }
+        if (!isVisibleToUser) {
+//            mediaPlayer.start();
+            mPlayer.stop();
+        } else {
+            try {
+                relativepath = bundle.getString("Relative_path");
+                juese_video = (ArrayList<String>) bundle.getSerializable("Juese_videoList");
+                MyLog.e(" skdanlda", juese_video.size() + "");
+//                for (int i = 0; i<juese_video.size();i++){
+                mPlayer = null;
+                mPlayer = new MediaPlayer();
+                String s = URLEncoder.encode(juese_video.get(1), "utf-8").replaceAll("\\+", "%20");
 
-        relativeLayout.setVisibility(View.GONE);
-        nextT.setVisibility(View.GONE);
+                final String bofUrl = "https://zts100.com/demo/file/download" + "/?" + "Relative_path=" + relativepath + "&" + "type=2" + "&" + "fileName=" + s;
+                MyLog.e("拼接好的 播放 Url", bofUrl);
+                mPlayer.setDataSource(bofUrl);
+                //3 准备播放
+                mPlayer.prepareAsync();
+                mPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+                    @Override
+                    public void onPrepared(MediaPlayer mp) {
+                        mPlayer.start();
+                    }
+                });
 
-        yin = bundle.getString("yin");
-        bundle.getString("han");
-        word_id = bundle.getString("word_id");
-        type = bundle.getString("type");
+                mPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                    @Override
+                    public void onCompletion(MediaPlayer mp) {
 
-        duanyText.setText(bundle.getString("yin"));
-        FyText.setText(bundle.getString("han"));
+                        MyLog.e("CheckBox_状态",BFZt.isChecked() + "");
+                        BFZt.setChecked(false);
+                    }
+                });
 
-
-
-
-        hyperspaceJumpAnimation = AnimationUtils.loadAnimation(App.activity, R.anim.loading_animation);
-        // 使用ImageView显示动画
-        PinFJd.startAnimation(hyperspaceJumpAnimation);
-
-
-
-        creatAudioRecord();
-
+//                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     @Override
     protected void loadData() {
-
     }
 
     @Override
@@ -485,93 +567,91 @@ public class Duany_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.V
         this.bundle = bundle;
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // TODO: inflate a fragment view
-        View rootView = super.onCreateView(inflater, container, savedInstanceState);
-        unbinder = ButterKnife.bind(this, rootView);
-        return rootView;
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        unbinder.unbind();
-    }
 
     final Boolean[] b = {false};
     private Boolean[] aBoolean = {false};
     private Boolean[] bool = {false};
 
-    @OnClick({R.id.next_T, R.id.BF_LY, R.id.BF_zt, R.id.Ly_btn})
-    public void onViewClicked(View view) {
-        switch (view.getId()) {
-            case R.id.next_T:
-                break;
-            case R.id.BF_LY:
 
-                if (aBoolean[0]) {
-
-                    if (mediaPlayer.isPlaying()) {
-                        pause();
-                    }
-                    aBoolean[0] = false;
-
-                } else {
-                    if (!mediaPlayer.isPlaying()) {
-//                        play();
-                        playMusic();
-                    } else if (mediaPlayer.isPlaying()) {
-                        BFLY.setChecked(false);
-                    }
-                    aBoolean[0] = true;
-
-                }
-
-                break;
-            case R.id.BF_zt:
-                if (bool[0]) {
-                    if (mPlayer.isPlaying()) {
-                        MyLog.e("lalall", "ahahahahh");
-
-
-                        mPlayer.pause();
-                    }
-                    bool[0] = false;
-                } else {
-                    if (!mPlayer.isPlaying()) {
-                        MyLog.e("holle dnsjk", "ahahahahh");
-                        mPlayer.start();
-                    }
-                    bool[0] = true;
-                }
-
-                break;
-            case R.id.Ly_btn:
-                if (b[0]) {
-
-
-//                        stop();
-                    stopAudioRecord();
-                    Ripple.setColor(this.getResources().getColor(R.color.pe_gray));
-                    b[0] = false;
-                } else {
-//                            record();
-                    startAudioRecord();
-                    presenter = new ZhiL_Csh_Fy_Presenter(this);
-                    presenter.setUrlsZhiL("1", yin, System.currentTimeMillis() + "", "1", "4.0");
-                    b[0] = true;
-                    Ripple.setColor(this.getResources().getColor(R.color.text_color_red));
-                }
-                break;
-        }
-    }
+//    @OnClick({R.id.BF_zt, R.id.BF_LY, R.id.Ly_btn})
+//    public void onViewClicked(View view) {
+//        switch (view.getId()) {
+////            case R.id.K_G:
+////                break;
+//            case R.id.BF_zt:
+//
+//                if (bool[0]) {
+//                    if (mPlayer.isPlaying()) {
+//                        MyLog.e("lalall", "ahahahahh");
+//
+//                        mPlayer.pause();
+//                    }
+//                    bool[0] = false;
+//                } else {
+//                    if (!mPlayer.isPlaying()) {
+//                        MyLog.e("holle dnsjk", "ahahahahh");
+//
+//                        setVisibleHint(true);
+//
+//                    }
+//                    bool[0] = true;
+//                }
+//                break;
+//            case R.id.Ly_btn:
+//                Log.e("AAAAAAAAAAAA", "WWWWWWWWWWWWWWWWWX");
+//                if (b[0]) {
+//                    stopAudioRecord();
+//                    b[0] = false;
+//                } else {
+////                            record();
+//                    startAudioRecord();
+//                    presenter = new ZhiL_Csh_Fy_Presenter(this);
+//                    presenter.setUrlsZhiL("1", mlist.get(0).getJuese_yw(), System.currentTimeMillis() + "", "1", "4.0");
+//                    b[0] = true;
+//
+//                }
+//                break;
+////            case R.id.linearLayout8:
+////                if (isShow)
+////                    isShow = false;
+////                else
+////                    isShow = true;
+////                myadapter.onClickeListener(isShow);
+////                break;
+//            case R.id.BF_LY:
+//                if (aBoolean[0]) {
+//
+//                    if (mediaPlayer.isPlaying()) {
+//
+//                        pause();
+//                    }
+//                    aBoolean[0] = false;
+//
+//                } else {
+//                    if (!mediaPlayer.isPlaying()) {
+//                        playMusic();
+//                    }
+//                    aBoolean[0] = true;
+//
+//                }
+//                break;
+////            case R.id.TZYX_Q:
+////
+////                Intent intent = new Intent(App.activity, DuiH_TZYX_Sy_Activity.class);
+////
+////                intent.putExtra("talk_id", type);
+////                intent.putExtra("relative_path", relative_path);
+////                intent.putExtra("title", title);
+////                startActivity(intent);
+////                break;
+//        }
+//    }
 
     private float f;
 
     private void JsonDemo(String string) {
 
-
+        MyLog.e("LAALALA", "adsadskjak");
 //        第一步，string参数相当于一个JSON,依次解析下一步
         JSONObject json = null;
 
@@ -580,8 +660,9 @@ public class Duany_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.V
 
             JSONObject response = json.optJSONObject("Response");
             String PronAccuracy = response.optString("PronAccuracy");
-            JSONObject Error = response.optJSONObject("Error");
-
+            MyLog.e("dsahkdhawladjwli",PronAccuracy +"");
+            String Error = response.optString("Error");
+            MyLog.e("123456",PronAccuracy +"");
             if (Error != null){
                 App.activity.runOnUiThread(new Runnable() {
                     @Override
@@ -593,21 +674,47 @@ public class Duany_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.V
                 });
                 return;
             }
-
             if (PronAccuracy != "0") {
+            float fff = 0;
+            float flo = 0;
+            int q = 0;
+                JSONArray Words = response.optJSONArray("Words");
+                MyLog.e("LAALALA2222222", Words.toString());
+            for (int i = 0; i < Words.length(); i++) {
+                MyLog.e("LAALALA2222222", Words.toString());
+                JSONObject value = Words.getJSONObject(i);
+                String pronAccuracy1 = value.optString("PronAccuracy");
+                String word = value.optString("Word");
+                MyLog.e("LAALALA2222222", Words.toString());
+                float f = ConvertUtil.convertToFloat(pronAccuracy1, fff);
+                if (f >= 50) {
+                    flo = f + flo;
+                    q = q + 1;
+                }
+                MyLog.e("得到的总分值————", flo + "");
+            }
 
-                str = PronAccuracy.substring(0, 4);
+            MyLog.e("得到的有效的单词数————", q + "");
 
-                MyLog.e("发音得到的评分————", str + "");
+            float v = flo / q;
+
+            DecimalFormat decimalFormat = new DecimalFormat(".00");//构造方法的字符格式这里如果小数不足2位,会以0补足.
+            final String p = decimalFormat.format(v);//format 返回的是字符串
+
+            MyLog.e("得到的平均分值————", flo + "");
+
+                MyLog.e("发音得到的评分————", p + "");
 
 
                 App.activity.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        PFFs.setText(str);
+
+
                         relativeLayout.setVisibility(View.VISIBLE);
-                        nextT.setVisibility(View.VISIBLE);
-                        float i = ConvertUtil.convertToFloat(str, f);
+                        PFFs.setText(p);
+
+                        float i = ConvertUtil.convertToFloat(p, f);
                         MyLog.e("评估出来的分数", i + "");
 
                         if (i >= 85) {
@@ -624,11 +731,13 @@ public class Duany_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.V
                         XinxBar.setMax(5);
                         linear.setVisibility(View.GONE);
                         LyBtn.setVisibility(View.VISIBLE);
+
                     }
                 });
 
-                presenter = new Lu_SC_Stdey_dy_Presenter(this);
-                presenter.SetU(App.stuid, word_id, System.currentTimeMillis() + ".mp3", str, type);
+                presenter = new Lu_SC_Stdey_dh_Presenter(this);
+                presenter.SetU(App.stuid, word_id, System.currentTimeMillis() + ".mp3", p, type);
+
             } else {
                 App.activity.runOnUiThread(new Runnable() {
                     @Override
@@ -645,7 +754,6 @@ public class Duany_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.V
         }
     }
 
-
     @Override
     public void getManager(YuYinPinG_Bean yuYinPinGBean) {
         if (yuYinPinGBean.getResponse().getSessionId() == null) {
@@ -658,29 +766,25 @@ public class Duany_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.V
         } else {
             MyLog.e("初始化发音", yuYinPinGBean.getResponse().getRequestId() + "________" + yuYinPinGBean.getResponse().getSessionId());
             sessionId = yuYinPinGBean.getResponse().getSessionId();
+
         }
     }
 
     @Override
     public void getManagerO(String pinC_fay_bean) {
 
-
         MyLog.e("请求成功——得到的json", pinC_fay_bean);
-
-
         JsonDemo(pinC_fay_bean);
     }
 
     @Override
     public void getManagerT(Stdey_Bean xq_bean) {
-
         save_path = xq_bean.getData().getSave_path();
 
         MyLog.e("获取到的 上传文件路径", save_path + "");
-        presenter = new Lu_Study_Presenter(this);
-
 
         File file = new File(NewAudioName);
+        presenter = new Lu_Study_Presenter(this);
         presenter.seturl(file, "2", save_path);
     }
 
@@ -688,7 +792,6 @@ public class Duany_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.V
     public void getWJSC(SC_YX_Bean sc_yx_bean) {
 
     }
-
     @Override
     public void showmessage(String str) {
 

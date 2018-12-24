@@ -11,8 +11,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,7 +33,9 @@ import com.example.lenovo.ztsandroid.model.entity.YB_XQ_three_Bean;
 import com.example.lenovo.ztsandroid.presenter.PinC_Fay_presenter;
 import com.example.lenovo.ztsandroid.presenter.YB_Two_XQ_Presenter;
 import com.example.lenovo.ztsandroid.presenter.YB_three_Xq_Presenter;
+import com.example.lenovo.ztsandroid.presenter.ZhiL_Csh_Fy_Presenter;
 import com.example.lenovo.ztsandroid.utils.MyLog;
+import com.example.lenovo.ztsandroid.view.RippleIntroView;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -61,6 +67,12 @@ public class YB_xq_three_fragment extends BaseFragment implements YB_XiangQ_Cotr
 
     CheckBox BFangSelf;
 
+    private RippleIntroView rippleIntroView;
+    private LinearLayout linearLayout;
+    private ImageView pinF_jd;
+    private Animation hyperspaceJumpAnimation;
+
+
     private Bundle bundle;
     private String yBid;
     private YB_XiangQ_Cotract.Presenter presenter;
@@ -78,6 +90,52 @@ public class YB_xq_three_fragment extends BaseFragment implements YB_XiangQ_Cotr
     private String hw_answerId;
     private String video;
     private String relative_path;
+
+
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.yb_xq_three_fragment;
+    }
+
+    @Override
+    protected void init(View view) {
+        YBTitle = view.findViewById(R.id.YB_title);
+        BFCsFay = view.findViewById(R.id.BF_cs_fay);
+        CsFayLY = view.findViewById(R.id.Ly_btn);
+        TZYXT = view.findViewById(R.id.TZ_YX_t);
+
+
+        TZYXT.setOnClickListener(this);
+
+        CsFayLY.setOnClickListener(this);
+        BFCsFay.setOnClickListener(this);
+
+        rippleIntroView = view.findViewById(R.id.Ripple);
+
+        linearLayout = view.findViewById(R.id.linear);
+
+        pinF_jd = view.findViewById(R.id.PinF_jd);
+
+        hyperspaceJumpAnimation = AnimationUtils.loadAnimation(App.activity, R.anim.loading_animation);
+        // 使用ImageView显示动画
+        pinF_jd.startAnimation(hyperspaceJumpAnimation);
+
+
+
+
+
+        yBid = bundle.getString("YBid");
+
+        presenter = new YB_three_Xq_Presenter(this);
+        presenter.SetUrl(yBid,"3","");
+
+        creatAudioRecord();
+
+    }
+
+
+
 
 
     public void setVisibleHint(boolean isVisibleToUser) {
@@ -98,11 +156,10 @@ public class YB_xq_three_fragment extends BaseFragment implements YB_XiangQ_Cotr
                 MyLog.e("sahdisauhdiuahdiuaw",bofUrl);
                 //3 准备播放
                 mPlayer.prepareAsync();
-                mPlayer.start();
                 mPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
                     @Override
                     public void onPrepared(MediaPlayer mediaPlayer) {
-
+                        mPlayer.start();
                     }
                 });
             } catch (IOException e) {
@@ -238,7 +295,7 @@ public class YB_xq_three_fragment extends BaseFragment implements YB_XiangQ_Cotr
 
             System.out.println("stopRecord");
             isRecord = false;//停止文件写入
-            Toast.makeText(App.activity,"录音成功",Toast.LENGTH_SHORT).show();
+//            Toast.makeText(App.activity,"录音成功",Toast.LENGTH_SHORT).show();
             audioRecord.stop();
             audioRecord.release();//释放资源
             audioRecord = null;
@@ -411,32 +468,6 @@ public class YB_xq_three_fragment extends BaseFragment implements YB_XiangQ_Cotr
 
 
 
-    @Override
-    protected int getLayoutId() {
-        return R.layout.yb_xq_three_fragment;
-    }
-
-    @Override
-    protected void init(View view) {
-        YBTitle = view.findViewById(R.id.YB_title);
-        BFCsFay = view.findViewById(R.id.BF_cs_fay);
-        CsFayLY = view.findViewById(R.id.Cs_fay_lY);
-        TZYXT = view.findViewById(R.id.TZ_YX_t);
-
-
-        TZYXT.setOnClickListener(this);
-
-        CsFayLY.setOnClickListener(this);
-        BFCsFay.setOnClickListener(this);
-
-        yBid = bundle.getString("YBid");
-
-        presenter = new YB_three_Xq_Presenter(this);
-        presenter.SetUrl(yBid,"3","");
-
-        creatAudioRecord();
-
-    }
 
     @Override
     protected void loadData() {
@@ -521,22 +552,19 @@ public class YB_xq_three_fragment extends BaseFragment implements YB_XiangQ_Cotr
 
 
                 break;
-            case R.id.Cs_fay_lY:
+            case R.id.Ly_btn:
 
                 if (b[0]){
-
-                    if (isrecording){
-                        stopAudioRecord();
-                    }
+                    stopAudioRecord();
+                    rippleIntroView.setColor(this.getResources().getColor(R.color.colorWhite));
                     b[0] = false;
-
                 }else {
-                    if (!isrecording){
                         startAudioRecord();
-                    }
+//                        presenter = new ZhiL_Csh_Fy_Presenter(this);
+//                        presenter.setUrlsZhiL("0",word,System.currentTimeMillis() + "","1","4.0");
                     b[0] = true;
+                    rippleIntroView.setColor(this.getResources().getColor(R.color.text_color_red));
                 }
-
                 break;
             case R.id.TZ_YX_t:
 

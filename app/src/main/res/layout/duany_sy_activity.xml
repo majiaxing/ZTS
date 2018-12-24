@@ -74,7 +74,7 @@
     <TextView
         android:id="@+id/text_X"
         android:layout_width="match_parent"
-        android:layout_height="40px"
+        android:layout_height="90px"
         android:background="@color/pe_gray"
         />
 

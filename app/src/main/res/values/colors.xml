@@ -11,8 +11,8 @@
     <color name="pe_bg_light_blue">#E6EBEF</color>
     <color name="pe_gray">#f4f3f3</color>
     <color name="black">#30e451</color>
-    <color name="yzml">#51bbc2</color>
-    <color name="colortext">#43b8c0</color>
+    <color name="yzml">#0069ff</color>
+    <color name="colortext">#0069ff</color>
     <color name="transparent">#00000000</color> <!-- 透明 -->
     <color name="ywceng">#ff6b2c</color>
     <color name="text_color_red">#ffff4444</color>

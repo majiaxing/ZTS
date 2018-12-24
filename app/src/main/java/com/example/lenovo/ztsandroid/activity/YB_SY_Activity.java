@@ -12,7 +12,6 @@ import com.example.lenovo.ztsandroid.R;
 import com.example.lenovo.ztsandroid.adapter.Yb_Grid_Adapter;
 import com.example.lenovo.ztsandroid.base.BaseActivity;
 import com.example.lenovo.ztsandroid.cotract.YB_Cotract;
-import com.example.lenovo.ztsandroid.model.entity.Spinner_Bean;
 import com.example.lenovo.ztsandroid.model.entity.YB_Bean;
 import com.example.lenovo.ztsandroid.presenter.YinB_Presenter;
 
@@ -25,12 +24,13 @@ import butterknife.OnClick;
 /**
  * Created by Administrator on 2018/11/5.
  */
-public class YB_SY_Activity extends BaseActivity implements YB_Cotract.View{
+public class YB_SY_Activity extends BaseActivity implements YB_Cotract.View {
+
+
     @BindView(R.id.back_jt)
     ImageView backJt;
     @BindView(R.id.Yb_grid_view)
     GridView YbGridView;
-
     private ArrayList<YB_Bean.DataBean> list = new ArrayList<>();
     private Yb_Grid_Adapter myadapter;
     private YB_Cotract.Presenter presenter;
@@ -54,25 +54,17 @@ public class YB_SY_Activity extends BaseActivity implements YB_Cotract.View{
         sxc = intent.getStringExtra("上下册");
         flag = intent.getStringExtra("flag");
 
-
-
-
         YbGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                String  yb = list.get(i).getYbtype();
-                Intent intent = new Intent(App.activity,YB_XQ_Activity.class);
-                intent.putExtra("音标",yb);
-                intent.putExtra("ID",list.get(i).getYbid());
+                String yb = list.get(i).getYbtype();
+                Intent intent = new Intent(App.activity, YB_XQ_Activity.class);
+                intent.putExtra("音标", yb);
+                intent.putExtra("ID", list.get(i).getYbid());
 //                intent.putExtra("",list.get(i).)
                 startActivity(intent);
             }
         });
-
-
-
-
-
     }
 
     @Override
@@ -82,17 +74,17 @@ public class YB_SY_Activity extends BaseActivity implements YB_Cotract.View{
 
     @Override
     public void loadData() {
-    presenter = new YinB_Presenter(this);
-    presenter.SetUrl(jc,nj,sxc,flag);
-    presenter.start();
+        presenter = new YinB_Presenter(this);
+        presenter.SetUrl(jc, nj, sxc, flag);
+        presenter.start();
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
-    }
+//    @Override
+//    protected void onCreate(Bundle savedInstanceState) {
+//        super.onCreate(savedInstanceState);
+//        // TODO: add setContentView(...) invocation
+//        ButterKnife.bind(this);
+//    }
 
     @OnClick(R.id.back_jt)
     public void onViewClicked() {
@@ -123,5 +115,12 @@ public class YB_SY_Activity extends BaseActivity implements YB_Cotract.View{
     @Override
     public void setBasePresenter(YB_Cotract.Presenter presenter) {
 
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // TODO: add setContentView(...) invocation
+        ButterKnife.bind(this);
     }
 }

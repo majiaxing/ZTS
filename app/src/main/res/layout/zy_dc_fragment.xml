@@ -21,7 +21,6 @@
             android:gravity="center"
             >
             <ImageView
-
                 android:layout_width="45px"
                 android:layout_height="45px"
                 android:src="@drawable/back_xg_tt"
@@ -102,6 +101,15 @@
             />
 
     </RelativeLayout>
+
+
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="40px"
+        android:background="@color/pe_gray"
+        />
 
     <android.support.v4.view.ViewPager
         android:id="@+id/viewPager"

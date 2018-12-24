@@ -90,7 +90,7 @@
         <activity android:name=".fragment.task.er_ym.TingL_TK_ErJFragment"/>
         <activity android:name=".fragment.task.er_ym.TingL_XZ_ErJFragment"/>
         <activity android:name=".activity.XiuG_Password_Activity"/>
-
+        <activity android:name=".activity.DuiH_TZYX_Sy_Activity"/>
 
 
         <meta-data android:name="design_width" android:value="1080"></meta-data>

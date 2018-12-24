@@ -11,6 +11,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="57px"
         android:background="@color/colorWhite"
+        android:layout_marginLeft="42px"
+        android:layout_marginRight="42px"
         >
 
 
@@ -33,7 +35,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="*******"
-            android:layout_marginTop="40px"
+            android:layout_marginTop="70px"
             android:layout_marginLeft="40px"
             android:textSize="48px"
             android:textColor="#333333"

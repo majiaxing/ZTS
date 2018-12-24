@@ -70,8 +70,6 @@ public class ZY_Kw_Fragment extends BaseFragment implements Lu_SC_Cotract.View{
     Button nextT;
     @BindView(R.id.Xinx_bar)
     RatingBar XinxBar;
-    @BindView(R.id.PinF_Text)
-    TextView PinFText;
     @BindView(R.id.relativeLayout)
     RelativeLayout relativeLayout;
     @BindView(R.id.zhuS)

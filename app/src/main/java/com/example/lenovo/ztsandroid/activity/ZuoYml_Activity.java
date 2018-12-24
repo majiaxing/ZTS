@@ -127,9 +127,7 @@ public class ZuoYml_Activity extends BaseActivity implements Zuoy_Cotract.View {
                         intent2.putExtra("hwid", hwid);
                         startActivity(intent2);
                         break;
-
                     case "0":
-
                         Intent intent3 = new Intent(App.activity, YB_ErJFragment.class);
                         intent3.putExtra("hw_type", hw_type);
                         intent3.putExtra("hw_content", hw_content);
@@ -138,7 +136,6 @@ public class ZuoYml_Activity extends BaseActivity implements Zuoy_Cotract.View {
 //                        FragmantBuilder.getInstance().start(YB_ErJFragment.class).setParams(bundle3);
                         startActivity(intent3);
                         break;
-
                     case "1":
 //                        bundle4 = new Bundle();
                         Intent intent4 = new Intent(App.activity, Kw_ErJFragment.class);
@@ -148,9 +145,7 @@ public class ZuoYml_Activity extends BaseActivity implements Zuoy_Cotract.View {
                         intent4.putExtra("hwid", hwid);
                         startActivity(intent4);
 //                        FragmantBuilder.getInstance().start(Kw_ErJFragment.class).setParams(bundle4);
-
                         break;
-
                     case "3":
 //                        Juz_ErJFragment zy_juZ_fragment = new Juz_ErJFragment();
 //                        bundle5 = new Bundle();
@@ -161,9 +156,7 @@ public class ZuoYml_Activity extends BaseActivity implements Zuoy_Cotract.View {
                         intent5.putExtra("hwid", hwid);
 //                        FragmantBuilder.getInstance().start(Juz_ErJFragment.class).setParams(bundle5);
                         startActivity(intent5);
-
                         break;
-
                     case "6":
 //                        bundle6 = new Bundle();
                         Intent intent6 = new Intent(App.activity, YueD_ErJFragment.class);

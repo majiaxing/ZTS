@@ -48,74 +48,116 @@
         <ListView
             android:id="@+id/Danc_list"
             android:layout_width="match_parent"
-            android:layout_height="1130px"
+            android:layout_height="1360px"
             android:layout_below="@+id/linearLayout8"
             android:layout_centerHorizontal="true"
             android:layout_marginLeft="45px"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="70px"
             android:layout_marginRight="47px"
             android:divider="#00000000"
-            >
 
+            >
         </ListView>
 
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="370px"
-            android:orientation="vertical"
-            android:layout_gravity="center_horizontal"
+            android:layout_height="200px"
+            android:orientation="horizontal"
             android:layout_alignParentBottom="true"
-            android:gravity="center_horizontal"
+            android:weightSum="2"
+            android:layout_marginBottom="90px"
             >
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_vertical"
-                android:layout_marginTop="60px"
-                >
-                <CheckBox
-                    android:id="@+id/BF_zt"
-                    android:layout_width="86px"
-                    android:layout_height="86px"
-                    android:background="@drawable/bf_zt_selector"
-                    android:button="@null"
-                    android:layout_marginLeft="100px"
-                    />
-
-                <SeekBar
-                    android:id="@+id/id_seekBar"
-                    android:layout_width="match_parent"
+                <LinearLayout
+                    android:layout_width="0px"
                     android:layout_height="wrap_content"
-                    android:max="100"
-                    android:progress="50"
-                    android:layout_marginRight="160px"
-                    />
-            </LinearLayout>
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="right"
+                    >
+                    <CheckBox
+                        android:id="@+id/BF_zt"
+                        android:layout_width="156px"
+                        android:layout_height="156px"
+                        android:background="@drawable/bf_zt_selector"
+                        android:button="@null"
+                        android:layout_marginLeft="60px"
+                        android:layout_marginTop="20px"
+                        android:layout_marginRight="75px"
+                        />
 
 
-            
-            <Button
-                android:id="@+id/TZYX_Q"
-                android:layout_width="600px"
-                android:layout_height="100px"
-                android:background="@drawable/qr_btn_qq"
-                android:text="挑战一下"
-                android:textColor="#fff"
-                android:textSize="48px"
-                android:layout_marginTop="20px"
-                />
+                </LinearLayout>
 
-            <!--<CheckBox-->
-                <!--android:id="@+id/Ly_btn"-->
-                <!--android:layout_width="116px"-->
-                <!--android:layout_height="116px"-->
-                <!--android:background="@drawable/luyin_selector"-->
-                <!--android:button="@null"-->
-                <!--android:layout_marginLeft="150px"-->
-                <!--/>-->
+            <RelativeLayout
+                android:layout_width="0px"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+
+                >
+
+
+            <RelativeLayout
+                android:layout_width="500px"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="55px"
+                >
+
+                <com.example.lenovo.ztsandroid.view.RippleIntroView
+                    android:id="@+id/Ripple"
+                    android:layout_width="200px"
+                    android:layout_height="200px"
+                    android:clickable="true"
+                    android:fitsSystemWindows="false"
+                    android:gravity="center"
+                    android:background="@color/colorWhite"
+                    >
+
+                    <CheckBox
+                        android:id="@+id/Ly_btn"
+                        android:layout_width="156px"
+                        android:layout_height="156px"
+                        android:background="@drawable/luyin_selector"
+                        android:button="@null"
+                        />
+
+                </com.example.lenovo.ztsandroid.view.RippleIntroView>
+
+                <LinearLayout
+                    android:id="@+id/linear"
+                    android:layout_width="400px"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_centerInParent="true"
+                    android:visibility="gone"
+                    >
+
+                    <ImageView
+                        android:id="@+id/PinF_jd"
+                        android:layout_width="156px"
+                        android:layout_height="156px"
+                        android:src="@drawable/progress"
+                        android:layout_centerInParent="true"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/Text_Jz"
+                        android:text="评分中…"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="30px"
+                        />
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            </RelativeLayout>
+
+
 
 
         </LinearLayout>
@@ -197,10 +239,6 @@
 
 
     </RelativeLayout>
-
-
-
-
 
 
 </LinearLayout>

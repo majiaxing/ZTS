@@ -10,7 +10,7 @@ public class YB_XQ_Two_Bean {
 
 
     /**
-     * data : [{"yb_human":"human.video","yb_cartoon":"cartoon.video","yb_translate":" 现在来看看我们应该如何正确的发出/iː/这个音。\r\n\r\n    1）张开你的嘴巴，好像你在微笑，露出你的牙齿，嘴唇向两边伸开，成扁平形。\r\n    2）将舌前部向硬腭尽量抬起。舌头轻微接触下齿背部。\r\n    3）嘴唇绷紧，舌头肌肉保持紧张，震动声带，发出/iː/音。\r\n\r\n注意：/iː/个长元音，发音的时候要尽量拉长。"}]
+     * data : [{"yb_human":"2_2.mp4","Relative_path":"yinbiao/2/","yb_cartoon":"2_1.mp3","yb_translate":"2_1.gif"}]
      * data2 : null
      * data3 : null
      * pageInfo : null
@@ -105,18 +105,14 @@ public class YB_XQ_Two_Bean {
 
     public static class DataBean {
         /**
-         * yb_human : human.video
-         * yb_cartoon : cartoon.video
-         * yb_translate :  现在来看看我们应该如何正确的发出/iː/这个音。
-
-         1）张开你的嘴巴，好像你在微笑，露出你的牙齿，嘴唇向两边伸开，成扁平形。
-         2）将舌前部向硬腭尽量抬起。舌头轻微接触下齿背部。
-         3）嘴唇绷紧，舌头肌肉保持紧张，震动声带，发出/iː/音。
-
-         注意：/iː/个长元音，发音的时候要尽量拉长。
+         * yb_human : 2_2.mp4
+         * Relative_path : yinbiao/2/
+         * yb_cartoon : 2_1.mp3
+         * yb_translate : 2_1.gif
          */
 
         private String yb_human;
+        private String Relative_path;
         private String yb_cartoon;
         private String yb_translate;
 
@@ -126,6 +122,14 @@ public class YB_XQ_Two_Bean {
 
         public void setYb_human(String yb_human) {
             this.yb_human = yb_human;
+        }
+
+        public String getRelative_path() {
+            return Relative_path;
+        }
+
+        public void setRelative_path(String Relative_path) {
+            this.Relative_path = Relative_path;
         }
 
         public String getYb_cartoon() {

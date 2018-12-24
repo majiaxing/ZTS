@@ -55,7 +55,6 @@ public class YB_XQ_Activity extends BaseActivity {
         int id = intent.getIntExtra("ID",1);
         String ids = String.valueOf(id);
         MyLog.e("ADASDSADSADSA",id + "");
-
         bundle = new Bundle();
 
         YB_xq_one_fragment fragment1 = new YB_xq_one_fragment();
@@ -72,13 +71,10 @@ public class YB_XQ_Activity extends BaseActivity {
         bundle.putString("YBid",ids);
         fragment4.setParams(bundle);
 
-
         fragments.add(fragment1);
         fragments.add(fragment2);
         fragments.add(fragment3);
         fragments.add(fragment4);
-
-
 
         adapter = new YB_FragmentAdapter(getSupportFragmentManager(),fragments);
         YBViewPager.setAdapter(adapter);

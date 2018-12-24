@@ -41,7 +41,9 @@ public class CustomProgressDialog extends Dialog {
         spaceshipImage.startAnimation(hyperspaceJumpAnimation);
         setCancelable(false);// 不可以用“返回键”取消
         setContentView(layout, new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                LinearLayout.LayoutParams.MATCH_PARENT));// 设置布局
+                LinearLayout.LayoutParams.WRAP_CONTENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT));// 设置布局
+        
+
     }
 }

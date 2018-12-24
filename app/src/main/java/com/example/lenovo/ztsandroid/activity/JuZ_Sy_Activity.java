@@ -84,11 +84,10 @@ public class JuZ_Sy_Activity extends BaseActivity implements Juz_XQ_Cotract.View
         type = intent.getStringExtra("type");
         relative_path = intent.getStringExtra("Relative_path");
 
-
     }
 
-
     public void upPopupWindow(View view) {
+
         View v = LayoutInflater.from(App.activity).inflate(R.layout.danc_popup_qh, null);
         popupView(v);
         popupWindow = new PopupWindow(v, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -101,7 +100,6 @@ public class JuZ_Sy_Activity extends BaseActivity implements Juz_XQ_Cotract.View
     public void popupView(View v) {
 
         listView = v.findViewById(R.id.popup_listview);
-
         Gadapter = new List_Juz_Adapter(App.activity, nlist);
         listView.setAdapter(Gadapter);
         Gadapter.notifyDataSetChanged();

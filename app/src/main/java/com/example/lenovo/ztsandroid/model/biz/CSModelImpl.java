@@ -369,13 +369,13 @@ public class CSModelImpl implements CSModel {
     public void postSC_Lu(String stuid, String hwid, String hw_type, String hw_content,String hw_answerId,String hw_video, String hw_score,  MyNetWorkCallback<LiY_SC_WJ_Bean> callback) {
 
         Map<String, String> map = new HashMap<>();
-        map.put("stuid",stuid );
-        map.put("hwid",hwid );
-        map.put("hw_type",hw_type );
-        map.put("hw_content",hw_content );
-        map.put("hw_answerId",hw_answerId );
-        map.put("hw_video",hw_video );
-        map.put("hw_score",hw_score );
+        map.put("stuid",stuid);
+        map.put("hwid",hwid);
+        map.put("hw_type",hw_type);
+        map.put("hw_content",hw_content);
+        map.put("hw_answerId",hw_answerId);
+        map.put("hw_video",hw_video);
+        map.put("hw_score",hw_score);
         HttpFactroy.create().post(Urls.LuYinSC_BC,map,callback);
     }
 

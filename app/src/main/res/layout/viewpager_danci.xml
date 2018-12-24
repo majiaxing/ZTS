@@ -6,7 +6,7 @@
     <TextView
         android:background="@color/pe_gray"
         android:layout_width="match_parent"
-        android:layout_height="38px" />
+        android:layout_height="95px" />
 
 
     <RelativeLayout
@@ -41,6 +41,7 @@
             android:gravity="center"
             android:id="@+id/textView3"
             android:layout_marginTop="1020px"
+
                 />
 
             <Button
@@ -60,7 +61,7 @@
                 android:id="@+id/dc_jx_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="36px"
+                android:textSize="48px"
                 android:textColor="#333333"
                 android:layout_marginTop="70px"
                 android:layout_below="@+id/linearLayout3"
@@ -153,7 +154,6 @@
 
             </LinearLayout>
 
-
         </RelativeLayout>
 
 
@@ -169,38 +169,75 @@
 
             <CheckBox
                 android:id="@+id/BF_zt"
-                android:layout_width="116px"
-                android:layout_height="116px"
+                android:layout_width="156px"
+                android:layout_height="156px"
                 android:background="@drawable/bf_zt_selector"
                 android:button="@null"
-
+                android:layout_marginLeft="200px"
+                android:layout_gravity="center_vertical"
+                android:checked="false"
                 />
 
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
+             <RelativeLayout
+                 android:layout_width="350px"
+                 android:layout_height="200px"
+                 android:layout_marginLeft="150px">
 
             <com.example.lenovo.ztsandroid.view.RippleIntroView
                 android:id="@+id/Ripple"
-                android:layout_width="140px"
-                android:layout_height="140px"
+                android:layout_width="200px"
+                android:layout_height="200px"
                 android:clickable="true"
-                android:fitsSystemWindows="true"
-                android:background="#fff"
-                android:layout_marginLeft="150px"
+                android:fitsSystemWindows="false"
                 android:gravity="center"
+                android:background="@color/pe_gray"
                 >
-
-            <CheckBox
-                android:id="@+id/Ly_btn"
-                android:layout_width="116px"
-                android:layout_height="116px"
-                android:background="@drawable/luyin_selector"
-                android:button="@null"
-
-                />
+                    <CheckBox
+                        android:id="@+id/Ly_btn"
+                        android:layout_width="156px"
+                        android:layout_height="156px"
+                        android:background="@drawable/luyin_selector"
+                        android:button="@null"
+                        android:layout_centerInParent="true"
+                        />
             </com.example.lenovo.ztsandroid.view.RippleIntroView>
+                 <LinearLayout
+                     android:id="@+id/linear"
+                     android:layout_width="350px"
+                     android:layout_height="wrap_content"
+                     android:orientation="horizontal"
+                     android:gravity="center_vertical"
+                     android:layout_centerInParent="true"
+                     android:visibility="gone"
+                     >
+
+                     <ImageView
+                         android:id="@+id/PinF_jd"
+                         android:layout_width="156px"
+                         android:layout_height="156px"
+                         android:src="@drawable/progress"
+                         android:layout_centerInParent="true"
+                         android:layout_marginLeft="15px"
+                         />
+
+                     <TextView
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:id="@+id/Text_Jz"
+                         android:text="评分中…"
+                         android:layout_alignParentRight="true"
+                         android:layout_centerVertical="true"
+                         android:layout_marginLeft="30px"
+                         />
+
+                 </LinearLayout>
+
+             </RelativeLayout>
+
             </RelativeLayout>
 
         </LinearLayout>
@@ -281,44 +318,4 @@
 
 
     </RelativeLayout>
-
-        <!--<RelativeLayout-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content">-->
-
-
-
-            <!--<TextView-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:text="1/11"-->
-                <!--android:textSize="36px"-->
-                <!--android:layout_centerHorizontal="true"-->
-                <!--android:gravity="center"-->
-                <!--android:id="@+id/textView3" />-->
-
-            <!--<Button-->
-                <!--android:id="@+id/next_T"-->
-                <!--android:layout_width="172px"-->
-                <!--android:layout_height="80px"-->
-                <!--android:text="下一题"-->
-                <!--android:textSize="36px"-->
-                <!--android:textColor="#333"-->
-                <!--android:layout_alignParentRight="true"-->
-                <!--android:layout_marginRight="120px"-->
-                <!--android:background="@drawable/btn_bg_next"-->
-                <!--/>-->
-
-
-        <!--</RelativeLayout>-->
-
-
-
-            <!--/>-->
-
-
-
-    <!--</LinearLayout>-->
-
-
 </LinearLayout>

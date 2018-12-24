@@ -59,32 +59,44 @@
 
         </LinearLayout>
 
-        <LinearLayout
+        <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_marginTop="40px"-->
+            <!--android:orientation="horizontal"-->
+            <!--&gt;-->
+
+            <!--<ImageView-->
+                <!--android:layout_width="344px"-->
+                <!--android:layout_height="344px"-->
+                <!--android:src="@drawable/tuc"-->
+                <!--android:scaleType="centerCrop"-->
+                <!--/>-->
+
+            <!--<TextView-->
+                <!--android:id="@+id/YB_Nr"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="***********************************************************************************************************************************"-->
+                <!--android:layout_marginLeft="40px"-->
+                <!--android:textSize="36px"-->
+                <!--android:textColor="#333333"-->
+                <!--/>-->
+
+
+        <!--</LinearLayout>-->
+
+
+        <FrameLayout
+            android:id="@+id/Frame_Louyout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="40px"
-            android:orientation="horizontal"
             >
 
-            <ImageView
-                android:layout_width="344px"
-                android:layout_height="344px"
-                android:src="@drawable/tuc"
-                android:scaleType="centerCrop"
-                />
-
-            <TextView
-                android:id="@+id/YB_Nr"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="***********************************************************************************************************************************"
-                android:layout_marginLeft="40px"
-                android:textSize="36px"
-                android:textColor="#333333"
-                />
+        </FrameLayout>
 
 
-        </LinearLayout>
 
     </LinearLayout>
 
@@ -94,7 +106,7 @@
         android:id="@+id/TZ_YX_t"
         android:layout_width="561px"
         android:layout_height="100px"
-        android:background="@drawable/btn_bg"
+        android:background="@drawable/tz_yx"
         android:layout_marginTop="700px"
         android:text="挑战一下"
         android:textColor="@color/colorWhite"

@@ -73,9 +73,7 @@ public class DuiH_NeiR_Activity extends BaseActivity implements Juz_list_Cotract
                 Intent intent = new Intent(App.activity,DuiH_Sy_Activity.class);
                 intent.putExtra("title",Xx);
                 intent.putExtra("talk_id",sentence_id);
-
                 MyLog.e("准备传过去的save_path ",save_path);
-
                 intent.putExtra("relative_path",save_path);
                 startActivity(intent);
 

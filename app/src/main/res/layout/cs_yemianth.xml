@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="204px"
         android:gravity="center"
-        android:background="@drawable/quanj_title"
+        android:background="@drawable/huiyuan"
         >
 
         <TextView

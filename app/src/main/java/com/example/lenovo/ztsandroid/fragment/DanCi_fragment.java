@@ -4,15 +4,15 @@ import android.media.AudioFormat;
 import android.media.AudioRecord;
 import android.media.MediaPlayer;
 import android.media.MediaRecorder;
-import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RatingBar;
 import android.widget.RelativeLayout;
@@ -21,26 +21,17 @@ import android.widget.Toast;
 
 import com.example.lenovo.ztsandroid.App;
 import com.example.lenovo.ztsandroid.R;
-import com.example.lenovo.ztsandroid.adapter.DanC_Adapter;
 import com.example.lenovo.ztsandroid.base.BaseFragment;
-import com.example.lenovo.ztsandroid.config.Urls;
-import com.example.lenovo.ztsandroid.cotract.Lu_SC_Stdey_Cotract;
 import com.example.lenovo.ztsandroid.cotract.ZhiL_Yuyin_Cotract;
-import com.example.lenovo.ztsandroid.model.entity.PinC_Fay_Bean;
 import com.example.lenovo.ztsandroid.model.entity.SC_YX_Bean;
-import com.example.lenovo.ztsandroid.model.entity.Spinner_Bean;
 import com.example.lenovo.ztsandroid.model.entity.Stdey_Bean;
 import com.example.lenovo.ztsandroid.model.entity.YuYinPinG_Bean;
 import com.example.lenovo.ztsandroid.presenter.Lu_SC_Stdey_Presenter;
-import com.example.lenovo.ztsandroid.presenter.Lu_SC_Stdey_dy_Presenter;
 import com.example.lenovo.ztsandroid.presenter.Lu_Study_Presenter;
 import com.example.lenovo.ztsandroid.presenter.PinC_Fay_presenter;
-import com.example.lenovo.ztsandroid.presenter.Sc_Lu_Presenter;
 import com.example.lenovo.ztsandroid.presenter.ZhiL_Csh_Fy_Presenter;
 import com.example.lenovo.ztsandroid.utils.ConvertUtil;
-import com.example.lenovo.ztsandroid.utils.HMACTest;
 import com.example.lenovo.ztsandroid.utils.MyLog;
-import com.example.lenovo.ztsandroid.utils.YP_BF_Utils;
 import com.example.lenovo.ztsandroid.view.CustomProgressDialog;
 import com.example.lenovo.ztsandroid.view.RippleIntroView;
 
@@ -52,9 +43,6 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 import cn.hutool.core.codec.Base64Encoder;
 import cn.hutool.core.io.FileUtil;
@@ -81,7 +69,6 @@ public class DanCi_fragment extends BaseFragment implements View.OnClickListener
     private String save_path;
     private String hw_answerId;
     private Boolean bbbb = false;
-
     private ZhiL_Yuyin_Cotract.Presenter presenter;
     private String s;
     private String word_id;
@@ -95,6 +82,12 @@ public class DanCi_fragment extends BaseFragment implements View.OnClickListener
     private RatingBar xinx_bar;
     private TextView gl_;
     private RippleIntroView rippleIntroView;
+    private LinearLayout linearLayout;
+    private ImageView pinF_jd;
+    private Animation hyperspaceJumpAnimation;
+    private CheckBox ly_btn;
+    private CheckBox bf_zt;
+    //    private CircleProgressbar circleProgressbar;
 
     @Override
     protected int getLayoutId() {
@@ -104,6 +97,13 @@ public class DanCi_fragment extends BaseFragment implements View.OnClickListener
 
     @Override
     protected void init(View view) {
+
+
+//        circleProgressbar = view.findViewById(R.id.circleIndicator);
+//        circleProgressbar.setProgressColosr(Color.RED);
+//        circleProgressbar.setProgressLineWidth(15);//写入宽度。
+//        circleProgressbar.setTimeMillis(5000);// 把倒计时时间改长一点。
+
 
         title = view.findViewById(R.id.Nr_danci);
         CheckO = view.findViewById(R.id.BF_One);
@@ -126,19 +126,32 @@ public class DanCi_fragment extends BaseFragment implements View.OnClickListener
         bf_ly = view.findViewById(R.id.BF_LY);
         rippleIntroView = view.findViewById(R.id.Ripple);
 
+        linearLayout = view.findViewById(R.id.linear);
 
-        CheckBox BF_zt = view.findViewById(R.id.BF_zt);
-        CheckBox Ly_btn = view.findViewById(R.id.Ly_btn);
+        pinF_jd = view.findViewById(R.id.PinF_jd);
+
+        hyperspaceJumpAnimation = AnimationUtils.loadAnimation(App.activity, R.anim.loading_animation);
+        // 使用ImageView显示动画
+        pinF_jd.startAnimation(hyperspaceJumpAnimation);
+
+
+        bf_zt = view.findViewById(R.id.BF_zt);
+        ly_btn = view.findViewById(R.id.Ly_btn);
         bf_ly.setOnClickListener(this);
-        BF_zt.setOnClickListener(this);
-        Ly_btn.setOnClickListener(this);
+        bf_zt.setOnClickListener(this);
+        ly_btn.setOnClickListener(this);
         next_t.setOnClickListener(this);
         title.setText("shit");
 
         relativeLayout.setVisibility(View.GONE);
         next_t.setVisibility(View.GONE);
+
+
         creatAudioRecord();
     }
+
+
+
 
     private static final String TAG = "AudioRecordActivity";
     private int bufferSizeInBytes = 0;//缓冲区大小
@@ -254,8 +267,12 @@ public class DanCi_fragment extends BaseFragment implements View.OnClickListener
         String toBase64 = Base64Encoder.encode(bytes, CharsetUtil.CHARSET_ISO_8859_1);
 
         if (sessionId != null){
-            mProgressDialog = new CustomProgressDialog(App.activity);
-            mProgressDialog.show();
+//            mProgressDialog = new CustomProgressDialog(App.activity,R.style.loading_dialog);
+//            mProgressDialog.show();
+
+            linearLayout.setVisibility(View.VISIBLE);
+            ly_btn.setVisibility(View.GONE);
+
             presenter = new PinC_Fay_presenter(this);
             presenter.seturlZhiL("1", "1", "2","1",toBase64, sessionId);
         }
@@ -266,7 +283,6 @@ public class DanCi_fragment extends BaseFragment implements View.OnClickListener
 
             System.out.println("stopRecord");
             isRecord = false;//停止文件写入
-            Toast.makeText(App.activity,"录音成功",Toast.LENGTH_SHORT).show();
             audioRecord.stop();
             audioRecord.release();//释放资源
             audioRecord = null;
@@ -475,7 +491,6 @@ public class DanCi_fragment extends BaseFragment implements View.OnClickListener
             try {
                 mPlayer = null;
                 mPlayer = new MediaPlayer();
-
                 relative_path = bundle.getString("Relative_path");
                 word_video = bundle.getString("word_video");
 
@@ -489,6 +504,16 @@ public class DanCi_fragment extends BaseFragment implements View.OnClickListener
                     public void onPrepared(MediaPlayer mediaPlayer) {
                     }
                 });
+                mPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                    @Override
+                    public void onCompletion(MediaPlayer mp) {
+
+                        MyLog.e("CheckBox_状态",bf_zt.isChecked() + "");
+                        bf_zt.setChecked(false);
+
+                    }
+                });
+
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -528,6 +553,7 @@ public class DanCi_fragment extends BaseFragment implements View.OnClickListener
                 if (mPlayer.isPlaying()){
                     MyLog.e("lalall","ahahahahh");
                     mPlayer.pause();
+
                 }
                 bool[0] = false;
             }else {
@@ -546,16 +572,12 @@ public class DanCi_fragment extends BaseFragment implements View.OnClickListener
                 break;
             case R.id.Ly_btn:
                 Log.e("AAAAAAAAAAAA","WWWWWWWWWWWWWWWWWX");
-
                 if (b[0]){
-
                     stopAudioRecord();
-                    rippleIntroView.setColor(this.getResources().getColor(R.color.colorWhite));
+                    rippleIntroView.setColor(this.getResources().getColor(R.color.pe_gray));
                     b[0] = false;
 
                 }else {
-
-
                     startAudioRecord();
                     presenter = new ZhiL_Csh_Fy_Presenter(this);
                     presenter.setUrlsZhiL("0",word,System.currentTimeMillis() + "","1","4.0");
@@ -594,7 +616,19 @@ public class DanCi_fragment extends BaseFragment implements View.OnClickListener
             JSONObject response = json.optJSONObject("Response");
             String PronAccuracy = response.optString("PronAccuracy");
 
+            JSONObject Error = response.optJSONObject("Error");
 
+            if (Error != null){
+                App.activity.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        linearLayout.setVisibility(View.GONE);
+                        ly_btn.setVisibility(View.VISIBLE);
+                        Toast.makeText(App.activity,"评估失败",Toast.LENGTH_LONG).show();
+                    }
+                });
+                return;
+            }
             if (PronAccuracy != "0"){
 
                 str = PronAccuracy.substring(0,4);
@@ -624,7 +658,8 @@ public class DanCi_fragment extends BaseFragment implements View.OnClickListener
                         xinx_bar.setRating(in);
                         xinx_bar.setNumStars(5);
                         xinx_bar.setMax(5);
-                        mProgressDialog.dismiss();
+                        linearLayout.setVisibility(View.GONE);
+                        ly_btn.setVisibility(View.VISIBLE);
                     }
                 });
 
@@ -636,7 +671,8 @@ public class DanCi_fragment extends BaseFragment implements View.OnClickListener
                 App.activity.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        mProgressDialog.dismiss();
+                        linearLayout.setVisibility(View.GONE);
+                        ly_btn.setVisibility(View.VISIBLE);
                         Toast.makeText(App.activity,"请正常朗读",Toast.LENGTH_SHORT).show();
                     }
                 });

@@ -4,16 +4,17 @@ import android.media.AudioFormat;
 import android.media.AudioRecord;
 import android.media.MediaPlayer;
 import android.media.MediaRecorder;
-import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -21,23 +22,18 @@ import android.widget.Toast;
 
 import com.example.lenovo.ztsandroid.App;
 import com.example.lenovo.ztsandroid.R;
-import com.example.lenovo.ztsandroid.adapter.Kw_sy_Adapter;
 import com.example.lenovo.ztsandroid.base.BaseFragment;
 import com.example.lenovo.ztsandroid.cotract.ZhiL_Yuyin_Cotract;
-import com.example.lenovo.ztsandroid.model.entity.Kw_Xq_Bean;
-import com.example.lenovo.ztsandroid.model.entity.PinC_Fay_Bean;
 import com.example.lenovo.ztsandroid.model.entity.SC_YX_Bean;
 import com.example.lenovo.ztsandroid.model.entity.Stdey_Bean;
 import com.example.lenovo.ztsandroid.model.entity.YuYinPinG_Bean;
-import com.example.lenovo.ztsandroid.presenter.Lu_SC_Stdey_dh_Presenter;
-import com.example.lenovo.ztsandroid.presenter.Lu_SC_Stdey_dy_Presenter;
 import com.example.lenovo.ztsandroid.presenter.Lu_SC_Stdey_kw_Presenter;
 import com.example.lenovo.ztsandroid.presenter.Lu_Study_Presenter;
 import com.example.lenovo.ztsandroid.presenter.PinC_Fay_presenter;
 import com.example.lenovo.ztsandroid.presenter.ZhiL_Csh_Fy_Presenter;
 import com.example.lenovo.ztsandroid.utils.ConvertUtil;
-import com.example.lenovo.ztsandroid.utils.HMACTest;
 import com.example.lenovo.ztsandroid.utils.MyLog;
+import com.example.lenovo.ztsandroid.view.RippleIntroView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -48,9 +44,12 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -60,17 +59,18 @@ import cn.hutool.core.codec.Base64Encoder;
 import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.util.CharsetUtil;
 
-import static android.R.id.list;
-
 /**
  * Created by Administrator on 2018/11/12.
  */
-public class KeW_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.View{
+public class KeW_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.View {
 
+
+    @BindView(R.id.CK_zs)
+    LinearLayout CKZs;
+    @BindView(R.id.next_T)
+    Button nextT;
     @BindView(R.id.Xinx_bar)
     RatingBar XinxBar;
-    @BindView(R.id.PinF_Text)
-    TextView PinFText;
     @BindView(R.id.relativeLayout)
     RelativeLayout relativeLayout;
     @BindView(R.id.zhuS)
@@ -88,11 +88,26 @@ public class KeW_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.Vie
     @BindView(R.id.linearLayout6)
     LinearLayout linearLayout6;
     Unbinder unbinder;
+    @BindView(R.id.Ripple)
+    RippleIntroView Ripple;
+    @BindView(R.id.PinFText)
+    TextView PinFText;
+    @BindView(R.id.line)
+    LinearLayout line;
+    @BindView(R.id.PinF_jd)
+    ImageView PinFJd;
+    @BindView(R.id.Text_Jz)
+    TextView TextJz;
+    @BindView(R.id.linear)
+    LinearLayout linear;
+
+
+
     private Bundle bundle;
 
 
     private MediaRecorder mediaRecorder = new MediaRecorder();  //用于录音
-    private File file = new File("/mnt/sdcard", System.currentTimeMillis()+".mp3");  //创建一个临时的音频文件
+    private File file = new File("/mnt/sdcard", System.currentTimeMillis() + ".mp3");  //创建一个临时的音频文件
     private MediaPlayer mPlayer = new MediaPlayer();  //用于播放音频
     private String word_id;
     private String type;
@@ -114,25 +129,24 @@ public class KeW_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.Vie
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
-        if (mPlayer == null){
+        if (mPlayer == null) {
             mPlayer = new MediaPlayer();
         }
-        if (!isVisibleToUser){
+        if (!isVisibleToUser) {
 //            mediaPlayer.start();
             mPlayer.stop();
-        }else {
+        } else {
             try {
                 mPlayer = null;
                 mPlayer = new MediaPlayer();
 
                 relative_path = bundle.getString("relative_path");
                 word_video = bundle.getString("word_video");
-
                 String s = URLEncoder.encode(word_video, "utf-8").replaceAll("\\+", "%20");
 
-                String bofUrl = "https://zts100.com/demo/file/download"+"/?"+"Relative_path="+relative_path+"&"+"type=2"+"&"+"fileName="+s;
+                String bofUrl = "https://zts100.com/demo/file/download" + "/?" + "Relative_path=" + relative_path + "&" + "type=2" + "&" + "fileName=" + s;
                 mPlayer.setDataSource(bofUrl);
-                MyLog.e("sahdisauhdiuahdiuaw",bofUrl);
+                MyLog.e("sahdisauhdiuahdiuaw", bofUrl);
 
                 //3 准备播放
                 mPlayer.prepareAsync();
@@ -142,6 +156,15 @@ public class KeW_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.Vie
 
                     }
                 });
+                mPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                    @Override
+                    public void onCompletion(MediaPlayer mp) {
+
+                        MyLog.e("CheckBox_状态",BFZt.isChecked() + "");
+                        BFZt.setChecked(false);
+                    }
+                });
+
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -162,7 +185,7 @@ public class KeW_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.Vie
     //AudioName裸音频数据文件
     private static final String AudioName = "/sdcard/love.raw";
     //NewAudioName可播放的音频文件
-    private static final String NewAudioName = "/sdcard/"+System.currentTimeMillis()+".wav";
+    private static final String NewAudioName = "/sdcard/" + System.currentTimeMillis() + ".wav";
 
     private AudioRecord audioRecord;
 
@@ -176,7 +199,7 @@ public class KeW_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.Vie
     private void creatAudioRecord() {
         //根据AudioRecord的音频采样率、音频录制声道、音频数据格式获取缓冲区大小
         bufferSizeInBytes = AudioRecord.getMinBufferSize(sampleRateInHz, channelConfig, audioFormat);
-        Log.d(TAG, "creatAudioRecord-->bufferSizeInBytes="+bufferSizeInBytes);
+        Log.d(TAG, "creatAudioRecord-->bufferSizeInBytes=" + bufferSizeInBytes);
 
         //根据音频获取来源、音频采用率、音频录制声道、音频数据格式和缓冲区大小来创建AudioRecord对象
         audioRecord = new AudioRecord(audioSource, sampleRateInHz, channelConfig, audioFormat, bufferSizeInBytes);
@@ -188,8 +211,7 @@ public class KeW_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.Vie
     private final class PrepareListener implements MediaPlayer.OnPreparedListener {
 
         @Override
-        public void onPrepared(MediaPlayer mp)
-        {
+        public void onPrepared(MediaPlayer mp) {
             // TODO Auto-generated method stub
             mediaPlayer.start();//开始播放
         }
@@ -207,7 +229,7 @@ public class KeW_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.Vie
 //        writeBytesToFileClassic(bytes1,NewAudioName);
 
         File file = new File(NewAudioName);
-        if(file.exists()) {
+        if (file.exists()) {
             try {
                 mediaPlayer.reset();
                 mediaPlayer.setDataSource(NewAudioName);
@@ -216,22 +238,18 @@ public class KeW_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.Vie
             } catch (IllegalArgumentException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
-            } catch (SecurityException e)
-            {
+            } catch (SecurityException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
-            } catch (IllegalStateException e)
-            {
+            } catch (IllegalStateException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
-            } catch (IOException e)
-            {
+            } catch (IOException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
             }
         }
     }
-
 
 
     /**
@@ -240,7 +258,7 @@ public class KeW_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.Vie
     private void startAudioRecord() {
 
 
-        if (audioRecord != null){
+        if (audioRecord != null) {
             audioRecord.startRecording();//开始录制
             isRecord = true;
             new AudioRecordThread().start();//开启线程来把录制的音频数据保留下来
@@ -255,16 +273,20 @@ public class KeW_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.Vie
     /**
      * 停止录制音频
      */
-    private void  stopAudioRecord() {
+    private void stopAudioRecord() {
         close();
         File file = new File(NewAudioName);
 
         byte[] bytes = FileUtil.readBytes(file);
         String toBase64 = Base64Encoder.encode(bytes, CharsetUtil.CHARSET_ISO_8859_1);
 
-        if (sessionId != null){
+        if (sessionId != null) {
+
+            linear.setVisibility(View.VISIBLE);
+            line.setVisibility(View.GONE);
+
             presenter = new PinC_Fay_presenter(this);
-            presenter.seturlZhiL("1", "1", "2","1",toBase64, sessionId);
+            presenter.seturlZhiL("1", "1", "2", "1", toBase64, sessionId);
         }
     }
 
@@ -273,7 +295,6 @@ public class KeW_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.Vie
 
             System.out.println("stopRecord");
             isRecord = false;//停止文件写入
-            Toast.makeText(App.activity,"录音成功",Toast.LENGTH_SHORT).show();
             audioRecord.stop();
             audioRecord.release();//释放资源
             audioRecord = null;
@@ -282,18 +303,18 @@ public class KeW_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.Vie
 
     /**
      * 音频数据写入线程
-     * @author Administrator
      *
+     * @author Administrator
      */
     class AudioRecordThread extends Thread {
         @Override
-        public void run()
-        {
+        public void run() {
             super.run();
             writeDataToFile();//把录制的音频裸数据写入到文件中去
             copyWaveFile(AudioName, NewAudioName);//给裸数据加上头文件
         }
     }
+
     /**
      * 把录制的音频裸数据写入到文件中去
      * 这里将数据写入文件，但是并不能播放，因为AudioRecord获得的音频是原始的裸音频，
@@ -306,21 +327,19 @@ public class KeW_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.Vie
         int readSize = 0;
         FileOutputStream fos = null;
         File file = new File(AudioName);
-        if(file.exists())
+        if (file.exists())
             file.delete();
-        try
-        {
+        try {
             fos = new FileOutputStream(file);//获取一个文件的输出流
-        } catch (FileNotFoundException e)
-        {
+        } catch (FileNotFoundException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
-        while(isRecord == true) {
+        while (isRecord == true) {
             readSize = audioRecord.read(audioData, 0, bufferSizeInBytes);
-            Log.d(TAG, "readSize ="+readSize);
-            if(AudioRecord.ERROR_INVALID_OPERATION != readSize) {
+            Log.d(TAG, "readSize =" + readSize);
+            if (AudioRecord.ERROR_INVALID_OPERATION != readSize) {
                 try {
                     fos.write(audioData);
                 } catch (IOException e) {
@@ -330,17 +349,13 @@ public class KeW_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.Vie
             }
         }
 
-        try
-        {
+        try {
             fos.close();
-        } catch (IOException e)
-        {
+        } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
-
-
 
 
     private void copyWaveFile(String inFileName, String outFileName) {
@@ -353,27 +368,23 @@ public class KeW_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.Vie
         long byteRate = 16 * sampleRateInHz * channels / 8;
 
         byte[] data = new byte[bufferSizeInBytes];
-        try
-        {
+        try {
             in = new FileInputStream(inFileName);
             out = new FileOutputStream(outFileName);
 
             totalAudioLen = in.getChannel().size();
             totalDataLen = totalAudioLen + 36;
             WriteWaveFileHeader(out, totalAudioLen, totalDataLen, longSampleRate, channels, byteRate);
-            while(in.read(data) != -1)
-            {
+            while (in.read(data) != -1) {
                 out.write(data);
             }
 
             in.close();
             out.close();
-        } catch (FileNotFoundException e)
-        {
+        } catch (FileNotFoundException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
-        } catch (IOException e)
-        {
+        } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
@@ -437,17 +448,13 @@ public class KeW_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.Vie
     }
 
 
-    private void pause(){
+    private void pause() {
         mediaPlayer.pause();
 //        playhandler.removeCallbacks(runnable_3);
 //        play.setImageResource(ic_media_play);
     }
 
-
-
-
-
-
+private Animation hyperspaceJumpAnimation;
     @Override
     protected void init(View view) {
 
@@ -458,15 +465,21 @@ public class KeW_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.Vie
         nr = bundle.getString("nr");
         String fy = bundle.getString("fy");
 
-        MyLog.e("AASDSADA", nr + ""+fy);
+        MyLog.e("AASDSADA", nr + "" + fy);
 
         word_id = bundle.getString("word_id");
         type = bundle.getString("type");
 
-        JzNr.setText(nr.trim());
+        JzNr.setText(nr);
         FyText.setText(fy);
 
         FyText.setVisibility(View.GONE);
+
+
+        hyperspaceJumpAnimation = AnimationUtils.loadAnimation(App.activity, R.anim.loading_animation);
+        // 使用ImageView显示动画
+        PinFJd.startAnimation(hyperspaceJumpAnimation);
+
 
         creatAudioRecord();
     }
@@ -502,89 +515,126 @@ public class KeW_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.Vie
 
     final Boolean[] b = {false};
     private Boolean[] aBoolean = {false};
-    private Boolean[] bool  = {false};
-    @OnClick({ R.id.K_G, R.id.BF_zt, R.id.Ly_btn})
-    public void onViewClicked(View view) {
-        switch (view.getId()) {
+    private Boolean[] bool = {false};
 
+    @OnClick({R.id.next_T, R.id.K_G, R.id.BF_zt, R.id.Ly_btn})
+    public void onViewClicked(View view){
+        switch (view.getId()) {
+            case R.id.next_T:
+                break;
             case R.id.K_G:
                 break;
             case R.id.BF_zt:
-                if (bool[0]){
-                    if (mPlayer.isPlaying()){
-                        MyLog.e("lalall","ahahahahh");
+                if (bool[0]) {
+                    if (mPlayer.isPlaying()) {
+                        MyLog.e("lalall", "ahahahahh");
                         mPlayer.pause();
                     }
                     bool[0] = false;
-                }else {
-                    if (!mPlayer.isPlaying()){
-                        MyLog.e("holle dnsjk","ahahahahh");
+                } else {
+                    if (!mPlayer.isPlaying()) {
+                        MyLog.e("holle dnsjk", "ahahahahh");
                         mPlayer.start();
                     }
                     bool[0] = true;
                 }
                 break;
             case R.id.Ly_btn:
-                if (b[0]){
+                if (b[0]) {
 
                     stopAudioRecord();
-
+                    Ripple.setColor(this.getResources().getColor(R.color.pe_gray));
                     b[0] = false;
-                }else {
-//                            record();
+                } else {
                     startAudioRecord();
                     presenter = new ZhiL_Csh_Fy_Presenter(this);
-                    presenter.setUrlsZhiL("2",nr,System.currentTimeMillis()+"","1","4.0");
-                    b[0] = true;
 
+                    String s = null;
+                    try {
+
+                        s = URLEncoder.encode(nr, "utf-8").replaceAll("\\+", "%3F");
+
+                    } catch (UnsupportedEncodingException e) {
+                        e.printStackTrace();
+                    }
+
+                    String newStr = nr.replace("？",""); //得到新的字符串
+                    String string = newStr.replace("'","");
+                    MyLog.e("去掉中文字符串",string);
+
+                    presenter.setUrlsZhiL("2", string, System.currentTimeMillis() + "", "1", "4.0");
+                    b[0] = true;
+                    Ripple.setColor(this.getResources().getColor(R.color.text_color_red));
                 }
                 break;
         }
     }
+    private ArrayList<String> getAllSatisfyStr(String str, String regex) {
+        if (str == null || str.isEmpty()) {
+            return null;
+        }
+        ArrayList<String> allSatisfyStr = new ArrayList<>();
+        if (regex == null || regex.isEmpty()) {
+            allSatisfyStr.add(str);
+            return allSatisfyStr;
+        }
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(str);
+        while (matcher.find()) {
+            allSatisfyStr.add(matcher.group());
+        }
+        return allSatisfyStr;
+    }
+
+
 
     private float f;
+    float fff = 0;
+    float flo = 0;
     private void JsonDemo(String string) {
 
-        MyLog.e("LAALALA","adsadskjak");
+        MyLog.e("LAALALA", "adsadskjak");
 //        第一步，string参数相当于一个JSON,依次解析下一步
         JSONObject json = null;
 
         try {
             json = new JSONObject(string);
-
             JSONObject response = json.optJSONObject("Response");
+            JSONObject Error = response.optJSONObject("Error");
+
+            if (Error != null){
+                App.activity.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        linear.setVisibility(View.GONE);
+                        line.setVisibility(View.VISIBLE);
+                        Toast.makeText(App.activity,"评估失败",Toast.LENGTH_LONG).show();
+                    }
+                });
+                return;
+            }
             String PronAccuracy = response.optString("PronAccuracy");
+            JSONArray Words = response.getJSONArray("Words");
 
-            JSONArray Words = json.getJSONArray("Words");
-            float fff = 0;
-            float flo = 0;
-            for (int i = 0;i<= Words.length(); i++){
-
+            for (int i = 0; i < Words.length(); i++) {
                 JSONObject value = Words.getJSONObject(i);
                 String pronAccuracy = value.getString("PronAccuracy");
+
+                MyLog.e("打印pronAccuracy",pronAccuracy  +  "");
+
                 String word = value.optString("Word");
-
-                float f = ConvertUtil.convertToFloat(pronAccuracy,fff);
-                flo = f+flo;
-
+                float f = ConvertUtil.convertToFloat(pronAccuracy, fff);
+                flo = f + flo;
             }
-
-            MyLog.e("得到的总分值————",flo+"");
-
-
+            MyLog.e("得到的总分值————", flo + "");
             float v = flo / Words.length();
+            DecimalFormat decimalFormat = new DecimalFormat(".00");//构造方法的字符格式这里如果小数不足2位,会以0补足.
+            String p = decimalFormat.format(v);//format 返回的是字符串
+            MyLog.e("得到的平均分值————", flo + "");
 
+            if (PronAccuracy != "0") {
 
-
-            DecimalFormat decimalFormat=new DecimalFormat(".00");//构造方法的字符格式这里如果小数不足2位,会以0补足.
-            String p=decimalFormat.format(v);//format 返回的是字符串
-
-            MyLog.e("得到的平均分值————",flo+"");
-
-
-            if (PronAccuracy != "0"){
-
-                str = PronAccuracy.substring(0,4);
+                str = PronAccuracy.substring(0, 4);
 
                 MyLog.e("发音得到的评分————", str + "");
 
@@ -612,6 +662,9 @@ public class KeW_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.Vie
 //                        XinxBar.setNumStars(5);
 //                        XinxBar.setMax(5);
 
+                        linear.setVisibility(View.GONE);
+                        line.setVisibility(View.VISIBLE);
+
                     }
                 });
 
@@ -619,13 +672,15 @@ public class KeW_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.Vie
                 presenter.SetU(App.stuid, word_id, System.currentTimeMillis() + ".mp3", str, type);
 
                 relativeLayout.setVisibility(View.VISIBLE);
+                nextT.setVisibility(View.VISIBLE);
 
-
-            }else {
+            } else {
                 App.activity.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        Toast.makeText(App.activity,"请正常朗读",Toast.LENGTH_SHORT).show();
+                        linear.setVisibility(View.GONE);
+                        line.setVisibility(View.VISIBLE);
+                        Toast.makeText(App.activity, "请正常朗读", Toast.LENGTH_SHORT).show();
                     }
                 });
                 return;
@@ -636,18 +691,17 @@ public class KeW_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.Vie
     }
 
 
-
     @Override
     public void getManager(YuYinPinG_Bean yuYinPinGBean) {
-        if (yuYinPinGBean.getResponse().getSessionId() == null){
+        if (yuYinPinGBean.getResponse().getSessionId() == null) {
             App.activity.runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    Toast.makeText(App.activity,"评估失败",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(App.activity, "评估失败", Toast.LENGTH_SHORT).show();
                 }
             });
-        }else {
-            MyLog.e("初始化发音",yuYinPinGBean.getResponse().getRequestId()+"________"+yuYinPinGBean.getResponse().getSessionId());
+        } else {
+            MyLog.e("初始化发音", yuYinPinGBean.getResponse().getRequestId() + "________" + yuYinPinGBean.getResponse().getSessionId());
             sessionId = yuYinPinGBean.getResponse().getSessionId();
         }
 
@@ -657,7 +711,7 @@ public class KeW_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.Vie
     @Override
     public void getManagerO(String pinC_fay_bean) {
 
-        MyLog.e("请求成功——得到的json",pinC_fay_bean);
+        MyLog.e("请求成功——得到的json", pinC_fay_bean);
         JsonDemo(pinC_fay_bean);
 
     }
@@ -667,12 +721,12 @@ public class KeW_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.Vie
     public void getManagerT(Stdey_Bean xq_bean) {
         save_path = xq_bean.getData().getSave_path();
 
-        MyLog.e("获取到的 上传文件路径",save_path+ "");
+        MyLog.e("获取到的 上传文件路径", save_path + "");
         presenter = new Lu_Study_Presenter(this);
 
         File file = new File(NewAudioName);
 
-        presenter.seturl(file,"2",save_path);
+        presenter.seturl(file, "2", save_path);
     }
 
     @Override

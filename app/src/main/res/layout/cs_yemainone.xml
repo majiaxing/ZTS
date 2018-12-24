@@ -19,15 +19,17 @@
             <LinearLayout
                 android:id="@+id/line"
                 android:layout_width="match_parent"
-                android:layout_height="80dp"
-                android:background="@drawable/huiyuan"
+                android:layout_height="204px"
+                android:background="@drawable/top_bg_g"
                 android:gravity="center"
                 android:orientation="horizontal">
 
                 <LinearLayout
                     android:id="@+id/linear"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30px"
+                    >
 
                     <TextView
                         android:id="@+id/Text_Banb"
@@ -38,8 +40,9 @@
                         android:gravity="center"
                         android:text="人教版"
                         android:textColor="#fff"
+                        android:textSize="45px"
 
-                        android:textSize="45px" />
+                        />
 
                     <TextView
                         android:id="@+id/Text_NianJ"
@@ -83,7 +86,9 @@
                         android:layout_height="58px"
                         android:layout_alignParentRight="true"
                         android:layout_marginRight="40px"
-                        android:src="@drawable/xx_xx" />
+                        android:src="@drawable/xx_xx"
+                        android:layout_marginTop="55px"
+                        />
 
                     <TextView
                         android:id="@+id/Wd_Ts"
@@ -133,7 +138,7 @@
                     <ImageView
                         android:layout_width="53px"
                         android:layout_height="match_parent"
-                        android:src="@mipmap/yd" />
+                        android:src="@drawable/yd_g" />
 
                     <TextView
                         android:layout_width="188px"
@@ -160,7 +165,9 @@
                         android:layout_width="0px"
                         android:layout_height="226px"
                         android:layout_weight="1"
-                        android:background="@drawable/yb_bg">
+                        android:background="@drawable/yb_bg"
+                        android:gravity="center_vertical"
+                        >
 
 
                         <TextView
@@ -172,11 +179,12 @@
                             android:layout_alignParentTop="true"
                             android:layout_marginLeft="17dp"
                             android:layout_marginStart="17dp"
-                            android:layout_marginTop="22dp"
                             android:gravity="center"
                             android:text="音标"
                             android:textColor="#FFFFFF"
-                            android:textSize="40px" />
+                            android:textSize="40px"
+
+                            />
 
 
                     </RelativeLayout>
@@ -186,7 +194,9 @@
                         android:layout_width="0px"
                         android:layout_height="226px"
                         android:layout_weight="1"
-                        android:background="@drawable/dc">
+                        android:background="@drawable/dc"
+                        android:gravity="center_vertical"
+                        >
 
                         <TextView
                             android:id="@+id/Danci_text"
@@ -197,7 +207,6 @@
                             android:layout_alignParentTop="true"
                             android:layout_marginLeft="17dp"
                             android:layout_marginStart="17dp"
-                            android:layout_marginTop="22dp"
                             android:gravity="center"
                             android:text="单词"
                             android:textColor="#FFFFFF"
@@ -225,7 +234,8 @@
                         android:layout_width="0px"
                         android:layout_height="226px"
                         android:layout_weight="1"
-                        android:background="@drawable/dy">
+                        android:background="@drawable/dy"
+                        android:gravity="center_vertical">
 
 
                         <TextView
@@ -237,7 +247,6 @@
                             android:layout_alignParentTop="true"
                             android:layout_marginLeft="17dp"
                             android:layout_marginStart="17dp"
-                            android:layout_marginTop="22dp"
                             android:gravity="center"
                             android:text="短语"
                             android:textColor="#FFFFFF"
@@ -252,7 +261,9 @@
                         android:layout_width="0px"
                         android:layout_height="226px"
                         android:layout_weight="1"
-                        android:background="@drawable/jz">
+                        android:background="@drawable/jz"
+                        android:gravity="center_vertical"
+                        >
 
                         <TextView
                             android:id="@+id/Juzi_Text"
@@ -263,7 +274,6 @@
                             android:layout_alignParentTop="true"
                             android:layout_marginLeft="17dp"
                             android:layout_marginStart="17dp"
-                            android:layout_marginTop="22dp"
                             android:gravity="center"
                             android:text="句子"
                             android:textColor="#FFFFFF"
@@ -289,7 +299,8 @@
                         android:layout_width="0px"
                         android:layout_height="226px"
                         android:layout_weight="1"
-                        android:background="@drawable/kw">
+                        android:background="@drawable/kw"
+                        android:gravity="center_vertical">
 
                         <TextView
                             android:id="@+id/Kw_text"
@@ -300,7 +311,6 @@
                             android:layout_alignParentTop="true"
                             android:layout_marginLeft="17dp"
                             android:layout_marginStart="17dp"
-                            android:layout_marginTop="22dp"
                             android:gravity="center"
                             android:text="课文"
                             android:textColor="#FFFFFF"
@@ -326,7 +336,7 @@
                     <ImageView
                         android:layout_width="53px"
                         android:layout_height="match_parent"
-                        android:src="@mipmap/yd" />
+                        android:src="@drawable/yd_g" />
 
                     <TextView
                         android:id="@+id/textView"
@@ -351,7 +361,8 @@
                         android:layout_width="0px"
                         android:layout_height="226px"
                         android:layout_weight="1"
-                        android:background="@drawable/dh">
+                        android:background="@drawable/dh"
+                        android:gravity="center_vertical">
 
                         <TextView
                             android:id="@+id/thxz"
@@ -362,7 +373,6 @@
                             android:layout_alignParentTop="true"
                             android:layout_marginLeft="17dp"
                             android:layout_marginStart="17dp"
-                            android:layout_marginTop="22dp"
                             android:gravity="center"
                             android:text="对话"
                             android:textColor="#FFFFFF"
@@ -400,7 +410,7 @@
                     <ImageView
                         android:layout_width="53px"
                         android:layout_height="match_parent"
-                        android:src="@mipmap/yd" />
+                        android:src="@drawable/yd_g" />
 
                     <TextView
                         android:layout_width="188px"
@@ -426,7 +436,8 @@
                         android:layout_width="0px"
                         android:layout_height="226px"
                         android:layout_weight="1"
-                        android:background="@drawable/xz">
+                        android:background="@drawable/xz"
+                        android:gravity="center_vertical">
 
 
                         <TextView
@@ -438,7 +449,6 @@
                             android:layout_alignParentTop="true"
                             android:layout_marginLeft="17dp"
                             android:layout_marginStart="17dp"
-                            android:layout_marginTop="22dp"
                             android:gravity="center"
                             android:text="听力选择"
                             android:textColor="#FFFFFF"
@@ -451,7 +461,8 @@
                         android:layout_width="0px"
                         android:layout_height="226px"
                         android:layout_weight="1"
-                        android:background="@drawable/tingt">
+                        android:background="@drawable/tingt"
+                        android:gravity="center_vertical">
 
 
                         <TextView
@@ -463,7 +474,6 @@
                             android:layout_alignParentTop="true"
                             android:layout_marginLeft="17dp"
                             android:layout_marginStart="17dp"
-                            android:layout_marginTop="22dp"
                             android:gravity="center"
                             android:text="听力填空"
                             android:textColor="#FFFFFF"
@@ -496,7 +506,7 @@
                     <ImageView
                         android:layout_width="53px"
                         android:layout_height="match_parent"
-                        android:src="@mipmap/yd" />
+                        android:src="@drawable/yd_g" />
 
                     <TextView
                         android:layout_width="188px"
@@ -520,7 +530,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="226px"
                         android:layout_weight="1"
-                        android:background="@drawable/yd">
+                        android:background="@drawable/yd"
+                        android:gravity="center_vertical">
 
                         <TextView
                             android:id="@+id/ZNZW"
@@ -531,7 +542,6 @@
                             android:layout_alignParentTop="true"
                             android:layout_marginLeft="17dp"
                             android:layout_marginStart="17dp"
-                            android:layout_marginTop="22dp"
                             android:gravity="center"
                             android:text="阅读"
                             android:textColor="#FFFFFF"

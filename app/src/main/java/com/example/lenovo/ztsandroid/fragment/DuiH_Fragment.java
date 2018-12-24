@@ -1,27 +1,34 @@
 package com.example.lenovo.ztsandroid.fragment;
 
+import android.content.Intent;
 import android.media.AudioFormat;
 import android.media.AudioRecord;
 import android.media.MediaPlayer;
 import android.media.MediaRecorder;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RatingBar;
 import android.widget.RelativeLayout;
+import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.lenovo.ztsandroid.App;
 import com.example.lenovo.ztsandroid.R;
+import com.example.lenovo.ztsandroid.activity.DuiH_TZYX_Sy_Activity;
 import com.example.lenovo.ztsandroid.adapter.Juz_Adapter;
 import com.example.lenovo.ztsandroid.base.BaseFragment;
 import com.example.lenovo.ztsandroid.cotract.ZhiL_Yuyin_Cotract;
+import com.example.lenovo.ztsandroid.fragment.study.yb_sy.FaY_DongH_Fragment;
 import com.example.lenovo.ztsandroid.model.entity.DuiH_XQ_Bean;
 import com.example.lenovo.ztsandroid.model.entity.SC_YX_Bean;
 import com.example.lenovo.ztsandroid.model.entity.Stdey_Bean;
@@ -29,7 +36,6 @@ import com.example.lenovo.ztsandroid.model.entity.YuYinPinG_Bean;
 import com.example.lenovo.ztsandroid.presenter.Lu_SC_Stdey_dh_Presenter;
 import com.example.lenovo.ztsandroid.presenter.Lu_Study_Presenter;
 import com.example.lenovo.ztsandroid.presenter.PinC_Fay_presenter;
-import com.example.lenovo.ztsandroid.presenter.ZhiL_Csh_Fy_Presenter;
 import com.example.lenovo.ztsandroid.utils.ConvertUtil;
 import com.example.lenovo.ztsandroid.utils.MyLog;
 
@@ -49,7 +55,6 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import butterknife.Unbinder;
 import cn.hutool.core.codec.Base64Encoder;
 import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.util.CharsetUtil;
@@ -59,19 +64,21 @@ import cn.hutool.core.util.CharsetUtil;
  */
 public class DuiH_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.View {
 
-    @BindView(R.id.zhuS)
-    TextView zhuS;
-    @BindView(R.id.K_G)
-    CheckBox KG;
-    @BindView(R.id.linearLayout8)
-    LinearLayout linearLayout8;
+//
+//    @BindView(R.id.zhuS)
+//    TextView zhuS;
+//    @BindView(R.id.K_G)
+//    CheckBox KG;
+//    @BindView(R.id.linearLayout8)
+//    LinearLayout linearLayout8;
     @BindView(R.id.Danc_list)
     ListView DancList;
     @BindView(R.id.BF_zt)
     CheckBox BFZt;
-    @BindView(R.id.Ly_btn)
-    CheckBox LyBtn;
-    Unbinder unbinder;
+    @BindView(R.id.id_seekBar)
+    SeekBar idSeekBar;
+    @BindView(R.id.TZYX_Q)
+    Button TZYXQ;
     @BindView(R.id.PF_fs)
     TextView PFFs;
     @BindView(R.id.GL_)
@@ -82,6 +89,8 @@ public class DuiH_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.Vi
     LinearLayout BFLY;
     @BindView(R.id.relativeLayout)
     RelativeLayout relativeLayout;
+
+
     private Juz_Adapter myadapter;
     private ArrayList<DuiH_XQ_Bean.DataBean> mlist = new ArrayList<>();
     private Bundle bundle;
@@ -97,14 +106,14 @@ public class DuiH_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.Vi
     private String str;
     private String sessionId;
     private ArrayList<String> juese_video;
+    private String relative_path;
+    private String title;
 
 
     @Override
     protected int getLayoutId() {
         return R.layout.viewpager_juz;
     }
-
-
 
 
     private static final String TAG = "AudioRecordActivity";
@@ -143,8 +152,25 @@ public class DuiH_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.Vi
         mediaPlayer = new MediaPlayer();
     }
 
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        // TODO: inflate a fragment view
+        View rootView = super.onCreateView(inflater, container, savedInstanceState);
+        unbinder = ButterKnife.bind(this, rootView);
+        return rootView;
+    }
 
 
+
+    @OnClick(R.id.TZYX_Q)
+    public void onViewClicked() {
+    }
+
+//    @Override
+//    public void onDestroyView() {
+//        super.onDestroyView();
+//        unbinder.unbind();
+//    }
 
 
     private final class PrepareListener implements MediaPlayer.OnPreparedListener {
@@ -190,11 +216,12 @@ public class DuiH_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.Vi
         }
     }
 
-    private void pause(){
+    private void pause() {
         mediaPlayer.pause();
 //        playhandler.removeCallbacks(runnable_3);
 //        play.setImageResource(ic_media_play);
     }
+
     /**
      * 开始录制音频
      */
@@ -396,6 +423,8 @@ public class DuiH_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.Vi
 
         word_id = bundle.getString("word_id");
         type = bundle.getString("type");
+        relative_path = bundle.getString("Relative_path");
+        title = bundle.getString("title");
 
 
 
@@ -421,23 +450,34 @@ public class DuiH_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.Vi
             try {
                 relativepath = bundle.getString("Relative_path");
                 juese_video = (ArrayList<String>) bundle.getSerializable("Juese_videoList");
-                MyLog.e(" skdanlda",juese_video.size() + "");
+                MyLog.e(" skdanlda", juese_video.size() + "");
 //                for (int i = 0; i<juese_video.size();i++){
-                    mPlayer = null;
-                    mPlayer = new MediaPlayer();
-                    String s = URLEncoder.encode(juese_video.get(1), "utf-8").replaceAll("\\+", "%20");
+                mPlayer = null;
+                mPlayer = new MediaPlayer();
+                String s = URLEncoder.encode(juese_video.get(1), "utf-8").replaceAll("\\+", "%20");
 
-                final String bofUrl = "https://zts100.com/demo/file/download"+"/?"+"Relative_path="+relativepath+"&"+"type=2"+"&"+"fileName="+s;
-                MyLog.e("拼接好的 播放 Url",bofUrl);
+                final String bofUrl = "https://zts100.com/demo/file/download" + "/?" + "Relative_path=" + relativepath + "&" + "type=2" + "&" + "fileName=" + s;
+                MyLog.e("拼接好的 播放 Url", bofUrl);
                 mPlayer.setDataSource(bofUrl);
-                    //3 准备播放
-                    mPlayer.prepareAsync();
-                    mPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-                        @Override
-                        public void onPrepared(MediaPlayer mp) {
-                            mPlayer.start();
-                        }
-                    });
+                //3 准备播放
+                mPlayer.prepareAsync();
+                mPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+                    @Override
+                    public void onPrepared(MediaPlayer mp) {
+                        mPlayer.start();
+                    }
+                });
+                mPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                    @Override
+                    public void onCompletion(MediaPlayer mp) {
+
+                        MyLog.e("CheckBox_状态",BFZt.isChecked() + "");
+                        BFZt.setChecked(false);
+                    }
+                });
+
+
+
 //                }
             } catch (IOException e) {
                 e.printStackTrace();
@@ -454,30 +494,17 @@ public class DuiH_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.Vi
         this.bundle = bundle;
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // TODO: inflate a fragment view
-        View rootView = super.onCreateView(inflater, container, savedInstanceState);
-        unbinder = ButterKnife.bind(this, rootView);
-        return rootView;
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        unbinder.unbind();
-    }
 
     final Boolean[] b = {false};
     private Boolean[] aBoolean = {false};
     private Boolean[] bool = {false};
 
 
-    @OnClick({R.id.K_G, R.id.BF_zt, R.id.Ly_btn, R.id.linearLayout8 ,R.id.BF_LY})
+    @OnClick({ R.id.BF_zt, R.id.BF_LY ,R.id.TZYX_Q})
     public void onViewClicked(View view) {
         switch (view.getId()) {
-            case R.id.K_G:
-                break;
+//            case R.id.K_G:
+//                break;
             case R.id.BF_zt:
 
                 if (bool[0]) {
@@ -497,49 +524,58 @@ public class DuiH_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.Vi
                     bool[0] = true;
                 }
                 break;
-            case R.id.Ly_btn:
-                Log.e("AAAAAAAAAAAA", "WWWWWWWWWWWWWWWWWX");
-                if (b[0]) {
-                    stopAudioRecord();
-                    b[0] = false;
-                } else {
-//                            record();
-                    startAudioRecord();
-                    presenter = new ZhiL_Csh_Fy_Presenter(this);
-                    presenter.setUrlsZhiL("1", mlist.get(0).getJuese_yw(), System.currentTimeMillis() + "", "1", "4.0");
-                    b[0] = true;
+//            case R.id.Ly_btn:
+//                Log.e("AAAAAAAAAAAA", "WWWWWWWWWWWWWWWWWX");
+//                if (b[0]) {
+//                    stopAudioRecord();
+//                    b[0] = false;
+//                } else {
+////                            record();
+//                    startAudioRecord();
+//                    presenter = new ZhiL_Csh_Fy_Presenter(this);
+//                    presenter.setUrlsZhiL("1", mlist.get(0).getJuese_yw(), System.currentTimeMillis() + "", "1", "4.0");
+//                    b[0] = true;
+//
+//                }
+//                break;
+//            case R.id.linearLayout8:
+//                if (isShow)
+//                    isShow = false;
+//                else
+//                    isShow = true;
+//                myadapter.onClickeListener(isShow);
+//                break;
+//            case R.id.BF_LY:
+//                if (aBoolean[0]){
+//
+//                    if (mediaPlayer.isPlaying()){
+//
+//                        pause();
+//                    }
+//                    aBoolean[0] = false;
+//
+//                }else {
+//                    if (!mediaPlayer.isPlaying()){
+//                        playMusic();
+//                    }
+//                    aBoolean[0] = true;
+//
+//                }
+//                break;
+            case R.id.TZYX_Q:
 
-                }
-                break;
-            case R.id.linearLayout8:
-                if (isShow)
-                    isShow = false;
-                else
-                    isShow = true;
-                myadapter.onClickeListener(isShow);
-                break;
-            case R.id.BF_LY:
-                if (aBoolean[0]){
+                Intent intent = new Intent(App.activity, DuiH_TZYX_Sy_Activity.class);
 
-                    if (mediaPlayer.isPlaying()){
+                intent.putExtra("talk_id",type);
+                intent.putExtra("relative_path",relative_path);
+                intent.putExtra("title",title);
 
-                        pause();
-                    }
-                    aBoolean[0] = false;
+                MyLog.e("talk_id+relative_path＋title",type+relative_path+title);
 
-                }else {
-                    if (!mediaPlayer.isPlaying()){
-                        playMusic();
-                    }
-                    aBoolean[0] = true;
-
-                }
+                startActivity(intent);
                 break;
         }
     }
-
-
-
 
     private float f;
 
@@ -679,7 +715,6 @@ public class DuiH_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.Vi
 
     @Override
     public void getWJSC(SC_YX_Bean sc_yx_bean) {
-
 
     }
 

@@ -2,47 +2,60 @@ package com.example.lenovo.ztsandroid.fragment.study.yb_sy;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.example.lenovo.ztsandroid.App;
 import com.example.lenovo.ztsandroid.R;
 import com.example.lenovo.ztsandroid.activity.TiaoZan_Activity;
 import com.example.lenovo.ztsandroid.base.BaseFragment;
+import com.example.lenovo.ztsandroid.config.FragmantBuilder;
 import com.example.lenovo.ztsandroid.cotract.YB_XiangQ_Cotract;
 import com.example.lenovo.ztsandroid.model.entity.YB_XQ_Two_Bean;
 import com.example.lenovo.ztsandroid.model.entity.YB_XQ_four_Bean;
 import com.example.lenovo.ztsandroid.model.entity.YB_XQ_one_Bean;
 import com.example.lenovo.ztsandroid.model.entity.YB_XQ_three_Bean;
 import com.example.lenovo.ztsandroid.presenter.YB_Two_XQ_Presenter;
+import com.example.lenovo.ztsandroid.utils.ConfigFragment;
+import com.example.lenovo.ztsandroid.utils.MyLog;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
-import butterknife.Unbinder;
 
 /**
  * Created by Administrator on 2018/11/6.
  */
 
-public class YBxq_two_fragment extends BaseFragment implements YB_XiangQ_Cotract.View ,View.OnClickListener{
+public class YBxq_two_fragment extends BaseFragment implements YB_XiangQ_Cotract.View, View.OnClickListener {
 
 
-    CheckBox RDH;
-    CheckBox RZR;
-    LinearLayout XZFy;
-    Button TZYXT;
     TextView YB_Nr;
+    FrameLayout frameLayout;
+    @BindView(R.id.R_D_H)
+    CheckBox RDH;
+    @BindView(R.id.R_Z_R)
+    CheckBox RZR;
+    @BindView(R.id.XZ_fy)
+    LinearLayout XZFy;
+    @BindView(R.id.Frame_Louyout)
+    FrameLayout FYFrameLayout;
+    @BindView(R.id.TZ_YX_t)
+    Button TZYXT;
     private YB_XiangQ_Cotract.Presenter presenter;
-    private Bundle bundle;
+    private Bundle bundle , bundle1;
     private String yBid;
+    private String relative_path;
+    private String yb_translate;
+    private String yb_human;
+
 
     @Override
     protected int getLayoutId() {
@@ -52,14 +65,14 @@ public class YBxq_two_fragment extends BaseFragment implements YB_XiangQ_Cotract
     @Override
     protected void init(View view) {
         RDH = view.findViewById(R.id.R_D_H);
-        RZR = view .findViewById(R.id.R_Z_R);
+        RZR = view.findViewById(R.id.R_Z_R);
         XZFy = view.findViewById(R.id.XZ_fy);
         TZYXT = view.findViewById(R.id.TZ_YX_t);
-        YB_Nr = view.findViewById(R.id.YB_Nr);
 
         RDH.setOnClickListener(this);
         RZR.setOnClickListener(this);
         TZYXT.setOnClickListener(this);
+        bundle1 = new Bundle();
     }
 
     @Override
@@ -67,7 +80,7 @@ public class YBxq_two_fragment extends BaseFragment implements YB_XiangQ_Cotract
 
         yBid = bundle.getString("YBid");
         presenter = new YB_Two_XQ_Presenter(this);
-        presenter.SetUrl(yBid,"2","");
+        presenter.SetUrl(yBid, "2", "");
 
     }
 
@@ -83,12 +96,12 @@ public class YBxq_two_fragment extends BaseFragment implements YB_XiangQ_Cotract
         unbinder = ButterKnife.bind(this, rootView);
         return rootView;
     }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        unbinder.unbind();
-    }
+//
+//    @Override
+//    public void onDestroyView() {
+//        super.onDestroyView();
+//        unbinder.unbind();
+//    }
 
 
     @Override
@@ -104,12 +117,30 @@ public class YBxq_two_fragment extends BaseFragment implements YB_XiangQ_Cotract
 
     @Override
     public void getManagerT(YB_XQ_Two_Bean yb_xq_two_bean) {
-        final String yb_translate = yb_xq_two_bean.getData().get(0).getYb_translate();
+        yb_translate = yb_xq_two_bean.getData().get(0).getYb_translate();
+        relative_path = yb_xq_two_bean.getData().get(0).getRelative_path();
+        yb_human = yb_xq_two_bean.getData().get(0).getYb_human();
 
         App.activity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                YB_Nr.setText(yb_translate);
+//                YB_Nr.setText(yb_translate);
+                FragmentManager manager=App.activity.getSupportFragmentManager();
+                FragmentTransaction transaction=manager.beginTransaction();
+                FaY_DongH_Fragment fragment1=new FaY_DongH_Fragment();
+                transaction.add(R.id.Frame_Louyout, fragment1);
+                transaction.commit();
+
+
+
+                if (yb_translate != null){
+                    bundle1.putString("relative_path",relative_path);
+                    bundle1.putString("yb_translate",yb_translate);
+                    MyLog.e("yb_translate+relative_path",yb_translate+relative_path);
+
+                    fragment1.setParams(bundle1);
+                }
+
             }
         });
 
@@ -140,18 +171,44 @@ public class YBxq_two_fragment extends BaseFragment implements YB_XiangQ_Cotract
         switch (v.getId()) {
             case R.id.R_D_H:
 
-                    RDH.setChecked(true);
-                    RZR.setChecked(false);
+
+                FragmentManager manager1=App.activity.getSupportFragmentManager();
+                FragmentTransaction transaction1=manager1.beginTransaction();
+                FaY_DongH_Fragment fragment2=new FaY_DongH_Fragment();
+                transaction1.add(R.id.Frame_Louyout, fragment2);
+                transaction1.commit();
+
+                if (yb_translate != null){
+                    bundle1.putString("relative_path",relative_path);
+                    bundle1.putString("yb_translate",yb_translate);
+                    fragment2.setParams(bundle1);
+                    MyLog.e("yb_translate+relative_path",yb_translate+relative_path);
+                }
+
+
+                RDH.setChecked(true);
+                RZR.setChecked(false);
 
                 break;
             case R.id.R_Z_R:
+
+                FragmentManager manager=App.activity.getSupportFragmentManager();
+                FragmentTransaction transaction=manager.beginTransaction();
+                ZhenR_FY_Fragment fragment1=new ZhenR_FY_Fragment();
+                transaction.add(R.id.Frame_Louyout, fragment1);
+                transaction.commit();
+                bundle1.putString("relative_path",relative_path);
+                bundle1.putString("yb_human",yb_human);
+                fragment1.setParams(bundle1);
+                MyLog.e("yb_translate+relative_path",yb_translate+relative_path);
+
 
                 RDH.setChecked(false);
                 RZR.setChecked(true);
                 break;
             case R.id.TZ_YX_t:
-                Intent intent = new Intent(App.activity,TiaoZan_Activity.class);
-                intent.putExtra("YB_id",yBid);
+                Intent intent = new Intent(App.activity, TiaoZan_Activity.class);
+                intent.putExtra("YB_id", yBid);
                 startActivity(intent);
                 break;
         }

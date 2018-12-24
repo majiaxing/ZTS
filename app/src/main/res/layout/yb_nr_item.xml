@@ -33,7 +33,7 @@
                 android:layout_height="32px"
                 android:layout_marginLeft="@dimen/x50"
                 android:layout_marginRight="90px"
-                android:background="@drawable/yinliangda__" />
+                android:background="@drawable/yinliangda_g" />
         </LinearLayout>
 
         <TextView

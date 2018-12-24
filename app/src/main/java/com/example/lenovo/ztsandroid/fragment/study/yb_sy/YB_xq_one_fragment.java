@@ -82,7 +82,6 @@ public class YB_xq_one_fragment extends BaseFragment implements YB_XiangQ_Cotrac
         BFOneXuanZ = view.findViewById(R.id.BF_One_Xuanz);
         BFTwoXuanZ = view.findViewById(R.id.BF_Two_Xuanz);
         FanY = view.findViewById(R.id.yb_one_item);
-
         Image = view.findViewById(R.id.YB_xx_image);
 
         BFOne.setOnClickListener(this);

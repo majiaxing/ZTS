@@ -56,7 +56,6 @@ public class Yb_Grid_Adapter extends BaseAdapter {
 
         YB_Bean.DataBean liveBean = channels.get(i);
         viewHolder.textView.setText(liveBean.getSymbol());
-
         return view;
     }
 
