@@ -263,8 +263,10 @@ public class XX_Activity extends BaseActivity implements XX_Cotract.View {
 //                }
                 break;
             case R.id.BiaoW_Yd:
+                fragment1.changeIsRead();
                 break;
             case R.id.BiaoW_Sc:
+                fragment1.delete();
                 break;
         }
     }

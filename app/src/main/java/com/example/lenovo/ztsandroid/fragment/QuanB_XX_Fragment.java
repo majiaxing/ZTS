@@ -119,8 +119,27 @@ public class QuanB_XX_Fragment extends BaseFragment implements XX_xq_Cotract.Vie
             //刷新listview
             myadapter.notifyDataSetChanged();
         }
+
     }
 
+
+    public void delete(){
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).ischeck()){
+                list.remove(i);
+            }
+        }
+        myadapter.notifyDataSetChanged();
+    }
+
+    public void changeIsRead(){
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).ischeck()){
+                //设置已读
+            }
+        }
+        myadapter.notifyDataSetChanged();
+    }
 
     @Override
     protected void loadData() {

@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -94,7 +95,16 @@ public class XX_Adapter extends BaseAdapter implements OnItemListener{
         MyLog.e("消息发布的时间",substring);
         viewHolder.data.setText(substring);
 
-
+        viewHolder.Xuanz_item.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked){
+                    channels.get(i).setIscheck(true);
+                }else {
+                    channels.get(i).setIscheck(false);
+                }
+            }
+        });
 //        view.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View view) {
