@@ -51,12 +51,12 @@ public class Read_XuanZ_T_Adapter extends BaseAdapter {
     public long getItemId(int position) {
         return 0;
     }
-    private HashMap mHashMap = new HashMap();
+//    private HashMap mHashMap = new HashMap();
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
 
         ViewHolder viewHolder = null;
-        if (mHashMap.get(position) == null ){
+//        if (mHashMap.get(position) == null){
             viewHolder = new ViewHolder();
             convertView = LayoutInflater.from(context).inflate(R.layout.read_xianz_item,null);
             viewHolder.textView = convertView.findViewById(R.id.Item_Tm);
@@ -76,17 +76,17 @@ public class Read_XuanZ_T_Adapter extends BaseAdapter {
             viewHolder.XXC = convertView.findViewById(R.id.XXC);
             viewHolder.XXD = convertView.findViewById(R.id.XXD);
 
-            mHashMap.put(position, convertView);
+//            mHashMap.put(position, convertView);
             convertView.setTag(viewHolder);
-        }else {
-            convertView = (View) mHashMap.get(position);
-            viewHolder = (ViewHolder) convertView.getTag();
-        }
+//        }else {
+//            convertView = (View) mHashMap.get(position);
+//            viewHolder = (ViewHolder) convertView.getTag();
+//        }
 
         Read_XQ_Bean.DataBean.ReadQuestionListBean liveBeanA = channels.get(position);
 
-        String read_qid = liveBeanA.getRead_qid();
-        read_qidList.set(position,read_qid);
+        final String read_qid = liveBeanA.getRead_qid();
+
         viewHolder.textView.setText(liveBeanA.getRead_question());
 //        viewHolder.radio_A.setText(liveBean.getRead_optionA()+"." +liveBean.getRead_optionTextA());
         viewHolder.text_A.setText(liveBeanA.getRead_optionList().get(0).getRead_option() + ". "+liveBeanA.getRead_optionList().get(0).getRead_optionText());
@@ -106,6 +106,7 @@ public class Read_XuanZ_T_Adapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 answer.set(position,"A");
+                read_qidList.set(position,read_qid);
                 finalViewHolder.BF_A_Xuanz.setVisibility(View.VISIBLE);
                 finalViewHolder.BF_B_Xuanz.setVisibility(View.GONE);
                 finalViewHolder.BF_C_Xuanz.setVisibility(View.GONE);
@@ -119,6 +120,7 @@ public class Read_XuanZ_T_Adapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 answer.set(position,"B");
+                read_qidList.set(position,read_qid);
                 finalViewHolder.BF_A_Xuanz.setVisibility(View.GONE);
                 finalViewHolder.BF_B_Xuanz.setVisibility(View.VISIBLE);
                 finalViewHolder.BF_C_Xuanz.setVisibility(View.GONE);
@@ -130,6 +132,7 @@ public class Read_XuanZ_T_Adapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 answer.set(position,"C");
+                read_qidList.set(position,read_qid);
                 finalViewHolder.BF_A_Xuanz.setVisibility(View.GONE);
                 finalViewHolder.BF_B_Xuanz.setVisibility(View.GONE);
                 finalViewHolder.BF_C_Xuanz.setVisibility(View.VISIBLE);
@@ -141,6 +144,7 @@ public class Read_XuanZ_T_Adapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 answer.set(position,"D");
+                read_qidList.set(position,read_qid);
                 finalViewHolder.BF_A_Xuanz.setVisibility(View.GONE);
                 finalViewHolder.BF_B_Xuanz.setVisibility(View.GONE);
                 finalViewHolder.BF_C_Xuanz.setVisibility(View.GONE);
@@ -151,7 +155,6 @@ public class Read_XuanZ_T_Adapter extends BaseAdapter {
 
         return convertView;
     }
-
 
     public ArrayList<String>  getAnswer() {
         for (int i = 0; i < answer.size(); i++) {

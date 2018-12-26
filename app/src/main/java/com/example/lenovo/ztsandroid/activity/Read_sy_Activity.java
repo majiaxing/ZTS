@@ -21,6 +21,7 @@ import com.example.lenovo.ztsandroid.adapter.ViewPagerAdapter;
 import com.example.lenovo.ztsandroid.base.BaseActivity;
 import com.example.lenovo.ztsandroid.cotract.Read_XQ_Cotract;
 import com.example.lenovo.ztsandroid.fragment.Read_fragment;
+import com.example.lenovo.ztsandroid.model.entity.Read_TJ_Bean;
 import com.example.lenovo.ztsandroid.model.entity.Read_XQ_Bean;
 import com.example.lenovo.ztsandroid.model.entity.Spinner_Bean;
 import com.example.lenovo.ztsandroid.presenter.Read_XQ_Presenter;
@@ -65,6 +66,7 @@ public class Read_sy_Activity extends BaseActivity implements Read_XQ_Cotract.Vi
     private ArrayList<Spinner_Bean> nlist = new ArrayList<>();
     private List_YueD_Adapter Padapter;
     private GridView grid;
+    private String type;
 
 
     @Override
@@ -77,6 +79,7 @@ public class Read_sy_Activity extends BaseActivity implements Read_XQ_Cotract.Vi
         Intent intent = getIntent();
         text_id = intent.getStringExtra("Read_id");
         String mtitle = intent.getStringExtra("title");
+        type = intent.getStringExtra("type");
         title.setText(mtitle);
 
     }
@@ -161,6 +164,9 @@ public class Read_sy_Activity extends BaseActivity implements Read_XQ_Cotract.Vi
                     bundle = new Bundle();
                     bundle.putSerializable("list", (Serializable) xqBean.getData());
 //                    bundle.putString("",xqBean.getData().get(i).getRead_questionList().get().getRead_qid());
+
+                    bundle.putString("Read_id",text_id);
+                    bundle.putString("type",type);
                     MyLog.e("准备传过去的数据", xqBean.getData() + "");
                     fragment.setParams(bundle);
                     list.add(fragment);
@@ -181,6 +187,11 @@ public class Read_sy_Activity extends BaseActivity implements Read_XQ_Cotract.Vi
             }
         });
 
+
+    }
+
+    @Override
+    public void getRead_Tj(Read_TJ_Bean read_tj_bean) {
 
     }
 

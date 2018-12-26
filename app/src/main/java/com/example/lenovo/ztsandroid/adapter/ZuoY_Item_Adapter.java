@@ -64,7 +64,7 @@ public class ZuoY_Item_Adapter extends BaseAdapter{
 
         String value = liveBean.getValue();
         if (!value.equals("")){
-            viewHolder.textView.setBackgroundResource(R.drawable.yizuo);
+            viewHolder.textView.setBackgroundResource(R.drawable.yizuo_g);
         }
 
         return view;

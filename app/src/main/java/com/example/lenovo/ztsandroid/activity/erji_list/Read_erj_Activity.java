@@ -67,6 +67,7 @@ public class Read_erj_Activity extends BaseActivity implements Read_erj_Cotract.
                 Intent intent = new Intent(App.activity, Read_sy_Activity.class);
                 intent.putExtra("title", Xx);
                 intent.putExtra("Read_id", sentence_id);
+                intent.putExtra("type",type);
                 startActivity(intent);
 
 

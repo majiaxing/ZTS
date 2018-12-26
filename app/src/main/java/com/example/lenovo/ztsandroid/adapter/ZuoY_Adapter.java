@@ -137,17 +137,15 @@ public class ZuoY_Adapter extends BaseAdapter {
         viewHolder.gridView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
         final ViewHolder finalViewHolder = viewHolder;
+
         viewHolder.gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 View view1 = finalViewHolder.gridView.getChildAt(position);
                 TextView textView = view1.findViewById(R.id.T_H);
                 TextView textView_XZ = view1.findViewById(R.id.T_H_XZ);
-//                if (bbb[0]){
 
-//                }else {
-//                    textView.setBackgroundResource(R.drawable.xiaot_xuanz);
-//                    bbb[0] = true;
+
                 textView_XZ.setVisibility(View.VISIBLE);
                 textView.setVisibility(View.GONE);
 //                }

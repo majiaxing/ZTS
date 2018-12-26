@@ -19,6 +19,7 @@ import com.example.lenovo.ztsandroid.model.entity.Kw_erji_list_Bean;
 import com.example.lenovo.ztsandroid.model.entity.LiY_SC_WJ_Bean;
 import com.example.lenovo.ztsandroid.model.entity.LoginBean;
 import com.example.lenovo.ztsandroid.model.entity.PinC_Fay_Bean;
+import com.example.lenovo.ztsandroid.model.entity.Read_TJ_Bean;
 import com.example.lenovo.ztsandroid.model.entity.Read_XQ_Bean;
 import com.example.lenovo.ztsandroid.model.entity.Read_erj_Bean;
 import com.example.lenovo.ztsandroid.model.entity.SC_YX_Bean;
@@ -119,6 +120,9 @@ public interface CSModel {
     void postRead_erj(String flag , String type , MyNetWorkCallback<Read_erj_Bean> callback);
 
     void postRead_xq( String read_id , MyNetWorkCallback<Read_XQ_Bean> callback);
+
+
+    void postRead_TJ(String read_id , MyNetWorkCallback<Read_TJ_Bean> callback);
 
     void postZuoY_List(String stuid , MyNetWorkCallback<ZuoY_list_Bean> callback);
 

@@ -34,6 +34,10 @@ public class Urls {
     //课文详情
     public static final String KwXq = BASE +"text/detail";
 
+
+
+    public static final String Read_TJ = BASE +"learn/saveLearnRead";
+
     //消息列表
     public static final String XXList = BASE +"news/findAllByNews";
 

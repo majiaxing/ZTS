@@ -2,6 +2,7 @@ package com.example.lenovo.ztsandroid.cotract;
 
 import com.example.lenovo.ztsandroid.base.BasePresenter;
 import com.example.lenovo.ztsandroid.base.BaseView;
+import com.example.lenovo.ztsandroid.model.entity.Read_TJ_Bean;
 import com.example.lenovo.ztsandroid.model.entity.Read_XQ_Bean;
 import com.example.lenovo.ztsandroid.model.entity.XX_xq_Bean;
 
@@ -15,9 +16,8 @@ public interface Read_XQ_Cotract  {
     interface View extends BaseView<Read_XQ_Cotract.Presenter> {
         void getManager(Read_XQ_Bean xqBean);
 
+        void getRead_Tj(Read_TJ_Bean read_tj_bean);
         void showmessage(String str);
-
-
     }
     interface Presenter extends BasePresenter {
 

@@ -82,12 +82,15 @@ public class ZuoY_Activity extends BaseActivity {
         Intent intent = getIntent();
         hwid = intent.getStringExtra("hwid");
 
+
+
         new Thread(new Runnable() {
             @Override
             public void run() {
                 postParams();
             }
         }).start();
+
     }
 
     private void postParams() {
@@ -285,6 +288,7 @@ public class ZuoY_Activity extends BaseActivity {
                 App.activity.onBackPressed();
                 break;
             case R.id.Ti_J_ChaK:
+
 
 
                 break;

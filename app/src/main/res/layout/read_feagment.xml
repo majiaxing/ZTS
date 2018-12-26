@@ -70,7 +70,7 @@
             android:layout_width="match_parent"
             android:layout_height="153px"
             android:layout_alignParentBottom="true"
-            android:background="@drawable/tj_chakan_bg"
+            android:background="@drawable/huiyuan"
             android:gravity="center"
             android:text="提交并查看结果"
             android:textColor="#ffffff"

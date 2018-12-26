@@ -23,6 +23,7 @@ import com.example.lenovo.ztsandroid.model.entity.Kw_erji_list_Bean;
 import com.example.lenovo.ztsandroid.model.entity.LiY_SC_WJ_Bean;
 import com.example.lenovo.ztsandroid.model.entity.LoginBean;
 import com.example.lenovo.ztsandroid.model.entity.PinC_Fay_Bean;
+import com.example.lenovo.ztsandroid.model.entity.Read_TJ_Bean;
 import com.example.lenovo.ztsandroid.model.entity.Read_XQ_Bean;
 import com.example.lenovo.ztsandroid.model.entity.Read_erj_Bean;
 import com.example.lenovo.ztsandroid.model.entity.SC_YX_Bean;
@@ -348,6 +349,16 @@ public class CSModelImpl implements CSModel {
         map.put("read_id",read_id );
 
         HttpFactroy.create().post(Urls.KwXq,map,callback);
+    }
+
+    @Override
+    public void postRead_TJ(String read_id, MyNetWorkCallback<Read_TJ_Bean> callback) {
+
+        Map<String, String> map = new HashMap<>();
+        map.put("json",read_id );
+
+        HttpFactroy.create().post(Urls.Read_TJ,map,callback);
+
     }
 
     @Override

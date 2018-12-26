@@ -23,7 +23,7 @@ import java.util.HashMap;
  * Created by Administrator on 2018/11/22.
  */
 
-public class Read_zy_O_Adapter extends BaseAdapter{
+public class Read_zy_O_Adapter extends BaseAdapter implements OnItemClickeListener{
 
     private Context context;
     public ArrayList<Spinner_T_Bean> channels;
@@ -54,11 +54,11 @@ public class Read_zy_O_Adapter extends BaseAdapter{
     public long getItemId(int position) {
         return 0;
     }
-    private HashMap mHashMap = new HashMap();
+//    private HashMap mHashMap = new HashMap();
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder viewHolder = null;
-        if (mHashMap.get(position) == null ){
+//        if (mHashMap.get(position) == null ){
             viewHolder = new ViewHolder();
             convertView = LayoutInflater.from(context).inflate(R.layout.read_xianz_item,null);
             viewHolder.textView = convertView.findViewById(R.id.Item_Tm);
@@ -78,12 +78,12 @@ public class Read_zy_O_Adapter extends BaseAdapter{
             viewHolder.XXC = convertView.findViewById(R.id.XXC);
             viewHolder.XXD = convertView.findViewById(R.id.XXD);
 
-            mHashMap.put(position, convertView);
+//            mHashMap.put(position, convertView);
             convertView.setTag(viewHolder);
-        }else {
-            convertView = (View) mHashMap.get(position);
-            viewHolder = (ViewHolder) convertView.getTag();
-        }
+//        }else {
+//            convertView = (View) mHashMap.get(position);
+//            viewHolder = (ViewHolder) convertView.getTag();
+//        }
 
         final Spinner_T_Bean liveBean = channels.get(position);
         viewHolder.textView.setText(liveBean.getPersonName());
@@ -250,17 +250,12 @@ public class Read_zy_O_Adapter extends BaseAdapter{
         return convertView;
     }
 
-//    private void onItemlick(View v) {
-//
-//    }
-//
-//    @Override
-//    public void onClickeListener(Boolean isShow) {
-//
-//        mIsShow = isShow;
-//        notifyDataSetChanged();
-//
-//    }
+    @Override
+    public void onClickeListener(Boolean isShow) {
+        mIsShow = isShow;
+        notifyDataSetChanged();
+
+    }
 
 
     static class ViewHolder {
