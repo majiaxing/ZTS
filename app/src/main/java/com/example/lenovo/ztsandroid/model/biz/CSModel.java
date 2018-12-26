@@ -26,6 +26,7 @@ import com.example.lenovo.ztsandroid.model.entity.Stdey_Bean;
 import com.example.lenovo.ztsandroid.model.entity.Student_Xinx_Bean;
 import com.example.lenovo.ztsandroid.model.entity.TiJ_Vip_Bean;
 import com.example.lenovo.ztsandroid.model.entity.TiJao_ZY_Bean;
+import com.example.lenovo.ztsandroid.model.entity.TiLi_BaoC_Bean;
 import com.example.lenovo.ztsandroid.model.entity.TingL_TK_Bean;
 import com.example.lenovo.ztsandroid.model.entity.TingL_XQ_xz_Bean;
 import com.example.lenovo.ztsandroid.model.entity.TingL_erj_Bean;
@@ -110,6 +111,8 @@ public interface CSModel {
     void postTingL(String flag , String type ,String listen_type, MyNetWorkCallback<TingL_erj_Bean> callback);
 
     void postTingL_XQ_xz(String listen_id ,MyNetWorkCallback<TingL_XQ_xz_Bean> callback);
+
+    void postTiJ_TinL(String listen_id, String type, String stuid, String listen_type, String listen_questId, String learn_video, String learn_score , MyNetWorkCallback<TiLi_BaoC_Bean> callback);
 
     void postTingL_XQ_tk(String listen_id ,MyNetWorkCallback<TingL_TK_Bean> callback);
 

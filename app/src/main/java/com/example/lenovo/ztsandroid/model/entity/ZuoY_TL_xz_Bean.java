@@ -144,7 +144,19 @@ public class ZuoY_TL_xz_Bean implements Serializable{
             private double everyScore;
             private String listen_video;
             private String listen_type;
+            private String listen_content;
+
+
             private List<ListenQuestionListBean> listen_questionList;
+
+
+            public String getListen_content() {
+                return listen_content;
+            }
+
+            public void setListen_content(String listen_content) {
+                this.listen_content = listen_content;
+            }
 
             public String getListen_id() {
                 return listen_id;

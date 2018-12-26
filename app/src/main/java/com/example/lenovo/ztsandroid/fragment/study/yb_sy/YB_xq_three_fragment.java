@@ -162,6 +162,15 @@ public class YB_xq_three_fragment extends BaseFragment implements YB_XiangQ_Cotr
                         mPlayer.start();
                     }
                 });
+                mPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                    @Override
+                    public void onCompletion(MediaPlayer mp) {
+
+                        MyLog.e("CheckBox_状态",BFCsFay.isChecked() + "");
+                        BFCsFay.setChecked(false);
+                    }
+                });
+
             } catch (IOException e) {
                 e.printStackTrace();
             }

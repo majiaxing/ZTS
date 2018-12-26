@@ -72,6 +72,9 @@ public class DuiH_Sy_Activity extends BaseActivity implements DuiH_XQ_Cotract.Vi
 
         MyLog.e("传过来的save_path",save_path + "");
 
+
+        title.setText("对话");
+
     }
 
     @Override
@@ -176,18 +179,18 @@ public class DuiH_Sy_Activity extends BaseActivity implements DuiH_XQ_Cotract.Vi
             public void run() {
 
                 for (int i = 0; i < duiHXqBean.getData().size(); i++) {
-
                     fragment = new DuiH_Fragment();
                     bundle = new Bundle();
 
                     if (isJS){
+
                         duiHXqBean.getData().get(i).setJS(isJS);
                         isJS =false;
                     }else {
                         duiHXqBean.getData().get(i).setJS(isJS);
                         isJS =true;
-                    }
 
+                    }
                     bundle.putSerializable("list", (Serializable) duiHXqBean.getData());
                     bundle.putString("word_id", duiHXqBean.getData().get(i).getJuese_id());
                     bundle.putString("type", talk_id);
@@ -199,7 +202,6 @@ public class DuiH_Sy_Activity extends BaseActivity implements DuiH_XQ_Cotract.Vi
                     videolist.add(duiHXqBean.getData().get(i).getJuese_video());
 
                     bundle.putSerializable("Juese_videoList",videolist);
-
 
                     MyLog.e("listview 数据", duiHXqBean.getData().toString() + "");
                 }

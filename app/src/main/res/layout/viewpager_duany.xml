@@ -89,8 +89,8 @@
 
             <CheckBox
                 android:id="@+id/BF_zt"
-                android:layout_width="116px"
-                android:layout_height="116px"
+                android:layout_width="156px"
+                android:layout_height="156px"
                 android:background="@drawable/bf_zt_selector"
                 android:button="@null"
                 android:layout_marginLeft="200px"
@@ -99,13 +99,13 @@
 
             <RelativeLayout
                 android:layout_width="350px"
-                android:layout_height="140px"
+                android:layout_height="200px"
                 android:layout_marginLeft="150px">
 
                 <com.example.lenovo.ztsandroid.view.RippleIntroView
                     android:id="@+id/Ripple"
-                    android:layout_width="140px"
-                    android:layout_height="140px"
+                    android:layout_width="200px"
+                    android:layout_height="200px"
                     android:clickable="true"
                     android:fitsSystemWindows="true"
                     android:background="@color/pe_gray"
@@ -114,8 +114,8 @@
 
                     <CheckBox
                         android:id="@+id/Ly_btn"
-                        android:layout_width="116px"
-                        android:layout_height="116px"
+                        android:layout_width="156px"
+                        android:layout_height="156px"
                         android:background="@drawable/luyin_selector"
                         android:button="@null"
 
@@ -134,8 +134,8 @@
 
                     <ImageView
                         android:id="@+id/PinF_jd"
-                        android:layout_width="116px"
-                        android:layout_height="116px"
+                        android:layout_width="156px"
+                        android:layout_height="156px"
                         android:src="@drawable/progress"
                         android:layout_centerInParent="true"
                         android:layout_marginLeft="15px"

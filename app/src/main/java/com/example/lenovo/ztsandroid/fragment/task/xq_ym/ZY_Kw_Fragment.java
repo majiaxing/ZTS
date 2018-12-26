@@ -46,6 +46,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.net.URLEncoder;
 import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.Map;
@@ -167,8 +168,17 @@ public class ZY_Kw_Fragment extends BaseFragment implements Lu_SC_Cotract.View{
             try {
                 mPlayer = null;
                 mPlayer = new MediaPlayer();
-                mPlayer.setDataSource("http://sc1.111ttt.cn:8282/2018/1/03m/13/396131229550.m4a?tflag=1519095601&pin=6cd414115fdb9a950d827487b16b5f97#.mp3");
-                //3 准备播放
+                String relative_path = bundle.getString("Relative_path");
+                String word_video = bundle.getString("Word_video");
+
+                String s = URLEncoder.encode(word_video, "utf-8").replaceAll("\\+", "%20");
+
+
+                String bofUrl = "https://zts100.com/demo/file/download" + "/?" + "Relative_path=" + relative_path + "&" + "type=2" + "&" + "fileName=" + s;
+
+                MyLog.e("URL",bofUrl);
+
+                mPlayer.setDataSource(bofUrl);
                 mPlayer.prepareAsync();
                 mPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
                     @Override
@@ -176,7 +186,12 @@ public class ZY_Kw_Fragment extends BaseFragment implements Lu_SC_Cotract.View{
 
                     }
                 });
-
+                mPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                    @Override
+                    public void onCompletion(MediaPlayer mp) {
+                        BFZt.setChecked(false);
+                    }
+                });
             } catch (IOException e) {
                 e.printStackTrace();
             }

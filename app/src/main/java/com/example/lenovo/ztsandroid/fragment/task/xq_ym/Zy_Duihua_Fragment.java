@@ -1,5 +1,6 @@
 package com.example.lenovo.ztsandroid.fragment.task.xq_ym;
 
+import android.content.Intent;
 import android.media.AudioFormat;
 import android.media.AudioRecord;
 import android.media.MediaPlayer;
@@ -9,25 +10,28 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RatingBar;
 import android.widget.RelativeLayout;
+import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.lenovo.ztsandroid.App;
 import com.example.lenovo.ztsandroid.R;
+import com.example.lenovo.ztsandroid.activity.DuiH_TZYX_Sy_Activity;
 import com.example.lenovo.ztsandroid.adapter.ZY_Juz_Adapter;
 import com.example.lenovo.ztsandroid.base.BaseFragment;
 import com.example.lenovo.ztsandroid.cotract.Lu_SC_Cotract;
+import com.example.lenovo.ztsandroid.fragment.task.er_ym.DuiH_TZYX_ErJFragment;
 import com.example.lenovo.ztsandroid.model.entity.LiY_SC_WJ_Bean;
 import com.example.lenovo.ztsandroid.model.entity.SC_YX_Bean;
 import com.example.lenovo.ztsandroid.model.entity.YuYinPinG_Bean;
 import com.example.lenovo.ztsandroid.model.entity.ZuoY_Dh_Bean;
 import com.example.lenovo.ztsandroid.presenter.Lu_SC_Presenter;
-import com.example.lenovo.ztsandroid.presenter.Lu_SC_Stdey_dh_Presenter;
 import com.example.lenovo.ztsandroid.presenter.PinC_ZY_Fay_presenter;
 import com.example.lenovo.ztsandroid.presenter.Sc_Lu_Presenter;
 import com.example.lenovo.ztsandroid.presenter.ZhiL_Csh_ZY_Fy_Presenter;
@@ -43,6 +47,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.net.URLEncoder;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
@@ -59,18 +64,13 @@ import cn.hutool.core.util.CharsetUtil;
 public class Zy_Duihua_Fragment extends BaseFragment implements Lu_SC_Cotract.View {
 
 
-    @BindView(R.id.zhuS)
-    TextView zhuS;
-    @BindView(R.id.K_G)
-    CheckBox KG;
-    @BindView(R.id.linearLayout8)
-    LinearLayout linearLayout8;
+
     @BindView(R.id.Danc_list)
     ListView DancList;
     @BindView(R.id.BF_zt)
     CheckBox BFZt;
-    @BindView(R.id.Ly_btn)
-    CheckBox LyBtn;
+//    @BindView(R.id.Ly_btn)
+//    CheckBox LyBtn;
     @BindView(R.id.PF_fs)
     TextView PFFs;
     @BindView(R.id.GL_)
@@ -81,6 +81,10 @@ public class Zy_Duihua_Fragment extends BaseFragment implements Lu_SC_Cotract.Vi
     LinearLayout BFLY;
     @BindView(R.id.relativeLayout)
     RelativeLayout relativeLayout;
+    @BindView(R.id.id_seekBar)
+    SeekBar idSeekBar;
+    @BindView(R.id.TZYX_Q)
+    Button TZYXQ;
     private ZY_Juz_Adapter myadapter;
     private ArrayList<ZuoY_Dh_Bean.DataBean.TypeListBean> mlist = new ArrayList<>();
     private Bundle bundle;
@@ -92,14 +96,15 @@ public class Zy_Duihua_Fragment extends BaseFragment implements Lu_SC_Cotract.Vi
     private MediaRecorder mediaRecorder = new MediaRecorder();  //用于录音
     private File file = new File("/mnt/sdcard", System.currentTimeMillis() + ".mp3");  //创建一个临时的音频文件
     private MediaPlayer mPlayer = new MediaPlayer();  //用于播放音频
-    private long currenttime;  //用于确定当前录音时间
-    private boolean isrecording = false;  //用于判断当前是否在录音
-    private boolean Isplaying = false;  //用于判断是否正在处于播放录音状态
     private String hw_answerId;
     private String hw_type;
     private String hw_content;
     private String hwid;
     private String sessionId;
+    private String avgScore;
+    private String relativepath;
+    private ArrayList<String> juese_video;
+
 
     @Override
     protected int getLayoutId() {
@@ -111,15 +116,22 @@ public class Zy_Duihua_Fragment extends BaseFragment implements Lu_SC_Cotract.Vi
 
         ArrayList<ZuoY_Dh_Bean.DataBean.TypeListBean> list = (ArrayList<ZuoY_Dh_Bean.DataBean.TypeListBean>) bundle.getSerializable("list");
 
-        hw_answerId = bundle.getString("hw_answerId");
 
-        hw_answerId = bundle.getString("hw_answerId");
+//        hw_answerId = bundle.getString("hw_answerId");
         hw_type = bundle.getString("hw_type");
         hw_content = bundle.getString("hw_content");
         hwid = bundle.getString("hwid");
+        avgScore = bundle.getString("avgScore");
+        relativepath = bundle.getString("Relative_path");
+
+
+        MyLog.e("relativepath+____++_+_",relativepath +hwid+hw_answerId+ "");
+
+        juese_video = (ArrayList<String>) bundle.getSerializable("Juese_videoList");
+
+        hw_answerId = list.get(1).getHw_answerId();
 
         mlist.addAll(list);
-
         MyLog.e("listSHUJU", list.toString() + "");
 
         ListView listView = view.findViewById(R.id.Danc_list);
@@ -146,17 +158,16 @@ public class Zy_Duihua_Fragment extends BaseFragment implements Lu_SC_Cotract.Vi
         return rootView;
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        unbinder.unbind();
-        mPlayer.stop();
-        mediaPlayer.stop();
-        mediaRecorder.stop();
-    }
+//    @Override
+//    public void onDestroyView() {
+//        super.onDestroyView();
+//        unbinder.unbind();
+//        mPlayer.stop();
+//        mediaPlayer.stop();
+//        mediaRecorder.stop();
+//    }
 
-    @Override
-    public void setUserVisibleHint(boolean isVisibleToUser) {
+    public void setVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
         if (mPlayer == null) {
             mPlayer = new MediaPlayer();
@@ -166,23 +177,36 @@ public class Zy_Duihua_Fragment extends BaseFragment implements Lu_SC_Cotract.Vi
             mPlayer.stop();
         } else {
             try {
+
                 mPlayer = null;
                 mPlayer = new MediaPlayer();
-                mPlayer.setDataSource("http://sc1.111ttt.cn:8282/2018/1/03m/13/396131229550.m4a?tflag=1519095601&pin=6cd414115fdb9a950d827487b16b5f97#.mp3");
+                String s = URLEncoder.encode(juese_video.get(1), "utf-8").replaceAll("\\+", "%20");
+
+                final String bofUrl = "https://zts100.com/demo/file/download" + "/?" + "Relative_path=" + relativepath + "&" + "type=2" + "&" + "fileName=" + s;
+                MyLog.e("拼接好的 播放 Url", bofUrl);
+                mPlayer.setDataSource(bofUrl);
                 //3 准备播放
                 mPlayer.prepareAsync();
                 mPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
                     @Override
-                    public void onPrepared(MediaPlayer mediaPlayer) {
-
+                    public void onPrepared(MediaPlayer mp) {
+                        mPlayer.start();
                     }
                 });
 
+                mPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                    @Override
+                    public void onCompletion(MediaPlayer mp) {
+
+//                        MyLog.e("CheckBox_状态",BFZt.isChecked() + "");
+                        BFZt.setChecked(false);
+                    }
+                });
+
+//                }
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
-
         }
     }
 
@@ -237,7 +261,6 @@ public class Zy_Duihua_Fragment extends BaseFragment implements Lu_SC_Cotract.Vi
      */
     private void playMusic() {
 
-
 //        byte[] bytes = readBytesFromFile(NewAudioName);
 //        byte[] bytes1 = byteMerger(bytes);
 //
@@ -265,8 +288,6 @@ public class Zy_Duihua_Fragment extends BaseFragment implements Lu_SC_Cotract.Vi
             }
         }
     }
-
-
     /**
      * 开始录制音频
      */
@@ -346,7 +367,6 @@ public class Zy_Duihua_Fragment extends BaseFragment implements Lu_SC_Cotract.Vi
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-
         while (isRecord == true) {
             readSize = audioRecord.read(audioData, 0, bufferSizeInBytes);
             Log.d(TAG, "readSize =" + readSize);
@@ -359,7 +379,6 @@ public class Zy_Duihua_Fragment extends BaseFragment implements Lu_SC_Cotract.Vi
                 }
             }
         }
-
         try {
             fos.close();
         } catch (IOException e) {
@@ -367,8 +386,6 @@ public class Zy_Duihua_Fragment extends BaseFragment implements Lu_SC_Cotract.Vi
             e.printStackTrace();
         }
     }
-
-
     private void copyWaveFile(String inFileName, String outFileName) {
         FileInputStream in = null;
         FileOutputStream out = null;
@@ -462,46 +479,55 @@ public class Zy_Duihua_Fragment extends BaseFragment implements Lu_SC_Cotract.Vi
     private Boolean bool[] = {false};
     private Boolean b[] = {false};
 
-    @OnClick({R.id.K_G, R.id.BF_zt, R.id.Ly_btn})
+    @OnClick({ R.id.BF_zt ,R.id.TZYX_Q})
     public void onViewClicked(View view) {
         switch (view.getId()) {
-            case R.id.K_G:
-                break;
             case R.id.BF_zt:
 
                 if (bool[0]) {
-                    if (mPlayer.isPlaying()) {
+
                         MyLog.e("lalall", "ahahahahh");
-                        mPlayer.pause();
-                    }
+                    setVisibleHint(false);
+
                     bool[0] = false;
                 } else {
-                    if (!mPlayer.isPlaying()) {
-                        MyLog.e("holle dnsjk", "ahahahahh");
-                        mPlayer.start();
-                    }
+
+//                        MyLog.e("holle dnsjk", "ahahahahh");
+//                        mPlayer.start();
+                        setVisibleHint(true);
+
                     bool[0] = true;
                 }
 
+                break;
+//            case R.id.Ly_btn:
+//                if (b[0]) {
+//                    stopAudioRecord();
+//                    b[0] = false;
+//                } else {
+//                    startAudioRecord();
+//                    presenter = new ZhiL_Csh_ZY_Fy_Presenter(this);
+//                    presenter.setUrlsZhiL("1", mlist.get(1).getJuese_yw(), System.currentTimeMillis() + "", "1", "4.0");
+//                    b[0] = true;
+//                }
+//                break;
+            case R.id.TZYX_Q:
+
+                Intent intent = new Intent(App.activity, DuiH_TZYX_ErJFragment.class);
+//                intent.putExtra("talk_id",type);
+//                intent.putExtra("relative_path",relative_path);
+//                intent.putExtra("title",title);
+//                MyLog.e("talk_id+relative_path＋title",type+relative_path+title);
+                intent.putExtra("hw_type",hw_type);
+                intent.putExtra("hw_content", hw_content);
+                intent.putExtra("hwid",hwid);
+                intent.putExtra("avgScore",avgScore);
+                startActivity(intent);
 
                 break;
-            case R.id.Ly_btn:
-                if (b[0]) {
-                    stopAudioRecord();
-                    b[0] = false;
-                } else {
-                    startAudioRecord();
-                    presenter = new ZhiL_Csh_ZY_Fy_Presenter(this);
-                    presenter.setUrlsZhiL("1", mlist.get(1).getJuese_yw(), System.currentTimeMillis() + "", "1", "4.0");
-                    b[0] = true;
 
-
-                }
-                break;
         }
     }
-
-
 
 
     private float f;

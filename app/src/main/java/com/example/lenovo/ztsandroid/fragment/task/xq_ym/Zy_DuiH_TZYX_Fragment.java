@@ -1,43 +1,43 @@
-package com.example.lenovo.ztsandroid.fragment;
+package com.example.lenovo.ztsandroid.fragment.task.xq_ym;
 
-import android.content.Intent;
 import android.media.AudioFormat;
 import android.media.AudioRecord;
 import android.media.MediaPlayer;
 import android.media.MediaRecorder;
 import android.os.Bundle;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.CheckBox;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RatingBar;
 import android.widget.RelativeLayout;
-import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.lenovo.ztsandroid.App;
 import com.example.lenovo.ztsandroid.R;
-import com.example.lenovo.ztsandroid.activity.DuiH_TZYX_Sy_Activity;
 import com.example.lenovo.ztsandroid.adapter.Juz_Adapter;
+import com.example.lenovo.ztsandroid.adapter.ZY_Juz_Adapter;
 import com.example.lenovo.ztsandroid.base.BaseFragment;
 import com.example.lenovo.ztsandroid.cotract.ZhiL_Yuyin_Cotract;
-import com.example.lenovo.ztsandroid.fragment.study.yb_sy.FaY_DongH_Fragment;
 import com.example.lenovo.ztsandroid.model.entity.DuiH_XQ_Bean;
 import com.example.lenovo.ztsandroid.model.entity.SC_YX_Bean;
 import com.example.lenovo.ztsandroid.model.entity.Stdey_Bean;
 import com.example.lenovo.ztsandroid.model.entity.YuYinPinG_Bean;
+import com.example.lenovo.ztsandroid.model.entity.ZuoY_Dh_Bean;
 import com.example.lenovo.ztsandroid.presenter.Lu_SC_Stdey_dh_Presenter;
 import com.example.lenovo.ztsandroid.presenter.Lu_Study_Presenter;
 import com.example.lenovo.ztsandroid.presenter.PinC_Fay_presenter;
+import com.example.lenovo.ztsandroid.presenter.ZhiL_Csh_Fy_Presenter;
 import com.example.lenovo.ztsandroid.utils.ConvertUtil;
 import com.example.lenovo.ztsandroid.utils.MyLog;
+import com.example.lenovo.ztsandroid.view.RippleIntroView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -55,6 +55,7 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import butterknife.Unbinder;
 import cn.hutool.core.codec.Base64Encoder;
 import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.util.CharsetUtil;
@@ -62,23 +63,16 @@ import cn.hutool.core.util.CharsetUtil;
 /**
  * Created by Administrator on 2018/11/12.
  */
-public class DuiH_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.View {
+public class Zy_DuiH_TZYX_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.View {
 
-//
-//    @BindView(R.id.zhuS)
+    //    @BindView(R.id.zhuS)
 //    TextView zhuS;
 //    @BindView(R.id.K_G)
 //    CheckBox KG;
 //    @BindView(R.id.linearLayout8)
 //    LinearLayout linearLayout8;
-    @BindView(R.id.Danc_list)
-    ListView DancList;
-    @BindView(R.id.BF_zt)
-    CheckBox BFZt;
-    @BindView(R.id.id_seekBar)
-    SeekBar idSeekBar;
-    @BindView(R.id.TZYX_Q)
-    Button TZYXQ;
+    @BindView(R.id.Ly_btn)
+    CheckBox LyBtn;
     @BindView(R.id.PF_fs)
     TextView PFFs;
     @BindView(R.id.GL_)
@@ -89,10 +83,24 @@ public class DuiH_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.Vi
     LinearLayout BFLY;
     @BindView(R.id.relativeLayout)
     RelativeLayout relativeLayout;
+    Unbinder unbinder;
+    @BindView(R.id.Danc_list)
+    ListView DancList;
+    @BindView(R.id.BF_zt)
+    CheckBox BFZt;
+    @BindView(R.id.Ripple)
+    RippleIntroView Ripple;
+    @BindView(R.id.PinF_jd)
+    ImageView PinFJd;
+    @BindView(R.id.Text_Jz)
+    TextView TextJz;
+    @BindView(R.id.linear)
+    LinearLayout linear;
+    Unbinder unbinder1;
 
-    private Juz_Adapter myadapter;
-    private ArrayList<DuiH_XQ_Bean.DataBean> mlist = new ArrayList<>();
-    private Bundle bundle;
+    private ZY_Juz_Adapter myadapter;
+    private ArrayList<ZuoY_Dh_Bean.DataBean.TypeListBean> mlist = new ArrayList<>();
+
     private MediaPlayer mPlayer = new MediaPlayer();  //用于播放音频
     private String word_id;
     private String type;
@@ -105,11 +113,43 @@ public class DuiH_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.Vi
     private ArrayList<String> juese_video;
     private String relative_path;
     private String title;
+    private Bundle bundle;
 
     @Override
     protected int getLayoutId() {
-        return R.layout.viewpager_juz;
+        return R.layout.viewpager_juz_tzyx;
     }
+    private Animation hyperspaceJumpAnimation;
+    @Override
+    protected void init(View view) {
+
+
+
+        ArrayList<ZuoY_Dh_Bean.DataBean.TypeListBean> list = (ArrayList<ZuoY_Dh_Bean.DataBean.TypeListBean>) bundle.getSerializable("list");
+
+        word_id = bundle.getString("word_id");
+        type = bundle.getString("type");
+        relative_path = bundle.getString("Relative_path");
+        title = bundle.getString("title");
+        relativepath = bundle.getString("Relative_path");
+        juese_video = (ArrayList<String>) bundle.getSerializable("Juese_videoList");
+        mlist.addAll(list);
+
+        MyLog.e("listSHUJU", list.toString() + "");
+
+        ListView listView = view.findViewById(R.id.Danc_list);
+        myadapter = new ZY_Juz_Adapter(App.activity, mlist);
+        listView.setAdapter(myadapter);
+
+        creatAudioRecord();
+        relativeLayout.setVisibility(View.GONE);
+
+        hyperspaceJumpAnimation = AnimationUtils.loadAnimation(App.activity, R.anim.loading_animation);
+        // 使用ImageView显示动画
+        PinFJd.startAnimation(hyperspaceJumpAnimation);
+
+    }
+
 
     private static final String TAG = "AudioRecordActivity";
     private int bufferSizeInBytes = 0;//缓冲区大小
@@ -125,9 +165,13 @@ public class DuiH_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.Vi
     private static final String AudioName = "/sdcard/love.raw";
     //NewAudioName可播放的音频文件
     private static final String NewAudioName = "/sdcard/" + System.currentTimeMillis() + ".wav";
+
     private AudioRecord audioRecord;
+
     //播放音频
     private MediaPlayer mediaPlayer;
+
+
     private boolean isRecord = false;//设置录制状态
 
 
@@ -135,6 +179,7 @@ public class DuiH_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.Vi
         //根据AudioRecord的音频采样率、音频录制声道、音频数据格式获取缓冲区大小
         bufferSizeInBytes = AudioRecord.getMinBufferSize(sampleRateInHz, channelConfig, audioFormat);
         Log.d(TAG, "creatAudioRecord-->bufferSizeInBytes=" + bufferSizeInBytes);
+
         //根据音频获取来源、音频采用率、音频录制声道、音频数据格式和缓冲区大小来创建AudioRecord对象
         audioRecord = new AudioRecord(audioSource, sampleRateInHz, channelConfig, audioFormat, bufferSizeInBytes);
 
@@ -146,21 +191,83 @@ public class DuiH_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.Vi
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // TODO: inflate a fragment view
         View rootView = super.onCreateView(inflater, container, savedInstanceState);
-        unbinder = ButterKnife.bind(this, rootView);
+        unbinder1 = ButterKnife.bind(this, rootView);
         return rootView;
     }
 
-
-
-    @OnClick(R.id.TZYX_Q)
-    public void onViewClicked() {
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        unbinder1.unbind();
     }
 
+    @OnClick({R.id.BF_zt, R.id.Ly_btn, R.id.BF_LY})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.BF_zt:
+                if (bool[0]) {
+                    if (mPlayer.isPlaying()) {
+                        MyLog.e("lalall", "ahahahahh");
+                        mPlayer.pause();
+                    }
+                    bool[0] = false;
+                } else {
+                    if (!mPlayer.isPlaying()) {
+                        MyLog.e("holle dnsjk", "ahahahahh");
+                        setVisibleHint(true);
+                    }
+                    bool[0] = true;
+                }
+                break;
+            case R.id.Ly_btn:
+                Log.e("AAAAAAAAAAAA", "WWWWWWWWWWWWWWWWWX");
+                if (b[0]) {
+                    stopAudioRecord();
+                    b[0] = false;
+                    Ripple.setColor(this.getResources().getColor(R.color.colorWhite));
+                } else {
+//
+                    startAudioRecord();
+                    presenter = new ZhiL_Csh_Fy_Presenter(this);
+                    presenter.setUrlsZhiL("1", mlist.get(0).getJuese_yw(), System.currentTimeMillis() + "", "1", "4.0");
+                    b[0] = true;
+                    Ripple.setColor(this.getResources().getColor(R.color.text_color_red));
+                }
+                break;
+            case R.id.BF_LY:
+
+                if (aBoolean[0]) {
+                    if (mediaPlayer.isPlaying()) {
+
+                        pause();
+                    }
+                    aBoolean[0] = false;
+
+                } else {
+                    if (!mediaPlayer.isPlaying()) {
+                        playMusic();
+                    }
+                    aBoolean[0] = true;
+
+                }
+                break;
+        }
+    }
+
+//    @Override
+//    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+//        // TODO: inflate a fragment view
+//        View rootView = super.onCreateView(inflater, container, savedInstanceState);
+//        unbinder = ButterKnife.bind(this, rootView);
+//        return rootView;
+//    }
+//
 //    @Override
 //    public void onDestroyView() {
 //        super.onDestroyView();
 //        unbinder.unbind();
 //    }
+
 
     private final class PrepareListener implements MediaPlayer.OnPreparedListener {
 
@@ -175,6 +282,8 @@ public class DuiH_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.Vi
      * 播放录制的音频
      */
     private void playMusic() {
+
+
 //        byte[] bytes = readBytesFromFile(NewAudioName);
 //        byte[] bytes1 = byteMerger(bytes);
 //
@@ -237,6 +346,9 @@ public class DuiH_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.Vi
         byte[] bytes = FileUtil.readBytes(file);
         String toBase64 = Base64Encoder.encode(bytes, CharsetUtil.CHARSET_ISO_8859_1);
         if (sessionId != null) {
+
+            linear.setVisibility(View.VISIBLE);
+            LyBtn.setVisibility(View.GONE);
 
             presenter = new PinC_Fay_presenter(this);
             presenter.seturlZhiL("1", "1", "2", "1", toBase64, sessionId);
@@ -310,6 +422,7 @@ public class DuiH_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.Vi
             e.printStackTrace();
         }
     }
+
 
     private void copyWaveFile(String inFileName, String outFileName) {
         FileInputStream in = null;
@@ -401,24 +514,6 @@ public class DuiH_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.Vi
     }
 
 
-    @Override
-    protected void init(View view) {
-
-        ArrayList<DuiH_XQ_Bean.DataBean> list = (ArrayList<DuiH_XQ_Bean.DataBean>) bundle.getSerializable("list");
-        mlist.addAll(list);
-
-        word_id = bundle.getString("word_id");
-        type = bundle.getString("type");
-        relative_path = bundle.getString("Relative_path");
-        title = bundle.getString("title");
-
-        ListView listView = view.findViewById(R.id.Danc_list);
-        myadapter = new Juz_Adapter(App.activity, mlist);
-        listView.setAdapter(myadapter);
-
-        creatAudioRecord();
-        relativeLayout.setVisibility(View.GONE);
-    }
 
     public void setVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
@@ -430,8 +525,7 @@ public class DuiH_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.Vi
             mPlayer.stop();
         } else {
             try {
-                relativepath = bundle.getString("Relative_path");
-                juese_video = (ArrayList<String>) bundle.getSerializable("Juese_videoList");
+
                 MyLog.e(" skdanlda", juese_video.size() + "");
 //                for (int i = 0; i<juese_video.size();i++){
                 mPlayer = null;
@@ -449,16 +543,15 @@ public class DuiH_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.Vi
                         mPlayer.start();
                     }
                 });
+
                 mPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                     @Override
                     public void onCompletion(MediaPlayer mp) {
 
-                        MyLog.e("CheckBox_状态",BFZt.isChecked() + "");
+//                        MyLog.e("CheckBox_状态",BFZt.isChecked() + "");
                         BFZt.setChecked(false);
                     }
                 });
-
-
 
 //                }
             } catch (IOException e) {
@@ -482,29 +575,30 @@ public class DuiH_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.Vi
     private Boolean[] bool = {false};
 
 
-    @OnClick({ R.id.BF_zt, R.id.BF_LY ,R.id.TZYX_Q})
-    public void onViewClicked(View view) {
-        switch (view.getId()) {
-//            case R.id.K_G:
+//    @OnClick({R.id.BF_zt, R.id.BF_LY, R.id.Ly_btn})
+//    public void onViewClicked(View view) {
+//        switch (view.getId()) {
+////            case R.id.K_G:
+////                break;
+//            case R.id.BF_zt:
+//
+//                if (bool[0]) {
+//                    if (mPlayer.isPlaying()) {
+//                        MyLog.e("lalall", "ahahahahh");
+//
+//                        mPlayer.pause();
+//                    }
+//                    bool[0] = false;
+//                } else {
+//                    if (!mPlayer.isPlaying()) {
+//                        MyLog.e("holle dnsjk", "ahahahahh");
+//
+//                        setVisibleHint(true);
+//
+//                    }
+//                    bool[0] = true;
+//                }
 //                break;
-            case R.id.BF_zt:
-
-                if (bool[0]) {
-                    if (mPlayer.isPlaying()) {
-                        MyLog.e("lalall", "ahahahahh");
-                        mPlayer.pause();
-                    }
-                    bool[0] = false;
-                } else {
-                    if (!mPlayer.isPlaying()) {
-                        MyLog.e("holle dnsjk", "ahahahahh");
-
-                        setVisibleHint(true);
-
-                    }
-                    bool[0] = true;
-                }
-                break;
 //            case R.id.Ly_btn:
 //                Log.e("AAAAAAAAAAAA", "WWWWWWWWWWWWWWWWWX");
 //                if (b[0]) {
@@ -519,42 +613,41 @@ public class DuiH_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.Vi
 //
 //                }
 //                break;
-//            case R.id.linearLayout8:
-//                if (isShow)
-//                    isShow = false;
-//                else
-//                    isShow = true;
-//                myadapter.onClickeListener(isShow);
-//                break;
+////            case R.id.linearLayout8:
+////                if (isShow)
+////                    isShow = false;
+////                else
+////                    isShow = true;
+////                myadapter.onClickeListener(isShow);
+////                break;
 //            case R.id.BF_LY:
-//                if (aBoolean[0]){
+//                if (aBoolean[0]) {
 //
-//                    if (mediaPlayer.isPlaying()){
+//                    if (mediaPlayer.isPlaying()) {
 //
 //                        pause();
 //                    }
 //                    aBoolean[0] = false;
 //
-//                }else {
-//                    if (!mediaPlayer.isPlaying()){
+//                } else {
+//                    if (!mediaPlayer.isPlaying()) {
 //                        playMusic();
 //                    }
 //                    aBoolean[0] = true;
 //
 //                }
 //                break;
-            case R.id.TZYX_Q:
-
-                Intent intent = new Intent(App.activity, DuiH_TZYX_Sy_Activity.class);
-
-                intent.putExtra("talk_id",type);
-                intent.putExtra("relative_path",relative_path);
-                intent.putExtra("title",title);
-                MyLog.e("talk_id+relative_path＋title",type+relative_path+title);
-                startActivity(intent);
-                break;
-        }
-    }
+////            case R.id.TZYX_Q:
+////
+////                Intent intent = new Intent(App.activity, DuiH_TZYX_Sy_Activity.class);
+////
+////                intent.putExtra("talk_id", type);
+////                intent.putExtra("relative_path", relative_path);
+////                intent.putExtra("title", title);
+////                startActivity(intent);
+////                break;
+//        }
+//    }
 
     private float f;
 
@@ -565,49 +658,52 @@ public class DuiH_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.Vi
         JSONObject json = null;
 
         try {
-
-            MyLog.e("LAALALA2222222", "adsadskjak");
             json = new JSONObject(string);
 
             JSONObject response = json.optJSONObject("Response");
             String PronAccuracy = response.optString("PronAccuracy");
-
-            JSONArray Words = response.getJSONArray("Words");
+            MyLog.e("dsahkdhawladjwli",PronAccuracy +"");
+            String Error = response.optString("Error");
+            MyLog.e("123456",PronAccuracy +"");
+            if (Error != null){
+                App.activity.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        linear.setVisibility(View.GONE);
+                        LyBtn.setVisibility(View.VISIBLE);
+                        Toast.makeText(App.activity,"评估失败",Toast.LENGTH_LONG).show();
+                    }
+                });
+                return;
+            }
+            if (PronAccuracy != "0") {
             float fff = 0;
             float flo = 0;
-
-            MyLog.e("LAALALA2222222", Words.toString());
             int q = 0;
+                JSONArray Words = response.optJSONArray("Words");
+                MyLog.e("LAALALA2222222", Words.toString());
             for (int i = 0; i < Words.length(); i++) {
-
+                MyLog.e("LAALALA2222222", Words.toString());
                 JSONObject value = Words.getJSONObject(i);
                 String pronAccuracy1 = value.optString("PronAccuracy");
                 String word = value.optString("Word");
+                MyLog.e("LAALALA2222222", Words.toString());
                 float f = ConvertUtil.convertToFloat(pronAccuracy1, fff);
                 if (f >= 50) {
                     flo = f + flo;
                     q = q + 1;
                 }
-
                 MyLog.e("得到的总分值————", flo + "");
-
             }
-//            MyLog.e("得到的总分值————",flo+"");
 
             MyLog.e("得到的有效的单词数————", q + "");
 
             float v = flo / q;
 
-
             DecimalFormat decimalFormat = new DecimalFormat(".00");//构造方法的字符格式这里如果小数不足2位,会以0补足.
             final String p = decimalFormat.format(v);//format 返回的是字符串
 
             MyLog.e("得到的平均分值————", flo + "");
-
-
-            if (PronAccuracy != "0") {
-
-//                str = PronAccuracy.substring(0, 4);
 
                 MyLog.e("发音得到的评分————", p + "");
 
@@ -619,9 +715,7 @@ public class DuiH_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.Vi
 
                         relativeLayout.setVisibility(View.VISIBLE);
                         PFFs.setText(p);
-//                        PFFs.setText(str);
-//                        relativeLayout.setVisibility(View.VISIBLE);
-//                        nextT.setVisibility(View.VISIBLE);
+
                         float i = ConvertUtil.convertToFloat(p, f);
                         MyLog.e("评估出来的分数", i + "");
 
@@ -631,12 +725,14 @@ public class DuiH_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.Vi
                             GL.setText("加油，继续努力");
                         }
                         float in = i / 20;
-//
+
                         MyLog.e("zhanshi出来的分数", i + "");
                         XinxBar.setIsIndicator(true);
                         XinxBar.setRating(in);
                         XinxBar.setNumStars(5);
                         XinxBar.setMax(5);
+                        linear.setVisibility(View.GONE);
+                        LyBtn.setVisibility(View.VISIBLE);
 
                     }
                 });
@@ -648,6 +744,8 @@ public class DuiH_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.Vi
                 App.activity.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
+                        linear.setVisibility(View.GONE);
+                        LyBtn.setVisibility(View.VISIBLE);
                         Toast.makeText(App.activity, "请正常朗读", Toast.LENGTH_SHORT).show();
                     }
                 });
@@ -696,7 +794,6 @@ public class DuiH_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.Vi
     public void getWJSC(SC_YX_Bean sc_yx_bean) {
 
     }
-
     @Override
     public void showmessage(String str) {
 

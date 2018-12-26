@@ -75,6 +75,7 @@ public class Tingl_NeiR_Activity  extends BaseActivity implements TingL_erj_Cotr
                             intent.putExtra("title",Xx);
                             intent.putExtra("listen_id",text_id);
                             intent.putExtra("relative_path",relative_path);
+                            intent.putExtra("type",type);
                             startActivity(intent);
                             break;
                         case "2":
@@ -83,6 +84,7 @@ public class Tingl_NeiR_Activity  extends BaseActivity implements TingL_erj_Cotr
                             intent1.putExtra("title",Xx);
                             intent1.putExtra("listen_id",text_id);
                             intent1.putExtra("relative_path",relative_path);
+                            intent1.putExtra("type",type);
                             startActivity(intent1);
                             break;
                     }

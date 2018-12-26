@@ -178,13 +178,14 @@
             android:layout_gravity="center_horizontal"
             android:layout_below="@+id/relativeLayout2"
             android:layout_centerHorizontal="true"
+            android:layout_marginTop="110px"
             android:id="@+id/linearLayout5">
 
             <CheckBox
                 android:id="@+id/BF_zt"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="110px"
+                android:layout_width="156px"
+                android:layout_height="156px"
+
                 android:background="@drawable/bf_zt_selector"
                 android:button="@null"
                 />

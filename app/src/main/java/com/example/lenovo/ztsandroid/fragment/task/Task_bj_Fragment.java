@@ -97,11 +97,9 @@ public class Task_bj_Fragment extends BaseFragment implements Zuoy_Cotract.View{
     @Override
     public void getManager(ZuoY_list_Bean listBean) {
 
-
         if (listBean.getData() == null){
             return;
         }
-
         list.addAll(listBean.getData());
 
         App.activity.runOnUiThread(new Runnable() {

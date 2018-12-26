@@ -143,7 +143,7 @@ public class OkHttpUtils implements IHttp {
             }
         }
 
-        Request request = new Request.Builder().url(url).post(builder.build()).build();
+        Request request = new Request.Builder().url(url).addHeader("Cookie",App.Cookie).post(builder.build()).build();
         okHttpClient.newCall(request).enqueue(new Callback() {
 
             @Override

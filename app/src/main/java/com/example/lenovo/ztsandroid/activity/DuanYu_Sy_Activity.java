@@ -36,7 +36,7 @@ import butterknife.OnClick;
  * Created by Administrator on 2018/11/7.
  */
 
-public class DuanYu_Sy_Activity extends BaseActivity implements Dy_erj_Cotract.View {
+public class DuanYu_Sy_Activity extends BaseActivity implements Dy_erj_Cotract.View ,Duany_Fragment.FragmentToActivity {
 
 
     @BindView(R.id.back_jt)
@@ -49,7 +49,6 @@ public class DuanYu_Sy_Activity extends BaseActivity implements Dy_erj_Cotract.V
     ViewPager danciViewPager;
     @BindView(R.id.linearLayout)
     LinearLayout linearLayout;
-    @BindView(R.id.text_X)
     TextView textX;
     private ViewPagerAdapter adapter;
     private ArrayList<Fragment> list = new ArrayList<>();
@@ -186,4 +185,9 @@ public class DuanYu_Sy_Activity extends BaseActivity implements Dy_erj_Cotract.V
     }
 
 
+    @Override
+    public void huidiao(String str) {
+
+        title.setText(str);
+    }
 }

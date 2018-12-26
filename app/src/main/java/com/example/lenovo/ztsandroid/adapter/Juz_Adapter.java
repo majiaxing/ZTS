@@ -65,7 +65,6 @@ public class Juz_Adapter extends BaseAdapter implements OnListener{
 
         if (liveBean.getJS() == true){
             MyLog.e("我是B","woshiBBB");
-
             viewHolder.textViewB.setVisibility(View.VISIBLE);
         }else{
             MyLog.e("我是A","woshiAAA");

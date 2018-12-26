@@ -40,6 +40,11 @@ public class TingL_TK_Presenter implements TingL_XQ_xz_Cotract.Presenter {
     }
 
     @Override
+    public void SetUrl(String listen_id, String type, String stuid, String listen_type, String listen_questId, String learn_video, String learn_score) {
+
+    }
+
+    @Override
     public void start() {
 
     }

@@ -14,14 +14,27 @@
     android:orientation="horizontal"
     >
 
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40px">
+
+
+            <Button
+                android:id="@+id/Button"
+                android:layout_width="100px"
+                android:layout_height="100px"
+                android:layout_centerInParent="true"
+                android:background="@drawable/bof_videoview"
+                />
+
         <VideoView
             android:id="@+id/video_view"
             android:layout_width="344px"
-            android:layout_height="344px"
-            android:layout_marginLeft="40px"
-
+            android:layout_height="284px"
+            android:layout_centerInParent="true"
             />
-
+        </RelativeLayout>
     <TextView
     android:id="@+id/YB_Nr"
     android:layout_width="wrap_content"

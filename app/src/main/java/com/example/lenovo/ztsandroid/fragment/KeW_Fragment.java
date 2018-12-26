@@ -90,8 +90,6 @@ public class KeW_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.Vie
     Unbinder unbinder;
     @BindView(R.id.Ripple)
     RippleIntroView Ripple;
-    @BindView(R.id.PinFText)
-    TextView PinFText;
     @BindView(R.id.line)
     LinearLayout line;
     @BindView(R.id.PinF_jd)
@@ -100,7 +98,10 @@ public class KeW_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.Vie
     TextView TextJz;
     @BindView(R.id.linear)
     LinearLayout linear;
-
+    @BindView(R.id.PinF_Text)
+    TextView PinFText;
+    @BindView(R.id.linear_Layout)
+    LinearLayout linearLayout;
 
 
     private Bundle bundle;
@@ -160,7 +161,7 @@ public class KeW_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.Vie
                     @Override
                     public void onCompletion(MediaPlayer mp) {
 
-                        MyLog.e("CheckBox_状态",BFZt.isChecked() + "");
+                        MyLog.e("CheckBox_状态", BFZt.isChecked() + "");
                         BFZt.setChecked(false);
                     }
                 });
@@ -454,7 +455,8 @@ public class KeW_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.Vie
 //        play.setImageResource(ic_media_play);
     }
 
-private Animation hyperspaceJumpAnimation;
+    private Animation hyperspaceJumpAnimation;
+
     @Override
     protected void init(View view) {
 
@@ -470,16 +472,24 @@ private Animation hyperspaceJumpAnimation;
         word_id = bundle.getString("word_id");
         type = bundle.getString("type");
 
+        if (fy == null){
+            linearLayout.setVisibility(View.INVISIBLE);
+            JzNr.setText(nr);
+            FyText.setText(fy);
+        }else {
         JzNr.setText(nr);
         FyText.setText(fy);
+        linearLayout.setVisibility(View.VISIBLE);
+        }
+
+
+
 
         FyText.setVisibility(View.GONE);
-
 
         hyperspaceJumpAnimation = AnimationUtils.loadAnimation(App.activity, R.anim.loading_animation);
         // 使用ImageView显示动画
         PinFJd.startAnimation(hyperspaceJumpAnimation);
-
 
         creatAudioRecord();
     }
@@ -518,7 +528,7 @@ private Animation hyperspaceJumpAnimation;
     private Boolean[] bool = {false};
 
     @OnClick({R.id.next_T, R.id.K_G, R.id.BF_zt, R.id.Ly_btn})
-    public void onViewClicked(View view){
+    public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.next_T:
                 break;
@@ -558,9 +568,9 @@ private Animation hyperspaceJumpAnimation;
                         e.printStackTrace();
                     }
 
-                    String newStr = nr.replace("？",""); //得到新的字符串
-                    String string = newStr.replace("'","");
-                    MyLog.e("去掉中文字符串",string);
+                    String newStr = nr.replace("？", ""); //得到新的字符串
+                    String string = newStr.replace("'", "");
+                    MyLog.e("去掉中文字符串", string);
 
                     presenter.setUrlsZhiL("2", string, System.currentTimeMillis() + "", "1", "4.0");
                     b[0] = true;
@@ -569,6 +579,7 @@ private Animation hyperspaceJumpAnimation;
                 break;
         }
     }
+
     private ArrayList<String> getAllSatisfyStr(String str, String regex) {
         if (str == null || str.isEmpty()) {
             return null;
@@ -587,10 +598,10 @@ private Animation hyperspaceJumpAnimation;
     }
 
 
-
     private float f;
     float fff = 0;
     float flo = 0;
+
     private void JsonDemo(String string) {
 
         MyLog.e("LAALALA", "adsadskjak");
@@ -602,13 +613,13 @@ private Animation hyperspaceJumpAnimation;
             JSONObject response = json.optJSONObject("Response");
             JSONObject Error = response.optJSONObject("Error");
 
-            if (Error != null){
+            if (Error != null) {
                 App.activity.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         linear.setVisibility(View.GONE);
                         line.setVisibility(View.VISIBLE);
-                        Toast.makeText(App.activity,"评估失败",Toast.LENGTH_LONG).show();
+                        Toast.makeText(App.activity, "评估失败", Toast.LENGTH_LONG).show();
                     }
                 });
                 return;
@@ -619,9 +630,7 @@ private Animation hyperspaceJumpAnimation;
             for (int i = 0; i < Words.length(); i++) {
                 JSONObject value = Words.getJSONObject(i);
                 String pronAccuracy = value.getString("PronAccuracy");
-
-                MyLog.e("打印pronAccuracy",pronAccuracy  +  "");
-
+                MyLog.e("打印pronAccuracy", pronAccuracy + "");
                 String word = value.optString("Word");
                 float f = ConvertUtil.convertToFloat(pronAccuracy, fff);
                 flo = f + flo;
@@ -631,18 +640,12 @@ private Animation hyperspaceJumpAnimation;
             DecimalFormat decimalFormat = new DecimalFormat(".00");//构造方法的字符格式这里如果小数不足2位,会以0补足.
             String p = decimalFormat.format(v);//format 返回的是字符串
             MyLog.e("得到的平均分值————", flo + "");
-
             if (PronAccuracy != "0") {
-
                 str = PronAccuracy.substring(0, 4);
-
                 MyLog.e("发音得到的评分————", str + "");
-
-
                 App.activity.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-
 //                        PFFs.setText(str);
 //                        relativeLayout.setVisibility(View.VISIBLE);
 //                        nextT.setVisibility(View.VISIBLE);
@@ -664,7 +667,6 @@ private Animation hyperspaceJumpAnimation;
 
                         linear.setVisibility(View.GONE);
                         line.setVisibility(View.VISIBLE);
-
                     }
                 });
 

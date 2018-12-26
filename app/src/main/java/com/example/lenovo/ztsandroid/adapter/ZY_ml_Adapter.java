@@ -18,6 +18,7 @@ import com.example.lenovo.ztsandroid.fragment.task.xq_ym.Zy_TingL_XZ_Fragment;
 import com.example.lenovo.ztsandroid.fragment.task.xq_ym.Zy_YueDu_Fragment;
 import com.example.lenovo.ztsandroid.model.entity.Spinner_Bean;
 import com.example.lenovo.ztsandroid.model.entity.ZuoY_erJ_Bean;
+import com.example.lenovo.ztsandroid.utils.MyLog;
 
 import java.util.ArrayList;
 
@@ -56,18 +57,19 @@ public class ZY_ml_Adapter extends BaseAdapter{
             viewHolder = new ViewHolder();
             convertView = LayoutInflater.from(context).inflate(R.layout.zy_ml_item,null);
             viewHolder.textView = convertView.findViewById(R.id.ZY_LeiX);
+            viewHolder.textZY_Nr = convertView.findViewById(R.id.ZY_Nr);
             convertView.setTag(viewHolder);
         }else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
-
         ZuoY_erJ_Bean.DataBean.HomeworkTypeBean liveBean = list.get(position);
 
+        viewHolder.textZY_Nr.setText(liveBean.getTypeName());
 
+        MyLog.e("NAME",liveBean.getTypeName());
 
         switch (liveBean.getHw_type()){
             case "2":
-
                 viewHolder.textView.setText("单词" +"("+liveBean.getAvgScore() +")");
                 break;
             case "0":
@@ -80,19 +82,19 @@ public class ZY_ml_Adapter extends BaseAdapter{
                 viewHolder.textView.setText("课文"+"("+liveBean.getAvgScore() +")");
                 break;
             case "3":
-
                 viewHolder.textView.setText("句子"+"("+liveBean.getAvgScore() +")");
                 break;
             case "5":
-//                switch (liveBean.getListen_type()){
-//                    case "1":
-//                        viewHolder.textView.setText("听力选择"+"("+liveBean.getAvgScore() +")");
-//                        break;
-//                    case "2":
-//                        viewHolder.textView.setText("听力填空"+"("+liveBean.getAvgScore() +")");
-//                        break;
-//                }
-                viewHolder.textView.setText("听力"+"("+liveBean.getAvgScore() +")");
+//                liveBean.getListen_type()
+                MyLog.e("ADjhsadasa",liveBean.getListenType() + "");
+                switch (liveBean.getListenType()){
+                    case "1":
+                        viewHolder.textView.setText("听力选择"+"("+liveBean.getAvgScore() +")");
+                        break;
+                    case "2":
+                        viewHolder.textView.setText("听力填空"+"("+liveBean.getAvgScore() +")");
+                        break;
+                }
                 break;
             case "6":
                 viewHolder.textView.setText("阅读"+"("+liveBean.getAvgScore() +")");
@@ -108,7 +110,7 @@ public class ZY_ml_Adapter extends BaseAdapter{
 
 
     public class ViewHolder{
-        TextView textView;
+        TextView textView,textZY_Nr;
     }
 
 

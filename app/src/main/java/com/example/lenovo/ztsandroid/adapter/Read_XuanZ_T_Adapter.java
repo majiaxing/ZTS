@@ -22,6 +22,7 @@ public class Read_XuanZ_T_Adapter extends BaseAdapter {
     private Context context;
     public ArrayList<Read_XQ_Bean.DataBean.ReadQuestionListBean> channels;
     private ArrayList<String> answer = new ArrayList<>();
+    private ArrayList<String> read_qidList = new ArrayList<>();
     private ZuoY_Xuanz_Adapter adapter;
     public Read_XuanZ_T_Adapter(Context context, ArrayList<Read_XQ_Bean.DataBean.ReadQuestionListBean> channels) {
         this.context = context;
@@ -29,6 +30,10 @@ public class Read_XuanZ_T_Adapter extends BaseAdapter {
         for (int i = 0; i < channels.size(); i++) {
             answer.add("");
         }
+        for (int a = 0;a<channels.size();a++){
+            read_qidList.add("");
+        }
+
     }
 
 
@@ -79,6 +84,9 @@ public class Read_XuanZ_T_Adapter extends BaseAdapter {
         }
 
         Read_XQ_Bean.DataBean.ReadQuestionListBean liveBeanA = channels.get(position);
+
+        String read_qid = liveBeanA.getRead_qid();
+        read_qidList.set(position,read_qid);
         viewHolder.textView.setText(liveBeanA.getRead_question());
 //        viewHolder.radio_A.setText(liveBean.getRead_optionA()+"." +liveBean.getRead_optionTextA());
         viewHolder.text_A.setText(liveBeanA.getRead_optionList().get(0).getRead_option() + ". "+liveBeanA.getRead_optionList().get(0).getRead_optionText());
@@ -141,11 +149,9 @@ public class Read_XuanZ_T_Adapter extends BaseAdapter {
             }
         });
 
-
-
-
         return convertView;
     }
+
 
     public ArrayList<String>  getAnswer() {
         for (int i = 0; i < answer.size(); i++) {
@@ -155,6 +161,18 @@ public class Read_XuanZ_T_Adapter extends BaseAdapter {
         }
         return answer;
     }
+
+       public ArrayList<String>  getRead_qid() {
+
+           for (int a = 0;a<channels.size();a++){
+               if (read_qidList.get(a).equals("")){
+                   return null;
+               }
+           }
+           return read_qidList;
+    }
+
+
 
 
     static class ViewHolder {

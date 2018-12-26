@@ -24,6 +24,7 @@
         android:gravity="center"
         android:visibility="gone"
         />
+
         <TextView
         android:id="@+id/BF_LY_B"
         android:layout_width="84px"

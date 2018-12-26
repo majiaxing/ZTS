@@ -75,19 +75,18 @@
                 <RelativeLayout
                     android:id="@+id/XX_Btn"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="right"
-
+                    android:layout_height="120px"
+                    android:layout_marginTop="30px"
                     >
 
                     <ImageView
-
                         android:layout_width="48px"
                         android:layout_height="58px"
                         android:layout_alignParentRight="true"
                         android:layout_marginRight="40px"
                         android:src="@drawable/xx_xx"
-                        android:layout_marginTop="55px"
+                        android:layout_centerVertical="true"
+                        android:layout_marginTop="30px"
                         />
 
                     <TextView
@@ -99,11 +98,13 @@
                         android:layout_gravity="right"
                         android:layout_marginRight="40px"
                         android:background="@mipmap/wd_bg"
-                        android:gravity="center"
+                        android:layout_centerVertical="true"
                         android:text="1"
                         android:textColor="#ffffff"
                         android:textSize="28px"
-                        android:visibility="gone" />
+                        android:gravity="center"
+                        android:layout_marginBottom="30px"
+                         />
 
                 </RelativeLayout>
 

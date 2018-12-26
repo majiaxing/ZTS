@@ -1,12 +1,13 @@
 package com.example.lenovo.ztsandroid.model.entity;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by Administrator on 2018/12/8.
  */
 
-public class ZuoY_Dh_Bean {
+public class ZuoY_Dh_Bean implements Serializable{
 
 
     /**
@@ -103,7 +104,7 @@ public class ZuoY_Dh_Bean {
         this.code = code;
     }
 
-    public static class DataBean {
+    public static class DataBean implements Serializable{
         /**
          * HomeworkPath : homework/4567/41/
          * typeList : [{"juese_yw":"Sally：Good morning, Jane.","juese_video":"Greetings.mp3","hw_answerId":"e8e13254-2551-41d1-849b-922415b53911","juese_name":"全部音频","everyScore":6.25,"juese_id":"e8e13254-2551-41d1-849b-922415b53911"},{"juese_yw":"enen","juese_video":"dsds","hw_answerId":"434343434","juese_name":"enen","everyScore":6.25,"juese_id":"434343434"}]
@@ -138,7 +139,7 @@ public class ZuoY_Dh_Bean {
             this.typeList = typeList;
         }
 
-        public static class TypeListBean {
+        public static class TypeListBean implements Serializable{
             /**
              * juese_yw : Sally：Good morning, Jane.
              * juese_video : Greetings.mp3
@@ -154,6 +155,16 @@ public class ZuoY_Dh_Bean {
             private String juese_name;
             private double everyScore;
             private String juese_id;
+
+            private Boolean isJS;
+
+            public Boolean getJS() {
+                return isJS;
+            }
+
+            public void setJS(Boolean JS) {
+                isJS = JS;
+            }
 
             public String getJuese_yw() {
                 return juese_yw;

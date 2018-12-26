@@ -14,6 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.lenovo.ztsandroid.App;
 import com.example.lenovo.ztsandroid.R;
@@ -35,7 +36,7 @@ import butterknife.OnClick;
 /**
  * Created by Administrator on 2018/11/6.
  */
-public class DanC_Sy_Activity extends BaseActivity implements DanC_Cotract.View {
+public class DanC_Sy_Activity extends BaseActivity implements DanC_Cotract.View ,DanCi_fragment.FragmentToActivity {
 
 
     @BindView(R.id.back_jt)
@@ -81,6 +82,8 @@ public class DanC_Sy_Activity extends BaseActivity implements DanC_Cotract.View 
     public void initData() {
 
     }
+
+
 
 
     @Override
@@ -181,4 +184,10 @@ public class DanC_Sy_Activity extends BaseActivity implements DanC_Cotract.View 
 
     }
 
+    @Override
+    public void huidiao(String str) {
+        // 回调函数 取值
+//        Toast.makeText(getApplicationContext(),"我是 Fragment3 回调函数执行了",Toast.LENGTH_SHORT).show();
+        title.setText(str);
+    }
 }

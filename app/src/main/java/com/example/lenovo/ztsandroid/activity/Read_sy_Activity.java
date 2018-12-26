@@ -5,27 +5,22 @@ import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.example.lenovo.ztsandroid.App;
 import com.example.lenovo.ztsandroid.R;
-import com.example.lenovo.ztsandroid.adapter.List_Danc_Adapter;
 import com.example.lenovo.ztsandroid.adapter.List_YueD_Adapter;
 import com.example.lenovo.ztsandroid.adapter.ViewPagerAdapter;
 import com.example.lenovo.ztsandroid.base.BaseActivity;
 import com.example.lenovo.ztsandroid.cotract.Read_XQ_Cotract;
-import com.example.lenovo.ztsandroid.fragment.KeW_Fragment;
 import com.example.lenovo.ztsandroid.fragment.Read_fragment;
-import com.example.lenovo.ztsandroid.model.entity.Dc_Xq_Bean;
 import com.example.lenovo.ztsandroid.model.entity.Read_XQ_Bean;
 import com.example.lenovo.ztsandroid.model.entity.Spinner_Bean;
 import com.example.lenovo.ztsandroid.presenter.Read_XQ_Presenter;
@@ -39,12 +34,10 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-import static android.R.id.list;
-
 /**
  * Created by Administrator on 2018/11/22.
  */
-public class Read_sy_Activity extends BaseActivity implements Read_XQ_Cotract.View{
+public class Read_sy_Activity extends BaseActivity implements Read_XQ_Cotract.View {
 
 
     @BindView(R.id.back_jt)
@@ -55,6 +48,10 @@ public class Read_sy_Activity extends BaseActivity implements Read_XQ_Cotract.Vi
     ImageView imageView;
     @BindView(R.id.danci_viewPager)
     ViewPager danciViewPager;
+    @BindView(R.id.linearLayout)
+    LinearLayout linearLayout;
+    @BindView(R.id.text)
+    TextView text;
 
     private Read_XQ_Cotract.Presenter presenter;
     private String text_id;
@@ -90,7 +87,6 @@ public class Read_sy_Activity extends BaseActivity implements Read_XQ_Cotract.Vi
     }
 
 
-
     public void upPopupWindow(View view) {
         View v = LayoutInflater.from(App.activity).inflate(R.layout.popup_yuedu, null);
         popupView(v);
@@ -104,7 +100,7 @@ public class Read_sy_Activity extends BaseActivity implements Read_XQ_Cotract.Vi
     public void popupView(View v) {
 
         grid = v.findViewById(R.id.Grid_view);
-        Padapter = new List_YueD_Adapter(App.activity,nlist);
+        Padapter = new List_YueD_Adapter(App.activity, nlist);
         grid.setAdapter(Padapter);
         Padapter.notifyDataSetChanged();
         grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -121,13 +117,11 @@ public class Read_sy_Activity extends BaseActivity implements Read_XQ_Cotract.Vi
     }
 
 
-
-
     @Override
     public void loadData() {
 
-    presenter = new Read_XQ_Presenter(this);
-    presenter.SetUrl(text_id);
+        presenter = new Read_XQ_Presenter(this);
+        presenter.SetUrl(text_id);
 
     }
 
@@ -142,19 +136,19 @@ public class Read_sy_Activity extends BaseActivity implements Read_XQ_Cotract.Vi
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.back_jt:
-                BackPopupUtils.PopupW(view,"确认退出阅读练习？退出后将保存进度");
+                BackPopupUtils.PopupW(view, "确认退出阅读练习？退出后将保存进度");
                 break;
             case R.id.title:
-                upPopupWindow(view);
+                upPopupWindow(text);
                 break;
         }
     }
 
 
     int s = 1;
+
     @Override
     public void getManager(final Read_XQ_Bean xqBean) {
-
 
 
         App.activity.runOnUiThread(new Runnable() {
@@ -166,20 +160,21 @@ public class Read_sy_Activity extends BaseActivity implements Read_XQ_Cotract.Vi
                     Read_fragment fragment = new Read_fragment();
                     bundle = new Bundle();
                     bundle.putSerializable("list", (Serializable) xqBean.getData());
-                    MyLog.e("准备传过去的数据",xqBean.getData() + "");
+//                    bundle.putString("",xqBean.getData().get(i).getRead_questionList().get().getRead_qid());
+                    MyLog.e("准备传过去的数据", xqBean.getData() + "");
                     fragment.setParams(bundle);
                     list.add(fragment);
 
-                    for (int a = 0; a< xqBean.getData().get(i).getRead_questionList().size();a++){
-                        nlist.add( new Spinner_Bean(""+s));
-                            s++;
-                            MyLog.e("GridView数据",s +"            ");
+                    for (int a = 0; a < xqBean.getData().get(i).getRead_questionList().size(); a++) {
+                        nlist.add(new Spinner_Bean("" + s));
+                        s++;
+                        MyLog.e("GridView数据", s + "            ");
                     }
 
 
                 }
 
-                adapter = new ViewPagerAdapter(getSupportFragmentManager(),list);
+                adapter = new ViewPagerAdapter(getSupportFragmentManager(), list);
                 danciViewPager.setAdapter(adapter);
                 adapter.notifyDataSetChanged();
 

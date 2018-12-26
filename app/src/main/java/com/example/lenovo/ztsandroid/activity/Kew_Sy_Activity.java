@@ -80,6 +80,8 @@ public class Kew_Sy_Activity extends BaseActivity implements Kw_Xq_Cotract.View{
 //        title.setText(mtitle);
         relative_path = intent.getStringExtra("relative_path");
 
+        title.setText("课文");
+
     }
 
     @Override

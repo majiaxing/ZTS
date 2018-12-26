@@ -111,7 +111,8 @@ public class TingL_XZ_ErJFragment extends BaseActivity implements ZuoY_TingL_XZ_
                     bundle.putString("ertitle",zuoYDcBean.getData().getTypeList().get(0).getListen_questionList().get(i).getListen_question());
                     bundle.putString("relative_path", zuoYDcBean.getData().getTypeList().get(0).getListen_questionList().get(i).getHomeworkPath());
                     MyLog.e("将要传过去的数据" ,zuoYDcBean.getData().getTypeList().get(0).getListen_questionList().get(i).getListen_question());
-
+                    bundle.putString("Relative_path",zuoYDcBean.getData().getRelative_path());
+                    bundle.putString("listen_video",zuoYDcBean.getData().getTypeList().get(i).getListen_video());
 
                     fragment.setParams(bundle);
                     nlist.add(fragment);

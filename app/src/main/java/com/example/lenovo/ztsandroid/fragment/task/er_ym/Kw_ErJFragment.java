@@ -149,6 +149,7 @@ public class Kw_ErJFragment extends BaseActivity implements ZuoY_Kw_Cotract.View
                 bundle.putString("KWy", word);
                 bundle.putString("KWz", word_tran);
                 bundle.putString("hw_answerId", hw_answerId);
+
                 zuYYinBFragment.setParams(bundle);
                 nlist.add(zuYYinBFragment);
             }
@@ -192,6 +193,10 @@ public class Kw_ErJFragment extends BaseActivity implements ZuoY_Kw_Cotract.View
                     bundle.putString("hw_type",hw_type);
                     bundle.putString("hw_content",hw_content);
                     bundle.putString("hwid",hwid);
+
+                    bundle.putString("Word_video",zuoYDcBean.getData().getTypeList().get(a).getText_video());
+                    bundle.putString("Relative_path",zuoYDcBean.getData().getRelative_path());
+
                     MyLog.e("DADT_____", word + word_tran);
                     zuYYinBFragment.setParams(bundle);
                     nlist.add(zuYYinBFragment);

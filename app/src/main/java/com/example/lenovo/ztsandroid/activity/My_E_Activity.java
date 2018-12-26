@@ -137,7 +137,6 @@ public class My_E_Activity extends BaseActivity {
         });
     }
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -147,5 +146,7 @@ public class My_E_Activity extends BaseActivity {
 
     @OnClick(R.id.back_ka)
     public void onViewClicked() {
+
+        App.activity.onBackPressed();
     }
 }

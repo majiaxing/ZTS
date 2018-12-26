@@ -15,6 +15,7 @@ import com.example.lenovo.ztsandroid.adapter.ViewPagerAdapter;
 import com.example.lenovo.ztsandroid.base.BaseActivity;
 import com.example.lenovo.ztsandroid.cotract.TingL_XQ_xz_Cotract;
 import com.example.lenovo.ztsandroid.fragment.TingL_XZ_Fragment;
+import com.example.lenovo.ztsandroid.model.entity.TiLi_BaoC_Bean;
 import com.example.lenovo.ztsandroid.model.entity.TingL_TK_Bean;
 import com.example.lenovo.ztsandroid.model.entity.TingL_XQ_xz_Bean;
 import com.example.lenovo.ztsandroid.presenter.TingL_Xq_xz_Presenter;
@@ -76,6 +77,7 @@ public class TingL_TK_TK_Activity extends BaseActivity implements TingL_XQ_xz_Co
         relative_path = intent.getStringExtra("relative_path");
         MyLog.e("AdsDSc传过来的数据", sentence_id);
 
+        title.setText("听力选择");
     }
 
     @Override
@@ -135,8 +137,6 @@ public class TingL_TK_TK_Activity extends BaseActivity implements TingL_XQ_xz_Co
                     bundle.putSerializable("list", (Serializable) xqbean.getData());
                     bundle.putString("title", xqbean.getData().get(0).getListen_text());
 
-
-
                     fragment.setParams(bundle);
                     list.add(fragment);
                 }
@@ -146,6 +146,11 @@ public class TingL_TK_TK_Activity extends BaseActivity implements TingL_XQ_xz_Co
 
             }
         });
+
+    }
+
+    @Override
+    public void getManagerTiJ(TiLi_BaoC_Bean tiLi_baoC_bean) {
 
     }
 

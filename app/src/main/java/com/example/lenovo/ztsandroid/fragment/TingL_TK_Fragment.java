@@ -11,15 +11,21 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.lenovo.ztsandroid.App;
 import com.example.lenovo.ztsandroid.R;
 import com.example.lenovo.ztsandroid.adapter.TianK_Adapter;
 import com.example.lenovo.ztsandroid.base.BaseFragment;
+import com.example.lenovo.ztsandroid.cotract.TingL_XQ_xz_Cotract;
+import com.example.lenovo.ztsandroid.model.entity.TiLi_BaoC_Bean;
+import com.example.lenovo.ztsandroid.model.entity.TingL_TK_Bean;
 import com.example.lenovo.ztsandroid.model.entity.TingL_XQ_xz_Bean;
+import com.example.lenovo.ztsandroid.presenter.TiL_BaoC_Presenter;
 import com.example.lenovo.ztsandroid.utils.MyLog;
 
 import java.io.IOException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 
 import butterknife.BindView;
@@ -30,7 +36,7 @@ import butterknife.Unbinder;
 /**
  * Created by Administrator on 2018/11/22.
  */
-public class TingL_TK_Fragment extends BaseFragment {
+public class TingL_TK_Fragment extends BaseFragment implements TingL_XQ_xz_Cotract.View {
 
 
     @BindView(R.id.BF_zt)
@@ -70,6 +76,13 @@ public class TingL_TK_Fragment extends BaseFragment {
 
     private String relative_path;
     private String word_video;
+
+    private TingL_XQ_xz_Cotract.Presenter presenter;
+    private String listen_id;
+    private String type;
+    private String listen_questId;
+
+
     @Override
     protected int getLayoutId() {
         return R.layout.tingl_tk_fragment;
@@ -83,9 +96,9 @@ public class TingL_TK_Fragment extends BaseFragment {
 
         String listen_text = list.get(0).getListen_text();
 
-
-//        String title = bundle.getString("title");
-
+        listen_id = bundle.getString("listen_id");
+        type = bundle.getString("type");
+        listen_questId = list.get(0).getListen_questionList().get(0).getListen_questId();
         TMTitle.setText(listen_text);
 
         mlist.addAll(list);
@@ -100,28 +113,27 @@ public class TingL_TK_Fragment extends BaseFragment {
     }
 
 
-
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
-        if (mPlayer == null){
+        if (mPlayer == null) {
             mPlayer = new MediaPlayer();
         }
-        if (!isVisibleToUser){
+        if (!isVisibleToUser) {
 //            mediaPlayer.start();
             mPlayer.stop();
-        }else {
+        } else {
             try {
                 mPlayer = null;
                 mPlayer = new MediaPlayer();
 
                 relative_path = bundle.getString("Relative_path");
                 word_video = bundle.getString("word_video");
+                String s = URLEncoder.encode(word_video, "utf-8").replaceAll("\\+", "%20");
 
-                String bofUrl = "https://zts100.com/demo/file/download"+"/?"+"Relative_path="+relative_path+"&"+"type=2"+"&"+"fileName="+word_video;
+                String bofUrl = "https://zts100.com/demo/file/download" + "/?" + "Relative_path=" + relative_path + "&" + "type=2" + "&" + "fileName=" + s;
                 mPlayer.setDataSource(bofUrl);
-                MyLog.e("sahdisauhdiuahdiuaw",bofUrl);
-
+                MyLog.e("sahdisauhdiuahdiuaw", bofUrl);
 
                 //3 准备播放
                 mPlayer.prepareAsync();
@@ -131,18 +143,20 @@ public class TingL_TK_Fragment extends BaseFragment {
 
                     }
                 });
+
+                mPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                    @Override
+                    public void onCompletion(MediaPlayer mp) {
+
+                        MyLog.e("CheckBox_状态", BFZt.isChecked() + "");
+                        BFZt.setChecked(false);
+                    }
+                });
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
     }
-
-
-
-
-
-
-
 
     @Override
     protected void loadData() {
@@ -167,21 +181,23 @@ public class TingL_TK_Fragment extends BaseFragment {
         super.onDestroyView();
         unbinder.unbind();
     }
+
     private Boolean bool[] = {false};
-    @OnClick({R.id.BF_zt, R.id.TJ_Xyt, R.id.next_T,R.id.XYT, R.id.ChongZ})
+
+    @OnClick({R.id.BF_zt, R.id.TJ_Xyt, R.id.next_T, R.id.XYT, R.id.ChongZ})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.BF_zt:
 
-                if (bool[0]){
-                    if (mPlayer.isPlaying()){
-                        MyLog.e("lalall","ahahahahh");
+                if (bool[0]) {
+                    if (mPlayer.isPlaying()) {
+                        MyLog.e("lalall", "ahahahahh");
                         mPlayer.pause();
                     }
                     bool[0] = false;
-                }else {
-                    if (!mPlayer.isPlaying()){
-                        MyLog.e("holle dnsjk","ahahahahh");
+                } else {
+                    if (!mPlayer.isPlaying()) {
+                        MyLog.e("holle dnsjk", "ahahahahh");
                         mPlayer.start();
                     }
                     bool[0] = true;
@@ -190,6 +206,9 @@ public class TingL_TK_Fragment extends BaseFragment {
 
                 break;
             case R.id.TJ_Xyt:
+
+                presenter = new TiL_BaoC_Presenter(this);
+                presenter.SetUrl(listen_id,type,App.stuid,"2",listen_questId,"asdsaq","");
 
                 JX.setVisibility(View.VISIBLE);
                 XYT.setVisibility(View.VISIBLE);
@@ -206,5 +225,37 @@ public class TingL_TK_Fragment extends BaseFragment {
         }
     }
 
+    @Override
+    public void getManager(TingL_XQ_xz_Bean xqbean) {
 
+    }
+
+    @Override
+    public void getManager(TingL_TK_Bean xqbean) {
+
+    }
+
+    @Override
+    public void getManagerTiJ(TiLi_BaoC_Bean tiLi_baoC_bean) {
+
+        final String flag = tiLi_baoC_bean.getData().getFlag();
+
+        App.activity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(App.activity,flag,Toast.LENGTH_LONG).show();
+            }
+        });
+
+    }
+
+    @Override
+    public void showmessage(String str) {
+
+    }
+
+    @Override
+    public void setBasePresenter(TingL_XQ_xz_Cotract.Presenter presenter) {
+
+    }
 }

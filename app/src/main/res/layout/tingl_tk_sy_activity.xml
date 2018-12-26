@@ -4,7 +4,7 @@
     android:layout_height="match_parent">
 
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="204px"
         android:orientation="horizontal"
@@ -17,15 +17,17 @@
             android:layout_width="45px"
             android:layout_height="45px"
             android:src="@drawable/back_xg_tt"
-            android:layout_marginTop="30px"
             android:layout_marginLeft="48px"
+            android:layout_centerVertical="true"
+
             />
+
+
 
         <TextView
             android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="335px"
             android:text="听力选择"
             android:textSize="54px"
             android:textColor="#fff"
@@ -49,7 +51,7 @@
             android:layout_marginTop="30px"
             />
 
-    </LinearLayout>
+    </RelativeLayout>
 
     <TextView
         android:id="@+id/Text_X"

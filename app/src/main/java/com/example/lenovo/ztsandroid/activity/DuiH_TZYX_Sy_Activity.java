@@ -74,7 +74,6 @@ public class DuiH_TZYX_Sy_Activity extends BaseActivity implements DuiH_XQ_Cotra
         MyLog.e("传过来的save_path",save_path + "" + talk_id + title1);
 
     }
-
     @Override
     public void initData() {
 

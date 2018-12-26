@@ -1,5 +1,6 @@
 package com.example.lenovo.ztsandroid.fragment;
 
+import android.app.Activity;
 import android.media.AudioFormat;
 import android.media.AudioRecord;
 import android.media.MediaPlayer;
@@ -48,6 +49,8 @@ import cn.hutool.core.codec.Base64Encoder;
 import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.util.CharsetUtil;
 
+import static com.example.lenovo.ztsandroid.App.activity;
+
 /**
  * Created by Administrator on 2018/11/12.
  */
@@ -87,23 +90,15 @@ public class DanCi_fragment extends BaseFragment implements View.OnClickListener
     private Animation hyperspaceJumpAnimation;
     private CheckBox ly_btn;
     private CheckBox bf_zt;
-    //    private CircleProgressbar circleProgressbar;
+
 
     @Override
     protected int getLayoutId() {
         return R.layout.viewpager_danci;
     }
 
-
     @Override
     protected void init(View view) {
-
-
-//        circleProgressbar = view.findViewById(R.id.circleIndicator);
-//        circleProgressbar.setProgressColosr(Color.RED);
-//        circleProgressbar.setProgressLineWidth(15);//写入宽度。
-//        circleProgressbar.setTimeMillis(5000);// 把倒计时时间改长一点。
-
 
         title = view.findViewById(R.id.Nr_danci);
         CheckO = view.findViewById(R.id.BF_One);
@@ -125,16 +120,11 @@ public class DanCi_fragment extends BaseFragment implements View.OnClickListener
         next_t = view.findViewById(R.id.next_T);
         bf_ly = view.findViewById(R.id.BF_LY);
         rippleIntroView = view.findViewById(R.id.Ripple);
-
         linearLayout = view.findViewById(R.id.linear);
-
         pinF_jd = view.findViewById(R.id.PinF_jd);
-
-        hyperspaceJumpAnimation = AnimationUtils.loadAnimation(App.activity, R.anim.loading_animation);
+        hyperspaceJumpAnimation = AnimationUtils.loadAnimation(activity, R.anim.loading_animation);
         // 使用ImageView显示动画
         pinF_jd.startAnimation(hyperspaceJumpAnimation);
-
-
         bf_zt = view.findViewById(R.id.BF_zt);
         ly_btn = view.findViewById(R.id.Ly_btn);
         bf_ly.setOnClickListener(this);
@@ -243,13 +233,12 @@ public class DanCi_fragment extends BaseFragment implements View.OnClickListener
      */
     private void startAudioRecord() {
 
-
         if (audioRecord != null){
             audioRecord.startRecording();//开始录制
             isRecord = true;
             new AudioRecordThread().start();//开启线程来把录制的音频数据保留下来
         } else {
-            audioRecord = new AudioRecord(audioSource, sampleRateInHz, channelConfig, audioFormat, bufferSizeInBytes);
+            audioRecord = new AudioRecord(audioSource,sampleRateInHz, channelConfig, audioFormat, bufferSizeInBytes);
             audioRecord.startRecording();//开始录制
             isRecord = true;
             new AudioRecordThread().start();//开启线程来把录制的音频数据保留下来
@@ -453,27 +442,23 @@ public class DanCi_fragment extends BaseFragment implements View.OnClickListener
     }
 
 
+    public interface FragmentToActivity{
+        public void huidiao(String str);
+    }
 
 
+    FragmentToActivity fragmentToActivity;
     @Override
     protected void loadData() {
 
-        word = bundle.getString("word");
         String word_tran = bundle.getString("word_tran");
-
-
-
-
-
         word_id = bundle.getString("word_id");
         type = bundle.getString("type");
 
 
 
-
         title.setText(word);
         dc_jx_text.setText(word_tran);
-
 
     }
 
@@ -481,6 +466,11 @@ public class DanCi_fragment extends BaseFragment implements View.OnClickListener
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
+
+        fragmentToActivity=(FragmentToActivity) activity;
+        word = bundle.getString("word");
+
+        fragmentToActivity.huidiao(word);
         if (mPlayer == null){
             mPlayer = new MediaPlayer();
         }
@@ -510,7 +500,6 @@ public class DanCi_fragment extends BaseFragment implements View.OnClickListener
 
                         MyLog.e("CheckBox_状态",bf_zt.isChecked() + "");
                         bf_zt.setChecked(false);
-
                     }
                 });
 
@@ -619,24 +608,20 @@ public class DanCi_fragment extends BaseFragment implements View.OnClickListener
             JSONObject Error = response.optJSONObject("Error");
 
             if (Error != null){
-                App.activity.runOnUiThread(new Runnable() {
+                activity.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         linearLayout.setVisibility(View.GONE);
                         ly_btn.setVisibility(View.VISIBLE);
-                        Toast.makeText(App.activity,"评估失败",Toast.LENGTH_LONG).show();
+                        Toast.makeText(activity,"评估失败",Toast.LENGTH_LONG).show();
                     }
                 });
                 return;
             }
             if (PronAccuracy != "0"){
-
                 str = PronAccuracy.substring(0,4);
-
                 MyLog.e("发音得到的评分————", str + "");
-
-
-                App.activity.runOnUiThread(new Runnable() {
+                activity.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         pf_fs.setText(str);
@@ -668,18 +653,16 @@ public class DanCi_fragment extends BaseFragment implements View.OnClickListener
 
 
             }else {
-                App.activity.runOnUiThread(new Runnable() {
+                activity.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         linearLayout.setVisibility(View.GONE);
                         ly_btn.setVisibility(View.VISIBLE);
-                        Toast.makeText(App.activity,"请正常朗读",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(activity,"请正常朗读",Toast.LENGTH_SHORT).show();
                     }
                 });
                 return;
             }
-
-
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -695,10 +678,10 @@ public class DanCi_fragment extends BaseFragment implements View.OnClickListener
     public void getManager(YuYinPinG_Bean yuYinPinGBean) {
 
         if (yuYinPinGBean.getResponse().getSessionId() == null){
-            App.activity.runOnUiThread(new Runnable() {
+            activity.runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    Toast.makeText(App.activity,"评估失败",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(activity,"评估失败",Toast.LENGTH_SHORT).show();
                 }
             });
         }else {

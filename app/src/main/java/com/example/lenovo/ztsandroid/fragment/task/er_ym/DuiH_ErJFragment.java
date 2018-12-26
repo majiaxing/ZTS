@@ -66,7 +66,7 @@ public class DuiH_ErJFragment extends BaseActivity implements ZuoY_Dh_Cotract.Vi
     private String hw_content;
     private String hwid;
     private String avgScores;
-
+    private ArrayList<String> videolist = new ArrayList<>();
 
     @Override
     protected int getLayoutId() {
@@ -160,7 +160,7 @@ public class DuiH_ErJFragment extends BaseActivity implements ZuoY_Dh_Cotract.Vi
         ButterKnife.bind(this);
     }
 
-
+    private Boolean isJS =false;
     @Override
     public void getManager(final ZuoY_Dh_Bean zuoYDyBean) {
         MyLog.e("DSAHDKSAH",zuoYDyBean.getData().getTypeList().size() + "");
@@ -169,21 +169,40 @@ public class DuiH_ErJFragment extends BaseActivity implements ZuoY_Dh_Cotract.Vi
             @Override
             public void run() {
 
+
+                    for (int i = 0; i<zuoYDyBean.getData().getTypeList().size();i++ ) {
+                        bundle = new Bundle();
+                        if (isJS){
+                            zuoYDyBean.getData().getTypeList().get(i).setJS(isJS);
+                            isJS =false;
+                        }else {
+                            zuoYDyBean.getData().getTypeList().get(i).setJS(isJS);
+                            isJS =true;
+                        }
+                        videolist.add(zuoYDyBean.getData().getTypeList().get(i).getJuese_video());
+
+
+
+                    }
                     Zy_Duihua_Fragment zuYYinBFragment = new Zy_Duihua_Fragment();
                     bundle = new Bundle();
-
+                    bundle.putSerializable("Juese_videoList",videolist);
+                     MyLog.e("listview 数据", videolist.size()  + "");
                     bundle.putString("hw_type",hw_type);
                     bundle.putString("hw_content",hw_content);
                     bundle.putString("hwid",hwid);
+                    bundle.putString("avgScore",avgScores);
+                    bundle.putString("Relative_path",zuoYDyBean.getData().getRelative_path());
+
+                    MyLog.e("准备传过去的Relative_path",zuoYDyBean.getData().getRelative_path() +"");
 
                     bundle.putSerializable("list", (Serializable) zuoYDyBean.getData().getTypeList());
                     zuYYinBFragment.setParams(bundle);
                     nlist.add(zuYYinBFragment);
+                    adapter = new ViewPagerAdapter(getSupportFragmentManager(), nlist);
+                    viewPager.setAdapter(adapter);
+                    adapter.notifyDataSetChanged();
 
-
-                adapter = new ViewPagerAdapter(getSupportFragmentManager(), nlist);
-                viewPager.setAdapter(adapter);
-                adapter.notifyDataSetChanged();
             }
         });
     }

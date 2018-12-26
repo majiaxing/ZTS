@@ -9,15 +9,18 @@
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="58px">
-    <TextView
-        android:id="@+id/T_H_XZ"
-        android:layout_width="114px"
-        android:layout_height="115px"
-        android:background="@drawable/xiaot_xuanz"
-        android:visibility="invisible"
-        />
- 
-    <TextView
+
+        <TextView
+            android:id="@+id/T_H_XZ"
+            android:layout_width="114px"
+            android:layout_height="115px"
+            android:background="@drawable/xiaot_xuanz"
+            android:visibility="invisible"
+            android:text="1"
+            android:gravity="center"
+            />
+
+        <TextView
         android:id="@+id/T_H"
         android:layout_width="100px"
         android:layout_height="101px"
@@ -28,9 +31,9 @@
         android:background="@drawable/weiz"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
-
-
         />
+
+
 
     </RelativeLayout>
     

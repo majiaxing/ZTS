@@ -53,6 +53,8 @@ import cn.hutool.core.codec.Base64Encoder;
 import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.util.CharsetUtil;
 
+import static com.example.lenovo.ztsandroid.App.activity;
+
 /**
  * Created by Administrator on 2018/11/12.
  */
@@ -118,9 +120,23 @@ public class Duany_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.V
     }
 
 
+
+    public interface FragmentToActivity{
+        public void huidiao(String str);
+    }
+
+
+    FragmentToActivity fragmentToActivity;
+
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
+
+
+        fragmentToActivity=(FragmentToActivity) activity;
+        yin = bundle.getString("yin");
+        fragmentToActivity.huidiao(yin);
+
         if (mPlayer == null) {
             mPlayer = new MediaPlayer();
         }
@@ -454,7 +470,7 @@ public class Duany_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.V
         relativeLayout.setVisibility(View.GONE);
         nextT.setVisibility(View.GONE);
 
-        yin = bundle.getString("yin");
+
         bundle.getString("han");
         word_id = bundle.getString("word_id");
         type = bundle.getString("type");
@@ -525,9 +541,7 @@ public class Duany_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.V
                         BFLY.setChecked(false);
                     }
                     aBoolean[0] = true;
-
                 }
-
                 break;
             case R.id.BF_zt:
                 if (bool[0]) {

@@ -10,7 +10,7 @@ public class ZuoY_erJ_Bean {
 
 
     /**
-     * data : {"homeworkType":[{"hw_type":"8","jiaocaiid":"0","avgScore":50,"hw_content":"8918feb6-3afd-4199-8595-685b8c4ca62c","type":"8918feb6-3afd-4199-8595-685b8c4ca62c"},{"hw_type":"6","jiaocaiid":"0","avgScore":50,"hw_content":"1651b61f-e2dc-4a7f-9c59-32cc164f4092","type":"3bf553d3-2769-4ba8-8785-2ced3abd340a"}],"tips":"本作业只能完成一次"}
+     * data : {"homeworkType":[{"hw_type":"2","jiaocaiid":"1_7_1","avgScore":11.11,"hw_content":"dd46177a-eae5-466b-aa0e-e28235425ac4","listenType":"","typeName":"预习单元1","type":"dd46177a-eae5-466b-aa0e-e28235425ac4"},{"hw_type":"8","jiaocaiid":"1_7_1","avgScore":11.11,"hw_content":"dd46177a-eae5-466b-aa0e-e28235425ac4","listenType":"","typeName":"预习单元1","type":"dd46177a-eae5-466b-aa0e-e28235425ac4"},{"hw_type":"3","jiaocaiid":"1_7_1","avgScore":11.11,"hw_content":"6d2a87e7-0507-4b5e-8c22-d09e472935a4","listenType":"","typeName":"第一单元","type":"a75692ee-94fc-443a-bac9-0ad543ece315"},{"hw_type":"1","jiaocaiid":"1_7_1","avgScore":11.11,"hw_content":"4295bf8f-900d-4655-846a-723cde9a7127","listenType":"","typeName":"预习单元1","type":"dd46177a-eae5-466b-aa0e-e28235425ac4"},{"hw_type":"1","jiaocaiid":"1_7_1","avgScore":11.11,"hw_content":"f05fe173-3dbd-487c-ad57-4f9cdb4dd886","listenType":"","typeName":"预习单元1","type":"dd46177a-eae5-466b-aa0e-e28235425ac4"},{"hw_type":"4","jiaocaiid":"1_7_1","avgScore":11.11,"hw_content":"95e42fa3-14a8-438b-bf06-8d52727c1c5b","listenType":"","typeName":"第一单元","type":"a75692ee-94fc-443a-bac9-0ad543ece315"},{"hw_type":"5","jiaocaiid":"1_7_1","avgScore":11.11,"hw_content":"03a78ddc-e722-4d23-9eca-925b4725f427","listenType":"1","typeName":"第一单元","type":"a75692ee-94fc-443a-bac9-0ad543ece315"},{"hw_type":"5","jiaocaiid":"1_7_1","avgScore":11.11,"hw_content":"05663253-5882-4591-86aa-94fab7af0272","listenType":"2","typeName":"第一单元","type":"a75692ee-94fc-443a-bac9-0ad543ece315"},{"hw_type":"6","jiaocaiid":"1_7_1","avgScore":11.11,"hw_content":"800b3ed1-4fec-4a50-baa8-5cc2f9bf6492","listenType":"","typeName":"预习1-3单元","type":"6ec73767-a83a-4bb0-a192-94726523f836"}],"tips":"本作业只能完成一次"}
      * data2 : null
      * data3 : null
      * pageInfo : null
@@ -105,7 +105,7 @@ public class ZuoY_erJ_Bean {
 
     public static class DataBean {
         /**
-         * homeworkType : [{"hw_type":"8","jiaocaiid":"0","avgScore":50,"hw_content":"8918feb6-3afd-4199-8595-685b8c4ca62c","type":"8918feb6-3afd-4199-8595-685b8c4ca62c"},{"hw_type":"6","jiaocaiid":"0","avgScore":50,"hw_content":"1651b61f-e2dc-4a7f-9c59-32cc164f4092","type":"3bf553d3-2769-4ba8-8785-2ced3abd340a"}]
+         * homeworkType : [{"hw_type":"2","jiaocaiid":"1_7_1","avgScore":11.11,"hw_content":"dd46177a-eae5-466b-aa0e-e28235425ac4","listenType":"","typeName":"预习单元1","type":"dd46177a-eae5-466b-aa0e-e28235425ac4"},{"hw_type":"8","jiaocaiid":"1_7_1","avgScore":11.11,"hw_content":"dd46177a-eae5-466b-aa0e-e28235425ac4","listenType":"","typeName":"预习单元1","type":"dd46177a-eae5-466b-aa0e-e28235425ac4"},{"hw_type":"3","jiaocaiid":"1_7_1","avgScore":11.11,"hw_content":"6d2a87e7-0507-4b5e-8c22-d09e472935a4","listenType":"","typeName":"第一单元","type":"a75692ee-94fc-443a-bac9-0ad543ece315"},{"hw_type":"1","jiaocaiid":"1_7_1","avgScore":11.11,"hw_content":"4295bf8f-900d-4655-846a-723cde9a7127","listenType":"","typeName":"预习单元1","type":"dd46177a-eae5-466b-aa0e-e28235425ac4"},{"hw_type":"1","jiaocaiid":"1_7_1","avgScore":11.11,"hw_content":"f05fe173-3dbd-487c-ad57-4f9cdb4dd886","listenType":"","typeName":"预习单元1","type":"dd46177a-eae5-466b-aa0e-e28235425ac4"},{"hw_type":"4","jiaocaiid":"1_7_1","avgScore":11.11,"hw_content":"95e42fa3-14a8-438b-bf06-8d52727c1c5b","listenType":"","typeName":"第一单元","type":"a75692ee-94fc-443a-bac9-0ad543ece315"},{"hw_type":"5","jiaocaiid":"1_7_1","avgScore":11.11,"hw_content":"03a78ddc-e722-4d23-9eca-925b4725f427","listenType":"1","typeName":"第一单元","type":"a75692ee-94fc-443a-bac9-0ad543ece315"},{"hw_type":"5","jiaocaiid":"1_7_1","avgScore":11.11,"hw_content":"05663253-5882-4591-86aa-94fab7af0272","listenType":"2","typeName":"第一单元","type":"a75692ee-94fc-443a-bac9-0ad543ece315"},{"hw_type":"6","jiaocaiid":"1_7_1","avgScore":11.11,"hw_content":"800b3ed1-4fec-4a50-baa8-5cc2f9bf6492","listenType":"","typeName":"预习1-3单元","type":"6ec73767-a83a-4bb0-a192-94726523f836"}]
          * tips : 本作业只能完成一次
          */
 
@@ -130,27 +130,22 @@ public class ZuoY_erJ_Bean {
 
         public static class HomeworkTypeBean {
             /**
-             * hw_type : 8
-             * jiaocaiid : 0
-             * avgScore : 50
-             * hw_content : 8918feb6-3afd-4199-8595-685b8c4ca62c
-             * type : 8918feb6-3afd-4199-8595-685b8c4ca62c
+             * hw_type : 2
+             * jiaocaiid : 1_7_1
+             * avgScore : 11.11
+             * hw_content : dd46177a-eae5-466b-aa0e-e28235425ac4
+             * listenType :
+             * typeName : 预习单元1
+             * type : dd46177a-eae5-466b-aa0e-e28235425ac4
              */
 
             private String hw_type;
             private String jiaocaiid;
             private double avgScore;
             private String hw_content;
+            private String listenType;
+            private String typeName;
             private String type;
-            private String listen_type;
-
-            public String getListen_type() {
-                return listen_type;
-            }
-
-            public void setListen_type(String listen_type) {
-                this.listen_type = listen_type;
-            }
 
             public String getHw_type() {
                 return hw_type;
@@ -182,6 +177,22 @@ public class ZuoY_erJ_Bean {
 
             public void setHw_content(String hw_content) {
                 this.hw_content = hw_content;
+            }
+
+            public String getListenType() {
+                return listenType;
+            }
+
+            public void setListenType(String listenType) {
+                this.listenType = listenType;
+            }
+
+            public String getTypeName() {
+                return typeName;
+            }
+
+            public void setTypeName(String typeName) {
+                this.typeName = typeName;
             }
 
             public String getType() {

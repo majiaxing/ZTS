@@ -101,9 +101,20 @@ public class Read_fragment extends BaseFragment {
         if (answer != null) {
             for (int i = 0; i < answer.size(); i++) {
                 Log.e("tag==answer","答案="+answer.get(i));
+
             }
         }else {
             Toast.makeText(getActivity(),"有未选择的答案",Toast.LENGTH_SHORT).show();
+            return;
         }
+
+        ArrayList<String> read_qid = listadapter.getRead_qid();
+        if (read_qid != null){
+            for (int i= 0; i<read_qid.size();i++){
+                Log.e("tag==read_qid","答案="+read_qid.get(i));
+            }
+        }
+
+
     }
 }

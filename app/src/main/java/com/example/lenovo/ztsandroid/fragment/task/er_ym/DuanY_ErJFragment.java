@@ -123,68 +123,6 @@ public class DuanY_ErJFragment extends BaseActivity implements ZuoY_DY_Cotract.V
 //    }
 
 
-    private void JsonDemo(String string) {
-//
-//        Gson gson = new Gson();
-//        java.lang.reflect.Type type = new TypeToken<ZuoY_dc_Bean>() {}.getType();
-//        ZuoY_dc_Bean jsonBean = gson.fromJson(string, type);
-//        List<ZuoY_dc_Bean.TypeListBean> list = jsonBean.getTypeList();
-//        for (int i = 0; i<  list.size(); i++){
-//            Zy_Dc_Fragment zuYYinBFragment = new Zy_Dc_Fragment();
-//                bundle = new Bundle();
-//                bundle.putString("DanCy",list.get(i).getWord());
-//                bundle.putString("DanCz",list.get(i).getWord_tran());
-//
-//                MyLog.e("解析出来的单词数据",list.get(i).getWord() + "");
-//
-//                zuYYinBFragment.setParams(bundle);
-//                nlist.add(zuYYinBFragment);
-//        }
-
-
-        //第一步，string参数相当于一个JSON,依次解析下一步
-        JSONArray json = null;
-        JSONObject data = null;
-        try {
-            data = new JSONObject(string);
-
-            JSONArray typeList = data.getJSONArray("typeList");
-
-
-            for (int a = 0; a < typeList.length(); a++) {
-
-                JSONObject value = null;
-
-                value = typeList.getJSONObject(a);
-
-                String word = value.optString("phrase");
-                String wordz = value.optString("phrase_tran");
-                String hw_answerId = value.optString("hw_answerId");
-
-                Zy_JuZ_Fragment zuYYinBFragment = new Zy_JuZ_Fragment();
-                bundle = new Bundle();
-                bundle.putString("DanCy", word);
-                bundle.putString("DanCz", wordz);
-                bundle.putString("hw_answerId", hw_answerId);
-
-
-                MyLog.e("解析出来的数据", word + wordz);
-
-                zuYYinBFragment.setParams(bundle);
-                nlist.add(zuYYinBFragment);
-            }
-            MyLog.e("解析出来的数据", nlist.size() + "");
-            adapter = new ViewPagerAdapter(getSupportFragmentManager(), nlist);
-            viewPager.setAdapter(adapter);
-            adapter.notifyDataSetChanged();
-
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-
-    }
 
 
     @Override
@@ -215,11 +153,12 @@ public class DuanY_ErJFragment extends BaseActivity implements ZuoY_DY_Cotract.V
                     bundle.putString("hw_type",hw_type);
                     bundle.putString("hw_content",hw_content);
                     bundle.putString("hwid",hwid);
+                    bundle.putString("Word_video",zuoYDyBean.getData().getTypeList().get(a).getPhrase_video());
+                    bundle.putString("Relative_path",zuoYDyBean.getData().getRelative_path());
                     MyLog.e("DADT_____", word + word_tran);
                     zuYYinBFragment.setParams(bundle);
                     nlist.add(zuYYinBFragment);
                 }
-
                 adapter = new ViewPagerAdapter(getSupportFragmentManager(), nlist);
                 viewPager.setAdapter(adapter);
                 adapter.notifyDataSetChanged();

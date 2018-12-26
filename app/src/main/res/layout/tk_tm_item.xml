@@ -24,14 +24,15 @@
             
         <EditText
             android:id="@+id/edit_TK"
-            android:layout_width="298px"
-            android:layout_height="60px"
+            android:layout_width="300px"
+            android:layout_height="90px"
             android:layout_marginTop="21px"
             android:background="@drawable/edit_bg"
             android:hint="请输入答案 "
             android:textSize="30px"
             android:gravity="center"
             android:textColor="#999"
+
 
             />
         

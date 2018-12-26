@@ -15,6 +15,7 @@ import com.example.lenovo.ztsandroid.base.BaseActivity;
 import com.example.lenovo.ztsandroid.cotract.TingL_XQ_xz_Cotract;
 import com.example.lenovo.ztsandroid.fragment.TingL_TK_Fragment;
 import com.example.lenovo.ztsandroid.model.entity.Spinner_Bean;
+import com.example.lenovo.ztsandroid.model.entity.TiLi_BaoC_Bean;
 import com.example.lenovo.ztsandroid.model.entity.TingL_TK_Bean;
 import com.example.lenovo.ztsandroid.model.entity.TingL_XQ_xz_Bean;
 import com.example.lenovo.ztsandroid.presenter.TingL_Xq_xz_Presenter;
@@ -46,11 +47,12 @@ public class TingL_TK_Activity extends BaseActivity implements TingL_XQ_xz_Cotra
     private ViewPagerAdapter adapter;
     private ArrayList<Fragment> list = new ArrayList<>();
     private TingL_XQ_xz_Cotract.Presenter presenter;
-    private String sentence_id;
+    private String listen_id;
     private String Title1;
     private Bundle bundle;
     private ArrayList<Spinner_Bean> nlist = new ArrayList<>();
     private String relative_path;
+    private String type;
 
     @Override
     protected int getLayoutId() {
@@ -62,17 +64,20 @@ public class TingL_TK_Activity extends BaseActivity implements TingL_XQ_xz_Cotra
 
         Intent intent = getIntent();
         Title1 = intent.getStringExtra("title");
-        sentence_id = intent.getStringExtra("listen_id");
+        listen_id = intent.getStringExtra("listen_id");
         relative_path = intent.getStringExtra("relative_path");
-        MyLog.e("AdsDSc传过来的数据", sentence_id);
+        type = intent.getStringExtra("type");
+        MyLog.e("AdsDSc传过来的数据", listen_id);
 
+
+        title.setText("听力填空");
 
     }
 
     @Override
     public void initData() {
         presenter = new TingL_Xq_xz_Presenter(this);
-        presenter.SetU(sentence_id);
+        presenter.SetU(listen_id);
     }
 
     @Override
@@ -109,8 +114,8 @@ public class TingL_TK_Activity extends BaseActivity implements TingL_XQ_xz_Cotra
 
                     bundle.putString("word_video", xqbean.getData().get(0).getListen_video());
                     bundle.putString("Relative_path",relative_path);
-
-
+                    bundle.putString("listen_id",listen_id);
+                    bundle.putString("type",type);
                     MyLog.e("传过去的路经 ——文件名",xqbean.getData().get(0).getListen_video() + ""+relative_path);
 
 
@@ -128,6 +133,11 @@ public class TingL_TK_Activity extends BaseActivity implements TingL_XQ_xz_Cotra
 
     @Override
     public void getManager(TingL_TK_Bean xqbean) {
+
+    }
+
+    @Override
+    public void getManagerTiJ(TiLi_BaoC_Bean tiLi_baoC_bean) {
 
     }
 

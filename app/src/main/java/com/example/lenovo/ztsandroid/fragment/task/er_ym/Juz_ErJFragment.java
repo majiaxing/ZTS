@@ -212,6 +212,8 @@ public class Juz_ErJFragment extends BaseActivity implements ZuoY_Jz_Cotract.Vie
                     bundle.putString("hw_type",hw_type);
                     bundle.putString("hw_content",hw_content);
                     bundle.putString("hwid",hwid);
+                    bundle.putString("Word_video",zuoYDcBean.getData().getTypeList().get(a).getSentence_video());
+                    bundle.putString("Relative_path",zuoYDcBean.getData().getRelative_path());
                     MyLog.e("DADT_____", word + word_tran);
                     zuYYinBFragment.setParams(bundle);
                     nlist.add(zuYYinBFragment);

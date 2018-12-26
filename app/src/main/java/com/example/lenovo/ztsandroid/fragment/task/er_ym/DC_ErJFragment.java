@@ -88,46 +88,6 @@ public class DC_ErJFragment extends BaseActivity implements ZuoY_Dc_Cotract.View
     }
 
 
-    private void JsonDemo(String string) {
-
-        //第一步，string参数相当于一个JSON,依次解析下一步
-        JSONArray json = null;
-        JSONObject data = null;
-        try {
-            data = new JSONObject(string);
-
-            JSONArray typeList = data.getJSONArray("typeList");
-
-
-            for (int a = 0; a < typeList.length(); a++) {
-
-                JSONObject value = null;
-
-                value = typeList.getJSONObject(a);
-
-                String word = value.optString("word");
-                String word_tran = value.optString("word_tran");
-                String hw_answerId = value.optString("hw_answerId");
-                Zy_Dc_Fragment zuYYinBFragment = new Zy_Dc_Fragment();
-                bundle = new Bundle();
-                bundle.putString("DanCy", word);
-                bundle.putString("DanCz", word_tran);
-                bundle.putString("hw_answerId", hw_answerId);
-                MyLog.e("DADT_____", word + word_tran);
-                zuYYinBFragment.setParams(bundle);
-                nlist.add(zuYYinBFragment);
-            }
-
-            adapter = new ViewPagerAdapter(getSupportFragmentManager(), nlist);
-            viewPager.setAdapter(adapter);
-            adapter.notifyDataSetChanged();
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -159,6 +119,8 @@ public class DC_ErJFragment extends BaseActivity implements ZuoY_Dc_Cotract.View
                     bundle.putString("hw_type", hw_type);
                     bundle.putString("hw_content", hw_content);
                     bundle.putString("hwid", hwid);
+                    bundle.putString("Word_video",zuoYDcBean.getData().getTypeList().get(a).getWord_video());
+                    bundle.putString("Relative_path",zuoYDcBean.getData().getRelative_path());
                     MyLog.e("DADT_____", word + word_tran);
                     zuYYinBFragment.setParams(bundle);
                     nlist.add(zuYYinBFragment);

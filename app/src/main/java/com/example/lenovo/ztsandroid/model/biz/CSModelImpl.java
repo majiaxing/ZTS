@@ -30,6 +30,7 @@ import com.example.lenovo.ztsandroid.model.entity.Stdey_Bean;
 import com.example.lenovo.ztsandroid.model.entity.Student_Xinx_Bean;
 import com.example.lenovo.ztsandroid.model.entity.TiJ_Vip_Bean;
 import com.example.lenovo.ztsandroid.model.entity.TiJao_ZY_Bean;
+import com.example.lenovo.ztsandroid.model.entity.TiLi_BaoC_Bean;
 import com.example.lenovo.ztsandroid.model.entity.TingL_TK_Bean;
 import com.example.lenovo.ztsandroid.model.entity.TingL_XQ_xz_Bean;
 import com.example.lenovo.ztsandroid.model.entity.TingL_erj_Bean;
@@ -303,6 +304,21 @@ public class CSModelImpl implements CSModel {
         map.put("listen_id",listen_id );
 
         HttpFactroy.create().post(Urls.KwXq,map,callback);
+
+    }
+
+    @Override
+    public void postTiJ_TinL(String listen_id, String type, String stuid, String listen_type, String listen_questId, String learn_video, String learn_score, MyNetWorkCallback<TiLi_BaoC_Bean> callback) {
+
+        Map<String, String> map = new HashMap<>();
+        map.put("listen_id",listen_id );
+        map.put("type",type );
+        map.put("stuid",stuid );
+        map.put("listen_type",listen_type );
+        map.put("listen_questId",listen_questId );
+        map.put("learn_video",learn_video );
+        map.put("learn_score",learn_score );
+        HttpFactroy.create().post(Urls.TiJiaoTL,map,callback);
 
     }
 

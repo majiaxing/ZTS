@@ -60,6 +60,8 @@ public class ZuoY_Item_Adapter extends BaseAdapter{
         }
         Spinner_Zuoy_Bean.DataBean liveBean = channels.get(i);
         viewHolder.textView.setText(liveBean.getSize()+"");
+        viewHolder.textView_XZ.setText(liveBean.getSize()+"");
+
         String value = liveBean.getValue();
         if (!value.equals("")){
             viewHolder.textView.setBackgroundResource(R.drawable.yizuo);

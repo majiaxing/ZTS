@@ -57,14 +57,16 @@ public class ZY_Juz_Adapter extends BaseAdapter {
             viewHolder.textView = view.findViewById(R.id.Jz_nr);
             viewHolder.Text = view.findViewById(R.id.Fan_Y);
             viewHolder.BF_Ly = view.findViewById(R.id.BF_LY);
+            viewHolder.textViewA = view.findViewById(R.id.BF_LY_A);
+            viewHolder.textViewB = view.findViewById(R.id.BF_LY_B);
             view.setTag(viewHolder);
         }else {
             viewHolder = (ViewHolder) view.getTag();
         }
 
-
         ZuoY_Dh_Bean.DataBean.TypeListBean liveBean = channels.get(i);
         viewHolder.textView.setText(liveBean.getJuese_yw());
+
 //        viewHolder.Text.setText(liveBean.getValue());
 //        Boolean aBoolean = false;
 
@@ -81,21 +83,29 @@ public class ZY_Juz_Adapter extends BaseAdapter {
 //            MyLog.e("SDSAKAAAAA",list.toString());
 //
 //        }
-
-
-         if (channels.get(i).getJuese_yw().equals(channels.get(0).getJuese_yw())){
-//            aBoolean = false;
-             viewHolder.BF_Ly.setBackgroundResource(R.drawable.a_bg);
-             viewHolder.BF_Ly.setText("A");
-        }else {
-             viewHolder.BF_Ly.setBackgroundResource(R.drawable.b_bg);
-             viewHolder.BF_Ly.setText("B");
-        }
+//         if (channels.get(i).getJuese_yw().equals(channels.get(0).getJuese_yw())){
+////            aBoolean = false;
+//             viewHolder.BF_Ly.setBackgroundResource(R.drawable.a_bg);
+//             viewHolder.BF_Ly.setText("A");
+//        }else {
+//             viewHolder.BF_Ly.setBackgroundResource(R.drawable.b_bg);
+//             viewHolder.BF_Ly.setText("B");
+//        }
 //        if (channels.size() == 0){
 ////            aBoolean = true;
 //            viewHolder.BF_Ly.setBackgroundResource(R.drawable.a_bg);
 //            viewHolder.BF_Ly.setText("A");
 //        }
+
+        if (liveBean.getJS() == true){
+            MyLog.e("我是B","woshiBBB");
+            viewHolder.textViewB.setVisibility(View.VISIBLE);
+
+        }else{
+            MyLog.e("我是A","woshiAAA");
+            viewHolder.textViewA.setVisibility(View.VISIBLE);
+
+        }
         return view;
     }
 
@@ -103,6 +113,7 @@ public class ZY_Juz_Adapter extends BaseAdapter {
         public TextView textView;
         public TextView Text;
         public TextView BF_Ly;
+        public TextView textViewB,textViewA;
     }
 
 }

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -12,16 +13,22 @@ import com.example.lenovo.ztsandroid.App;
 import com.example.lenovo.ztsandroid.R;
 import com.example.lenovo.ztsandroid.adapter.ViewPagerAdapter;
 import com.example.lenovo.ztsandroid.base.BaseActivity;
+import com.example.lenovo.ztsandroid.cotract.ZuoY_TingL_XZ_Cotract;
 import com.example.lenovo.ztsandroid.cotract.zuoye.ZuoY_Yd_Cotract;
+import com.example.lenovo.ztsandroid.fragment.XuanZ_Fragment;
 import com.example.lenovo.ztsandroid.fragment.task.xq_ym.ZY_Kw_Fragment;
+import com.example.lenovo.ztsandroid.fragment.task.xq_ym.Zy_TingL_TK_Fragment;
 import com.example.lenovo.ztsandroid.fragment.task.xq_ym.Zy_YueDu_Fragment;
 import com.example.lenovo.ztsandroid.model.entity.Spinner_T_Bean;
+import com.example.lenovo.ztsandroid.model.entity.ZuoY_TL_xz_Bean;
+import com.example.lenovo.ztsandroid.presenter.zuoye.ZuoY_TL_presenter;
 import com.example.lenovo.ztsandroid.utils.MyLog;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import butterknife.BindView;
@@ -31,10 +38,10 @@ import butterknife.OnClick;
 /**
  * Created by Administrator on 2018/11/29.
  */
-public class TingL_TK_ErJFragment extends BaseActivity {
+public class TingL_TK_ErJFragment extends BaseActivity implements ZuoY_TingL_XZ_Cotract.View {
 
     @BindView(R.id.back_jt)
-    ImageView backJt;
+    LinearLayout backJt;
     @BindView(R.id.title)
     TextView title;
     @BindView(R.id.LeiXin)
@@ -49,19 +56,14 @@ public class TingL_TK_ErJFragment extends BaseActivity {
     ViewPager viewPager;
     private ArrayList<Fragment> nlist = new ArrayList<>();
     private ViewPagerAdapter adapter;
-
-    private Bundle bundle;
-
-    private ArrayList<Spinner_T_Bean> list = new ArrayList<>();
-    private Zy_YueDu_Fragment zy_yueDu_fragment = new Zy_YueDu_Fragment();
-
     private String hw_type;
     private String hw_content;
+    private String avgScore;
     private String hwid;
-    private String avgScores;
-    private ZuoY_Yd_Cotract.Presenter presenter;
-    private String read_content;
-    private String hw_answerId;
+
+    private ZuoY_TingL_XZ_Cotract.Presenter presenter;
+
+    private Bundle bundle;
 
 
     @Override
@@ -72,21 +74,25 @@ public class TingL_TK_ErJFragment extends BaseActivity {
     @Override
     protected void initView() {
 
+        Intent intent = getIntent();
+
+        hw_type = intent.getStringExtra("hw_type");
+        hw_content = intent.getStringExtra("hw_content");
+        avgScore = String.valueOf(intent.getDoubleExtra("avgScore", 1));
+        hwid = intent.getStringExtra("hwid");
+
+        MyLog.e("AvgScore",avgScore + "");
+
+//        JsonDemo(typeList);
+//        adapter = new ViewPagerAdapter(getSupportFragmentManager(),nlist);
+//        viewPager.setAdapter(adapter);
+//        adapter.notifyDataSetChanged();
     }
 
     @Override
     public void initData() {
-        String typeList = bundle.getString("data");
-
-
-        Intent intent = getIntent();
-        hw_type = intent.getStringExtra("hw_type");
-        hw_content = intent.getStringExtra("hw_content");
-        hwid = intent.getStringExtra("hwid");
-        avgScores = String.valueOf(intent.getDoubleExtra("avgScore", 1));
-
-
-        MyLog.e("List数据", typeList + "");
+        presenter = new ZuoY_TL_presenter(this);
+        presenter.SetUrl(App.stuid, hwid, "", "2", hw_type, hw_content, avgScore);
     }
 
     @Override
@@ -94,72 +100,55 @@ public class TingL_TK_ErJFragment extends BaseActivity {
 
     }
 
-
-    private void JsonDemo(String string) {
-//
-//        Gson gson = new Gson();
-//        java.lang.reflect.Type type = new TypeToken<ZuoY_dc_Bean>() {}.getType();
-//        ZuoY_dc_Bean jsonBean = gson.fromJson(string, type);
-//        List<ZuoY_dc_Bean.TypeListBean> list = jsonBean.getTypeList();
-//        for (int i = 0; i<  list.size(); i++){
-//            Zy_Dc_Fragment zuYYinBFragment = new Zy_Dc_Fragment();
-//                bundle = new Bundle();
-//                bundle.putString("DanCy",list.get(i).getWord());
-//                bundle.putString("DanCz",list.get(i).getWord_tran());
-//
-//                MyLog.e("解析出来的单词数据",list.get(i).getWord() + "");
-//
-//                zuYYinBFragment.setParams(bundle);
-//                nlist.add(zuYYinBFragment);
-//        }
+    @Override
+    public void getManager(final ZuoY_TL_xz_Bean zuoYDcBean) {
 
 
-        //第一步，string参数相当于一个JSON,依次解析下一步
-        JSONArray json = null;
-        JSONObject data = null;
-        try {
-            data = new JSONObject(string);
-
-            JSONArray typeList = data.getJSONArray("typeList");
 
 
-            for (int a = 0; a < typeList.length(); a++) {
+        final String listen_text = zuoYDcBean.getData().getTypeList().get(0).getListen_text();
+        App.activity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
 
-                JSONObject value = null;
+                for (int i = 0; i < zuoYDcBean.getData().getTypeList().size(); i++) {
 
-                value = typeList.getJSONObject(a);
+                    Zy_TingL_TK_Fragment fragment = new Zy_TingL_TK_Fragment();
+                    bundle = new Bundle();
+//                    bundle.putSerializable("list", (Serializable) zuoYDcBean.getData().getTypeList().get(0).getListen_questionList().get(i).getListen_optionList());
 
-                String word = value.optString("text_yw");
-                String word_tran = value.optString("text_zw");
-
-                ZY_Kw_Fragment zuYYinBFragment = new ZY_Kw_Fragment();
-                bundle = new Bundle();
-                bundle.putString("KWy", word);
-                bundle.putString("KWz", word_tran);
-                zuYYinBFragment.setParams(bundle);
-                nlist.add(zuYYinBFragment);
+//                    bundle.putString("ertitle",zuoYDcBean.getData().getTypeList().get(0).getListen_questionList().get(i).getListen_question());
+                    bundle.putString("title", listen_text);
+//                    bundle.putString("relative_path", zuoYDcBean.getData().getTypeList().get(0).getListen_questionList().get(i).getHomeworkPath());
+                      bundle.putSerializable("list", (Serializable) zuoYDcBean.getData().getTypeList());
+                      bundle.putString("Relative_path",zuoYDcBean.getData().getRelative_path());
+                      bundle.putString("listen_video",zuoYDcBean.getData().getTypeList().get(i).getListen_video());
+                    fragment.setParams(bundle);
+                    nlist.add(fragment);
+                }
+                adapter = new ViewPagerAdapter(getSupportFragmentManager(), nlist);
+                viewPager.setAdapter(adapter);
+                adapter.notifyDataSetChanged();
             }
-
-            adapter = new ViewPagerAdapter(App.activity.getSupportFragmentManager(), nlist);
-            viewPager.setAdapter(adapter);
-            adapter.notifyDataSetChanged();
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+        });
 
 
     }
 
+    @Override
+    public void showmessage(String str) {
+
+    }
+
+    @Override
+    public void setBasePresenter(ZuoY_TingL_XZ_Cotract.Presenter presenter) {
+        this.presenter = presenter;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // TODO: add setContentView(...) invocation
         ButterKnife.bind(this);
-    }
-
-    @OnClick(R.id.back_jt)
-    public void onViewClicked() {
     }
 }

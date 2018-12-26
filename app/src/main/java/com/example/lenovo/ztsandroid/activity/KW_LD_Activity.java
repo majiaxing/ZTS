@@ -77,13 +77,11 @@ public class KW_LD_Activity extends BaseActivity implements KeW_list_Cotract.Vie
                 new KeW_list_Presenter(this);
                 presenter.SetUrl(jclx,nj_jc,sxc,extra,null,stuid);
                 break;
-
             case "word":
                 title.setText("单词");
                 new KeW_list_Presenter(this);
                 presenter.SetUrl(jclx,nj_jc,sxc,extra,null,stuid);
                 break;
-
             case "phrase":
                 title.setText("短语");
                 new KeW_list_Presenter(this);
@@ -99,10 +97,7 @@ public class KW_LD_Activity extends BaseActivity implements KeW_list_Cotract.Vie
                 new KeW_list_Presenter(this);
                 presenter.SetUrl(jclx,nj_jc,sxc,extra,null,stuid);
                 break;
-
             case "listen":
-
-
                     switch (listen_type){
                         case "1":
                             new KeW_list_Presenter(this);
@@ -115,7 +110,6 @@ public class KW_LD_Activity extends BaseActivity implements KeW_list_Cotract.Vie
                              presenter.SetUrl(jclx, nj_jc, sxc, extra, "2", stuid);
                              MyLog.e("lalla",listen_type);
                             title.setText("听力填空");
-
                             break;
                     }
                 break;

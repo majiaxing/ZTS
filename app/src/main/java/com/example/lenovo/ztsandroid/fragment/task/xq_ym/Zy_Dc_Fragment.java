@@ -12,8 +12,11 @@ import android.os.Handler;
 import android.support.v4.app.ActivityCompat;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RatingBar;
@@ -39,6 +42,7 @@ import com.example.lenovo.ztsandroid.presenter.ZhiL_Csh_Fy_Presenter;
 import com.example.lenovo.ztsandroid.presenter.ZhiL_Csh_ZY_Fy_Presenter;
 import com.example.lenovo.ztsandroid.utils.ConvertUtil;
 import com.example.lenovo.ztsandroid.utils.MyLog;
+import com.example.lenovo.ztsandroid.view.RippleIntroView;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -66,6 +70,7 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
+import static com.example.lenovo.ztsandroid.App.activity;
 import static com.google.common.collect.ComparisonChain.start;
 
 /**
@@ -106,6 +111,12 @@ public class Zy_Dc_Fragment extends BaseFragment implements View.OnClickListener
     private String danCy;
     private String danCz;
 
+    private RippleIntroView rippleIntroView;
+    private LinearLayout linearLayout;
+    private ImageView pinF_jd;
+    private Animation hyperspaceJumpAnimation;
+    private CheckBox bf_zt;
+
     @Override
     protected int getLayoutId() {
         return R.layout.viewpager_danci;
@@ -132,10 +143,10 @@ public class Zy_Dc_Fragment extends BaseFragment implements View.OnClickListener
         xinx_bar = view.findViewById(R.id.Xinx_bar);
         next_t = view.findViewById(R.id.next_T);
         bf_ly = view.findViewById(R.id.BF_LY);
-        CheckBox BF_zt = view.findViewById(R.id.BF_zt);
+        bf_zt = view.findViewById(R.id.BF_zt);
         ly_btn = view.findViewById(R.id.Ly_btn);
         bf_ly.setOnClickListener(this);
-        BF_zt.setOnClickListener(this);
+        bf_zt.setOnClickListener(this);
         ly_btn.setOnClickListener(this);
         next_t.setOnClickListener(this);
 
@@ -143,6 +154,15 @@ public class Zy_Dc_Fragment extends BaseFragment implements View.OnClickListener
         next_t.setVisibility(View.GONE);
 
         creatAudioRecord();
+
+
+
+        rippleIntroView = view.findViewById(R.id.Ripple);
+        linearLayout = view.findViewById(R.id.linear);
+        pinF_jd = view.findViewById(R.id.PinF_jd);
+        hyperspaceJumpAnimation = AnimationUtils.loadAnimation(activity, R.anim.loading_animation);
+        // 使用ImageView显示动画
+        pinF_jd.startAnimation(hyperspaceJumpAnimation);
 
     }
 
@@ -160,19 +180,35 @@ public class Zy_Dc_Fragment extends BaseFragment implements View.OnClickListener
             try {
                 mPlayer = null;
                 mPlayer = new MediaPlayer();
-                mPlayer.setDataSource("http://sc1.111ttt.cn:8282/2018/1/03m/13/396131229550.m4a?tflag=1519095601&pin=6cd414115fdb9a950d827487b16b5f97#.mp3");
+
+               String relative_path = bundle.getString("Relative_path");
+                String word_video = bundle.getString("Word_video");
+
+                String bofUrl = "https://zts100.com/demo/file/download"+"/?"+"Relative_path="+relative_path+"&"+"type=2"+"&"+"fileName="+word_video;
+                mPlayer.setDataSource(bofUrl);
+
                 //3 准备播放
                 mPlayer.prepareAsync();
                 mPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
                     @Override
                     public void onPrepared(MediaPlayer mediaPlayer) {
-
                     }
                 });
             } catch (IOException e) {
                 e.printStackTrace();
             }
+            mPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                @Override
+                public void onCompletion(MediaPlayer mp) {
+
+                    MyLog.e("CheckBox_状态",bf_zt.isChecked() + "");
+                    bf_zt.setChecked(false);
+                }
+            });
+
         }
+
+
     }
 
     @Override
@@ -306,6 +342,9 @@ public class Zy_Dc_Fragment extends BaseFragment implements View.OnClickListener
         String toBase64 = Base64Encoder.encode(bytes, CharsetUtil.CHARSET_ISO_8859_1);
 
         if (sessionId != null){
+
+            linearLayout.setVisibility(View.VISIBLE);
+            ly_btn.setVisibility(View.GONE);
             presenter = new PinC_ZY_Fay_presenter(this);
             presenter.seturlZhiL("0", "1", "2","1",toBase64, sessionId);
         }
@@ -316,7 +355,7 @@ public class Zy_Dc_Fragment extends BaseFragment implements View.OnClickListener
 
             System.out.println("stopRecord");
             isRecord = false;//停止文件写入
-            Toast.makeText(App.activity,"录音成功",Toast.LENGTH_SHORT).show();
+//            Toast.makeText(App.activity,"录音成功",Toast.LENGTH_SHORT).show();
             audioRecord.stop();
             audioRecord.release();//释放资源
             audioRecord = null;
@@ -520,7 +559,6 @@ public class Zy_Dc_Fragment extends BaseFragment implements View.OnClickListener
                 break;
             case R.id.BF_zt:
 
-
                 if (bool[0]){
 
                     if (mPlayer.isPlaying()){
@@ -546,13 +584,13 @@ public class Zy_Dc_Fragment extends BaseFragment implements View.OnClickListener
                         MyLog.e("NWWQEKA",isrecording + "");
                         stopAudioRecord();
                     b[0] = false;
-
+                    rippleIntroView.setColor(this.getResources().getColor(R.color.pe_gray));
                 }else {
-
                         startAudioRecord();
                         presenter = new ZhiL_Csh_ZY_Fy_Presenter(this);
-                        presenter.setUrlsZhiL("0",danCy,System.currentTimeMillis() + "","1","4.0");
+                        presenter.setUrlsZhiL("1",danCy,System.currentTimeMillis() + "","1","4.0");
                         b[0] = true;
+                    rippleIntroView.setColor(this.getResources().getColor(R.color.text_color_red));
                 }
                 break;
             case R.id.BF_One:
@@ -584,8 +622,19 @@ public class Zy_Dc_Fragment extends BaseFragment implements View.OnClickListener
 
             JSONObject response = json.optJSONObject("Response");
             String PronAccuracy = response.optString("PronAccuracy");
-
-
+            String Error = response.optString("Error");
+            MyLog.e("Error",Error +"");
+            if (Error != ""){
+                activity.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        linearLayout.setVisibility(View.GONE);
+                        ly_btn.setVisibility(View.VISIBLE);
+                        Toast.makeText(activity,"评估失败",Toast.LENGTH_LONG).show();
+                    }
+                });
+                return;
+            }
             if (PronAccuracy != "0"){
 
                 str = PronAccuracy.substring(0,4);
@@ -614,7 +663,8 @@ public class Zy_Dc_Fragment extends BaseFragment implements View.OnClickListener
                         xinx_bar.setRating(in);
                         xinx_bar.setNumStars(5);
                         xinx_bar.setMax(5);
-
+                        linearLayout.setVisibility(View.GONE);
+                        ly_btn.setVisibility(View.VISIBLE);
                     }
                 });
 
@@ -627,6 +677,8 @@ public class Zy_Dc_Fragment extends BaseFragment implements View.OnClickListener
                 App.activity.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
+                        linearLayout.setVisibility(View.GONE);
+                        ly_btn.setVisibility(View.VISIBLE);
                         Toast.makeText(App.activity,"请正常朗读",Toast.LENGTH_SHORT).show();
                     }
                 });

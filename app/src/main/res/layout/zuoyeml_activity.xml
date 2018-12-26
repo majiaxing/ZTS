@@ -136,19 +136,17 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/colorWhite"
-        android:layout_marginBottom="157px"
+        android:layout_marginBottom="177px"
        />
-
-
 
 
         <TextView
             android:id="@+id/statr_ZY"
             android:layout_width="match_parent"
-            android:layout_height="157px"
+            android:layout_height="177px"
             android:text="开始作业"
             android:gravity="center"
-            android:background="@drawable/kais_zy"
+            android:background="@drawable/huiyuan"
             android:layout_alignParentBottom="true"
             />
 

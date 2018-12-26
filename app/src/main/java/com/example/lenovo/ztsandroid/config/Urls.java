@@ -28,6 +28,9 @@ public class Urls {
 //课文二级列表
     public static final String KwerjList = BASE +"text/findByDy";
 
+    //听力提交
+    public static final String TiJiaoTL = BASE + "learn/saveLearnListen";
+
     //课文详情
     public static final String KwXq = BASE +"text/detail";
 

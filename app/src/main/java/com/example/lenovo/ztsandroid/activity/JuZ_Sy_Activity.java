@@ -25,6 +25,7 @@ import com.example.lenovo.ztsandroid.adapter.LunBotuAdapter;
 import com.example.lenovo.ztsandroid.adapter.ViewPagerAdapter;
 import com.example.lenovo.ztsandroid.base.BaseActivity;
 import com.example.lenovo.ztsandroid.cotract.Juz_XQ_Cotract;
+import com.example.lenovo.ztsandroid.fragment.DanCi_fragment;
 import com.example.lenovo.ztsandroid.fragment.Duany_Fragment;
 import com.example.lenovo.ztsandroid.model.entity.Dc_Xq_Bean;
 import com.example.lenovo.ztsandroid.model.entity.Juz_Xq_Bean;
@@ -43,7 +44,7 @@ import butterknife.OnClick;
  * Created by Administrator on 2018/11/7.
  */
 
-public class JuZ_Sy_Activity extends BaseActivity implements Juz_XQ_Cotract.View{
+public class JuZ_Sy_Activity extends BaseActivity implements Juz_XQ_Cotract.View ,Duany_Fragment.FragmentToActivity {
 
 
     @BindView(R.id.back_jt)
@@ -146,7 +147,7 @@ public class JuZ_Sy_Activity extends BaseActivity implements Juz_XQ_Cotract.View
                 BackPopupUtils.PopupDimiss();
                 break;
             case R.id.title:
-
+                upPopupWindow(view);
                 break;
         }
     }
@@ -192,5 +193,10 @@ public class JuZ_Sy_Activity extends BaseActivity implements Juz_XQ_Cotract.View
     @Override
     public void setBasePresenter(Juz_XQ_Cotract.Presenter presenter) {
 
+    }
+
+    @Override
+    public void huidiao(String str) {
+        title.setText("句子");
     }
 }

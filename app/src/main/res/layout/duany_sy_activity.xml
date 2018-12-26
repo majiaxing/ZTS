@@ -64,19 +64,16 @@
             android:layout_width="30px"
             android:layout_height="30px"
             android:src="@drawable/xialak_btn"
-            android:layout_marginLeft="20px"
             android:layout_marginTop="20px"
             />
         </LinearLayout>
     </RelativeLayout>
 
-
     <TextView
-        android:id="@+id/text_X"
+        android:id="@+id/text"
         android:layout_width="match_parent"
-        android:layout_height="90px"
-        android:background="@color/pe_gray"
-        />
+        android:layout_height="40px"
+        android:background="@color/pe_gray" />
 
 
     <android.support.v4.view.ViewPager

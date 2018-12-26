@@ -13,16 +13,21 @@ import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.lenovo.ztsandroid.App;
 import com.example.lenovo.ztsandroid.R;
-import com.example.lenovo.ztsandroid.adapter.Xuanz_Adapter;
 import com.example.lenovo.ztsandroid.base.BaseFragment;
+import com.example.lenovo.ztsandroid.cotract.TingL_XQ_xz_Cotract;
+import com.example.lenovo.ztsandroid.model.entity.TiLi_BaoC_Bean;
 import com.example.lenovo.ztsandroid.model.entity.TingL_TK_Bean;
+import com.example.lenovo.ztsandroid.model.entity.TingL_XQ_xz_Bean;
+import com.example.lenovo.ztsandroid.presenter.TiL_BaoC_Presenter;
 import com.example.lenovo.ztsandroid.utils.MyLog;
 
 import java.io.IOException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 
 import butterknife.BindView;
@@ -32,7 +37,7 @@ import butterknife.OnClick;
 /**
  * Created by Administrator on 2018/11/21.
  */
-public class TingL_XZ_Fragment extends BaseFragment {
+public class TingL_XZ_Fragment extends BaseFragment implements TingL_XQ_xz_Cotract.View{
 
     @BindView(R.id.BF_zt)
     CheckBox BFZt;
@@ -115,6 +120,16 @@ public class TingL_XZ_Fragment extends BaseFragment {
     private String relative_path;
     private String word_video;
     private MediaPlayer mPlayer = new MediaPlayer();  //用于播放音频
+
+
+    private TingL_XQ_xz_Cotract.Presenter presenter;
+    private String listen_id;
+    private String type;
+    private String listen_questId;
+    String str = null;
+    private String listen_optionContent;
+    private String listen_optionPhotoes;
+
     @Override
     protected int getLayoutId() {
         return R.layout.viewpager_xuanz;
@@ -124,28 +139,41 @@ public class TingL_XZ_Fragment extends BaseFragment {
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
-        if (mPlayer == null){
+        if (mPlayer == null) {
             mPlayer = new MediaPlayer();
         }
-        if (!isVisibleToUser){
+        if (!isVisibleToUser) {
 //            mediaPlayer.start();
             mPlayer.stop();
-        }else {
+
+            if (BFZt != null) {
+                BFZt.setChecked(false);
+            }
+        } else {
             try {
                 mPlayer = null;
                 mPlayer = new MediaPlayer();
-
                 relative_path = bundle.getString("relative_path");
                 word_video = bundle.getString("word_video");
-                String bofUrl = "https://zts100.com/demo/file/download"+"/?"+"Relative_path="+relative_path+"&"+"type=2"+"&"+"fileName="+word_video;
+                String s = URLEncoder.encode(word_video, "utf-8").replaceAll("\\+", "%20");
+                String bofUrl = "https://zts100.com/demo/file/download" + "/?" + "Relative_path=" + relative_path + "&" + "type=2" + "&" + "fileName=" + s;
                 mPlayer.setDataSource(bofUrl);
-                MyLog.e("sahdisauhdiuahdiuaw",bofUrl);
+                MyLog.e("sahdisauhdiuahdiuaw", bofUrl);
 
                 //3 准备播放
                 mPlayer.prepareAsync();
                 mPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
                     @Override
                     public void onPrepared(MediaPlayer mediaPlayer) {
+
+                    }
+                });
+                mPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                    @Override
+                    public void onCompletion(MediaPlayer mp) {
+
+                        MyLog.e("CheckBox_状态", BFZt.isChecked() + "");
+                        BFZt.setChecked(false);
                     }
                 });
             } catch (IOException e) {
@@ -170,28 +198,32 @@ public class TingL_XZ_Fragment extends BaseFragment {
         relativeLayout2 = view.findViewById(R.id.relativeLayout2);
 
 
+
         ArrayList<TingL_TK_Bean.DataBean.ListenQuestionListBean.ListenOptionListBean> list = (ArrayList<TingL_TK_Bean.DataBean.ListenQuestionListBean.ListenOptionListBean>) bundle.getSerializable("list");
 
-        String listen_optionContent = list.get(0).getListen_optionContent();
-        String listen_optionPhotoes = list.get(0).getListen_optionPhotoes();
+        listen_optionContent = list.get(0).getListen_optionContent();
+        listen_optionPhotoes = list.get(0).getListen_optionPhotoes();
 
 
         String title = bundle.getString("title");
         String ertitle = bundle.getString("ertitle");
         relative_path = bundle.getString("relative_path");
+
+
+        listen_id = bundle.getString("listen_id");
+        type = bundle.getString("type");
+        listen_questId = bundle.getString("Listen_questId");
         TMTitle.setText(title);
 
         if (listen_optionContent != null) {
 
-            MyLog.e("sdaada0",list.size() + "");
-
-            switch (list.size()){
+            MyLog.e("sdaada0", list.size() + "");
+            switch (list.size()) {
                 case 2:
                     XuanzNrA.setText(list.get(0).getListen_option() + ". " + list.get(0).getListen_optionContent());
                     XuanzNrB.setText(list.get(1).getListen_option() + ". " + list.get(1).getListen_optionContent());
                     XXC.setVisibility(View.GONE);
                     XXD.setVisibility(View.GONE);
-
                     break;
                 case 3:
                     XuanzNrA.setText(list.get(0).getListen_option() + ". " + list.get(0).getListen_optionContent());
@@ -206,6 +238,7 @@ public class TingL_XZ_Fragment extends BaseFragment {
                     XuanzNrD.setText(list.get(3).getListen_option() + ". " + list.get(3).getListen_optionContent());
                     break;
             }
+
             linearLayout.setVisibility(View.GONE);
             linearLayoutZX.setVisibility(View.VISIBLE);
             tmTitle.setText(ertitle);
@@ -213,6 +246,7 @@ public class TingL_XZ_Fragment extends BaseFragment {
         } else if (listen_optionPhotoes != null) {
             linearLayout.setVisibility(View.VISIBLE);
             linearLayoutZX.setVisibility(View.GONE);
+
             String sA = "https://zts100.com/demo/file/download" + "/?" + "Relative_path=" + relative_path + "&" + "type=1" + "&" + "fileName=" + list.get(0).getListen_optionPhotoes();
             String sB = "https://zts100.com/demo/file/download" + "/?" + "Relative_path=" + relative_path + "&" + "type=1" + "&" + "fileName=" + list.get(1).getListen_optionPhotoes();
             String sC = "https://zts100.com/demo/file/download" + "/?" + "Relative_path=" + relative_path + "&" + "type=1" + "&" + "fileName=" + list.get(2).getListen_optionPhotoes();
@@ -230,6 +264,14 @@ public class TingL_XZ_Fragment extends BaseFragment {
             TextB.setText(list.get(1).getListen_option());
             TextC.setText(list.get(2).getListen_option());
 
+            if (XuanZA.getVisibility() == View.VISIBLE){
+                str = "A";
+            }else if (XuanZB.getVisibility() == View.VISIBLE){
+                str = "B";
+            }else if (XuanZC.getVisibility() == View.VISIBLE){
+                str = "C";
+            }
+
 
         }
     }
@@ -244,13 +286,58 @@ public class TingL_XZ_Fragment extends BaseFragment {
         this.bundle = bundle;
     }
 
+    private Boolean[] bool = {false};
 
-    @OnClick({R.id.TJ_Xyt, R.id.next_T, R.id.Image_A, R.id.Image_B, R.id.Image_C, R.id.XX_A, R.id.XX_B, R.id.XX_C ,R.id.XX_D})
+    @OnClick({R.id.TJ_Xyt, R.id.next_T, R.id.Image_A, R.id.Image_B, R.id.Image_C, R.id.XX_A, R.id.XX_B, R.id.XX_C, R.id.XX_D,R.id.BF_zt})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.TJ_Xyt:
+
+
+                if (listen_optionContent != null){
+                    if (BFOneXuanz.getVisibility() == View.VISIBLE){
+                        str = "A";
+                    }else if (BFTwoXuanz.getVisibility() == View.VISIBLE) {
+                        str = "B";
+                    }else if (BFThreeXuanz.getVisibility() == View.VISIBLE){
+                        str ="C";
+                    }else if (BFFourXuanz.getVisibility() == View.VISIBLE){
+                        str = "D";
+                    }
+                }else if (listen_optionPhotoes != null){
+
+                    if (XuanZA.getVisibility() == View.VISIBLE){
+                        str = "A";
+                    }else if (XuanZB.getVisibility() == View.VISIBLE){
+                        str = "B";
+                    }else if (XuanZC.getVisibility() == View.VISIBLE){
+                        str = "C";
+                    }
+
+                }
+
+
+                presenter = new TiL_BaoC_Presenter(this);
+                presenter.SetUrl(listen_id,type,App.stuid,"2",listen_questId,str,"");
+
                 break;
             case R.id.next_T:
+                break;
+            case R.id.BF_zt:
+                if (bool[0]) {
+                    if (mPlayer.isPlaying()) {
+                        MyLog.e("lalall", "ahahahahh");
+                        mPlayer.pause();
+                    }
+                    bool[0] = false;
+                } else {
+                    if (!mPlayer.isPlaying()) {
+                        MyLog.e("holle dnsjk", "ahahahahh");
+                        mPlayer.start();
+                    }
+                    bool[0] = true;
+                }
+
                 break;
             case R.id.Image_A:
                 XuanZA.setVisibility(View.VISIBLE);
@@ -294,6 +381,7 @@ public class TingL_XZ_Fragment extends BaseFragment {
                 BFThreeXuanz.setVisibility(View.GONE);
                 BFFourXuanz.setVisibility(View.VISIBLE);
                 break;
+
         }
     }
 
@@ -305,6 +393,40 @@ public class TingL_XZ_Fragment extends BaseFragment {
         unbinder = ButterKnife.bind(this, rootView);
         return rootView;
     }
+
+    @Override
+    public void getManager(TingL_XQ_xz_Bean xqbean) {
+
+    }
+
+    @Override
+    public void getManager(TingL_TK_Bean xqbean) {
+
+    }
+
+    @Override
+    public void getManagerTiJ(TiLi_BaoC_Bean tiLi_baoC_bean) {
+
+        final String flag = tiLi_baoC_bean.getData().getFlag();
+
+        App.activity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(App.activity,flag,Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
+    @Override
+    public void showmessage(String str) {
+
+    }
+
+    @Override
+    public void setBasePresenter(TingL_XQ_xz_Cotract.Presenter presenter) {
+
+    }
+
 
 //    @Override
 //    public void onDestroyView() {

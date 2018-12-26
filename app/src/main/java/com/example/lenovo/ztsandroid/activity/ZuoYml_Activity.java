@@ -36,6 +36,8 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -180,37 +182,69 @@ public class ZuoYml_Activity extends BaseActivity implements Zuoy_Cotract.View {
                         break;
 
                     case "5":
-//                        MyLog.e("听力类型ID",list.get(position).getListen_type() + "");
-//                        if (list.get(position).getListen_type() != null){
-//
-//                        switch (list.get(position).getListen_type()){
-//                            case "1":
+                        MyLog.e("听力类型ID",list.get(position).getListenType() + "");
+                        if (list.get(position).getListenType() != null){
+
+                        switch (list.get(position).getListenType()){
+                            case "1":
                                 Intent intent8 = new Intent(App.activity, TingL_XZ_ErJFragment.class);
                                 intent8.putExtra("hw_type", hw_type);
                                 intent8.putExtra("hw_content", hw_content);
                                 intent8.putExtra("avgScore", avgScore);
                                 intent8.putExtra("hwid", hwid);
-
                                 startActivity(intent8);
-
-//                                break;
-//                            case "2":
-//                                Intent intent9 = new Intent(App.activity, TingL_TK_ErJFragment.class);
-//                                intent9.putExtra("hw_type", hw_type);
-//                                intent9.putExtra("hw_content", hw_content);
-//                                intent9.putExtra("avgScore", avgScore);
-//                                intent9.putExtra("hwid", hwid);
-//                                startActivity(intent9);
-//                                break;
-//                        }
-//                        }
+                                break;
+                            case "2":
+                                Intent intent9 = new Intent(App.activity, TingL_TK_ErJFragment.class);
+                                intent9.putExtra("hw_type", hw_type);
+                                intent9.putExtra("hw_content", hw_content);
+                                intent9.putExtra("avgScore", avgScore);
+                                intent9.putExtra("hwid", hwid);
+                                startActivity(intent9);
+                                break;
+                        }
+                        }
                         break;
                 }
             }
         });
-
     }
 
+
+//    private void postParams() {
+//        //创建一个OkHttpClient对象
+//        OkHttpClient okHttpClient = new OkHttpClient();
+//        //构建一个请求体 add参数1 key 参数2 value 发送字段
+//        FormBody.Builder builder = new FormBody.Builder();
+//
+//        builder.add("hwid", hwid)
+//                .add("homework_cishu", homework_cishu)
+//                .add("flag", flag)
+//                .add("scoreAll",scoreAll)
+//                .build();
+//        //构建一个请求对象
+//        Request request = new Request.Builder()
+//                .url("https://zts100.com/demo/student/homework/findByHomeworkTwo")
+//                .post(builder.build())
+//                .build();
+//
+//        //发送请求获取响应
+//        Response response = null;
+//        try {
+//            response = okHttpClient.newCall(request).execute();
+//            //判断请求是否成功
+//            if (response.isSuccessful()) {
+//                //打印服务端返回结果
+//                String sss = response.body().string();
+//
+//
+//
+//                Log.e("okhttp 获取到的数据", sss);
+//            }
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
     @Override
     public void initData() {

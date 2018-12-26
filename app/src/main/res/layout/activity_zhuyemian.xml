@@ -17,8 +17,8 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"/>
     <RadioGroup
-        android:paddingBottom="@dimen/x30"
-        android:paddingTop="@dimen/x30"
+        android:paddingBottom="20px"
+        android:paddingTop="20px"
         android:id="@+id/FrameLayout_contentGroup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
