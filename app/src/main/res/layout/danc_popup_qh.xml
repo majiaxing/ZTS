@@ -19,7 +19,7 @@
         android:id="@+id/Ti_J_ChaK"
         android:layout_width="match_parent"
         android:layout_height="153px"
-        android:background="@drawable/huiyuan"
+        android:background="@drawable/title"
         android:gravity="center"
         android:text="提交并查看结果"
         android:textSize="48px"

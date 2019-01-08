@@ -5,7 +5,6 @@
     android:id="@+id/Liner"
     >
 
-
         <TextView
             android:id="@+id/nr"
             android:layout_width="402px"
@@ -16,9 +15,8 @@
             android:textSize="36px"
             android:textColor="#333333"
             android:layout_marginTop="59px"
-            android:layout_marginLeft="49px"
+            android:layout_marginLeft="69px"
             android:horizontalSpacing="182px"
             />
-
 
 </LinearLayout>

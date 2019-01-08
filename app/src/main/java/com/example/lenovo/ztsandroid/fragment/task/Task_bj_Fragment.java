@@ -31,7 +31,6 @@ import butterknife.ButterKnife;
 
 public class Task_bj_Fragment extends BaseFragment implements Zuoy_Cotract.View{
 
-
     @BindView(R.id.List_view)
     android.widget.ListView ListView;
     private ArrayList<ZuoY_list_Bean.DataBean> list = new ArrayList<>();
@@ -44,7 +43,6 @@ public class Task_bj_Fragment extends BaseFragment implements Zuoy_Cotract.View{
 
     @Override
     protected void init(View view) {
-
         ListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -63,16 +61,27 @@ public class Task_bj_Fragment extends BaseFragment implements Zuoy_Cotract.View{
                 startActivity(intent);
             }
         });
-
-
-
     }
 
     @Override
     protected void loadData() {
-    presenter = new ZuoY_List_Presenter(this);
-    presenter.SetUrl(App.stuid);
+
+        presenter = new ZuoY_List_Presenter(this);
+        presenter.SetUrl(App.stuid);
     }
+
+
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if (!hidden){
+
+            list.clear();
+            presenter = new ZuoY_List_Presenter(this);
+            presenter.SetUrl(App.stuid);
+        }
+    }
+
 
     @Override
     public void setParams(Bundle bundle) {

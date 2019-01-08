@@ -1,16 +1,17 @@
 package com.example.lenovo.ztsandroid.model.entity;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by Administrator on 2018/11/27.
  */
 
-public class ZuoY_erJ_Bean {
+public class ZuoY_erJ_Bean implements Serializable {
 
 
     /**
-     * data : {"homeworkType":[{"hw_type":"2","jiaocaiid":"1_7_1","avgScore":11.11,"hw_content":"dd46177a-eae5-466b-aa0e-e28235425ac4","listenType":"","typeName":"预习单元1","type":"dd46177a-eae5-466b-aa0e-e28235425ac4"},{"hw_type":"8","jiaocaiid":"1_7_1","avgScore":11.11,"hw_content":"dd46177a-eae5-466b-aa0e-e28235425ac4","listenType":"","typeName":"预习单元1","type":"dd46177a-eae5-466b-aa0e-e28235425ac4"},{"hw_type":"3","jiaocaiid":"1_7_1","avgScore":11.11,"hw_content":"6d2a87e7-0507-4b5e-8c22-d09e472935a4","listenType":"","typeName":"第一单元","type":"a75692ee-94fc-443a-bac9-0ad543ece315"},{"hw_type":"1","jiaocaiid":"1_7_1","avgScore":11.11,"hw_content":"4295bf8f-900d-4655-846a-723cde9a7127","listenType":"","typeName":"预习单元1","type":"dd46177a-eae5-466b-aa0e-e28235425ac4"},{"hw_type":"1","jiaocaiid":"1_7_1","avgScore":11.11,"hw_content":"f05fe173-3dbd-487c-ad57-4f9cdb4dd886","listenType":"","typeName":"预习单元1","type":"dd46177a-eae5-466b-aa0e-e28235425ac4"},{"hw_type":"4","jiaocaiid":"1_7_1","avgScore":11.11,"hw_content":"95e42fa3-14a8-438b-bf06-8d52727c1c5b","listenType":"","typeName":"第一单元","type":"a75692ee-94fc-443a-bac9-0ad543ece315"},{"hw_type":"5","jiaocaiid":"1_7_1","avgScore":11.11,"hw_content":"03a78ddc-e722-4d23-9eca-925b4725f427","listenType":"1","typeName":"第一单元","type":"a75692ee-94fc-443a-bac9-0ad543ece315"},{"hw_type":"5","jiaocaiid":"1_7_1","avgScore":11.11,"hw_content":"05663253-5882-4591-86aa-94fab7af0272","listenType":"2","typeName":"第一单元","type":"a75692ee-94fc-443a-bac9-0ad543ece315"},{"hw_type":"6","jiaocaiid":"1_7_1","avgScore":11.11,"hw_content":"800b3ed1-4fec-4a50-baa8-5cc2f9bf6492","listenType":"","typeName":"预习1-3单元","type":"6ec73767-a83a-4bb0-a192-94726523f836"}],"tips":"本作业只能完成一次"}
+     * data : {"homeworkType":[{"hw_type":"6","jiaocaiid":"1_7_1","score":"","avgScore":11.11,"hw_content":"800b3ed1-4fec-4a50-baa8-5cc2f9bf6492","listenType":"","typeName":"Starter阅读理解","type":"6ec73767-a83a-4bb0-a192-94726523f836","stu_hw_id":"4d7b6014-0e2f-47d1-891c-93c340bad00b"},{"hw_type":"5","jiaocaiid":"1_7_1","score":"","avgScore":11.11,"hw_content":"20e14909-43fb-46b9-9ff3-044b524aab0d","listenType":"1","typeName":"图片听选（本题3分）","type":"a75692ee-94fc-443a-bac9-0ad543ece315","stu_hw_id":"4d7b6014-0e2f-47d1-891c-93c340bad00b"},{"hw_type":"5","jiaocaiid":"1_7_1","score":"","avgScore":11.11,"hw_content":"374339f3-386c-40df-bb91-b7616d10a4a7","listenType":"1","typeName":"听对话，选择正确答案。","type":"a75692ee-94fc-443a-bac9-0ad543ece315","stu_hw_id":"4d7b6014-0e2f-47d1-891c-93c340bad00b"},{"hw_type":"5","jiaocaiid":"1_7_1","score":"","avgScore":11.11,"hw_content":"2331d5a9-976c-43e6-bb2d-eba5d63beaab","listenType":"2","typeName":"句子填空","type":"6f7ad514-9ccd-4ff9-a733-a6c4359493cf","stu_hw_id":"4d7b6014-0e2f-47d1-891c-93c340bad00b"},{"hw_type":"0","jiaocaiid":"1_7_1","score":"","avgScore":11.11,"hw_content":"1","listenType":"","typeName":"ɪ","type":"1","stu_hw_id":"4d7b6014-0e2f-47d1-891c-93c340bad00b"},{"hw_type":"2","jiaocaiid":"1_7_1","score":126.6,"avgScore":11.11,"hw_content":"dd2c9332-23d0-4b28-aaf2-6acf058152b1","listenType":"","typeName":"预习单元3","type":"dd2c9332-23d0-4b28-aaf2-6acf058152b1","stu_hw_id":"4d7b6014-0e2f-47d1-891c-93c340bad00b"},{"hw_type":"8","jiaocaiid":"1_7_1","score":"","avgScore":11.11,"hw_content":"a75692ee-94fc-443a-bac9-0ad543ece315","listenType":"","typeName":"第一单元","type":"a75692ee-94fc-443a-bac9-0ad543ece315","stu_hw_id":"4d7b6014-0e2f-47d1-891c-93c340bad00b"},{"hw_type":"3","jiaocaiid":"1_7_1","score":"","avgScore":11.11,"hw_content":"ac4422ff-15f2-49d9-8ee0-e65fb5334e3b","listenType":"","typeName":"听说训练4","type":"6f7ad514-9ccd-4ff9-a733-a6c4359493cf","stu_hw_id":"4d7b6014-0e2f-47d1-891c-93c340bad00b"},{"hw_type":"1","jiaocaiid":"1_7_1","score":"","avgScore":11.11,"hw_content":"b2e435a6-1290-4c3b-aacb-e9e20858a529","listenType":"","typeName":"Section A 3b","type":"5e1b0ace-ec3a-4056-b5ea-547fc3b0d85f","stu_hw_id":"4d7b6014-0e2f-47d1-891c-93c340bad00b"}],"tips":"作业未开始或已结束，不可做作业"}
      * data2 : null
      * data3 : null
      * pageInfo : null
@@ -105,8 +106,8 @@ public class ZuoY_erJ_Bean {
 
     public static class DataBean {
         /**
-         * homeworkType : [{"hw_type":"2","jiaocaiid":"1_7_1","avgScore":11.11,"hw_content":"dd46177a-eae5-466b-aa0e-e28235425ac4","listenType":"","typeName":"预习单元1","type":"dd46177a-eae5-466b-aa0e-e28235425ac4"},{"hw_type":"8","jiaocaiid":"1_7_1","avgScore":11.11,"hw_content":"dd46177a-eae5-466b-aa0e-e28235425ac4","listenType":"","typeName":"预习单元1","type":"dd46177a-eae5-466b-aa0e-e28235425ac4"},{"hw_type":"3","jiaocaiid":"1_7_1","avgScore":11.11,"hw_content":"6d2a87e7-0507-4b5e-8c22-d09e472935a4","listenType":"","typeName":"第一单元","type":"a75692ee-94fc-443a-bac9-0ad543ece315"},{"hw_type":"1","jiaocaiid":"1_7_1","avgScore":11.11,"hw_content":"4295bf8f-900d-4655-846a-723cde9a7127","listenType":"","typeName":"预习单元1","type":"dd46177a-eae5-466b-aa0e-e28235425ac4"},{"hw_type":"1","jiaocaiid":"1_7_1","avgScore":11.11,"hw_content":"f05fe173-3dbd-487c-ad57-4f9cdb4dd886","listenType":"","typeName":"预习单元1","type":"dd46177a-eae5-466b-aa0e-e28235425ac4"},{"hw_type":"4","jiaocaiid":"1_7_1","avgScore":11.11,"hw_content":"95e42fa3-14a8-438b-bf06-8d52727c1c5b","listenType":"","typeName":"第一单元","type":"a75692ee-94fc-443a-bac9-0ad543ece315"},{"hw_type":"5","jiaocaiid":"1_7_1","avgScore":11.11,"hw_content":"03a78ddc-e722-4d23-9eca-925b4725f427","listenType":"1","typeName":"第一单元","type":"a75692ee-94fc-443a-bac9-0ad543ece315"},{"hw_type":"5","jiaocaiid":"1_7_1","avgScore":11.11,"hw_content":"05663253-5882-4591-86aa-94fab7af0272","listenType":"2","typeName":"第一单元","type":"a75692ee-94fc-443a-bac9-0ad543ece315"},{"hw_type":"6","jiaocaiid":"1_7_1","avgScore":11.11,"hw_content":"800b3ed1-4fec-4a50-baa8-5cc2f9bf6492","listenType":"","typeName":"预习1-3单元","type":"6ec73767-a83a-4bb0-a192-94726523f836"}]
-         * tips : 本作业只能完成一次
+         * homeworkType : [{"hw_type":"6","jiaocaiid":"1_7_1","score":"","avgScore":11.11,"hw_content":"800b3ed1-4fec-4a50-baa8-5cc2f9bf6492","listenType":"","typeName":"Starter阅读理解","type":"6ec73767-a83a-4bb0-a192-94726523f836","stu_hw_id":"4d7b6014-0e2f-47d1-891c-93c340bad00b"},{"hw_type":"5","jiaocaiid":"1_7_1","score":"","avgScore":11.11,"hw_content":"20e14909-43fb-46b9-9ff3-044b524aab0d","listenType":"1","typeName":"图片听选（本题3分）","type":"a75692ee-94fc-443a-bac9-0ad543ece315","stu_hw_id":"4d7b6014-0e2f-47d1-891c-93c340bad00b"},{"hw_type":"5","jiaocaiid":"1_7_1","score":"","avgScore":11.11,"hw_content":"374339f3-386c-40df-bb91-b7616d10a4a7","listenType":"1","typeName":"听对话，选择正确答案。","type":"a75692ee-94fc-443a-bac9-0ad543ece315","stu_hw_id":"4d7b6014-0e2f-47d1-891c-93c340bad00b"},{"hw_type":"5","jiaocaiid":"1_7_1","score":"","avgScore":11.11,"hw_content":"2331d5a9-976c-43e6-bb2d-eba5d63beaab","listenType":"2","typeName":"句子填空","type":"6f7ad514-9ccd-4ff9-a733-a6c4359493cf","stu_hw_id":"4d7b6014-0e2f-47d1-891c-93c340bad00b"},{"hw_type":"0","jiaocaiid":"1_7_1","score":"","avgScore":11.11,"hw_content":"1","listenType":"","typeName":"ɪ","type":"1","stu_hw_id":"4d7b6014-0e2f-47d1-891c-93c340bad00b"},{"hw_type":"2","jiaocaiid":"1_7_1","score":126.6,"avgScore":11.11,"hw_content":"dd2c9332-23d0-4b28-aaf2-6acf058152b1","listenType":"","typeName":"预习单元3","type":"dd2c9332-23d0-4b28-aaf2-6acf058152b1","stu_hw_id":"4d7b6014-0e2f-47d1-891c-93c340bad00b"},{"hw_type":"8","jiaocaiid":"1_7_1","score":"","avgScore":11.11,"hw_content":"a75692ee-94fc-443a-bac9-0ad543ece315","listenType":"","typeName":"第一单元","type":"a75692ee-94fc-443a-bac9-0ad543ece315","stu_hw_id":"4d7b6014-0e2f-47d1-891c-93c340bad00b"},{"hw_type":"3","jiaocaiid":"1_7_1","score":"","avgScore":11.11,"hw_content":"ac4422ff-15f2-49d9-8ee0-e65fb5334e3b","listenType":"","typeName":"听说训练4","type":"6f7ad514-9ccd-4ff9-a733-a6c4359493cf","stu_hw_id":"4d7b6014-0e2f-47d1-891c-93c340bad00b"},{"hw_type":"1","jiaocaiid":"1_7_1","score":"","avgScore":11.11,"hw_content":"b2e435a6-1290-4c3b-aacb-e9e20858a529","listenType":"","typeName":"Section A 3b","type":"5e1b0ace-ec3a-4056-b5ea-547fc3b0d85f","stu_hw_id":"4d7b6014-0e2f-47d1-891c-93c340bad00b"}]
+         * tips : 作业未开始或已结束，不可做作业
          */
 
         private String tips;
@@ -130,22 +131,26 @@ public class ZuoY_erJ_Bean {
 
         public static class HomeworkTypeBean {
             /**
-             * hw_type : 2
+             * hw_type : 6
              * jiaocaiid : 1_7_1
+             * score :
              * avgScore : 11.11
-             * hw_content : dd46177a-eae5-466b-aa0e-e28235425ac4
+             * hw_content : 800b3ed1-4fec-4a50-baa8-5cc2f9bf6492
              * listenType :
-             * typeName : 预习单元1
-             * type : dd46177a-eae5-466b-aa0e-e28235425ac4
+             * typeName : Starter阅读理解
+             * type : 6ec73767-a83a-4bb0-a192-94726523f836
+             * stu_hw_id : 4d7b6014-0e2f-47d1-891c-93c340bad00b
              */
 
             private String hw_type;
             private String jiaocaiid;
+            private String score;
             private double avgScore;
             private String hw_content;
             private String listenType;
             private String typeName;
             private String type;
+            private String stu_hw_id;
 
             public String getHw_type() {
                 return hw_type;
@@ -161,6 +166,14 @@ public class ZuoY_erJ_Bean {
 
             public void setJiaocaiid(String jiaocaiid) {
                 this.jiaocaiid = jiaocaiid;
+            }
+
+            public String getScore() {
+                return score;
+            }
+
+            public void setScore(String score) {
+                this.score = score;
             }
 
             public double getAvgScore() {
@@ -201,6 +214,14 @@ public class ZuoY_erJ_Bean {
 
             public void setType(String type) {
                 this.type = type;
+            }
+
+            public String getStu_hw_id() {
+                return stu_hw_id;
+            }
+
+            public void setStu_hw_id(String stu_hw_id) {
+                this.stu_hw_id = stu_hw_id;
             }
         }
     }

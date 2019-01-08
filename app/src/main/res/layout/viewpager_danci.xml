@@ -42,7 +42,6 @@
             android:gravity="center"
             android:id="@+id/textView3"
             android:layout_marginTop="1020px"
-
                 />
 
             <Button
@@ -110,7 +109,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="美[sit]"
+                    android:text="美"
                     android:textSize="30px"
                     android:layout_marginLeft="20px"
                     />
@@ -148,7 +147,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="英[sit]"
+                    android:text="英"
                     android:layout_marginLeft="20px"
                     android:textSize="30px"
                     />
@@ -273,7 +272,6 @@
         android:layout_marginTop="30px"
         android:textColor="@color/colorWhite"
         android:textSize="48px"
-
         />
 
         <RatingBar

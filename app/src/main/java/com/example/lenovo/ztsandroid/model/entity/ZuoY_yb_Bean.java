@@ -1,12 +1,13 @@
 package com.example.lenovo.ztsandroid.model.entity;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by Administrator on 2018/11/30.
  */
 
-public class ZuoY_yb_Bean  {
+public class ZuoY_yb_Bean  implements Serializable {
 
 
     /**
@@ -113,7 +114,7 @@ public class ZuoY_yb_Bean  {
         this.typeList = typeList;
     }
 
-    public static class ScoreBean {
+    public static class ScoreBean implements Serializable{
         /**
          * score : 5
          */
@@ -129,7 +130,7 @@ public class ZuoY_yb_Bean  {
         }
     }
 
-    public static class TypeListBean {
+    public static class TypeListBean implements Serializable{
         /**
          * hw_answerId : 12
          * yb_Bvideo : bvideo

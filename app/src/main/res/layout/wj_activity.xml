@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite"
+    >
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -10,16 +11,26 @@
         android:orientation="horizontal"
         android:layout_gravity="center_vertical"
         android:gravity="center_vertical"
-        android:background="@drawable/huiyuan"
+        android:background="@drawable/title"
         >
-        <ImageView
-            android:id="@+id/Back"
-            android:layout_width="24px"
-            android:layout_height="57px"
-            android:src="@drawable/back_xg_tt"
-            android:layout_marginLeft="54px"
+
+        <LinearLayout
+            android:id="@+id/back_jt"
+            android:layout_width="90px"
+            android:layout_height="90px"
+            android:layout_marginLeft="48px"
             android:layout_marginTop="30px"
-            />
+            android:gravity="center"
+            >
+            <ImageView
+
+                android:layout_width="45px"
+                android:layout_height="45px"
+                android:src="@drawable/back_xg_tt"
+
+
+                />
+        </LinearLayout>
 
         <TextView
             android:layout_width="wrap_content"
@@ -104,6 +115,7 @@
                 android:textColor="@color/colorWhite"
                 android:textSize="36px"
                 android:layout_marginLeft="150px"
+
                 />
 
 
@@ -141,7 +153,7 @@
             android:id="@+id/CZ_"
             android:layout_width="839px"
             android:layout_height="115px"
-            android:background="@mipmap/yzm"
+            android:background="@drawable/cz_mm"
             android:layout_marginTop="80px"
             android:textSize="48px"
             android:text="重置密码"

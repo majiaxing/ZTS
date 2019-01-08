@@ -1,9 +1,11 @@
 package com.example.lenovo.ztsandroid.model.entity;
 
+import java.io.Serializable;
+
 /**
  * Created by Administrator on 2018/12/4.
  */
-public class Student_Xinx_Bean {
+public class Student_Xinx_Bean implements Serializable {
 
 
     /**
@@ -100,7 +102,7 @@ public class Student_Xinx_Bean {
         this.code = code;
     }
 
-    public static class DataBean {
+    public static class DataBean implements Serializable{
         /**
          * stuTupian : 1.tmp
          * memberState : 1

@@ -9,6 +9,7 @@ import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.lenovo.ztsandroid.App;
 import com.example.lenovo.ztsandroid.R;
 import com.example.lenovo.ztsandroid.model.entity.Spinner_Bean;
 import com.example.lenovo.ztsandroid.model.entity.ZuoY_list_Bean;
@@ -83,16 +84,19 @@ public class ZY_lsit_Adapter extends BaseAdapter{
         if (s.equals(str)){
             viewHolder.zuoY_Data.setText("今日作业");
             viewHolder.layout.setBackgroundResource(R.drawable.zy_list_item_bg_w);
+
+
         }else {
             viewHolder.zuoY_Data.setText(s);
             viewHolder.layout.setBackgroundResource(R.drawable.zy_list_item_bg);
+
         }
 
 
         String endTime = liveBean.getEndTime();
-        String nian = endTime.substring(0, 3);
-        String yue = endTime.substring(5,6 );
-        String ri = endTime.substring(8,9);
+        String nian = endTime.substring(0, 4);
+        String yue = endTime.substring(5,7);
+        String ri = endTime.substring(8,10);
         viewHolder.JZ_data.setText("截止日期："+nian+"年"+yue+"月"+ri+"日");
 
         String scoreAll = liveBean.getScoreAll();
@@ -108,11 +112,18 @@ public class ZY_lsit_Adapter extends BaseAdapter{
                 viewHolder.linear.setVisibility(View.GONE);
                 viewHolder.ZT_wc.setVisibility(View.VISIBLE);
                 viewHolder.ZT_wc_W.setVisibility(View.GONE);
-            } else {
+            }else if (scoreAll.equals("0")){
+                viewHolder.linear.setVisibility(View.GONE);
+                viewHolder.ZT_wc.setVisibility(View.VISIBLE);
+                viewHolder.ZT_wc_W.setVisibility(View.GONE);
 
+            } else {
                 viewHolder.FenS.setText(scoreAll);
                 viewHolder.ZT_wc.setVisibility(View.GONE);
                 viewHolder.ZT_wc_W.setVisibility(View.VISIBLE);
+                viewHolder.TZWC.setText("已完成");
+                viewHolder.TZWC.setTextColor(App.activity.getResources().getColor(R.color.pe_text_bg_gray));
+                viewHolder.TZWC.setBackgroundResource(R.drawable.yiwc);
 
             }
         }

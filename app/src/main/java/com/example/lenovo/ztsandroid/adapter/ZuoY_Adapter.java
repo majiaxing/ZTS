@@ -78,7 +78,7 @@ public class ZuoY_Adapter extends BaseAdapter {
             case "音标":
                 mlist.clear();
                 mlist.addAll( map.get("yb_typeList"));
-
+                MyLog.e("输出这个map",map.toString()  + "");
                 break;
             case "课文":
                 mlist.clear();

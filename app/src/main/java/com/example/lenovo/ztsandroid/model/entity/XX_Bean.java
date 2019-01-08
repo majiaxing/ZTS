@@ -2,11 +2,13 @@ package com.example.lenovo.ztsandroid.model.entity;
 
 import android.graphics.Bitmap;
 
+import java.io.Serializable;
+
 /**
  * Created by Administrator on 2018/11/2.
  */
 
-public class XX_Bean {
+public class XX_Bean implements Serializable {
 
     private int Toux;
     private String Title;

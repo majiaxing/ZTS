@@ -140,6 +140,7 @@ public class Read_sy_Activity extends BaseActivity implements Read_XQ_Cotract.Vi
         switch (view.getId()) {
             case R.id.back_jt:
                 BackPopupUtils.PopupW(view, "确认退出阅读练习？退出后将保存进度");
+                BackPopupUtils.PopupDimiss();
                 break;
             case R.id.title:
                 upPopupWindow(text);
@@ -176,14 +177,11 @@ public class Read_sy_Activity extends BaseActivity implements Read_XQ_Cotract.Vi
                         s++;
                         MyLog.e("GridView数据", s + "            ");
                     }
-
-
                 }
 
                 adapter = new ViewPagerAdapter(getSupportFragmentManager(), list);
                 danciViewPager.setAdapter(adapter);
                 adapter.notifyDataSetChanged();
-
             }
         });
 

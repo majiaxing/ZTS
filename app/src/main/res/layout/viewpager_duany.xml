@@ -3,6 +3,7 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
+    android:background="@color/pe_gray"
     >
 
 
@@ -58,18 +59,19 @@
                 android:layout_marginTop="1020px"
                 />
 
-            <Button
-                android:id="@+id/next_T"
-                android:layout_width="172px"
-                android:layout_height="80px"
-                android:text="下一题"
-                android:textSize="36px"
-                android:textColor="#333"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="70px"
-                android:background="@drawable/btn_bg_next"
-                android:layout_marginTop="1000px"
-                />
+            <!--<Button-->
+                <!--android:id="@+id/next_T"-->
+                <!--android:layout_width="172px"-->
+                <!--android:layout_height="80px"-->
+                <!--android:text="下一题"-->
+                <!--android:textSize="36px"-->
+                <!--android:textColor="#333"-->
+                <!--android:layout_alignParentRight="true"-->
+                <!--android:layout_marginRight="70px"-->
+                <!--android:background="@drawable/btn_bg_next"-->
+                <!--android:layout_marginTop="1000px"-->
+                <!--android:visibility="gone"-->
+                <!--/>-->
 
 
 

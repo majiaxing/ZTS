@@ -102,7 +102,7 @@ public class Read_zy_O_Adapter extends BaseAdapter implements OnItemClickeListen
 
         final ViewHolder finalViewHolder = viewHolder;
         final String read_answer = liveBean.getRead_answer();
-        MyLog.e("真确选项",liveBean.getRead_answer());
+//        MyLog.e("真确选项",liveBean.getRead_answer());
         viewHolder.XXA.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

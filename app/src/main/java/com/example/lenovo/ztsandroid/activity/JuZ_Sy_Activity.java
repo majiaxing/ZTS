@@ -169,6 +169,8 @@ public class JuZ_Sy_Activity extends BaseActivity implements Juz_XQ_Cotract.View
                     bundle.putString("word_video",xqbean.getData().get(i).getSentence_video());
                     bundle.putString("Relative_path",relative_path);
                     bundle.putString("type",type);
+                    bundle.putString("yema",xqbean.getData().size() +"");
+                    bundle.putString("dangq",i+1+"");
                     fragment.setParams(bundle);
                     list.add(fragment);
                 }

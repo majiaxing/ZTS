@@ -1,10 +1,12 @@
 package com.example.lenovo.ztsandroid.model.entity;
 
+import java.io.Serializable;
+
 /**
  * Created by Administrator on 2018/12/4.
  */
 
-public class LiY_SC_WJ_Bean {
+public class LiY_SC_WJ_Bean implements Serializable {
 
 
     /**
@@ -101,7 +103,7 @@ public class LiY_SC_WJ_Bean {
         this.code = code;
     }
 
-    public static class DataBean {
+    public static class DataBean implements Serializable{
         /**
          * save_path : learn/41/word/1/
          */

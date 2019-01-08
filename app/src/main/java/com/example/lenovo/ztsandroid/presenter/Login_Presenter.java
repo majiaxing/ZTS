@@ -24,9 +24,9 @@ public class Login_Presenter implements Logincotract.Presenter {
     }
 
     @Override
-    public void SetUrl(String name, String possward) {
+    public void SetUrl(String name, String possward ,String usertype_code) {
 
-        totallabelModel.postLogin(name, possward, new MyNetWorkCallback<LoginBean>() {
+        totallabelModel.postLogin(name, possward ,usertype_code, new MyNetWorkCallback<LoginBean>() {
             @Override
             public void onSuccess(LoginBean loginBean) {
                 LoginView.getManager(loginBean);

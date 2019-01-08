@@ -129,7 +129,7 @@ public class ZuoY_TL_xz_Bean implements Serializable{
             this.typeList = typeList;
         }
 
-        public static class TypeListBean {
+        public static class TypeListBean implements Serializable{
             /**
              * listen_id : 03a78ddc-e722-4d23-9eca-925b4725f427
              * listen_text : 词汇听力（本题8分）

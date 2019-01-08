@@ -38,6 +38,11 @@ public class XiaoX_Presenter implements XX_Cotract.Presenter{
     }
 
     @Override
+    public void SetU(String json) {
+
+    }
+
+    @Override
     public void start() {
 
     }

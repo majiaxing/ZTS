@@ -1,12 +1,13 @@
 package com.example.lenovo.ztsandroid.model.entity;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by Administrator on 2018/12/8.
  */
 
-public class ZuoY_dy_Bean {
+public class ZuoY_dy_Bean implements Serializable {
 
 
     /**
@@ -103,7 +104,7 @@ public class ZuoY_dy_Bean {
         this.code = code;
     }
 
-    public static class DataBean {
+    public static class DataBean implements Serializable{
         /**
          * HomeworkPath : homework/4567/41/
          * typeList : [{"practice":0,"hw_answerId":"473fdbd3-d288-4dbe-8a44-574afbf24f58","phrase":"Good afternoon!","phrase_tran":"下午好","save":"1_2_7_1_01","phrase_video":"Good afternoon.mp3","phrase_id":"473fdbd3-d288-4dbe-8a44-574afbf24f58","Relative_path":"1_2_7_1_01/duanyu/8918feb6-3afd-4199-8595-685b8c4ca62c/","everyScore":3.13,"type":"8918feb6-3afd-4199-8595-685b8c4ca62c"},{"practice":0,"hw_answerId":"4816c1c5-a7b1-4a3b-86d0-b0d567caf203","phrase":"Good morning!","phrase_tran":"早上好","save":"1_2_7_1_01","phrase_video":"Good morning.mp3","phrase_id":"4816c1c5-a7b1-4a3b-86d0-b0d567caf203","Relative_path":"1_2_7_1_01/duanyu/8918feb6-3afd-4199-8595-685b8c4ca62c/","everyScore":3.13,"type":"8918feb6-3afd-4199-8595-685b8c4ca62c"},{"practice":0,"hw_answerId":"71955532-0260-4710-bc71-f70d453be1a4","phrase":"How are you?","phrase_tran":"你好吗","save":"1_2_7_1_01","phrase_video":"How are you.mp3","phrase_id":"71955532-0260-4710-bc71-f70d453be1a4","Relative_path":"1_2_7_1_01/duanyu/8918feb6-3afd-4199-8595-685b8c4ca62c/","everyScore":3.13,"type":"8918feb6-3afd-4199-8595-685b8c4ca62c"},{"practice":0,"hw_answerId":"e92ff8d5-c264-4ca1-9e0b-093ad65f5738","phrase":"Good evening!","save":"1_2_7_1_01","phrase_video":"Good evening.mp3","phrase_id":"e92ff8d5-c264-4ca1-9e0b-093ad65f5738","Relative_path":"1_2_7_1_01/duanyu/8918feb6-3afd-4199-8595-685b8c4ca62c/","everyScore":3.13,"type":"8918feb6-3afd-4199-8595-685b8c4ca62c"}]
@@ -138,7 +139,7 @@ public class ZuoY_dy_Bean {
             this.typeList = typeList;
         }
 
-        public static class TypeListBean {
+        public static class TypeListBean implements Serializable{
             /**
              * practice : 0
              * hw_answerId : 473fdbd3-d288-4dbe-8a44-574afbf24f58

@@ -17,7 +17,7 @@
         android:orientation="horizontal"
         android:paddingBottom="45px"
         android:gravity="center_vertical"
-        android:background="@drawable/huiyuan"
+        android:background="@drawable/title"
         >
 
         <ImageView

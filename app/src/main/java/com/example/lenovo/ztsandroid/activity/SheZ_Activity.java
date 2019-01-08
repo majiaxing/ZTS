@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.example.lenovo.ztsandroid.App;
 import com.example.lenovo.ztsandroid.R;
 import com.example.lenovo.ztsandroid.base.BaseActivity;
+import com.example.lenovo.ztsandroid.config.ActivityManager;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -52,7 +53,11 @@ public class SheZ_Activity extends BaseActivity {
     protected void initView() {
 
         sp = this.getSharedPreferences("userInfo", App.activity.MODE_WORLD_READABLE);
+//        sp = getSharedPreferences("data",1);
         editor = sp.edit();
+
+
+
     }
 
     @Override
@@ -99,11 +104,9 @@ public class SheZ_Activity extends BaseActivity {
 
                 editor.clear();
                 editor.commit();
-
                 Intent intent3 = new Intent(App.activity,Login_Activity.class);
                 startActivity(intent3);
-
-
+                ActivityManager.getInstance().exit();
                 break;
         }
     }

@@ -47,7 +47,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="未练习"
-            android:layout_marginTop="40px"
+            android:layout_marginTop="30px"
             android:layout_below="@+id/NR_item"
             android:layout_alignLeft="@+id/NR_item"
             android:layout_alignStart="@+id/NR_item"

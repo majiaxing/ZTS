@@ -6,10 +6,7 @@
     android:background="@color/colorWhite"
     android:orientation="vertical">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:overScrollMode="never">
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -20,7 +17,7 @@
                 android:id="@+id/line"
                 android:layout_width="match_parent"
                 android:layout_height="204px"
-                android:background="@drawable/top_bg_g"
+                android:background="@drawable/title"
                 android:gravity="center"
                 android:orientation="horizontal">
 
@@ -100,15 +97,29 @@
                         android:background="@mipmap/wd_bg"
                         android:layout_centerVertical="true"
                         android:text="1"
+                        android:textSize="30px"
                         android:textColor="#ffffff"
-                        android:textSize="28px"
-                        android:gravity="center"
                         android:layout_marginBottom="30px"
-                         />
+                        android:gravity="center"
+                        />
 
                 </RelativeLayout>
-
             </LinearLayout>
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:overScrollMode="never">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="2px"
+                android:background="#F0F0F0"
+                />
 
 
             <ImageView
@@ -116,7 +127,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="492px"
                 android:scaleType="fitXY"
-                android:src="@mipmap/banner" />
+                android:src="@drawable/banner_g" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -560,7 +571,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="38px"
                 android:background="@color/pe_gray" />
+
+            </LinearLayout>
+            </ScrollView>
         </LinearLayout>
-    </ScrollView>
+
 </LinearLayout>
 

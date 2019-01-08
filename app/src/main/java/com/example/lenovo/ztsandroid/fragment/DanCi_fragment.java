@@ -1,12 +1,19 @@
 package com.example.lenovo.ztsandroid.fragment;
 
+import android.Manifest;
 import android.app.Activity;
 import android.media.AudioFormat;
 import android.media.AudioRecord;
 import android.media.MediaPlayer;
 import android.media.MediaRecorder;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
+import android.os.Handler;
+import android.os.Message;
+import android.provider.Settings;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -33,8 +40,14 @@ import com.example.lenovo.ztsandroid.presenter.PinC_Fay_presenter;
 import com.example.lenovo.ztsandroid.presenter.ZhiL_Csh_Fy_Presenter;
 import com.example.lenovo.ztsandroid.utils.ConvertUtil;
 import com.example.lenovo.ztsandroid.utils.MyLog;
+import com.example.lenovo.ztsandroid.utils.ZhiL_Key_Velue;
 import com.example.lenovo.ztsandroid.view.CustomProgressDialog;
 import com.example.lenovo.ztsandroid.view.RippleIntroView;
+import com.tencent.cloud.soe.TencentSOE;
+import com.tencent.cloud.soe.model.InitOralProcessResponse;
+import com.tencent.cloud.soe.model.SOECallback;
+import com.tencent.cloud.soe.model.SOEError;
+import com.tencent.cloud.soe.model.TransmitOralProcessResponse;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -44,12 +57,16 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import cn.hutool.core.codec.Base64Encoder;
 import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.util.CharsetUtil;
+import cn.hutool.core.util.NumberUtil;
 
 import static com.example.lenovo.ztsandroid.App.activity;
+import static com.example.lenovo.ztsandroid.utils.ZhiL_Key_Velue.MSG_INIT_OK;
 
 /**
  * Created by Administrator on 2018/11/12.
@@ -64,7 +81,7 @@ public class DanCi_fragment extends BaseFragment implements View.OnClickListener
     private TextView dc_jx_text;
     private Bundle bundle;
     private TextView title;
-
+    private TextView YeMa;
     private MediaRecorder mediaRecorder = new MediaRecorder();  //用于录音
     private File file = new File("/mnt/sdcard", System.currentTimeMillis()+".mp3");  //创建一个临时的音频文件
     private MediaPlayer mPlayer = new MediaPlayer();  //用于播放音频
@@ -80,7 +97,7 @@ public class DanCi_fragment extends BaseFragment implements View.OnClickListener
     private String word_video;
     private String word;
     private String sessionId;
-    private String str;
+
     private TextView pf_fs;
     private RatingBar xinx_bar;
     private TextView gl_;
@@ -90,6 +107,38 @@ public class DanCi_fragment extends BaseFragment implements View.OnClickListener
     private Animation hyperspaceJumpAnimation;
     private CheckBox ly_btn;
     private CheckBox bf_zt;
+    private Boolean[] bool  = {false};
+
+
+    private Handler mMyHandler = new Handler(new HandlerCallback());
+
+    class HandlerCallback implements Handler.Callback {
+        @Override
+        public boolean handleMessage(Message msg) {
+            switch (msg.what) {
+                case MSG_INIT_OK:
+                    toast("初始化成功");
+                    break;
+                case ZhiL_Key_Velue.MSG_INIT_ERROR:
+                    MyLog.e("评估结果",msg.obj.toString());
+                    break;
+                case ZhiL_Key_Velue.MSG_TRANSMIT_OK:
+                    int index = msg.arg1;
+                    int isEnd = msg.arg2;
+                    MyLog.e("完成度",index + (isEnd == 1 ? " - 已完成" : " - 未完成"));
+                    break;
+                case ZhiL_Key_Velue.MSG_TRANSMIT_ERROR:
+                    MyLog.e("评估结果",msg.obj.toString());
+                    break;
+                case ZhiL_Key_Velue.MSG_ERROR:
+                    MyLog.e("评估结果",msg.obj.toString());
+                    break;
+            }
+            return true;
+        }
+    }
+
+
 
 
     @Override
@@ -97,8 +146,27 @@ public class DanCi_fragment extends BaseFragment implements View.OnClickListener
         return R.layout.viewpager_danci;
     }
 
+    public void getPersimmions() {
+        try {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                if (!Settings.System.canWrite(App.activity)) {
+                    requestPermissions(new String[]{
+                            Manifest.permission.RECORD_AUDIO,
+                            Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                            Manifest.permission.READ_EXTERNAL_STORAGE,
+                    }, 10);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
     @Override
     protected void init(View view) {
+
+        getPersimmions();
 
         title = view.findViewById(R.id.Nr_danci);
         CheckO = view.findViewById(R.id.BF_One);
@@ -122,6 +190,7 @@ public class DanCi_fragment extends BaseFragment implements View.OnClickListener
         rippleIntroView = view.findViewById(R.id.Ripple);
         linearLayout = view.findViewById(R.id.linear);
         pinF_jd = view.findViewById(R.id.PinF_jd);
+        YeMa = view.findViewById(R.id.textView3);
         hyperspaceJumpAnimation = AnimationUtils.loadAnimation(activity, R.anim.loading_animation);
         // 使用ImageView显示动画
         pinF_jd.startAnimation(hyperspaceJumpAnimation);
@@ -132,15 +201,37 @@ public class DanCi_fragment extends BaseFragment implements View.OnClickListener
         ly_btn.setOnClickListener(this);
         next_t.setOnClickListener(this);
         title.setText("shit");
-
+        String yema = bundle.getString("yema");
+        String dangq = bundle.getString("dangq");
+        MyLog.e("一共有————",yema);
+//        Toast.makeText(App.activity, dangq+"一共有_"+yema,Toast.LENGTH_LONG).show();
+        YeMa.setText(dangq+"/"+yema);
         relativeLayout.setVisibility(View.GONE);
         next_t.setVisibility(View.GONE);
 
 
-        creatAudioRecord();
+//        creatAudioRecord();
     }
 
 
+    private void toast(String text) {
+        final Toast toast = Toast.makeText(App.activity, text, Toast.LENGTH_LONG);
+            toast.setGravity(Gravity.CENTER,0,0);
+        final Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                toast.show();
+            }
+        }, 0, 3000);
+        new Timer().schedule(new TimerTask() {
+            @Override
+            public void run() {
+                toast.cancel();
+                timer.cancel();
+            }
+        }, 1000);
+    }
 
 
     private static final String TAG = "AudioRecordActivity";
@@ -150,7 +241,7 @@ public class DanCi_fragment extends BaseFragment implements View.OnClickListener
     //设置音频的采样率，44100是目前的标准，但是某些设备仍然支持22050,16000,11025
     private static int sampleRateInHz = 16000;
     //设置音频的录制声道，CHANNEL_IN_STEREO 为双声道，CHANNEL_CONFIGURATION_MONO 为单声道
-    private static int channelConfig = AudioFormat.CHANNEL_IN_STEREO;
+    private static int channelConfig = AudioFormat.CHANNEL_CONFIGURATION_MONO;
     //设置音频数据格式:PCM 16位每个样本，保证设备支持。PCM 8位每个样本，不一定能得到设备的支持。
     private static int audioFormat = AudioFormat.ENCODING_PCM_16BIT;
     //AudioName裸音频数据文件
@@ -197,14 +288,13 @@ public class DanCi_fragment extends BaseFragment implements View.OnClickListener
 
 //        byte[] bytes = readBytesFromFile(NewAudioName);
 //        byte[] bytes1 = byteMerger(bytes);
-//
 //        writeBytesToFileClassic(bytes1,NewAudioName);
 
         File file = new File(NewAudioName);
         if(file.exists()) {
             try {
                 mediaPlayer.reset();
-                mediaPlayer.setDataSource(NewAudioName);
+                mediaPlayer.setDataSource(filePath);
                 mediaPlayer.prepare();//进行数据缓冲
                 mediaPlayer.setOnPreparedListener(new PrepareListener());
             } catch (IllegalArgumentException e) {
@@ -225,7 +315,6 @@ public class DanCi_fragment extends BaseFragment implements View.OnClickListener
             }
         }
     }
-
 
 
     /**
@@ -338,16 +427,13 @@ public class DanCi_fragment extends BaseFragment implements View.OnClickListener
         }
     }
 
-
-
-
     private void copyWaveFile(String inFileName, String outFileName) {
         FileInputStream in = null;
         FileOutputStream out = null;
         long totalAudioLen = 0;
         long totalDataLen = totalAudioLen + 36;
         long longSampleRate = sampleRateInHz;
-        int channels = 2;
+        int channels = 1;
         long byteRate = 16 * sampleRateInHz * channels / 8;
 
         byte[] data = new byte[bufferSizeInBytes];
@@ -363,7 +449,6 @@ public class DanCi_fragment extends BaseFragment implements View.OnClickListener
             {
                 out.write(data);
             }
-
             in.close();
             out.close();
         } catch (FileNotFoundException e)
@@ -434,18 +519,15 @@ public class DanCi_fragment extends BaseFragment implements View.OnClickListener
         out.write(header, 0, 44);
     }
 
-
     private void pause(){
         mediaPlayer.pause();
 //        playhandler.removeCallbacks(runnable_3);
 //        play.setImageResource(ic_media_play);
     }
 
-
     public interface FragmentToActivity{
         public void huidiao(String str);
     }
-
 
     FragmentToActivity fragmentToActivity;
     @Override
@@ -461,7 +543,6 @@ public class DanCi_fragment extends BaseFragment implements View.OnClickListener
         dc_jx_text.setText(word_tran);
 
     }
-
 
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
@@ -499,7 +580,13 @@ public class DanCi_fragment extends BaseFragment implements View.OnClickListener
                     public void onCompletion(MediaPlayer mp) {
 
                         MyLog.e("CheckBox_状态",bf_zt.isChecked() + "");
+//                        Toast.makeText(App.activity,"CheckBox_状态"+bf_zt.isChecked(),Toast.LENGTH_LONG).show();
                         bf_zt.setChecked(false);
+//                        Toast.makeText(App.activity,"播放器_状态"+mPlayer.isPlaying(),Toast.LENGTH_LONG).show();
+                        bool[0] = false;
+                        MyLog.e("结束","");
+
+
                     }
                 });
 
@@ -508,87 +595,150 @@ public class DanCi_fragment extends BaseFragment implements View.OnClickListener
             }
         }
     }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        mPlayer.stop();
+    }
+
     @Override
     public void setParams(Bundle bundle) {
         this.bundle = bundle;
     }
 
+    private String filePath = "/sdcard/SOE/soe.mp3";
+    private void sendMessage(int what, Object obj) {
+        Message msg = new Message();
+        msg.what = what;
+        msg.obj = obj;
+        mMyHandler.sendMessage(msg);
+    }
+
+    private SOECallback callback = new SOECallback() {
+        public void onInitSuccess(InitOralProcessResponse response) {
+            sendMessage(MSG_INIT_OK, response.toString());
+        }
+
+        public void onTransmitSuccess(int index, int isEnd, TransmitOralProcessResponse response) {
+            Message msg = new Message();
+            msg.what = ZhiL_Key_Velue.MSG_TRANSMIT_OK;
+            msg.arg1 = index;
+            msg.arg2 = isEnd;
+            msg.obj = response.toString();
+
+            MyLog.e("评估结果___",response.toString() +"");
+            JsonDemo(response.toString());
+            mMyHandler.sendMessage(msg);
+
+
+            linearLayout.setVisibility(View.GONE);
+            ly_btn.setVisibility(View.VISIBLE);
+        }
+
+        public void onError(SOEError e) {
+            sendMessage(ZhiL_Key_Velue.MSG_INIT_ERROR, e.getMessage());
+
+            App.activity.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+            linearLayout.setVisibility(View.GONE);
+            ly_btn.setVisibility(View.VISIBLE);
+                }
+            });
+        }
+    };
+
+    private void doExecuteOnce() {
+        try {
+
+            if (filePath.endsWith(".mp3")) {// 只有MP3需要校验
+                try {
+                    TencentSOE.checkMP3Format(filePath);
+                } catch (Exception e) {
+                    sendMessage(ZhiL_Key_Velue.MSG_ERROR, e.getMessage());
+                    return;
+                }
+            }
+            String base64String = TencentSOE.encodeAudioFile(filePath);
+            TencentSOE.newInstance(ZhiL_Key_Velue.SECRETID, ZhiL_Key_Velue.SECRETKEY)
+                    .setRootUrl("soe.tencentcloudapi.com")// 非必要
+                    .setRegion("")// 非必要
+                    .setSoeAppId("default")// 非必要
+                    .setRefText(word)
+                    .setEvalMode(TencentSOE.EVAL_MODE_WORD)
+                    .setScoreCoeff(1.0f)
+                    .setIsLongLifeSession(TencentSOE.SESSION_LIFE_LONG)
+                    .setVoiceFileType(TencentSOE.AUDIO_TYPE_MP3)
+                    .setUserVoiceData(base64String)
+                    .execute(callback);
+        } catch (Exception e) {
+            sendMessage(ZhiL_Key_Velue.MSG_ERROR, e.getMessage());
+        }
+    }
+
     final Boolean[] b = {false};
     private Boolean[] aBoolean = {false};
-    private Boolean[] bool  = {false};
+
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.BF_LY:
                 if (aBoolean[0]){
-
                     if (mediaPlayer.isPlaying()){
-
                         pause();
                     }
                     aBoolean[0] = false;
-
                 }else {
                     if (!mediaPlayer.isPlaying()){
                         playMusic();
                     }
                     aBoolean[0] = true;
-
                 }
                 break;
             case R.id.BF_zt:
-
                 if (bool[0]){
                 if (mPlayer.isPlaying()){
-                    MyLog.e("lalall","ahahahahh");
                     mPlayer.pause();
-
+                    bool[0] = false;
                 }
-                bool[0] = false;
             }else {
                 if (!mPlayer.isPlaying()){
-                    MyLog.e("holle dnsjk","ahahahahh");
                     mPlayer.start();
+                    bool[0] = true;
                 }
-                bool[0] = true;
             }
-
                 break;
             case R.id.next_T:
-
-
-
                 break;
             case R.id.Ly_btn:
-                Log.e("AAAAAAAAAAAA","WWWWWWWWWWWWWWWWWX");
                 if (b[0]){
-                    stopAudioRecord();
-                    rippleIntroView.setColor(this.getResources().getColor(R.color.pe_gray));
-                    b[0] = false;
+//                    stopAudioRecord();
+                    TencentSOE.stopRecord();
 
+                    rippleIntroView.setColor(this.getResources().getColor(R.color.pe_gray));
+                    linearLayout.setVisibility(View.VISIBLE);
+                    ly_btn.setVisibility(View.GONE);
+                    doExecuteOnce();
+                    b[0] = false;
                 }else {
-                    startAudioRecord();
-                    presenter = new ZhiL_Csh_Fy_Presenter(this);
-                    presenter.setUrlsZhiL("0",word,System.currentTimeMillis() + "","1","4.0");
+//                    startAudioRecord();
+//                    presenter = new ZhiL_Csh_Fy_Presenter(this);
+//                    presenter.setUrlsZhiL("0",word,System.currentTimeMillis() + "","1","4.0");
+                    TencentSOE.startRecordMp3(Environment.getExternalStorageDirectory().getAbsolutePath() + "/SOE/", "soe");
                     b[0] = true;
                     rippleIntroView.setColor(this.getResources().getColor(R.color.text_color_red));
-
                 }
-
 //                relativeLayout.setVisibility(View.VISIBLE);
 //                next_t.setVisibility(View.VISIBLE);
                 break;
             case R.id.BF_One:
-
                 CheckOXanz.setVisibility(View.VISIBLE);
                 CheckTXanz.setVisibility(View.GONE);
-
                 break;
             case R.id.BF_Two:
-
                 CheckOXanz.setVisibility(View.GONE);
                 CheckTXanz.setVisibility(View.VISIBLE);
-
                 break;
         }
     }
@@ -613,22 +763,28 @@ public class DanCi_fragment extends BaseFragment implements View.OnClickListener
                     public void run() {
                         linearLayout.setVisibility(View.GONE);
                         ly_btn.setVisibility(View.VISIBLE);
-                        Toast.makeText(activity,"评估失败",Toast.LENGTH_LONG).show();
+//                        Toast.makeText(activity,"评估失败",Toast.LENGTH_LONG).show();
+
+                        Toast toast = Toast.makeText(App.activity, "评估失败", Toast.LENGTH_SHORT);
+                        toast.setGravity(Gravity.CENTER, 0, 0);
+                        toast.show();
+
                     }
                 });
                 return;
             }
             if (PronAccuracy != "0"){
-                str = PronAccuracy.substring(0,4);
-                MyLog.e("发音得到的评分————", str + "");
+               // final int i = Integer.parseInt(PronAccuracy);
+                final int i= NumberUtil.parseInt(PronAccuracy);
+                MyLog.e("发音得到的评分————", i + "");
                 activity.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        pf_fs.setText(str);
+
+                        pf_fs.setText(i+"");
                         relativeLayout.setVisibility(View.VISIBLE);
                         next_t.setVisibility(View.VISIBLE);
 
-                        float i = ConvertUtil.convertToFloat(str,f);
                         MyLog.e("评估出来的分数" ,i + "");
 
                         if (i>=85){
@@ -649,8 +805,7 @@ public class DanCi_fragment extends BaseFragment implements View.OnClickListener
                 });
 
                 presenter = new Lu_SC_Stdey_Presenter(this);
-                presenter.SetU(App.stuid,word_id,System.currentTimeMillis()+".mp3",str,type);
-
+                presenter.SetU(App.stuid,word_id,System.currentTimeMillis()+".mp3", String.valueOf(i),type);
 
             }else {
                 activity.runOnUiThread(new Runnable() {
@@ -658,7 +813,11 @@ public class DanCi_fragment extends BaseFragment implements View.OnClickListener
                     public void run() {
                         linearLayout.setVisibility(View.GONE);
                         ly_btn.setVisibility(View.VISIBLE);
-                        Toast.makeText(activity,"请正常朗读",Toast.LENGTH_SHORT).show();
+                        Toast toast = Toast.makeText(App.activity, "请正常朗读", Toast.LENGTH_SHORT);
+                        toast.setGravity(Gravity.CENTER, 0, 0);
+                        toast.show();
+
+//                        Toast.makeText(activity,"请正常朗读",Toast.LENGTH_SHORT).show();
                     }
                 });
                 return;
@@ -667,12 +826,7 @@ public class DanCi_fragment extends BaseFragment implements View.OnClickListener
             e.printStackTrace();
         }
 
-
     }
-
-
-
-
 
     @Override
     public void getManager(YuYinPinG_Bean yuYinPinGBean) {
@@ -681,19 +835,21 @@ public class DanCi_fragment extends BaseFragment implements View.OnClickListener
             activity.runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    Toast.makeText(activity,"评估失败",Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(activity,"评估失败",Toast.LENGTH_SHORT).show();
+                    Toast toast = Toast.makeText(App.activity, "评估失败", Toast.LENGTH_SHORT);
+                    toast.setGravity(Gravity.CENTER, 0, 0);
+                    toast.show();
+
                 }
             });
         }else {
             MyLog.e("初始化发音",yuYinPinGBean.getResponse().getRequestId()+"________"+yuYinPinGBean.getResponse().getSessionId());
             sessionId = yuYinPinGBean.getResponse().getSessionId();
         }
-
     }
 
     @Override
     public void getManagerO(String pinC_fay_bean) {
-
 
         MyLog.e("请求成功——得到的json",pinC_fay_bean);
         JsonDemo(pinC_fay_bean);

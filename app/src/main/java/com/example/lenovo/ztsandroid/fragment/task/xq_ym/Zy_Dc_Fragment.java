@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.ActivityCompat;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -81,7 +82,7 @@ public class Zy_Dc_Fragment extends BaseFragment implements View.OnClickListener
 
     private RelativeLayout relativeLayout;
     private LinearLayout bf_ly;
-    private Button next_t;
+//    private Button next_t;
     private RadioButton CheckO, CheckT,CheckOXanz,CheckTXanz;
     private TextView dc_jx_text;
     private Bundle bundle;
@@ -116,6 +117,8 @@ public class Zy_Dc_Fragment extends BaseFragment implements View.OnClickListener
     private ImageView pinF_jd;
     private Animation hyperspaceJumpAnimation;
     private CheckBox bf_zt;
+    private String everyScore;
+    private TextView Yema;
 
     @Override
     protected int getLayoutId() {
@@ -129,7 +132,7 @@ public class Zy_Dc_Fragment extends BaseFragment implements View.OnClickListener
         CheckOXanz = view.findViewById(R.id.BF_One_Xuanz);
         CheckTXanz = view.findViewById(R.id.BF_Two_Xuanz);
         CheckT = view.findViewById(R.id.BF_Two);
-
+        Yema = view.findViewById(R.id.textView3);
 
         CheckO.setOnClickListener(this);
         CheckT.setOnClickListener(this);
@@ -141,17 +144,17 @@ public class Zy_Dc_Fragment extends BaseFragment implements View.OnClickListener
         pf_fs = view.findViewById(R.id.PF_fs);
         gl_ = view.findViewById(R.id.GL_);
         xinx_bar = view.findViewById(R.id.Xinx_bar);
-        next_t = view.findViewById(R.id.next_T);
+//        next_t = view.findViewById(R.id.next_T);
         bf_ly = view.findViewById(R.id.BF_LY);
         bf_zt = view.findViewById(R.id.BF_zt);
         ly_btn = view.findViewById(R.id.Ly_btn);
         bf_ly.setOnClickListener(this);
         bf_zt.setOnClickListener(this);
         ly_btn.setOnClickListener(this);
-        next_t.setOnClickListener(this);
+//        next_t.setOnClickListener(this);
 
         relativeLayout.setVisibility(View.GONE);
-        next_t.setVisibility(View.GONE);
+//        next_t.setVisibility(View.GONE);
 
         creatAudioRecord();
 
@@ -163,6 +166,10 @@ public class Zy_Dc_Fragment extends BaseFragment implements View.OnClickListener
         hyperspaceJumpAnimation = AnimationUtils.loadAnimation(activity, R.anim.loading_animation);
         // 使用ImageView显示动画
         pinF_jd.startAnimation(hyperspaceJumpAnimation);
+
+
+
+
 
     }
 
@@ -205,11 +212,10 @@ public class Zy_Dc_Fragment extends BaseFragment implements View.OnClickListener
                     bf_zt.setChecked(false);
                 }
             });
-
         }
-
-
     }
+
+
 
     @Override
     protected void loadData() {
@@ -221,6 +227,13 @@ public class Zy_Dc_Fragment extends BaseFragment implements View.OnClickListener
         hw_type = bundle.getString("hw_type");
         hw_content = bundle.getString("hw_content");
         hwid = bundle.getString("hwid");
+        everyScore = bundle.getString("EveryScore");
+
+        String yema = bundle.getString("yema");
+        String dangq = bundle.getString("dangq");
+        MyLog.e("一共有————",yema);
+//        Toast.makeText(App.activity, dangq+"一共有_"+yema,Toast.LENGTH_LONG).show();
+        Yema.setText(dangq+"/"+yema);
 
         MyLog.e("打印到的 传过来的但此数据", danCy + danCz);
 
@@ -571,7 +584,6 @@ public class Zy_Dc_Fragment extends BaseFragment implements View.OnClickListener
                     if (!mPlayer.isPlaying()){
                         MyLog.e("holle dnsjk","ahahahahh");
                         mPlayer.start();
-
                     }
                     bool[0] = true;
                 }
@@ -630,7 +642,14 @@ public class Zy_Dc_Fragment extends BaseFragment implements View.OnClickListener
                     public void run() {
                         linearLayout.setVisibility(View.GONE);
                         ly_btn.setVisibility(View.VISIBLE);
-                        Toast.makeText(activity,"评估失败",Toast.LENGTH_LONG).show();
+
+
+//                        Toast.makeText(activity,"评估失败",Toast.LENGTH_LONG).show();
+
+                        Toast toast = Toast.makeText(App.activity, "评估失败", Toast.LENGTH_SHORT);
+                        toast.setGravity(Gravity.CENTER, 0, 0);
+                        toast.show();
+
                     }
                 });
                 return;
@@ -647,7 +666,7 @@ public class Zy_Dc_Fragment extends BaseFragment implements View.OnClickListener
                     public void run() {
                         pf_fs.setText(str);
                         relativeLayout.setVisibility(View.VISIBLE);
-                        next_t.setVisibility(View.VISIBLE);
+//                        next_t.setVisibility(View.VISIBLE);
                         float i = ConvertUtil.convertToFloat(str,f);
                         MyLog.e("评估出来的分数" ,i + "");
 
@@ -667,11 +686,8 @@ public class Zy_Dc_Fragment extends BaseFragment implements View.OnClickListener
                         ly_btn.setVisibility(View.VISIBLE);
                     }
                 });
-
                 presenter = new Lu_SC_Presenter(this);
-                presenter.SetU(App.stuid,hwid,hw_type,hw_content,hw_answerId,System.currentTimeMillis()+".mp3",str);
-
-
+                presenter.SetU(App.stuid,hwid,hw_type,hw_content,hw_answerId,System.currentTimeMillis()+".mp3",str ,everyScore);
 
             }else {
                 App.activity.runOnUiThread(new Runnable() {
@@ -679,7 +695,12 @@ public class Zy_Dc_Fragment extends BaseFragment implements View.OnClickListener
                     public void run() {
                         linearLayout.setVisibility(View.GONE);
                         ly_btn.setVisibility(View.VISIBLE);
-                        Toast.makeText(App.activity,"请正常朗读",Toast.LENGTH_SHORT).show();
+
+                        Toast toast = Toast.makeText(App.activity, "请正常朗读", Toast.LENGTH_SHORT);
+                        toast.setGravity(Gravity.CENTER, 0, 0);
+                        toast.show();
+
+//                        Toast.makeText(App.activity,"请正常朗读",Toast.LENGTH_SHORT).show();
                     }
                 });
                 return;
@@ -725,14 +746,18 @@ public class Zy_Dc_Fragment extends BaseFragment implements View.OnClickListener
             App.activity.runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    Toast.makeText(App.activity,"评估失败",Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(App.activity,"评估失败",Toast.LENGTH_SHORT).show();
+
+                    Toast toast = Toast.makeText(App.activity, "评估失败", Toast.LENGTH_SHORT);
+                    toast.setGravity(Gravity.CENTER, 0, 0);
+                    toast.show();
+
                 }
             });
         }else {
             MyLog.e("初始化发音",yuYinPinGBean.getResponse().getRequestId()+"________"+yuYinPinGBean.getResponse().getSessionId());
             sessionId = yuYinPinGBean.getResponse().getSessionId();
         }
-
     }
 
     @Override

@@ -6,6 +6,7 @@ import android.media.MediaPlayer;
 import android.media.MediaRecorder;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -113,6 +114,7 @@ public class DuiH_TZYX_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotra
     private ArrayList<String> juese_video;
     private String relative_path;
     private String title;
+    private String string;
 
 
     @Override
@@ -155,7 +157,7 @@ public class DuiH_TZYX_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotra
     //设置音频的采样率，44100是目前的标准，但是某些设备仍然支持22050,16000,11025
     private static int sampleRateInHz = 16000;
     //设置音频的录制声道，CHANNEL_IN_STEREO 为双声道，CHANNEL_CONFIGURATION_MONO 为单声道
-    private static int channelConfig = AudioFormat.CHANNEL_IN_STEREO;
+    private static int channelConfig = AudioFormat.CHANNEL_CONFIGURATION_MONO;
     //设置音频数据格式:PCM 16位每个样本，保证设备支持。PCM 8位每个样本，不一定能得到设备的支持。
     private static int audioFormat = AudioFormat.ENCODING_PCM_16BIT;
     //AudioName裸音频数据文件
@@ -192,11 +194,6 @@ public class DuiH_TZYX_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotra
         return rootView;
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        unbinder1.unbind();
-    }
 
     @OnClick({R.id.BF_zt, R.id.Ly_btn, R.id.BF_LY})
     public void onViewClicked(View view) {
@@ -206,14 +203,14 @@ public class DuiH_TZYX_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotra
                     if (mPlayer.isPlaying()) {
                         MyLog.e("lalall", "ahahahahh");
                         mPlayer.pause();
+                        bool[0] = false;
                     }
-                    bool[0] = false;
                 } else {
                     if (!mPlayer.isPlaying()) {
                         MyLog.e("holle dnsjk", "ahahahahh");
                         setVisibleHint(true);
+                        bool[0] = true;
                     }
-                    bool[0] = true;
                 }
                 break;
             case R.id.Ly_btn:
@@ -511,7 +508,7 @@ public class DuiH_TZYX_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotra
     }
 
 
-
+    private int i = 0;
     public void setVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
         if (mPlayer == null) {
@@ -528,9 +525,16 @@ public class DuiH_TZYX_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotra
 //                for (int i = 0; i<juese_video.size();i++){
                 mPlayer = null;
                 mPlayer = new MediaPlayer();
-                String s = URLEncoder.encode(juese_video.get(1), "utf-8").replaceAll("\\+", "%20");
 
-                final String bofUrl = "https://zts100.com/demo/file/download" + "/?" + "Relative_path=" + relativepath + "&" + "type=2" + "&" + "fileName=" + s;
+                if (i<=juese_video.size()) {
+
+                    string = URLEncoder.encode(juese_video.get(i), "utf-8").replaceAll("\\+", "%20");
+                    i++;
+                }
+
+//                String s = URLEncoder.encode(juese_video.get(1), "utf-8").replaceAll("\\+", "%20");
+
+                final String bofUrl = "https://zts100.com/demo/file/download" + "/?" + "Relative_path=" + relativepath + "&" + "type=2" + "&" + "fileName=" + string;
                 MyLog.e("拼接好的 播放 Url", bofUrl);
                 mPlayer.setDataSource(bofUrl);
                 //3 准备播放
@@ -546,8 +550,14 @@ public class DuiH_TZYX_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotra
                     @Override
                     public void onCompletion(MediaPlayer mp) {
 
-                        MyLog.e("CheckBox_状态",BFZt.isChecked() + "");
-                        BFZt.setChecked(false);
+                        mPlayer.reset();
+                        if (i< juese_video.size()){
+                            setVisibleHint(true);
+                        }else {
+                            MyLog.e("CheckBox_状态",BFZt.isChecked() + "");
+                            BFZt.setChecked(false);
+                            bool[0] = false;
+                        }
                     }
                 });
 
@@ -557,6 +567,13 @@ public class DuiH_TZYX_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotra
             }
         }
     }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        mPlayer.stop();
+    }
+
 
     @Override
     protected void loadData() {
@@ -669,7 +686,11 @@ public class DuiH_TZYX_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotra
                     public void run() {
                         linear.setVisibility(View.GONE);
                         LyBtn.setVisibility(View.VISIBLE);
-                        Toast.makeText(App.activity,"评估失败",Toast.LENGTH_LONG).show();
+//                        Toast.makeText(App.activity,"评估失败",Toast.LENGTH_LONG).show();
+
+                        Toast toast = Toast.makeText(App.activity, "评估失败", Toast.LENGTH_SHORT);
+                        toast.setGravity(Gravity.CENTER, 0, 0);
+                        toast.show();
                     }
                 });
                 return;
@@ -744,7 +765,11 @@ public class DuiH_TZYX_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotra
                     public void run() {
                         linear.setVisibility(View.GONE);
                         LyBtn.setVisibility(View.VISIBLE);
-                        Toast.makeText(App.activity, "请正常朗读", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(App.activity, "请正常朗读", Toast.LENGTH_SHORT).show();
+
+                        Toast toast = Toast.makeText(App.activity, "请正常朗读", Toast.LENGTH_SHORT);
+                        toast.setGravity(Gravity.CENTER, 0, 0);
+                        toast.show();
                     }
                 });
                 return;
@@ -760,7 +785,11 @@ public class DuiH_TZYX_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotra
             App.activity.runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    Toast.makeText(App.activity, "评估失败", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(App.activity, "评估失败", Toast.LENGTH_SHORT).show();
+
+                    Toast toast = Toast.makeText(App.activity, "评估失败", Toast.LENGTH_SHORT);
+                    toast.setGravity(Gravity.CENTER, 0, 0);
+                    toast.show();
                 }
             });
         } else {

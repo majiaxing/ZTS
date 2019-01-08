@@ -35,6 +35,7 @@ import com.example.lenovo.ztsandroid.utils.MyLog;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -60,6 +61,8 @@ public class QuanB_XX_Fragment extends BaseFragment implements XX_xq_Cotract.Vie
     private String newcontent;
     //监听来源
     public boolean mIsFromItem = false;
+    private ArrayList<Map<String,String>> id = new ArrayList<>();
+
     @Override
     protected int getLayoutId() {
         return R.layout.weidu_xx_fragment;
@@ -77,7 +80,6 @@ public class QuanB_XX_Fragment extends BaseFragment implements XX_xq_Cotract.Vie
         myadapter = new XX_Adapter(App.activity, list, new AllCheckListener() {
             @Override
             public void onCheckedChanged(boolean b) {
-
             }
         });
         WeiDXX.setAdapter(myadapter);
@@ -87,9 +89,8 @@ public class QuanB_XX_Fragment extends BaseFragment implements XX_xq_Cotract.Vie
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 MyLog.e("dsadsahdaweqqqq","asdasdakldhw");
-
-                presenter.SetUrl(list.get(position).getId()+"");
-
+                int id1 = list.get(position).getId();
+                presenter.SetUrl(id1+"");
                 View view1 = WeiDXX.getChildAt(position);
                 TextView textView = view1.findViewById(R.id.Wd_Ts);
                 if (textView.getVisibility() != View.GONE){
@@ -122,6 +123,23 @@ public class QuanB_XX_Fragment extends BaseFragment implements XX_xq_Cotract.Vie
 
     }
 
+    public ArrayList<Map<String,String>> XXID(){
+//        for (int i= 0;i<list.size();i++){
+//            if (list.get(i).ischeck()){
+//                Map<String, String> hashMap = new HashMap<>();
+//                hashMap.put("id", String.valueOf(list.get(i).getId()));
+//                id.add(hashMap);
+//            }
+//        }
+//        MyLog.e("要回调的ID",id.toString() + "");
+
+        String id1 = myadapter.onClickeID();
+        Map<String, String> hashMap = new HashMap<>();
+        hashMap.put("id",id1);
+        id.add(hashMap);
+
+        return this.id;
+    }
 
     public void delete(){
         for (int i = 0; i < list.size(); i++) {
@@ -144,16 +162,11 @@ public class QuanB_XX_Fragment extends BaseFragment implements XX_xq_Cotract.Vie
     @Override
     protected void loadData() {
 
-
-
         ArrayList<XiaoX_Bean.DataBean> groups = (ArrayList<XiaoX_Bean.DataBean>) bundle.getSerializable("list");
 
         MyLog.e("传过来的数据",groups.toString());
 
         list.addAll(groups);
-
-
-
 
     }
 
@@ -191,6 +204,7 @@ public class QuanB_XX_Fragment extends BaseFragment implements XX_xq_Cotract.Vie
         newcontent = xx_xq_bean.getData().getNewcontent();
 
         Intent intent = new Intent(App.activity, XiaoX_XQ_Activity.class);
+        intent.putExtra("时间",xx_xq_bean.getData().getNewtime());
         intent.putExtra("标题",newtype);
         intent.putExtra("内容",newcontent);
         startActivity(intent);
@@ -201,7 +215,6 @@ public class QuanB_XX_Fragment extends BaseFragment implements XX_xq_Cotract.Vie
     public void showmessage(String str) {
 
     }
-
 
     @Override
     public void setBasePresenter(XX_xq_Cotract.Presenter presenter) {

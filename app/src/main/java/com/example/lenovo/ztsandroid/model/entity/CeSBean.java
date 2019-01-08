@@ -1,12 +1,13 @@
 package com.example.lenovo.ztsandroid.model.entity;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by Lenovo on 2018/10/24.
  */
 
-public class CeSBean {
+public class CeSBean implements Serializable{
 
 
     private List<LiveBean> live;

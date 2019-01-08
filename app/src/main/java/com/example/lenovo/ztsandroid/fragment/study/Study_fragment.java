@@ -26,10 +26,12 @@ import com.example.lenovo.ztsandroid.activity.YB_SY_Activity;
 import com.example.lenovo.ztsandroid.adapter.Grid_popup_Adapter;
 import com.example.lenovo.ztsandroid.base.BaseFragment;
 import com.example.lenovo.ztsandroid.cotract.JiaoC_xz_Cotract;
+import com.example.lenovo.ztsandroid.model.entity.Dc_Xq_Bean;
 import com.example.lenovo.ztsandroid.model.entity.JiaoC_Bean;
 import com.example.lenovo.ztsandroid.model.entity.XiaoX_content_Bean;
 import com.example.lenovo.ztsandroid.presenter.JiaoC_Presenter;
 import com.example.lenovo.ztsandroid.presenter.XiaoX_content_Presenter;
+import com.example.lenovo.ztsandroid.utils.ACache;
 import com.example.lenovo.ztsandroid.utils.MyLog;
 
 import java.util.ArrayList;
@@ -43,7 +45,6 @@ import butterknife.OnClick;
  */
 
 public class Study_fragment extends BaseFragment implements JiaoC_xz_Cotract.View {
-
 
     @BindView(R.id.Text_Banb)
     TextView TextBanb;
@@ -117,14 +118,11 @@ public class Study_fragment extends BaseFragment implements JiaoC_xz_Cotract.Vie
 
     @Override
     protected int getLayoutId() {
-
         return R.layout.cs_yemainone;
     }
 
-
     @Override
     protected void init(View view) {
-
 
         sp = App.activity.getSharedPreferences("userInfo", App.activity.MODE_WORLD_READABLE);
         editor = sp.edit();
@@ -135,32 +133,27 @@ public class Study_fragment extends BaseFragment implements JiaoC_xz_Cotract.Vie
 
         MyLog.e("查询到的数据", jc + nj + sxc1);
 
-        if (jc != "" && nj != "" && sxc1 !="" ){
+        if (jc != null && nj != null && sxc1 !=null ){
 
             TextBanb.setText(jc);
             TextNianJ.setText(nj);
             TextSXiaC.setText(sxc1);
             MyLog.e("查询到的数据", jc + nj + sxc1);
         }else {
-
-            TextBanb.setText("请选择  ");
-            TextNianJ.setText("教材");
-            TextSXiaC.setText("  ");
+            TextBanb.setText("人教版");
+            TextNianJ.setText("七年级");
+            TextSXiaC.setText("上册");
         }
-
     }
 
     public void upPopupWindow(View view) {
-
         View v = LayoutInflater.from(App.activity).inflate(R.layout.activity_popup_columns, null);
         popupView(v);
         popupWindow = new PopupWindow(v, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         popupWindow.setFocusable(true);
         popupWindow.setBackgroundDrawable(new BitmapDrawable()); // 响应返回键必须的语句
         popupWindow.showAsDropDown(view, 0, 0);
-
     }
-
     public void popupView(View v) {
 
 //        stuid = bundle.getInt("stuid");
@@ -168,7 +161,6 @@ public class Study_fragment extends BaseFragment implements JiaoC_xz_Cotract.Vie
         grid = v.findViewById(R.id.Grid_Popup);
         adapter = new Grid_popup_Adapter(App.activity, list);
         grid.setAdapter(adapter);
-
 
         grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -181,17 +173,11 @@ public class Study_fragment extends BaseFragment implements JiaoC_xz_Cotract.Vie
                 jclx = list.get(position).getJclx();
                 sxc = list.get(position).getSxc();
 
-//                MyLog.e("保存的数据", jclx + Nj_jc + sxc);
-
-
-
-
                 if (jc == null|| nj == null|| sxc1 == null){
 
                     TextBanb.setText(jclx);
                     TextNianJ.setText(Nj_jc);
                     TextSXiaC.setText(sxc);
-
                     editor.putString("教材", jclx);
                     editor.putString("年级", Nj_jc);
                     editor.putString("上下册", sxc);
@@ -208,17 +194,19 @@ public class Study_fragment extends BaseFragment implements JiaoC_xz_Cotract.Vie
                         editor.putString("上下册", sxc);
                         editor.commit();
                         MyLog.e("保存的数据",jclx + Nj_jc + sxc);
-
+                    }else {
+                        TextBanb.setText("人教版");
+                        TextNianJ.setText("七年级");
+                        TextSXiaC.setText("上册");
                     }
                 }
-
                 popupWindow.dismiss();
                 adapter.notifyDataSetChanged();
+
             }
         });
 
     }
-
     @Override
     protected void loadData() {
 
@@ -244,16 +232,6 @@ public class Study_fragment extends BaseFragment implements JiaoC_xz_Cotract.Vie
         return rootView;
     }
 
-/*
-
-
-    @Override
-    public void onDestroyView() {
-    super.onDestroyView();
-    unbinder.unbind();
-    }
-
-    */
 
     @OnClick({R.id.XX_Btn, R.id.linear, R.id.Yin_Biao, R.id.Danci, R.id.Duan_yu, R.id.Juzi, R.id.Ke_Wen, R.id.Tinghou_X, R.id.Tinghou_H, R.id.TingL_T, R.id.Yuedu})
     public void onViewClicked(View view) {
@@ -265,7 +243,6 @@ public class Study_fragment extends BaseFragment implements JiaoC_xz_Cotract.Vie
                 break;
             case R.id.linear:
                 upPopupWindow(line);
-
                 break;
             case R.id.Yin_Biao:
                 Intent intent5 = new Intent(App.activity, YB_SY_Activity.class);
@@ -322,8 +299,6 @@ public class Study_fragment extends BaseFragment implements JiaoC_xz_Cotract.Vie
                 MyLog.e("跳转携带的参数", jclx + Nj_jc + sxc);
 
                 startActivity(intent6);
-
-
                 break;
             case R.id.Tinghou_H:
 
@@ -334,11 +309,7 @@ public class Study_fragment extends BaseFragment implements JiaoC_xz_Cotract.Vie
                 intent8.putExtra("title", "listen");
                 intent8.putExtra("listen_type","1");
                 MyLog.e("跳转携带的参数", jclx + Nj_jc + sxc);
-
                 startActivity(intent8);
-
-
-
                 break;
             case R.id.TingL_T:
                 Intent intent7 = new Intent(App.activity, KW_LD_Activity.class);
@@ -399,12 +370,13 @@ public class Study_fragment extends BaseFragment implements JiaoC_xz_Cotract.Vie
                 }
             }
         });
-
-
     }
-
+    private ACache cache;
     @Override
     public void showmessage(String str) {
+
+        cache= ACache.get(App.activity);
+        final XiaoX_content_Bean list1 = (XiaoX_content_Bean)cache.getAsObject("XiaoX_content_Bean");
 
     }
 

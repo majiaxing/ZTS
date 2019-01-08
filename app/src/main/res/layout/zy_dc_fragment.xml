@@ -8,7 +8,7 @@
         android:layout_height="200px"
         android:orientation="horizontal"
         android:gravity="center_vertical"
-        android:background="@drawable/huiyuan"
+        android:background="@drawable/title"
         >
 
 
@@ -70,7 +70,6 @@
             android:layout_height="wrap_content"
             android:id="@+id/LeiXin"
             android:layout_centerVertical="true"
-            android:text="课文"
             android:layout_marginLeft="48px"
             android:textSize="36px"
             android:textColor="#333"
@@ -80,25 +79,13 @@
             android:layout_height="wrap_content"
             android:id="@+id/YeShu"
             android:layout_centerVertical="true"
-            android:text="1"
+            android:text="1/30"
             android:textSize="36px"
-            android:textColor="#43B8C0"
             android:layout_marginRight="90px"
             android:layout_alignParentRight="true"
 
             />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/Zongyeshu"
-            android:layout_centerVertical="true"
-            android:text="/30"
-            android:textSize="36px"
-            android:textColor="#333"
-            android:layout_marginRight="33px"
-            android:layout_alignParentRight="true"
-            />
 
     </RelativeLayout>
 

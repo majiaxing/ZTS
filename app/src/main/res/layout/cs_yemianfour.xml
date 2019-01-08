@@ -11,7 +11,7 @@
             android:layout_width="match_parent"
             android:layout_height="660px"
             android:orientation="vertical"
-            android:background="@drawable/huiyuan"
+            android:background="@drawable/title"
             android:gravity="center_horizontal"
             >
 
@@ -99,10 +99,15 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="231px"
+                android:layout_height="271px"
                 android:orientation="vertical"
                 android:weightSum="2"
                 >
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="5px"
+                    android:background="@color/pe_gray"
+                    />
                 
                 <LinearLayout
                     android:id="@+id/WD_vip"
@@ -139,7 +144,11 @@
 
                 </LinearLayout>
 
-
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="5px"
+                    android:background="@color/pe_gray"
+                    />
                 <LinearLayout
                     android:id="@+id/GouM_vip"
                     android:layout_width="match_parent"
@@ -170,9 +179,6 @@
                         android:layout_marginLeft="732px"
                         android:src="@drawable/fh"
                         />
-
-
-
                 </LinearLayout>
                 
                 
@@ -223,6 +229,10 @@
 
     </LinearLayout>
 
-
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="5px"
+        android:background="@color/pe_gray"
+        />
 
 </LinearLayout>

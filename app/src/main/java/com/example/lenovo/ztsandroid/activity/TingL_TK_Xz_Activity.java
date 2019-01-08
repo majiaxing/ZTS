@@ -95,8 +95,6 @@ public class TingL_TK_Xz_Activity extends BaseActivity implements TingL_XQ_xz_Co
         // TODO: add setContentView(...) invocation
         ButterKnife.bind(this);
     }
-
-
     @OnClick({R.id.back_jt, R.id.title})
     public void onViewClicked(View view) {
         switch (view.getId()) {
@@ -109,8 +107,6 @@ public class TingL_TK_Xz_Activity extends BaseActivity implements TingL_XQ_xz_Co
                 break;
         }
     }
-
-
     @Override
     public void getManager(final TingL_XQ_xz_Bean xqbean) {
 
@@ -126,7 +122,6 @@ public class TingL_TK_Xz_Activity extends BaseActivity implements TingL_XQ_xz_Co
         App.activity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-
                 for (int i = 0; i < xqbean.getData().get(0).getListen_questionList().size(); i++) {
                     TingL_XZ_Fragment fragment = new TingL_XZ_Fragment();
                     bundle = new Bundle();
@@ -134,11 +129,19 @@ public class TingL_TK_Xz_Activity extends BaseActivity implements TingL_XQ_xz_Co
                     bundle.putString("title", xqbean.getData().get(0).getListen_text());
                     bundle.putString("ertitle", xqbean.getData().get(0).getListen_questionList().get(i).getListen_question());
                     bundle.putString("relative_path", relative_path);
-                    bundle.putString("word_video",xqbean.getData().get(0).getListen_questionList().get(i).getListen_questVideo());
-
+                    bundle.putString("listen_answer",xqbean.getData().get(0).getListen_questionList().get(i).getListen_answer());
                     bundle.putString("listen_id",listen_id);
                     bundle.putString("type",type);
                     bundle.putString("Listen_questId",xqbean.getData().get(0).getListen_questionList().get(i).getListen_questId());
+                    bundle.putString("avgScore",xqbean.getData().get(0).getListen_questionList().get(i).getAvgScore());
+                    if (!xqbean.getData().get(0).getListen_video().equals("")){
+                        bundle.putString("word_video",xqbean.getData().get(0).getListen_video());
+                    }else if (!xqbean.getData().get(0).getListen_questionList().get(i).getListen_questVideo().equals("")){
+                        bundle.putString("word_video",xqbean.getData().get(0).getListen_questionList().get(i).getListen_questVideo());
+                    }
+                    bundle.putString("yema",xqbean.getData().get(0).getListen_questionList().size() +"");
+                    bundle.putString("dangq",i+1+"");
+
                     MyLog.e("WYFL",xqbean.getData().get(0).getListen_video());
 
                     fragment.setParams(bundle);
@@ -146,6 +149,7 @@ public class TingL_TK_Xz_Activity extends BaseActivity implements TingL_XQ_xz_Co
                 }
                 adapter = new ViewPagerAdapter(getSupportFragmentManager(), list);
                 danciViewPager.setAdapter(adapter);
+                danciViewPager.setOffscreenPageLimit(2);
                 adapter.notifyDataSetChanged();
             }
         });

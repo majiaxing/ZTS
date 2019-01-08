@@ -1,12 +1,13 @@
 package com.example.lenovo.ztsandroid.model.entity;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by Administrator on 2018/11/22.
  */
 
-public class TingL_TK_Bean {
+public class TingL_TK_Bean implements Serializable {
 
 
     /**
@@ -103,7 +104,7 @@ public class TingL_TK_Bean {
         this.data = data;
     }
 
-    public static class DataBean {
+    public static class DataBean implements Serializable{
         /**
          * listen_id : 20e14909-43fb-46b9-9ff3-044b524aab0d
          * listen_text : 图片听选（本题3分）
@@ -158,7 +159,7 @@ public class TingL_TK_Bean {
             this.listen_questionList = listen_questionList;
         }
 
-        public static class ListenQuestionListBean {
+        public static class ListenQuestionListBean implements Serializable{
             /**
              * listen_resolve :
              * hw_answerId : 8c7d7425-d441-4f9e-b040-6faf11c5123a
@@ -175,6 +176,16 @@ public class TingL_TK_Bean {
             private String listen_questVideo;
             private String listen_question;
             private String listen_questId;
+            private String avgScore;
+
+            public String getAvgScore() {
+                return avgScore;
+            }
+
+            public void setAvgScore(String avgScore) {
+                this.avgScore = avgScore;
+            }
+
             private List<ListenOptionListBean> listen_optionList;
 
             public String getListen_resolve() {
@@ -233,7 +244,7 @@ public class TingL_TK_Bean {
                 this.listen_optionList = listen_optionList;
             }
 
-            public static class ListenOptionListBean {
+            public static class ListenOptionListBean implements Serializable{
                 /**
                  * listen_optionId : 3108
                  * listen_optionPhotoes : 1.A.jpg

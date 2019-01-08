@@ -25,6 +25,7 @@ import com.example.lenovo.ztsandroid.cotract.DanC_Cotract;
 import com.example.lenovo.ztsandroid.fragment.DanCi_fragment;
 import com.example.lenovo.ztsandroid.model.entity.Dc_Xq_Bean;
 import com.example.lenovo.ztsandroid.presenter.DanC_Presenter;
+import com.example.lenovo.ztsandroid.utils.ACache;
 import com.example.lenovo.ztsandroid.utils.BackPopupUtils;
 
 import java.util.ArrayList;
@@ -62,7 +63,7 @@ public class DanC_Sy_Activity extends BaseActivity implements DanC_Cotract.View 
     private String type;
     private String extra;
     private Bundle bundle;
-
+    private ACache cache;
     @Override
     protected int getLayoutId() {
         return R.layout.yuy_kewld_activity;
@@ -161,6 +162,42 @@ public class DanC_Sy_Activity extends BaseActivity implements DanC_Cotract.View 
 
                     bundle.putString("word_id", dcXqBean.getData().get(i).getWord_id());
                     bundle.putString("type", dcXqBean.getData().get(i).getType());
+                    bundle.putString("yema",dcXqBean.getData().size() +"");
+                    bundle.putString("dangq",i+1+"");
+                    danCi_fragment.setParams(bundle);
+                    list.add(danCi_fragment);
+                }
+
+                adapter = new ViewPagerAdapter(getSupportFragmentManager(), list);
+
+                viewPager.setAdapter(adapter);
+                nlist.addAll(dcXqBean.getData());
+
+            }
+        });
+    }
+
+    @Override
+    public void showmessage(String str) {
+
+        cache=ACache.get(App.activity);
+        final Dc_Xq_Bean list1 = (Dc_Xq_Bean)cache.getAsObject("Dc_Xq_Bean");
+
+        App.activity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+
+                for (int i = 0; i < list1.getData().size(); i++) {
+                    DanCi_fragment danCi_fragment = new DanCi_fragment();
+                    bundle = new Bundle();
+                    bundle.putString("word", list1.getData().get(i).getWord());
+                    bundle.putString("word_tran", list1.getData().get(i).getWord_tran());
+
+                    bundle.putString("Relative_path", list1.getData().get(i).getRelative_path());
+                    bundle.putString("word_video", list1.getData().get(i).getWord_video());
+
+                    bundle.putString("word_id", list1.getData().get(i).getWord_id());
+                    bundle.putString("type", list1.getData().get(i).getType());
 
                     danCi_fragment.setParams(bundle);
                     list.add(danCi_fragment);
@@ -169,13 +206,10 @@ public class DanC_Sy_Activity extends BaseActivity implements DanC_Cotract.View 
                 adapter = new ViewPagerAdapter(getSupportFragmentManager(), list);
                 viewPager.setAdapter(adapter);
 
-                nlist.addAll(dcXqBean.getData());
+                nlist.addAll(list1.getData());
             }
         });
-    }
 
-    @Override
-    public void showmessage(String str) {
 
     }
 

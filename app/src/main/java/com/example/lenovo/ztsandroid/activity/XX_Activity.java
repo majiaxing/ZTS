@@ -29,18 +29,23 @@ import com.example.lenovo.ztsandroid.base.BaseActivity;
 import com.example.lenovo.ztsandroid.cotract.XX_Cotract;
 import com.example.lenovo.ztsandroid.fragment.QuanB_XX_Fragment;
 import com.example.lenovo.ztsandroid.fragment.WeiD_XX_Fragment;
+import com.example.lenovo.ztsandroid.model.entity.Delete_XX_Bean;
 import com.example.lenovo.ztsandroid.model.entity.XX_Bean;
 import com.example.lenovo.ztsandroid.model.entity.XiaoX_Bean;
+import com.example.lenovo.ztsandroid.presenter.Delete_Presenter;
 import com.example.lenovo.ztsandroid.presenter.XiaoX_Presenter;
 import com.example.lenovo.ztsandroid.utils.MyLog;
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.appindexing.Thing;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.gson.Gson;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -128,8 +133,6 @@ public class XX_Activity extends BaseActivity implements XX_Cotract.View {
             child.setLayoutParams(params);
             child.invalidate();
         }
-
-
     }
 
 
@@ -264,9 +267,41 @@ public class XX_Activity extends BaseActivity implements XX_Cotract.View {
                 break;
             case R.id.BiaoW_Yd:
                 fragment1.changeIsRead();
+                Map<String,Object> map = new HashMap<>();
+                map.put("flag","read");
+                ArrayList<Map<String, String>> xxid = fragment1.XXID();
+                MyLog.e("回调过来的ID",xxid.toString());
+//                ArrayList<Map<String,String>> news = new ArrayList<>();
+//                Map<String,String> map1 = new HashMap<>();
+//                map1.put("id",xxid);
+//                news.add(map1);
+                map.put("news",xxid);
+                Gson gson = new Gson();
+                String jsonImgList = gson.toJson(map);
+                Log.e("GSON",jsonImgList + "");
+                presenter = new Delete_Presenter(this);
+                presenter.SetU(jsonImgList);
+
                 break;
             case R.id.BiaoW_Sc:
                 fragment1.delete();
+                Map<String,Object> map2 = new HashMap<>();
+                map2.put("flag","delete");
+                ArrayList<Map<String, String>> xxid1 = fragment1.XXID();
+                MyLog.e("回调过来的ID",xxid1.toString());
+//                ArrayList<Map<String,String>> news2 = new ArrayList<>();
+//                Map<String,String> map3 = new HashMap<>();
+//                map3.put("id",xxid1);
+//                news2.add(xxid1);
+                map2.put("news",xxid1);
+                Gson gson1 = new Gson();
+                String jsonImgList1 = gson1.toJson(map2);
+
+
+                Log.e("GSON",jsonImgList1 + "" + xxid1);
+
+                presenter = new Delete_Presenter(this);
+                presenter.SetU(jsonImgList1);
                 break;
         }
     }
@@ -312,6 +347,11 @@ public class XX_Activity extends BaseActivity implements XX_Cotract.View {
                 }
             }
         });
+    }
+
+    @Override
+    public void getManagerDelete(Delete_XX_Bean delete_xx_bean) {
+
     }
 
     @Override

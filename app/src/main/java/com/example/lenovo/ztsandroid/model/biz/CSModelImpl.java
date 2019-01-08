@@ -2,12 +2,14 @@ package com.example.lenovo.ztsandroid.model.biz;
 
 import android.util.Log;
 
-import com.alibaba.fastjson.JSON;
 import com.example.lenovo.ztsandroid.config.Urls;
+import com.example.lenovo.ztsandroid.model.entity.YB_Zy_Three_Bean;
+import com.example.lenovo.ztsandroid.model.entity.YB_Zy_four_Bean;
 import com.example.lenovo.ztsandroid.model.entity.BanJBean;
 import com.example.lenovo.ztsandroid.model.entity.CeSBean;
 import com.example.lenovo.ztsandroid.model.entity.DWj_SC_Bean;
 import com.example.lenovo.ztsandroid.model.entity.Dc_Xq_Bean;
+import com.example.lenovo.ztsandroid.model.entity.Delete_XX_Bean;
 import com.example.lenovo.ztsandroid.model.entity.Diq_Bean;
 import com.example.lenovo.ztsandroid.model.entity.Diq_Qu_Bean;
 import com.example.lenovo.ztsandroid.model.entity.Diq_Shi_Bean;
@@ -22,7 +24,6 @@ import com.example.lenovo.ztsandroid.model.entity.Kw_Xq_Bean;
 import com.example.lenovo.ztsandroid.model.entity.Kw_erji_list_Bean;
 import com.example.lenovo.ztsandroid.model.entity.LiY_SC_WJ_Bean;
 import com.example.lenovo.ztsandroid.model.entity.LoginBean;
-import com.example.lenovo.ztsandroid.model.entity.PinC_Fay_Bean;
 import com.example.lenovo.ztsandroid.model.entity.Read_TJ_Bean;
 import com.example.lenovo.ztsandroid.model.entity.Read_XQ_Bean;
 import com.example.lenovo.ztsandroid.model.entity.Read_erj_Bean;
@@ -31,6 +32,7 @@ import com.example.lenovo.ztsandroid.model.entity.Stdey_Bean;
 import com.example.lenovo.ztsandroid.model.entity.Student_Xinx_Bean;
 import com.example.lenovo.ztsandroid.model.entity.TiJ_Vip_Bean;
 import com.example.lenovo.ztsandroid.model.entity.TiJao_ZY_Bean;
+import com.example.lenovo.ztsandroid.model.entity.TiJiao_ZY_Bean;
 import com.example.lenovo.ztsandroid.model.entity.TiLi_BaoC_Bean;
 import com.example.lenovo.ztsandroid.model.entity.TingL_TK_Bean;
 import com.example.lenovo.ztsandroid.model.entity.TingL_XQ_xz_Bean;
@@ -47,6 +49,8 @@ import com.example.lenovo.ztsandroid.model.entity.YB_XQ_Two_Bean;
 import com.example.lenovo.ztsandroid.model.entity.YB_XQ_four_Bean;
 import com.example.lenovo.ztsandroid.model.entity.YB_XQ_one_Bean;
 import com.example.lenovo.ztsandroid.model.entity.YB_XQ_three_Bean;
+import com.example.lenovo.ztsandroid.model.entity.YB_Zy_One_Bean;
+import com.example.lenovo.ztsandroid.model.entity.YB_Zy_Two_Bean;
 import com.example.lenovo.ztsandroid.model.entity.YuYinPinG_Bean;
 import com.example.lenovo.ztsandroid.model.entity.ZuoY_Dh_Bean;
 import com.example.lenovo.ztsandroid.model.entity.ZuoY_Jz_Bean;
@@ -62,6 +66,7 @@ import com.example.lenovo.ztsandroid.net.HttpFactroy;
 import com.example.lenovo.ztsandroid.net.callback.MyNetWorkCallback;
 import com.example.lenovo.ztsandroid.utils.HMACTest;
 import com.example.lenovo.ztsandroid.utils.MyLog;
+import com.example.lenovo.ztsandroid.utils.ZhiL_Key_Velue;
 import com.google.gson.Gson;
 
 import java.io.File;
@@ -86,11 +91,12 @@ public class CSModelImpl implements CSModel {
     }
 
     @Override
-    public void postLogin(String name, String possward, MyNetWorkCallback<LoginBean> callback) {
+    public void postLogin(String name, String possward ,String usertype_code, MyNetWorkCallback<LoginBean> callback) {
 
         Map<String, String> map = new HashMap<>();
-        map.put("username", name);
-        map.put("password", possward);
+        map.put("user_zhanghao", name);
+        map.put("user_mima", possward);
+        map.put("usertype_code", usertype_code);
         HttpFactroy.create().post(Urls.Login,map,callback);
 
     }
@@ -148,6 +154,12 @@ public class CSModelImpl implements CSModel {
         HttpFactroy.create().post(Urls.XXList,map,callback);
     }
 
+    @Override
+    public void postXXDelete(String json, MyNetWorkCallback<Delete_XX_Bean> callback) {
+        Map<String, String> map = new HashMap<>();
+        map.put("json",json );
+        HttpFactroy.create().post(Urls.XXDelete,map,callback);
+    }
 
 
     @Override
@@ -332,6 +344,17 @@ public class CSModelImpl implements CSModel {
     }
 
     @Override
+    public void postTingL_ZY(String stuid, String hwid, MyNetWorkCallback<TiJiao_ZY_Bean> callback) {
+
+        Map<String, String> map = new HashMap<>();
+        map.put("stuid",stuid );
+        map.put("hwid",hwid );
+        HttpFactroy.create().post(Urls.TiJiaoZy,map,callback);
+
+    }
+
+
+    @Override
     public void postRead_erj(String flag, String type, MyNetWorkCallback<Read_erj_Bean> callback) {
 
 
@@ -393,7 +416,7 @@ public class CSModelImpl implements CSModel {
     }
 
     @Override
-    public void postSC_Lu(String stuid, String hwid, String hw_type, String hw_content,String hw_answerId,String hw_video, String hw_score,  MyNetWorkCallback<LiY_SC_WJ_Bean> callback) {
+    public void postSC_Lu(String stuid, String hwid, String hw_type, String hw_content,String hw_answerId,String hw_video, String hw_score , String everyScore,  MyNetWorkCallback<LiY_SC_WJ_Bean> callback) {
 
         Map<String, String> map = new HashMap<>();
         map.put("stuid",stuid);
@@ -403,6 +426,7 @@ public class CSModelImpl implements CSModel {
         map.put("hw_answerId",hw_answerId);
         map.put("hw_video",hw_video);
         map.put("hw_score",hw_score);
+        map.put("everyScore",everyScore);
         HttpFactroy.create().post(Urls.LuYinSC_BC,map,callback);
     }
 
@@ -434,6 +458,18 @@ public class CSModelImpl implements CSModel {
         map.put("learn_score",learn_score );
         map.put("type",type );
         HttpFactroy.create().post(Urls.LuYinSC,map,callback);
+    }
+
+    @Override
+    public void postSC_Lu_YB_StdeyDc(String stuid, String word_id, String learn_video, String learn_score, MyNetWorkCallback<Stdey_Bean> callback) {
+
+        Map<String, String> map = new HashMap<>();
+        map.put("stuid",stuid );
+        map.put("yb_wordId",word_id );
+        map.put("learn_video",learn_video );
+        map.put("learn_score",learn_score );
+        HttpFactroy.create().post(Urls.LuYinSC_YB,map,callback);
+
     }
 
     @Override
@@ -651,7 +687,21 @@ public class CSModelImpl implements CSModel {
     }
 
     @Override
-    public void postZuoY_Yb(String stuid, String hwid, String flag, String listen_type, String hw_type, String hw_content, String avgScore, MyNetWorkCallback<ZuoY_dc_Bean> callback) {
+    public void postZuoY_Yb_One(String stuid, String hwid, String flag, String listen_type, String hw_type, String hw_content, String avgScore ,String shiliType, MyNetWorkCallback<YB_Zy_One_Bean> callback) {
+        Map<String, String> map = new HashMap<>();
+        map.put("stuid",stuid);
+        map.put("hwid",hwid );
+        map.put("flag",flag );
+        map.put("listen_type",listen_type );
+        map.put("hw_type",hw_type );
+        map.put("hw_content",hw_content );
+        map.put("avgScore",avgScore );
+        map.put("shiliType",shiliType);
+        HttpFactroy.create().post(Urls.ZuoYXQ,map,callback);
+    }
+
+    @Override
+    public void postZuoY_Yb_Two(String stuid, String hwid, String flag, String listen_type, String hw_type, String hw_content, String avgScore, MyNetWorkCallback<YB_Zy_Two_Bean> callback) {
         Map<String, String> map = new HashMap<>();
         map.put("stuid",stuid);
         map.put("hwid",hwid );
@@ -662,6 +712,33 @@ public class CSModelImpl implements CSModel {
         map.put("avgScore",avgScore );
         HttpFactroy.create().post(Urls.ZuoYXQ,map,callback);
     }
+
+    @Override
+    public void postZuoY_Yb_Three(String stuid, String hwid, String flag, String listen_type, String hw_type, String hw_content, String avgScore, MyNetWorkCallback<YB_Zy_Three_Bean> callback) {
+        Map<String, String> map = new HashMap<>();
+        map.put("stuid",stuid);
+        map.put("hwid",hwid );
+        map.put("flag",flag );
+        map.put("listen_type",listen_type );
+        map.put("hw_type",hw_type );
+        map.put("hw_content",hw_content );
+        map.put("avgScore",avgScore );
+        HttpFactroy.create().post(Urls.ZuoYXQ,map,callback);
+    }
+
+    @Override
+    public void postZuoY_Yb_Four(String stuid, String hwid, String flag, String listen_type, String hw_type, String hw_content, String avgScore, MyNetWorkCallback<YB_Zy_four_Bean> callback) {
+        Map<String, String> map = new HashMap<>();
+        map.put("stuid",stuid);
+        map.put("hwid",hwid );
+        map.put("flag",flag );
+        map.put("listen_type",listen_type );
+        map.put("hw_type",hw_type );
+        map.put("hw_content",hw_content );
+        map.put("avgScore",avgScore );
+        HttpFactroy.create().post(Urls.ZuoYXQ,map,callback);
+    }
+
 
     @Override
     public void postZuoY_Jz(String stuid, String hwid, String flag, String listen_type, String hw_type, String hw_content, String avgScore, MyNetWorkCallback<ZuoY_Jz_Bean> callback) {
@@ -704,7 +781,7 @@ public class CSModelImpl implements CSModel {
 
 
     @Override
-    public void postYYin_JK( String EvalMode, String RefText, String SessionId, String WorkMode,String ScoreCoeff, MyNetWorkCallback<YuYinPinG_Bean> callback) {
+    public void postYYin_JK( String EvalMode, String RefText, String SessionId, String WorkMode,String ScoreCoeff , MyNetWorkCallback<YuYinPinG_Bean> callback) {
 
 
         final TreeMap<String, Object> params = new TreeMap<String, Object>();
@@ -714,7 +791,7 @@ public class CSModelImpl implements CSModel {
         // 实际调用时应当使用系统当前时间
         params.put("Timestamp", System.currentTimeMillis() / 1000 +"");
         params.put("Region", "ap-beijing");
-        params.put("SecretId", "AKIDwmWN4oMsCKOI1avCF2eyJUVM4bxmvuDL");
+        params.put("SecretId", ZhiL_Key_Velue.SECRETID);
         params.put("Action", "InitOralProcess");
         params.put("Version", "2018-07-24");
         params.put("SessionId", SessionId);
@@ -722,11 +799,14 @@ public class CSModelImpl implements CSModel {
         params.put("WorkMode",WorkMode);
         params.put("EvalMode", EvalMode);
         params.put("ScoreCoeff", ScoreCoeff);
+        params.put("IsLongLifeSession", "1");
+
+
 
         String str2sign = HMACTest.getStringToSign("POST","soe.tencentcloudapi.com",params);
 //        MyLog.e("拼接的 请求串",str2sign);
         try {
-            signature = HMACTest.sign(str2sign, "62rgTXXM1PgmjZHrNn26zmRuY4QaecT9", "HmacSHA1");
+            signature = HMACTest.sign(str2sign, ZhiL_Key_Velue.SECRETKEY, "HmacSHA1");
             MyLog.e("Signature=" ,signature);
         } catch (Exception e) {
             e.printStackTrace();
@@ -736,7 +816,6 @@ public class CSModelImpl implements CSModel {
     }
     @Override
     public void getFy_PG(String SeqId, String IsEnd, String VoiceFileType, String VoiceEncodeType, String UserVoiceData, String SessionId, MyNetWorkCallback<String> callback) {
-
         final TreeMap<String, Object> params = new TreeMap<String, Object>();
         int nextInt = new Random().nextInt(999999);
         MyLog.e("拼接的 请求串",nextInt+"");
@@ -744,7 +823,7 @@ public class CSModelImpl implements CSModel {
         // 实际调用时应当使用系统当前时间
         params.put("Timestamp", System.currentTimeMillis() / 1000 +"");
         params.put("Region", "ap-beijing");
-        params.put("SecretId", "AKIDwmWN4oMsCKOI1avCF2eyJUVM4bxmvuDL");
+        params.put("SecretId", ZhiL_Key_Velue.SECRETID);
         params.put("Action", "TransmitOralProcess");
         params.put("Version", "2018-07-24");
         params.put("SeqId",SeqId);
@@ -753,10 +832,12 @@ public class CSModelImpl implements CSModel {
         params.put("VoiceEncodeType","1");
         params.put("UserVoiceData", UserVoiceData);
         params.put("SessionId", SessionId);
+        params.put("IsLongLifeSession", "1");
+
         String str2sign = HMACTest.getStringToSign("POST","soe.tencentcloudapi.com",params);
         MyLog.e("拼接的 请求串",str2sign);
         try {
-            signature = HMACTest.sign(str2sign, "62rgTXXM1PgmjZHrNn26zmRuY4QaecT9", "HmacSHA1");
+            signature = HMACTest.sign(str2sign, ZhiL_Key_Velue.SECRETKEY, "HmacSHA1");
             MyLog.e("Signature=123123213" , signature);
         } catch (Exception e) {
             e.printStackTrace();

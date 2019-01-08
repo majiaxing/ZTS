@@ -158,6 +158,8 @@ public class DuanYu_Sy_Activity extends BaseActivity implements Dy_erj_Cotract.V
 
                     bundle.putString("Relative_path", xqBean.getData().get(i).getRelative_path());
                     bundle.putString("word_video", xqBean.getData().get(i).getPhrase_video());
+                    bundle.putString("yema",xqBean.getData().size() +"");
+                    bundle.putString("dangq",i+1+"");
 
                     duany_fragment.setParams(bundle);
                     list.add(duany_fragment);

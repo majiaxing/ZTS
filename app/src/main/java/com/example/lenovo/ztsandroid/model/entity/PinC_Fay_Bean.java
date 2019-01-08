@@ -1,12 +1,13 @@
 package com.example.lenovo.ztsandroid.model.entity;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by Administrator on 2018/12/11.
  */
 
-public class PinC_Fay_Bean {
+public class PinC_Fay_Bean implements Serializable {
 
 
     /**
@@ -23,7 +24,7 @@ public class PinC_Fay_Bean {
         this.Response = Response;
     }
 
-    public static class ResponseBean {
+    public static class ResponseBean implements Serializable{
         /**
          * PronAccuracy : 59.961338
          * PronFluency : 0.81533897
@@ -108,7 +109,7 @@ public class PinC_Fay_Bean {
             this.SentenceInfoSet = SentenceInfoSet;
         }
 
-        public static class WordsBean {
+        public static class WordsBean implements Serializable{
             /**
              * MemBeginTime : 4560
              * MemEndTime : 5610
@@ -183,7 +184,7 @@ public class PinC_Fay_Bean {
                 this.PhoneInfos = PhoneInfos;
             }
 
-            public static class PhoneInfosBean {
+            public static class PhoneInfosBean implements Serializable{
                 /**
                  * MemBeginTime : 4560
                  * MemEndTime : 4840
@@ -250,7 +251,7 @@ public class PinC_Fay_Bean {
             }
         }
 
-        public static class SentenceInfoSetBean {
+        public static class SentenceInfoSetBean implements Serializable{
             /**
              * words : [{"MemBeginTime":4560,"MemEndTime":5610,"PronAccuracy":59.961338,"PronFluency":0.81533897,"Word":"china","MatchTag":0,"PhoneInfos":[{"MemBeginTime":4560,"MemEndTime":4840,"PronAccuracy":100,"DetectedStress":true,"Phone":"'tʃ","Stress":true},{"MemBeginTime":4840,"MemEndTime":5110,"PronAccuracy":100,"DetectedStress":false,"Phone":"aɪ","Stress":false},{"MemBeginTime":5110,"MemEndTime":5250,"PronAccuracy":32.27586,"DetectedStress":false,"Phone":"n","Stress":false},{"MemBeginTime":5250,"MemEndTime":5610,"PronAccuracy":7.5694857,"DetectedStress":false,"Phone":"ə","Stress":false}]}]
              * sentence_id : -1
@@ -275,7 +276,7 @@ public class PinC_Fay_Bean {
                 this.words = words;
             }
 
-            public static class WordsBeanX {
+            public static class WordsBeanX implements Serializable{
                 /**
                  * MemBeginTime : 4560
                  * MemEndTime : 5610
@@ -350,7 +351,7 @@ public class PinC_Fay_Bean {
                     this.PhoneInfos = PhoneInfos;
                 }
 
-                public static class PhoneInfosBeanX {
+                public static class PhoneInfosBeanX implements Serializable{
                     /**
                      * MemBeginTime : 4560
                      * MemEndTime : 4840

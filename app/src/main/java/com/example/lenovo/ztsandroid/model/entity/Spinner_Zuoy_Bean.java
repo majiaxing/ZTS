@@ -1,5 +1,6 @@
 package com.example.lenovo.ztsandroid.model.entity;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -7,7 +8,7 @@ import java.util.HashMap;
  * Created by Administrator on 2018/12/9.
  */
 
-public class Spinner_Zuoy_Bean {
+public class Spinner_Zuoy_Bean implements Serializable {
 
 
     private ArrayList<Spinner_Zuoy_Bean.DataBean> data;

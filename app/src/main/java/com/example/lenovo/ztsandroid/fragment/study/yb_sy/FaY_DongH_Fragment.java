@@ -35,8 +35,12 @@ public class FaY_DongH_Fragment extends BaseFragment {
 
 
         String relative_path = bundle.getString("relative_path");
-        String yb_translate = bundle.getString("yb_translate");
-        String bofUrl = "https://zts100.com/demo/file/download"+"/?"+"Relative_path="+relative_path+"&"+"type=1"+"&"+"fileName="+yb_translate;
+        String yb_photo = bundle.getString("yb_photo");
+        String bofUrl = "https://zts100.com/demo/file/download"+"/?"+"Relative_path="+relative_path+"&"+"type=1"+"&"+"fileName="+yb_photo;
+
+        String ybTranslate = bundle.getString("yb_translate");
+
+        YBNr.setText(ybTranslate);
 
         Glide.with(App.activity).load(bofUrl).asGif().into(image);
     }

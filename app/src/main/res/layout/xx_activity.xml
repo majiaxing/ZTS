@@ -12,7 +12,7 @@
         android:layout_height="204px"
         android:orientation="horizontal"
         android:gravity="center"
-        android:background="@drawable/huiyuan"
+        android:background="@drawable/title"
 
         >
         <LinearLayout
@@ -52,7 +52,7 @@
                 android:layout_height="wrap_content"
                 android:text="编辑"
                 android:gravity="right"
-                android:textSize="36px"
+                android:textSize="40px"
                 android:textColor="#FFF"
                 android:layout_marginRight="49px"
                 android:layout_marginTop="30px"

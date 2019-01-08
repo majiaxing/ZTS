@@ -57,6 +57,8 @@ public class Myself_fragment extends BaseFragment implements My_Xinx_Cotract.Vie
     private String username;
     private String memberState;
     private String classId;
+    private String kai;
+    private String jie;
 
     @Override
     protected int getLayoutId() {
@@ -108,9 +110,9 @@ public class Myself_fragment extends BaseFragment implements My_Xinx_Cotract.Vie
 
                 break;
             case R.id.GouM_vip:
+
                 Intent intent1 = new Intent(App.activity, GM_E_Activity.class);
                 startActivity(intent1);
-
 
                 break;
             case R.id.She_Z:
@@ -121,7 +123,9 @@ public class Myself_fragment extends BaseFragment implements My_Xinx_Cotract.Vie
 
                 break;
             case R.id.circleImageView:
-
+                Intent intent4 = new Intent(App.activity,Xiugai_Activity.class);
+                intent4.putExtra("student",student);
+                startActivity(intent4);
 
                 break;
             case R.id.XiuGaiZL:
@@ -136,6 +140,11 @@ public class Myself_fragment extends BaseFragment implements My_Xinx_Cotract.Vie
     @Override
     public void getManager(Student_Xinx_Bean xq_bean) {
 
+
+        if (xq_bean.getData() == null){
+            return;
+        }
+
         if (xq_bean.getData().getSchool() != "") {
 
             school = xq_bean.getData().getSchool();
@@ -145,37 +154,30 @@ public class Myself_fragment extends BaseFragment implements My_Xinx_Cotract.Vie
             username = xq_bean.getData().getUsername();
             classId = xq_bean.getData().getClassId();
             memberState = xq_bean.getData().getMemberState();
+        if (starttime !=null||endtime  != null){
 
-        final String kai = starttime.substring(0, 9);
-        final String jie = endtime.substring(0,9);
-
-
-
+            kai = starttime.substring(0, 10);
+            jie = endtime.substring(0,10);
+        }
         App.activity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 YHM.setText(student);
-
                 switch (memberState){
-
                     case "1":
+                        KEhuZhT.setText("有效期："+kai+"至"+jie);
+                        break;
+                    case "2":
                         KEhuZhT.setText("有效期："+kai+"至"+jie);
                         break;
                     case "0":
                         KEhuZhT.setText("你目前为非会员");
                         break;
-
                 }
-
-
-
-
             }
         });
-
         }
     }
-
     @Override
     public void showmessage(String str) {
 

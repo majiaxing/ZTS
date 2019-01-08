@@ -1,12 +1,13 @@
 package com.example.lenovo.ztsandroid.model.entity;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by Administrator on 2018/12/8.
  */
 
-public class ZuoY_Jz_Bean {
+public class ZuoY_Jz_Bean implements Serializable {
 
 
     /**
@@ -103,7 +104,7 @@ public class ZuoY_Jz_Bean {
         this.code = code;
     }
 
-    public static class DataBean {
+    public static class DataBean implements Serializable{
         /**
          * HomeworkPath : homework/4567/41/
          * typeList : [{"practice":0,"hw_answerId":"f60f3a6a-3193-4f34-9bc3-c77d18835545","sentence_id":"454e309f-8dc4-40f6-a204-ea6bb9dca93a","sentence_yw":"I know your doctor.","sentence_sid":"f60f3a6a-3193-4f34-9bc3-c77d18835545","sentence_zw":"我了解你的医生","everyScore":3.13,"sentence_video":"I know your doctor..mp3"},{"practice":0,"hw_answerId":"a93fe354-03d6-48d9-80ef-643c5af12da7","sentence_id":"454e309f-8dc4-40f6-a204-ea6bb9dca93a","sentence_yw":"She is naughty.","sentence_sid":"a93fe354-03d6-48d9-80ef-643c5af12da7","sentence_zw":"他很腼腆","everyScore":3.13,"sentence_video":"She is naughty.mp3"},{"practice":0,"hw_answerId":"09a4dc03-dbaf-474d-8ea3-d0e778ea52fb","sentence_id":"454e309f-8dc4-40f6-a204-ea6bb9dca93a","sentence_yw":"We talk about festivals.","sentence_sid":"09a4dc03-dbaf-474d-8ea3-d0e778ea52fb","sentence_zw":"我们在讨论节日","everyScore":3.13,"sentence_video":"We talk about festivals..mp3"},{"practice":0,"hw_answerId":"4b12a6f1-1b2e-46b0-b925-75f3f04ab16d","sentence_id":"454e309f-8dc4-40f6-a204-ea6bb9dca93a","sentence_yw":"I bought the knives from that shop.","sentence_sid":"4b12a6f1-1b2e-46b0-b925-75f3f04ab16d","sentence_zw":"我从商店买了小吃","everyScore":3.13,"sentence_video":"I bought the knives from that shop..mp3"}]
@@ -138,7 +139,7 @@ public class ZuoY_Jz_Bean {
             this.typeList = typeList;
         }
 
-        public static class TypeListBean {
+        public static class TypeListBean implements Serializable{
             /**
              * practice : 0
              * hw_answerId : f60f3a6a-3193-4f34-9bc3-c77d18835545

@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="204px"
         android:orientation="horizontal"
-        android:background="@drawable/huiyuan"
+        android:background="@drawable/title"
         android:gravity="center_vertical"
         >
 
@@ -60,6 +60,7 @@
         android:layout_marginTop="10px"
         android:background="@color/pe_gray"
         android:divider="@null"
+        android:overScrollMode="never"
         ></ListView>
 
 

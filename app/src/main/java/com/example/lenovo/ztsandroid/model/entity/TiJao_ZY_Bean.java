@@ -1,10 +1,12 @@
 package com.example.lenovo.ztsandroid.model.entity;
 
+import java.io.Serializable;
+
 /**
  * Created by Administrator on 2018/12/6.
  */
 
-public class TiJao_ZY_Bean {
+public class TiJao_ZY_Bean implements Serializable {
 
 
     /**
@@ -101,7 +103,7 @@ public class TiJao_ZY_Bean {
         this.code = code;
     }
 
-    public static class DataBean {
+    public static class DataBean implements Serializable{
         /**
          * save_path : homework/4567/41/
          * msg : 文件路径不存在了

@@ -116,6 +116,9 @@ public class TingL_TK_Activity extends BaseActivity implements TingL_XQ_xz_Cotra
                     bundle.putString("Relative_path",relative_path);
                     bundle.putString("listen_id",listen_id);
                     bundle.putString("type",type);
+                    bundle.putString("yema",xqbean.getData().size() +"");
+
+                    bundle.putString("dangq",i+1+"");
                     MyLog.e("传过去的路经 ——文件名",xqbean.getData().get(0).getListen_video() + ""+relative_path);
 
 

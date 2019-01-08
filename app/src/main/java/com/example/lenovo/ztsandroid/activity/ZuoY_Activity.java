@@ -2,20 +2,34 @@ package com.example.lenovo.ztsandroid.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Process;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.PopupWindow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.lenovo.ztsandroid.App;
 import com.example.lenovo.ztsandroid.R;
 import com.example.lenovo.ztsandroid.adapter.ZuoY_Adapter;
 import com.example.lenovo.ztsandroid.base.BaseActivity;
 import com.example.lenovo.ztsandroid.config.Urls;
+import com.example.lenovo.ztsandroid.cotract.TiJao_Cotract;
+import com.example.lenovo.ztsandroid.fragment.Read_fragment;
+import com.example.lenovo.ztsandroid.model.entity.Read_XQ_Bean;
 import com.example.lenovo.ztsandroid.model.entity.Spinner_D_Bean;
 import com.example.lenovo.ztsandroid.model.entity.Spinner_T_Bean;
 import com.example.lenovo.ztsandroid.model.entity.Spinner_Zuoy_Bean;
+import com.example.lenovo.ztsandroid.model.entity.TiJiao_ZY_Bean;
+import com.example.lenovo.ztsandroid.presenter.Read_TJ_Presenter;
+import com.example.lenovo.ztsandroid.presenter.TiJao_Presenter;
 import com.example.lenovo.ztsandroid.utils.MyLog;
 import com.example.lenovo.ztsandroid.view.MyListView;
 
@@ -39,7 +53,7 @@ import okhttp3.Response;
 /**
  * Created by Administrator on 2018/12/9.
  */
-public class ZuoY_Activity extends BaseActivity {
+public class ZuoY_Activity extends BaseActivity implements TiJao_Cotract.View ,View.OnClickListener {
 
 
     @BindView(R.id.back_jt)
@@ -59,9 +73,11 @@ public class ZuoY_Activity extends BaseActivity {
     private String hwid;
 
     private ArrayList<Spinner_Zuoy_Bean> list = new ArrayList<>();
+    private TiJao_Cotract.Presenter presenter;
+
 
     private ZuoY_Adapter adapter;
-    private Map<String, ArrayList<Spinner_Zuoy_Bean.DataBean>> map  = new HashMap<>();;
+    private Map<String, ArrayList<Spinner_Zuoy_Bean.DataBean>> map  = new HashMap<>();
     private ArrayList<Spinner_Zuoy_Bean.DataBean> mlist1 = new ArrayList<>();
     private ArrayList<Spinner_Zuoy_Bean.DataBean> mlist2 = new ArrayList<>();
     private ArrayList<Spinner_Zuoy_Bean.DataBean> mlist3 = new ArrayList<>();
@@ -81,7 +97,6 @@ public class ZuoY_Activity extends BaseActivity {
 
         Intent intent = getIntent();
         hwid = intent.getStringExtra("hwid");
-
 
 
         new Thread(new Runnable() {
@@ -148,11 +163,13 @@ public class ZuoY_Activity extends BaseActivity {
                 MyLog.e(" 获取到的hw_type",hw_type + "");
                     switch (hw_type) {
                         case "0":
+                            mlist1.clear();
+                                MyLog.e("输出————",typeList.length() + "");
                             for (int a = 0; a < typeList.length(); a++) {
                                 JSONObject typeli = typeList.getJSONObject(a);
                                 String hw_video1 = typeli.optString("hw_video");
                                 String yb_bvideo = typeli.optString("yb_Bvideo");
-                                int b= a+1;
+                                int b= typeli.optInt("size");
                                 mlist1.add(new Spinner_Zuoy_Bean.DataBean(yb_bvideo,hw_video1,b));
                             }
                             MyLog.e(" 获取到的typeList",typeList + "");
@@ -160,7 +177,9 @@ public class ZuoY_Activity extends BaseActivity {
                             list.add(new Spinner_Zuoy_Bean("音标"));
                             MyLog.e(" 保存到的数据",list.size() + "");
                             break;
+
                         case "1":
+                            mlist2.clear();
                             for (int a = 0; a < typeList.length(); a++) {
                                 JSONObject typeli = typeList.getJSONObject(a);
                                 String hw_video2 = typeli.optString("hw_video");
@@ -174,6 +193,7 @@ public class ZuoY_Activity extends BaseActivity {
                             list.add(new Spinner_Zuoy_Bean("课文"));
                             break;
                         case "2":
+                            mlist3.clear();
                             for (int a = 0; a < typeList.length(); a++) {
                                 JSONObject typeli = typeList.getJSONObject(a);
                                 String hw_video3 = typeli.optString("hw_video");
@@ -184,9 +204,9 @@ public class ZuoY_Activity extends BaseActivity {
                             MyLog.e(" 获取到的typeList",typeList + "");
                             map.put("dc_typeList",mlist3);
                             list.add(new Spinner_Zuoy_Bean("单词"));
-
                             break;
                         case "3":
+                            mlist4.clear();
                             for (int a = 0; a < typeList.length(); a++) {
                                 JSONObject typeli = typeList.getJSONObject(a);
                                 String hw_video4 = typeli.optString("hw_video");
@@ -199,6 +219,7 @@ public class ZuoY_Activity extends BaseActivity {
                             list.add(new Spinner_Zuoy_Bean("句子"));
                             break;
                         case "4":
+                            mlist5.clear();
                             for (int a = 0; a < typeList.length(); a++) {
                                 JSONObject typeli = typeList.getJSONObject(a);
                                 String hw_video5 = typeli.optString("hw_video");
@@ -211,6 +232,7 @@ public class ZuoY_Activity extends BaseActivity {
                             list.add(new Spinner_Zuoy_Bean("对话"));
                             break;
                         case "5":
+                            mlist6.clear();
                             for (int a = 0; a < typeList.length(); a++) {
                                 JSONObject typeli = typeList.getJSONObject(a);
                                 String hw_video6 = typeli.optString("hw_video");
@@ -223,6 +245,7 @@ public class ZuoY_Activity extends BaseActivity {
                             list.add(new Spinner_Zuoy_Bean("听力"));
                             break;
                         case "6":
+                            mlist7.clear();
                             for (int a = 0; a < typeList.length(); a++) {
                                 JSONObject typeli = typeList.getJSONObject(a);
                                 String hw_video7 = typeli.optString("hw_video");
@@ -235,6 +258,7 @@ public class ZuoY_Activity extends BaseActivity {
                             list.add(new Spinner_Zuoy_Bean("阅读"));
                             break;
                         case "8":
+                            mlist8.clear();
                             for (int a = 0; a < typeList.length(); a++) {
                             JSONObject typeli = typeList.getJSONObject(a);
                             String hw_video8 = typeli.optString("hw_video");
@@ -267,12 +291,96 @@ public class ZuoY_Activity extends BaseActivity {
     @Override
     public void initData() {
 
+
     }
 
     @Override
     public void loadData() {
 
     }
+    private PopupWindow popupWindow1 ,popupWindow2;
+    private Button G_mai, E_ka;
+    private TextView text;
+    private LinearLayout fanH;
+
+
+    private void showPopupWindow(View view ,String str) {
+        View view1 = (LinearLayout) View.inflate(App.activity, R.layout.tijiao_popup, null);
+        TextView ivP = (TextView) view1.findViewById(R.id.back_text);
+        TextView ivX = (TextView) view1.findViewById(R.id.Qx_btn);
+        TextView ivClose = (TextView) view1.findViewById(R.id.Qr_btn);
+        LinearLayout FanH = (LinearLayout) view1.findViewById(R.id.Q_X);
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT);
+        ivP.setLayoutParams(params);
+        ivX.setLayoutParams(params);
+        ivClose.setLayoutParams(params);
+        ivClose.setOnClickListener(this);
+        popupWindow1 = new PopupWindow(WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT);
+        popupWindow1.setContentView(view1);
+        popupWindow1.setFocusable(true);
+        popupWindow1.setTouchable(true);
+        popupWindow1.setOutsideTouchable(true);
+        popupWindow1.showAsDropDown(view, 0, 0);
+        backgroundAlpha(0.5f);
+        view1= View.inflate(App.activity, R.layout.tijiao_popup, null);
+        popupWindow2 = new PopupWindow(view1, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        text = view1.findViewById(R.id.back_text);
+        G_mai = view1.findViewById(R.id.Qx_btn);
+        E_ka = view1.findViewById(R.id.Qr_btn);
+        fanH = view1.findViewById(R.id.Q_X);
+        text.setText(str);
+
+        G_mai.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                backgroundAlpha(1f);
+                popupWindow2.dismiss();
+                popupWindow1.dismiss();
+                backgroundAlpha(1f);
+                MyLog.e("点击取消按钮", "haha");
+            }
+        });
+        E_ka.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                presenter = new TiJao_Presenter(ZuoY_Activity.this);
+                presenter.SetUrl(App.stuid,hwid);
+                popupWindow2.dismiss();
+                popupWindow1.dismiss();
+                backgroundAlpha(1f);
+                MyLog.e("点击确定按钮", "lueluelue");
+            }
+        });
+        fanH.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                popupWindow2.dismiss();
+                popupWindow1.dismiss();
+//                menBC.setVisibility(View.GONE);
+                backgroundAlpha(1f);
+                MyLog.e("点击返回按钮", "lalala");
+            }
+        });
+
+        popupWindow2.setBackgroundDrawable(getResources().getDrawable(
+                R.color.colorWhite));//设置背景
+// 设置好参数之后再show
+        popupWindow2.showAtLocation(view, Gravity.CENTER, 0, 0);
+        popupWindow2.setTouchable(true);
+        popupWindow2.setFocusable(true);
+        popupWindow2.setOutsideTouchable(true);
+    }
+    private void backgroundAlpha(float f) {
+        WindowManager.LayoutParams lp =App.activity.getWindow().getAttributes();
+        lp.alpha = f;
+        App.activity.getWindow().setAttributes(lp);
+
+    }
+
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -289,11 +397,39 @@ public class ZuoY_Activity extends BaseActivity {
                 break;
             case R.id.Ti_J_ChaK:
 
-
+                showPopupWindow(view,"确认提交");
 
                 break;
         }
     }
 
+    @Override
+    public void getManager(TiJiao_ZY_Bean xqBean) {
 
+        if (xqBean.getData() == 0) {
+
+            App.activity.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    Toast toast = Toast.makeText(App.activity, "提交成功", Toast.LENGTH_LONG);
+                    toast.setGravity(Gravity.CENTER, 0, 0);
+                    toast.show();
+                }
+            });
+        }
+    }
+    @Override
+    public void showmessage(String str) {
+
+    }
+
+    @Override
+    public void setBasePresenter(TiJao_Cotract.Presenter presenter) {
+
+    }
+
+    @Override
+    public void onClick(View v) {
+
+    }
 }

@@ -1,12 +1,13 @@
 package com.example.lenovo.ztsandroid.model.entity;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by Administrator on 2018/11/14.
  */
 
-public class Kw_Bean {
+public class Kw_Bean implements Serializable {
 
 
     /**
@@ -103,7 +104,7 @@ public class Kw_Bean {
         this.data = data;
     }
 
-    public static class DataBean {
+    public static class DataBean implements Serializable{
         /**
          * practice : 0/4
          * dy : 预习单元1

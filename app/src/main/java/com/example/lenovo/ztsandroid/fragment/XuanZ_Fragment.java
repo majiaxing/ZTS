@@ -10,7 +10,6 @@ import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.RadioButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -67,13 +66,10 @@ public class XuanZ_Fragment extends BaseFragment {
     LinearLayout linearLayout;
     @BindView(R.id.tm_title)
     TextView tmTitle;
-
     @BindView(R.id.Xuanz_nr_A)
     TextView XuanzNrA;
-
     @BindView(R.id.Xuanz_nr_B)
     TextView XuanzNrB;
-
     @BindView(R.id.Xuanz_nr_C)
     TextView XuanzNrC;
     @BindView(R.id.linear_layout_xz)
@@ -95,29 +91,33 @@ public class XuanZ_Fragment extends BaseFragment {
     @BindView(R.id.XX_C)
     android.widget.LinearLayout XXC;
     @BindView(R.id.BF_One)
-    RadioButton BFOne;
+    TextView BFOne;
     @BindView(R.id.BF_One_Xuanz)
-    RadioButton BFOneXuanz;
+    TextView BFOneXuanz;
     @BindView(R.id.BF_Two)
-    RadioButton BFTwo;
+    TextView BFTwo;
     @BindView(R.id.BF_Two_Xuanz)
-    RadioButton BFTwoXuanz;
+    TextView BFTwoXuanz;
     @BindView(R.id.BF_Three)
-    RadioButton BFThree;
+    TextView BFThree;
     @BindView(R.id.BF_Three_Xuanz)
-    RadioButton BFThreeXuanz;
+    TextView BFThreeXuanz;
     @BindView(R.id.BF_Four)
-    RadioButton BFFour;
+    TextView BFFour;
     @BindView(R.id.BF_Four_Xuanz)
-    RadioButton BFFourXuanz;
+    TextView BFFourXuanz;
     @BindView(R.id.Xuanz_nr_D)
     TextView XuanzNrD;
     @BindView(R.id.XX_D)
     android.widget.LinearLayout XXD;
+    @BindView(R.id.ChongZ)
+    Button ChongZ;
 
     private Bundle bundle;
     private ArrayList<ZuoY_TL_xz_Bean.DataBean.TypeListBean.ListenQuestionListBean.ListenOptionListBean> mlist = new ArrayList<>();
     private MediaPlayer mPlayer = new MediaPlayer();  //用于播放音频
+    private String listen_optionContent;
+    private String listen_optionPhotoes;
 
     @Override
     protected int getLayoutId() {
@@ -130,6 +130,9 @@ public class XuanZ_Fragment extends BaseFragment {
 
         BFZt = view.findViewById(R.id.BF_zt);
         TJXyt = view.findViewById(R.id.TJ_Xyt);
+
+//        TJXyt.setVisibility(View.GONE);
+
         textView3 = view.findViewById(R.id.textView3);
         nextT = view.findViewById(R.id.next_T);
         TMTitle = view.findViewById(R.id.TM_title);
@@ -145,15 +148,21 @@ public class XuanZ_Fragment extends BaseFragment {
 
         MyLog.e("接收到的数据", list.size() + list.toString());
 
-        String listen_optionContent = list.get(0).getListen_option();
-        String listen_optionPhotoes = list.get(1).getListen_optionContent();
+        listen_optionContent = list.get(0).getListen_optionContent();
+        listen_optionPhotoes = list.get(0).getListen_optionPhotoes();
         String title = bundle.getString("title");
-        String relative_path = bundle.getString("relative_path");
+        String relative_path = bundle.getString("Relative_path");
         String ertitle = bundle.getString("ertitle");
+
+        String yema = bundle.getString("yema");
+        String dangq = bundle.getString("dangq");
+        MyLog.e("一共有————",yema);
+        textView3.setText(dangq+"/"+yema);
+
         TMTitle.setText(title);
 
-        MyLog.e("题目——Title", ertitle);
 
+        MyLog.e("fgksdfghj", listen_optionContent + listen_optionPhotoes);
 
         if (listen_optionContent != null) {
             linearLayout.setVisibility(View.GONE);
@@ -189,7 +198,6 @@ public class XuanZ_Fragment extends BaseFragment {
             String sB = "https://zts100.com/demo/file/download" + "/?" + "Relative_path=" + relative_path + "&" + "type=1" + "&" + "fileName=" + list.get(1).getListen_optionPhotoes();
             String sC = "https://zts100.com/demo/file/download" + "/?" + "Relative_path=" + relative_path + "&" + "type=1" + "&" + "fileName=" + list.get(2).getListen_optionPhotoes();
 
-
             MyLog.e("AAAAAAA", sA);
             MyLog.e("BBBBBBB", sB);
             MyLog.e("CCCCCCC", sC);
@@ -220,8 +228,11 @@ public class XuanZ_Fragment extends BaseFragment {
                 mPlayer = null;
                 mPlayer = new MediaPlayer();
 
-               String relative_path = bundle.getString("Relative_path");
-               String word_video = bundle.getString("listen_video");
+                String relative_path = bundle.getString("Relative_path");
+                String word_video = bundle.getString("listen_video");
+
+
+
                 String s = URLEncoder.encode(word_video, "utf-8").replaceAll("\\+", "%20");
 
                 String bofUrl = "https://zts100.com/demo/file/download" + "/?" + "Relative_path=" + relative_path + "&" + "type=2" + "&" + "fileName=" + s;
@@ -233,7 +244,7 @@ public class XuanZ_Fragment extends BaseFragment {
                     public void onPrepared(MediaPlayer mediaPlayer) {
 
                     }
-                });
+            });
                 mPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                     @Override
                     public void onCompletion(MediaPlayer mp) {
@@ -248,6 +259,11 @@ public class XuanZ_Fragment extends BaseFragment {
     }
 
     @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        mPlayer.stop();
+    }
+    @Override
     protected void loadData() {
 
     }
@@ -257,8 +273,8 @@ public class XuanZ_Fragment extends BaseFragment {
         this.bundle = bundle;
     }
 
-
-    @OnClick({R.id.TJ_Xyt, R.id.next_T, R.id.Image_A, R.id.Image_B, R.id.Image_C, R.id.XX_A, R.id.XX_B, R.id.XX_C ,R.id.XX_D})
+    private Boolean[] bool = {false};
+    @OnClick({R.id.TJ_Xyt, R.id.next_T, R.id.Image_A, R.id.Image_B, R.id.Image_C, R.id.XX_A, R.id.XX_B, R.id.XX_C, R.id.XX_D ,R.id.BF_zt})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.TJ_Xyt:
@@ -300,6 +316,25 @@ public class XuanZ_Fragment extends BaseFragment {
                 BFOneXuanz.setVisibility(View.GONE);
                 BFTwoXuanz.setVisibility(View.GONE);
                 BFThreeXuanz.setVisibility(View.VISIBLE);
+                break;
+
+            case R.id.BF_zt:
+
+                if (bool[0]) {
+                    if (mPlayer.isPlaying()) {
+                        MyLog.e("lalall", "ahahahahh");
+                        mPlayer.pause();
+                    }
+                    bool[0] = false;
+                } else {
+                    if (!mPlayer.isPlaying()) {
+                        MyLog.e("holle dnsjk", "ahahahahh");
+                        mPlayer.start();
+                    }
+                    bool[0] = true;
+                }
+
+
                 break;
 
         }

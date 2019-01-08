@@ -49,9 +49,9 @@ public class CountDownButton extends Button {
         //设置默认间隔时长
         countdowninterva = (long)typedArray.getInt(R.styleable.CountDownButton_countdowninterva,1000);
         //设置默认背景色
-        normalColor = typedArray.getColor(R.styleable.CountDownButton_normalColor,R.color.yzml);
+        normalColor = typedArray.getColor(R.styleable.CountDownButton_normalColor,R.drawable.huoq_yzm);
         //设置默认倒计时 背景色
-        countDownColor = typedArray.getColor(R.styleable.CountDownButton_countDownColor,android.R.color.darker_gray);
+        countDownColor = typedArray.getColor(R.styleable.CountDownButton_countDownColor,R.color.text_hairline);
         typedArray.recycle();
         //默认为已结束状态
         isFinish = true;

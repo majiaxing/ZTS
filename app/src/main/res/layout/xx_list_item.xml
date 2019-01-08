@@ -41,7 +41,7 @@
                 android:textSize="30px"
                 android:textColor="#ffffff"
                 android:layout_alignParentRight="true"
-
+                android:visibility="gone"
                 />
 
 
@@ -52,7 +52,7 @@
 
 
         <LinearLayout
-            android:layout_width="550px"
+            android:layout_width="470px"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_marginLeft="40px"
@@ -79,9 +79,10 @@
 
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="350px"
             android:layout_height="wrap_content"
             android:orientation="vertical"
+            android:layout_marginRight="50px"
             >
 
             <TextView
@@ -97,12 +98,14 @@
                 android:id="@+id/XuanZ_item"
                 android:layout_width="40px"
                 android:layout_height="40px"
+                android:padding="20px"
                 android:button="@null"
                 android:background="@drawable/check_box_selector"
                 android:layout_marginLeft="208px"
-                android:layout_marginTop="40px"
+                android:layout_marginTop="20px"
 
                 />
+
         </LinearLayout>
 
     </LinearLayout>

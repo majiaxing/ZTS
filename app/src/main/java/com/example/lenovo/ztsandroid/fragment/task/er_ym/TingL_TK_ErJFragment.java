@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -14,19 +13,10 @@ import com.example.lenovo.ztsandroid.R;
 import com.example.lenovo.ztsandroid.adapter.ViewPagerAdapter;
 import com.example.lenovo.ztsandroid.base.BaseActivity;
 import com.example.lenovo.ztsandroid.cotract.ZuoY_TingL_XZ_Cotract;
-import com.example.lenovo.ztsandroid.cotract.zuoye.ZuoY_Yd_Cotract;
-import com.example.lenovo.ztsandroid.fragment.XuanZ_Fragment;
-import com.example.lenovo.ztsandroid.fragment.task.xq_ym.ZY_Kw_Fragment;
 import com.example.lenovo.ztsandroid.fragment.task.xq_ym.Zy_TingL_TK_Fragment;
-import com.example.lenovo.ztsandroid.fragment.task.xq_ym.Zy_YueDu_Fragment;
-import com.example.lenovo.ztsandroid.model.entity.Spinner_T_Bean;
 import com.example.lenovo.ztsandroid.model.entity.ZuoY_TL_xz_Bean;
 import com.example.lenovo.ztsandroid.presenter.zuoye.ZuoY_TL_presenter;
 import com.example.lenovo.ztsandroid.utils.MyLog;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -48,8 +38,7 @@ public class TingL_TK_ErJFragment extends BaseActivity implements ZuoY_TingL_XZ_
     TextView LeiXin;
     @BindView(R.id.YeShu)
     TextView YeShu;
-    @BindView(R.id.Zongyeshu)
-    TextView Zongyeshu;
+
     @BindView(R.id.LeiX)
     RelativeLayout LeiX;
     @BindView(R.id.viewPager)
@@ -81,7 +70,7 @@ public class TingL_TK_ErJFragment extends BaseActivity implements ZuoY_TingL_XZ_
         avgScore = String.valueOf(intent.getDoubleExtra("avgScore", 1));
         hwid = intent.getStringExtra("hwid");
 
-        MyLog.e("AvgScore",avgScore + "");
+        MyLog.e("AvgScore", avgScore + "");
 
 //        JsonDemo(typeList);
 //        adapter = new ViewPagerAdapter(getSupportFragmentManager(),nlist);
@@ -104,8 +93,6 @@ public class TingL_TK_ErJFragment extends BaseActivity implements ZuoY_TingL_XZ_
     public void getManager(final ZuoY_TL_xz_Bean zuoYDcBean) {
 
 
-
-
         final String listen_text = zuoYDcBean.getData().getTypeList().get(0).getListen_text();
         App.activity.runOnUiThread(new Runnable() {
             @Override
@@ -120,12 +107,17 @@ public class TingL_TK_ErJFragment extends BaseActivity implements ZuoY_TingL_XZ_
 //                    bundle.putString("ertitle",zuoYDcBean.getData().getTypeList().get(0).getListen_questionList().get(i).getListen_question());
                     bundle.putString("title", listen_text);
 //                    bundle.putString("relative_path", zuoYDcBean.getData().getTypeList().get(0).getListen_questionList().get(i).getHomeworkPath());
-                      bundle.putSerializable("list", (Serializable) zuoYDcBean.getData().getTypeList());
-                      bundle.putString("Relative_path",zuoYDcBean.getData().getRelative_path());
-                      bundle.putString("listen_video",zuoYDcBean.getData().getTypeList().get(i).getListen_video());
+                    bundle.putSerializable("list", (Serializable) zuoYDcBean.getData().getTypeList());
+                    bundle.putString("Relative_path", zuoYDcBean.getData().getRelative_path());
+                    bundle.putString("listen_video", zuoYDcBean.getData().getTypeList().get(i).getListen_video());
+                    bundle.putString("yema", zuoYDcBean.getData().getTypeList().size() + "");
+                    bundle.putString("dangq", i + 1 + "");
                     fragment.setParams(bundle);
                     nlist.add(fragment);
                 }
+                String zuoYs = String.valueOf(zuoYDcBean.getData().getTypeList().size());
+                YeShu.setText(zuoYs);
+                LeiXin.setText("听力填空");
                 adapter = new ViewPagerAdapter(getSupportFragmentManager(), nlist);
                 viewPager.setAdapter(adapter);
                 adapter.notifyDataSetChanged();
@@ -151,4 +143,11 @@ public class TingL_TK_ErJFragment extends BaseActivity implements ZuoY_TingL_XZ_
         // TODO: add setContentView(...) invocation
         ButterKnife.bind(this);
     }
+
+    @OnClick(R.id.back_jt)
+    public void onViewClicked() {
+
+        App.activity.onBackPressed();
+    }
+
 }

@@ -13,7 +13,7 @@
         android:layout_height="204px"
         android:orientation="horizontal"
         android:gravity="center_vertical"
-        android:background="@drawable/huiyuan"
+        android:background="@drawable/title"
         >
 
         <LinearLayout
@@ -146,7 +146,7 @@
             android:layout_height="177px"
             android:text="开始作业"
             android:gravity="center"
-            android:background="@drawable/huiyuan"
+            android:background="@drawable/title"
             android:layout_alignParentBottom="true"
             />
 

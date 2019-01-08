@@ -101,13 +101,18 @@ public class YB_four_fragment extends BaseFragment implements YB_XiangQ_Cotract.
         Intent intent = new Intent(App.activity,TiaoZan_Activity.class);
         intent.putExtra("YB_id",yBid);
         startActivity(intent);
-
-
     }
 
     @Override
     public void getManager(YB_XQ_four_Bean yb_bean) {
-        list.addAll(yb_bean.getData());
+
+        if (list == null){
+            list.addAll(yb_bean.getData());
+        }else {
+            list.clear();
+            list.addAll(yb_bean.getData());
+        }
+
         App.activity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -115,7 +120,6 @@ public class YB_four_fragment extends BaseFragment implements YB_XiangQ_Cotract.
             }
         });
     }
-
     @Override
     public void getManagerO(YB_XQ_one_Bean yb_xq_one_bean) {
 

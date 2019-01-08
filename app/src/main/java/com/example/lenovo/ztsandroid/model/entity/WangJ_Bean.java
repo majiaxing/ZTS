@@ -1,10 +1,12 @@
 package com.example.lenovo.ztsandroid.model.entity;
 
+import java.io.Serializable;
+
 /**
  * Created by Administrator on 2018/12/7.
  */
 
-public class WangJ_Bean {
+public class WangJ_Bean implements Serializable {
 
 
     /**
@@ -101,7 +103,7 @@ public class WangJ_Bean {
         this.token = token;
     }
 
-    public static class DataBean {
+    public static class DataBean implements Serializable{
         /**
          * msg0 : 发送成功
          * SessionID : 4446ED7D584D685C53E1E008F1FB7E63

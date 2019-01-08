@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.text.Editable;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -98,7 +99,13 @@ public class JiaR_BanJ_Activity extends BaseActivity implements JaR_Bj_Cotract.V
             App.activity.runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    Toast.makeText(App.activity,"此班级id不存在",Toast.LENGTH_LONG).show();
+
+                    Toast toast = Toast.makeText(App.activity,"此班级id不存在", Toast.LENGTH_SHORT);
+                    toast.setGravity(Gravity.CENTER, 0, 0);
+                    toast.show();
+
+
+//                    Toast.makeText(App.activity,"此班级id不存在",Toast.LENGTH_LONG).show();
                 }
             });
         }else {

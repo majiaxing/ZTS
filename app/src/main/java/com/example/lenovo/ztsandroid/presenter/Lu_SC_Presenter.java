@@ -26,8 +26,8 @@ public class Lu_SC_Presenter implements Lu_SC_Cotract.Presenter {
     }
 
     @Override
-    public void SetU(String stuid, String hwid, String hw_type, String hw_content, String hw_answerId, String hw_video, String hw_score) {
-        csModel.postSC_Lu( stuid,  hwid,  hw_type,  hw_content,  hw_answerId,  hw_video,  hw_score, new MyNetWorkCallback<LiY_SC_WJ_Bean>() {
+    public void SetU(String stuid, String hwid, String hw_type, String hw_content, String hw_answerId, String hw_video, String hw_score, String everyScore) {
+        csModel.postSC_Lu( stuid,  hwid,  hw_type,  hw_content,  hw_answerId,  hw_video,  hw_score ,everyScore, new MyNetWorkCallback<LiY_SC_WJ_Bean>() {
             @Override
             public void onSuccess(LiY_SC_WJ_Bean liY_sc_wj_bean) {
                 view.getManager(liY_sc_wj_bean);
@@ -39,6 +39,7 @@ public class Lu_SC_Presenter implements Lu_SC_Cotract.Presenter {
             }
         });
     }
+
 
     @Override
     public void seturl(File file, String type, String save_path) {

@@ -89,13 +89,58 @@
                         android:layout_alignStart="@+id/TM_title"
                         >
 
-                        <ListView
-                            android:id="@+id/Xz_list"
-                            android:layout_width="700px"
-                            android:layout_height="600px"
-                            android:divider="@null"
+                        <!--<ListView-->
+                            <!--android:id="@+id/Xz_list"-->
+                            <!--android:layout_width="700px"-->
+                            <!--android:layout_height="600px"-->
+                            <!--android:divider="@null"-->
+                            <!--/>-->
 
-                            />
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_marginTop="40px"
+                            android:gravity="center_vertical"
+                            android:layout_marginBottom="80px"
+                            >
+
+                            <TextView
+                                android:id="@+id/Tk_Nr"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="sajdhkasdhask__dads  "
+                                android:textSize="48px"
+                                />
+
+
+                            <EditText
+                                android:id="@+id/edit_TK"
+                                android:layout_width="300px"
+                                android:layout_height="90px"
+                                android:layout_marginTop="21px"
+                                android:background="@drawable/edit_bg"
+                                android:hint="请输入答案 "
+                                android:textSize="36px"
+                                android:gravity="center"
+                                android:textColor="#999"
+                                />
+
+
+                            <TextView
+                                android:id="@+id/ZhenQDA"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="正确答案："
+                                android:layout_marginTop="20px"
+                                android:visibility="gone"
+                                android:textColor="@color/text_true_text"
+                                />
+
+
+
+                        </LinearLayout>
+
 
                     </RelativeLayout>
 
@@ -110,7 +155,8 @@
                         android:layout_below="@+id/linear_layout_xz"
                         android:layout_alignLeft="@+id/linear_layout_xz"
                         android:layout_alignStart="@+id/linear_layout_xz"
-                        android:layout_marginTop="100px"
+                        android:layout_marginTop="150px"
+
                         >
 
                         <TextView

@@ -56,14 +56,25 @@ public class ZY_ml_Adapter extends BaseAdapter{
         if (convertView == null){
             viewHolder = new ViewHolder();
             convertView = LayoutInflater.from(context).inflate(R.layout.zy_ml_item,null);
+
             viewHolder.textView = convertView.findViewById(R.id.ZY_LeiX);
             viewHolder.textZY_Nr = convertView.findViewById(R.id.ZY_Nr);
+            viewHolder.textZY_Fs = convertView.findViewById(R.id.ZY_Fs);
+            viewHolder.textZY_DEfen = convertView.findViewById(R.id.ZY_DEfen);
+
             convertView.setTag(viewHolder);
         }else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
         ZuoY_erJ_Bean.DataBean.HomeworkTypeBean liveBean = list.get(position);
 
+        if (liveBean.getScore() != "") {
+            viewHolder.textZY_Fs.setText(liveBean.getScore());
+        }else {
+
+            viewHolder.textZY_DEfen.setText("暂无得分");
+            viewHolder.textZY_Fs.setText("");
+        }
         viewHolder.textZY_Nr.setText(liveBean.getTypeName());
 
         MyLog.e("NAME",liveBean.getTypeName());
@@ -110,7 +121,7 @@ public class ZY_ml_Adapter extends BaseAdapter{
 
 
     public class ViewHolder{
-        TextView textView,textZY_Nr;
+        TextView textView,textZY_Nr ,textZY_Fs ,textZY_DEfen;
     }
 
 

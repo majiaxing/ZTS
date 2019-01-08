@@ -1,38 +1,48 @@
 package com.example.lenovo.ztsandroid.model.entity;
 
-import java.util.List;
+import java.io.Serializable;
 
 /**
  * Created by Administrator on 2018/11/14.
  */
-public class LoginBean {
+public class LoginBean implements Serializable{
 
 
     /**
-     * data : [{"memberState":"0","stuid":41,"student":"马佳兴","schoolId":"6401","sex":"1","endtime":"2018-11-14T16:00:00.000+0000","areas":"640102","starttime":"2018-11-14T16:00:00.000+0000","username":"majiaxing"}]
-     * data2 : null
+     * data : {"id":12,"juese":null,"caidan":null,"user":{"user_banji_d":"100063137259,100063137260","yonghuleixing":"学生","usertype_code":"5","user_sex_m":"男","user_school_m":"银川市第二中学","diqu_d":"640104","user_savepath":"user/5/12/","user_m":"majiaxing","zhanghao":"majiaxing","diqu_m":"兴庆区","user_school_d":"644006184","Id":12,"user_sex_d":"1"}}
+     * data2 : 4E211052D10D65E175544A3BEA61E0B0
      * data3 : null
      * pageInfo : null
      * success : true
      * message : 登录成功
      * icon : null
+     * token : null
      * code : 200
      */
 
-    private Object data2;
+    private DataBean data;
+    private String data2;
     private Object data3;
     private Object pageInfo;
     private boolean success;
     private String message;
     private Object icon;
+    private Object token;
     private int code;
-    private List<DataBean> data;
 
-    public Object getData2() {
+    public DataBean getData() {
+        return data;
+    }
+
+    public void setData(DataBean data) {
+        this.data = data;
+    }
+
+    public String getData2() {
         return data2;
     }
 
-    public void setData2(Object data2) {
+    public void setData2(String data2) {
         this.data2 = data2;
     }
 
@@ -76,6 +86,14 @@ public class LoginBean {
         this.icon = icon;
     }
 
+    public Object getToken() {
+        return token;
+    }
+
+    public void setToken(Object token) {
+        this.token = token;
+    }
+
     public int getCode() {
         return code;
     }
@@ -84,107 +102,185 @@ public class LoginBean {
         this.code = code;
     }
 
-    public List<DataBean> getData() {
-        return data;
-    }
-
-    public void setData(List<DataBean> data) {
-        this.data = data;
-    }
-
     public static class DataBean {
         /**
-         * memberState : 0
-         * stuid : 41
-         * student : 马佳兴
-         * schoolId : 6401
-         * sex : 1
-         * endtime : 2018-11-14T16:00:00.000+0000
-         * areas : 640102
-         * starttime : 2018-11-14T16:00:00.000+0000
-         * username : majiaxing
+         * id : 12
+         * juese : null
+         * caidan : null
+         * user : {"user_banji_d":"100063137259,100063137260","yonghuleixing":"学生","usertype_code":"5","user_sex_m":"男","user_school_m":"银川市第二中学","diqu_d":"640104","user_savepath":"user/5/12/","user_m":"majiaxing","zhanghao":"majiaxing","diqu_m":"兴庆区","user_school_d":"644006184","Id":12,"user_sex_d":"1"}
          */
 
-        private String memberState;
-        private int stuid;
-        private String student;
-        private String schoolId;
-        private String sex;
-        private String endtime;
-        private String areas;
-        private String starttime;
-        private String username;
+        private int id;
+        private Object juese;
+        private Object caidan;
+        private UserBean user;
 
-        public String getMemberState() {
-            return memberState;
+        public int getId() {
+            return id;
         }
 
-        public void setMemberState(String memberState) {
-            this.memberState = memberState;
+        public void setId(int id) {
+            this.id = id;
         }
 
-        public int getStuid() {
-            return stuid;
+        public Object getJuese() {
+            return juese;
         }
 
-        public void setStuid(int stuid) {
-            this.stuid = stuid;
+        public void setJuese(Object juese) {
+            this.juese = juese;
         }
 
-        public String getStudent() {
-            return student;
+        public Object getCaidan() {
+            return caidan;
         }
 
-        public void setStudent(String student) {
-            this.student = student;
+        public void setCaidan(Object caidan) {
+            this.caidan = caidan;
         }
 
-        public String getSchoolId() {
-            return schoolId;
+        public UserBean getUser() {
+            return user;
         }
 
-        public void setSchoolId(String schoolId) {
-            this.schoolId = schoolId;
+        public void setUser(UserBean user) {
+            this.user = user;
         }
 
-        public String getSex() {
-            return sex;
-        }
+        public static class UserBean {
+            /**
+             * user_banji_d : 100063137259,100063137260
+             * yonghuleixing : 学生
+             * usertype_code : 5
+             * user_sex_m : 男
+             * user_school_m : 银川市第二中学
+             * diqu_d : 640104
+             * user_savepath : user/5/12/
+             * user_m : majiaxing
+             * zhanghao : majiaxing
+             * diqu_m : 兴庆区
+             * user_school_d : 644006184
+             * Id : 12
+             * user_sex_d : 1
+             */
 
-        public void setSex(String sex) {
-            this.sex = sex;
-        }
+            private String user_banji_d;
+            private String yonghuleixing;
+            private String usertype_code;
+            private String user_sex_m;
+            private String user_school_m;
+            private String diqu_d;
+            private String user_savepath;
+            private String user_m;
+            private String zhanghao;
+            private String diqu_m;
+            private String user_school_d;
+            private int Id;
+            private String user_sex_d;
 
-        public String getEndtime() {
-            return endtime;
-        }
+            public String getUser_banji_d() {
+                return user_banji_d;
+            }
 
-        public void setEndtime(String endtime) {
-            this.endtime = endtime;
-        }
+            public void setUser_banji_d(String user_banji_d) {
+                this.user_banji_d = user_banji_d;
+            }
 
-        public String getAreas() {
-            return areas;
-        }
+            public String getYonghuleixing() {
+                return yonghuleixing;
+            }
 
-        public void setAreas(String areas) {
-            this.areas = areas;
-        }
+            public void setYonghuleixing(String yonghuleixing) {
+                this.yonghuleixing = yonghuleixing;
+            }
 
-        public String getStarttime() {
-            return starttime;
-        }
+            public String getUsertype_code() {
+                return usertype_code;
+            }
 
-        public void setStarttime(String starttime) {
-            this.starttime = starttime;
-        }
+            public void setUsertype_code(String usertype_code) {
+                this.usertype_code = usertype_code;
+            }
 
-        public String getUsername() {
-            return username;
-        }
+            public String getUser_sex_m() {
+                return user_sex_m;
+            }
 
-        public void setUsername(String username) {
-            this.username = username;
+            public void setUser_sex_m(String user_sex_m) {
+                this.user_sex_m = user_sex_m;
+            }
+
+            public String getUser_school_m() {
+                return user_school_m;
+            }
+
+            public void setUser_school_m(String user_school_m) {
+                this.user_school_m = user_school_m;
+            }
+
+            public String getDiqu_d() {
+                return diqu_d;
+            }
+
+            public void setDiqu_d(String diqu_d) {
+                this.diqu_d = diqu_d;
+            }
+
+            public String getUser_savepath() {
+                return user_savepath;
+            }
+
+            public void setUser_savepath(String user_savepath) {
+                this.user_savepath = user_savepath;
+            }
+
+            public String getUser_m() {
+                return user_m;
+            }
+
+            public void setUser_m(String user_m) {
+                this.user_m = user_m;
+            }
+
+            public String getZhanghao() {
+                return zhanghao;
+            }
+
+            public void setZhanghao(String zhanghao) {
+                this.zhanghao = zhanghao;
+            }
+
+            public String getDiqu_m() {
+                return diqu_m;
+            }
+
+            public void setDiqu_m(String diqu_m) {
+                this.diqu_m = diqu_m;
+            }
+
+            public String getUser_school_d() {
+                return user_school_d;
+            }
+
+            public void setUser_school_d(String user_school_d) {
+                this.user_school_d = user_school_d;
+            }
+
+            public int getId() {
+                return Id;
+            }
+
+            public void setId(int Id) {
+                this.Id = Id;
+            }
+
+            public String getUser_sex_d() {
+                return user_sex_d;
+            }
+
+            public void setUser_sex_d(String user_sex_d) {
+                this.user_sex_d = user_sex_d;
+            }
         }
     }
 }

@@ -76,8 +76,6 @@ public class Putils {
         backgroundAlpha(0.5f);
         popupWindow.showAsDropDown(inflate,100,100);
 
-
-
     }
     public static void backgroundAlpha(float bgAlpha) {
         WindowManager.LayoutParams lp = App.activity.getWindow().getAttributes();

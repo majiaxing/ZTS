@@ -6,6 +6,7 @@ import android.media.MediaPlayer;
 import android.media.MediaRecorder;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,6 +44,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
 import butterknife.BindView;
@@ -65,8 +67,8 @@ public class Duany_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.V
     TextView FyText;
     @BindView(R.id.textView3)
     TextView textView3;
-    @BindView(R.id.next_T)
-    Button nextT;
+//    @BindView(R.id.next_T)
+//    Button nextT;
     @BindView(R.id.relativeLayout2)
     RelativeLayout relativeLayout2;
     @BindView(R.id.PF_fs)
@@ -113,6 +115,12 @@ public class Duany_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.V
     private String text1;
     private String str;
     private String yin;
+
+    final Boolean[] b = {false};
+    private Boolean[] aBoolean = {false};
+    private Boolean[] bool = {false};
+    private String string2;
+
 
     @Override
     protected int getLayoutId() {
@@ -167,34 +175,38 @@ public class Duany_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.V
                 mPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                     @Override
                     public void onCompletion(MediaPlayer mp) {
-
+                        if (BFZt != null){
                         MyLog.e("CheckBox_状态",BFZt.isChecked() + "");
                         BFZt.setChecked(false);
-
+                        bool[0] = false;
+                    }
                     }
                 });
-
 
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
     }
-
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        mPlayer.stop();
+    }
     private static final String TAG = "AudioRecordActivity";
     private int bufferSizeInBytes = 0;//缓冲区大小
     //音频获取来源
     private int audioSource = MediaRecorder.AudioSource.MIC;
     //设置音频的采样率，44100是目前的标准，但是某些设备仍然支持22050,16000,11025
     private static int sampleRateInHz = 16000;
-    //设置音频的录制声道，CHANNEL_IN_STEREO 为双声道，CHANNEL_CONFIGURATION_MONO 为单声道
-    private static int channelConfig = AudioFormat.CHANNEL_IN_STEREO;
+    //设置音频的录制声道，CHANNEL_IN_STEREO 为双声道，CHANNEL_IN_MONO 为单声道
+    private static int channelConfig = AudioFormat.CHANNEL_CONFIGURATION_MONO ;
     //设置音频数据格式:PCM 16位每个样本，保证设备支持。PCM 8位每个样本，不一定能得到设备的支持。
-    private static int audioFormat = AudioFormat.ENCODING_PCM_16BIT;
+    private static int audioFormat = AudioFormat.ENCODING_PCM_16BIT ;
     //AudioName裸音频数据文件
     private static final String AudioName = "/sdcard/love.raw";
     //NewAudioName可播放的音频文件
-    private static final String NewAudioName = "/sdcard/" + System.currentTimeMillis() + ".wav";
+    private static final String NewAudioName = "/sdcard/" + "测试音频" + ".wav";
 
     private AudioRecord audioRecord;
 
@@ -212,7 +224,13 @@ public class Duany_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.V
 
         //根据音频获取来源、音频采用率、音频录制声道、音频数据格式和缓冲区大小来创建AudioRecord对象
         audioRecord = new AudioRecord(audioSource, sampleRateInHz, channelConfig, audioFormat, bufferSizeInBytes);
-
+        MyLog.e("audioRecord",audioRecord+"");
+        MyLog.e("sampleRateInHz",sampleRateInHz+"");
+        MyLog.e("channelConfig",channelConfig+"");
+        MyLog.e("audioFormat",audioFormat+"");
+        MyLog.e("bufferSizeInBytes",bufferSizeInBytes+"");
+        MyLog.e("audioSource",audioSource+"");
+        MyLog.e("audioRecord",audioRecord+"");
         //创建播放实例
         mediaPlayer = new MediaPlayer();
     }
@@ -295,7 +313,7 @@ public class Duany_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.V
             LyBtn.setVisibility(View.GONE);
 
             presenter = new PinC_Fay_presenter(this);
-            presenter.seturlZhiL("0", "1", "", "", toBase64, sessionId);
+            presenter.seturlZhiL("1", "1", "", "", toBase64, sessionId);
         }
     }
 
@@ -373,14 +391,13 @@ public class Duany_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.V
         long totalAudioLen = 0;
         long totalDataLen = totalAudioLen + 36;
         long longSampleRate = sampleRateInHz;
-        int channels = 2;
+        int channels = 1;
         long byteRate = 16 * sampleRateInHz * channels / 8;
 
         byte[] data = new byte[bufferSizeInBytes];
         try {
             in = new FileInputStream(inFileName);
             out = new FileOutputStream(outFileName);
-
             totalAudioLen = in.getChannel().size();
             totalDataLen = totalAudioLen + 36;
             WriteWaveFileHeader(out, totalAudioLen, totalDataLen, longSampleRate, channels, byteRate);
@@ -468,8 +485,7 @@ public class Duany_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.V
     protected void init(View view) {
 
         relativeLayout.setVisibility(View.GONE);
-        nextT.setVisibility(View.GONE);
-
+//        nextT.setVisibility(View.GONE);
 
         bundle.getString("han");
         word_id = bundle.getString("word_id");
@@ -478,9 +494,10 @@ public class Duany_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.V
         duanyText.setText(bundle.getString("yin"));
         FyText.setText(bundle.getString("han"));
 
+        String yema = bundle.getString("yema");
+        String dangq = bundle.getString("dangq");
 
-
-
+        textView3.setText(dangq+"/"+yema);
         hyperspaceJumpAnimation = AnimationUtils.loadAnimation(App.activity, R.anim.loading_animation);
         // 使用ImageView显示动画
         PinFJd.startAnimation(hyperspaceJumpAnimation);
@@ -509,21 +526,10 @@ public class Duany_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.V
         return rootView;
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        unbinder.unbind();
-    }
 
-    final Boolean[] b = {false};
-    private Boolean[] aBoolean = {false};
-    private Boolean[] bool = {false};
-
-    @OnClick({R.id.next_T, R.id.BF_LY, R.id.BF_zt, R.id.Ly_btn})
+    @OnClick({R.id.BF_LY, R.id.BF_zt, R.id.Ly_btn})
     public void onViewClicked(View view) {
         switch (view.getId()) {
-            case R.id.next_T:
-                break;
             case R.id.BF_LY:
 
                 if (aBoolean[0]) {
@@ -547,24 +553,22 @@ public class Duany_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.V
                 if (bool[0]) {
                     if (mPlayer.isPlaying()) {
                         MyLog.e("lalall", "ahahahahh");
-
-
                         mPlayer.pause();
+                        bool[0] = false;
                     }
-                    bool[0] = false;
+
                 } else {
                     if (!mPlayer.isPlaying()) {
                         MyLog.e("holle dnsjk", "ahahahahh");
                         mPlayer.start();
+                        bool[0] = true;
                     }
-                    bool[0] = true;
+
                 }
 
                 break;
             case R.id.Ly_btn:
                 if (b[0]) {
-
-
 //                        stop();
                     stopAudioRecord();
                     Ripple.setColor(this.getResources().getColor(R.color.pe_gray));
@@ -573,7 +577,19 @@ public class Duany_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.V
 //                            record();
                     startAudioRecord();
                     presenter = new ZhiL_Csh_Fy_Presenter(this);
-                    presenter.setUrlsZhiL("1", yin, System.currentTimeMillis() + "", "1", "4.0");
+
+                    String newStr = yin.replace("？", ""); //得到新的字符串
+                    String string = newStr.replace("'", "");
+                    MyLog.e("去掉中文字符串", string);
+
+                    try {
+                        string2 = URLEncoder.encode(string, "utf-8").replaceAll("\\+", "%20");
+
+                    } catch (UnsupportedEncodingException e) {
+                        e.printStackTrace();
+                    }
+
+                    presenter.setUrlsZhiL("1", string2, System.currentTimeMillis() + "", "1", "4.0");
                     b[0] = true;
                     Ripple.setColor(this.getResources().getColor(R.color.text_color_red));
                 }
@@ -582,7 +598,6 @@ public class Duany_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.V
     }
 
     private float f;
-
     private void JsonDemo(String string) {
 
 
@@ -595,14 +610,16 @@ public class Duany_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.V
             JSONObject response = json.optJSONObject("Response");
             String PronAccuracy = response.optString("PronAccuracy");
             JSONObject Error = response.optJSONObject("Error");
-
             if (Error != null){
                 App.activity.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         linear.setVisibility(View.GONE);
                         LyBtn.setVisibility(View.VISIBLE);
-                        Toast.makeText(App.activity,"评估失败",Toast.LENGTH_LONG).show();
+//                        Toast.makeText(App.activity,"评估失败",Toast.LENGTH_LONG).show();
+                        Toast toast = Toast.makeText(App.activity, "评估失败", Toast.LENGTH_SHORT);
+                        toast.setGravity(Gravity.CENTER, 0, 0);
+                        toast.show();
                     }
                 });
                 return;
@@ -620,7 +637,7 @@ public class Duany_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.V
                     public void run() {
                         PFFs.setText(str);
                         relativeLayout.setVisibility(View.VISIBLE);
-                        nextT.setVisibility(View.VISIBLE);
+//                        nextT.setVisibility(View.VISIBLE);
                         float i = ConvertUtil.convertToFloat(str, f);
                         MyLog.e("评估出来的分数", i + "");
 
@@ -649,7 +666,12 @@ public class Duany_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.V
                     public void run() {
                         linear.setVisibility(View.GONE);
                         LyBtn.setVisibility(View.VISIBLE);
-                        Toast.makeText(App.activity, "请正常朗读", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(App.activity, "请正常朗读", Toast.LENGTH_SHORT).show();
+
+                        Toast toast = Toast.makeText(App.activity, "请正常朗读", Toast.LENGTH_SHORT);
+                        toast.setGravity(Gravity.CENTER, 0, 0);
+                        toast.show();
+
                     }
                 });
                 return;
@@ -666,7 +688,15 @@ public class Duany_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.V
             App.activity.runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    Toast.makeText(App.activity, "评估失败", Toast.LENGTH_SHORT).show();
+
+                    Toast toast = Toast.makeText(App.activity, "评估失败", Toast.LENGTH_SHORT);
+                    toast.setGravity(Gravity.CENTER, 0, 0);
+                    toast.show();
+
+                    LyBtn.setChecked(false);
+                    Ripple.setColor(Duany_Fragment.this.getResources().getColor(R.color.pe_gray));
+                    b[0] = false;
+
                 }
             });
         } else {

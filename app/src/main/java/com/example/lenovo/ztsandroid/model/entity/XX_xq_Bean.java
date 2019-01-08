@@ -1,14 +1,16 @@
 package com.example.lenovo.ztsandroid.model.entity;
 
+import java.io.Serializable;
+
 /**
  * Created by Administrator on 2018/11/19.
  */
 
-public class XX_xq_Bean {
+public class XX_xq_Bean implements Serializable {
 
 
     /**
-     * data : {"newtype":"学习资料","classId":"101374467889","newstate":"1","newcontent":"frfr","id":17}
+     * data : {"newtype":"作业消息","homeworkName":"hhhha哈哈","newstate":"1","stuid":"63","newtime":"2018-12-29 16:13:49","newcontent":"王军军老师布置作业:hhhha哈哈","end":"2018-12-29","id":79,"hwid":"1f1a17f7-9351-412a-a984-ae2bb291f10b"}
      * data2 : null
      * data3 : null
      * pageInfo : null
@@ -103,18 +105,26 @@ public class XX_xq_Bean {
 
     public static class DataBean {
         /**
-         * newtype : 学习资料
-         * classId : 101374467889
+         * newtype : 作业消息
+         * homeworkName : hhhha哈哈
          * newstate : 1
-         * newcontent : frfr
-         * id : 17
+         * stuid : 63
+         * newtime : 2018-12-29 16:13:49
+         * newcontent : 王军军老师布置作业:hhhha哈哈
+         * end : 2018-12-29
+         * id : 79
+         * hwid : 1f1a17f7-9351-412a-a984-ae2bb291f10b
          */
 
         private String newtype;
-        private String classId;
+        private String homeworkName;
         private String newstate;
+        private String stuid;
+        private String newtime;
         private String newcontent;
+        private String end;
         private int id;
+        private String hwid;
 
         public String getNewtype() {
             return newtype;
@@ -124,12 +134,12 @@ public class XX_xq_Bean {
             this.newtype = newtype;
         }
 
-        public String getClassId() {
-            return classId;
+        public String getHomeworkName() {
+            return homeworkName;
         }
 
-        public void setClassId(String classId) {
-            this.classId = classId;
+        public void setHomeworkName(String homeworkName) {
+            this.homeworkName = homeworkName;
         }
 
         public String getNewstate() {
@@ -140,6 +150,22 @@ public class XX_xq_Bean {
             this.newstate = newstate;
         }
 
+        public String getStuid() {
+            return stuid;
+        }
+
+        public void setStuid(String stuid) {
+            this.stuid = stuid;
+        }
+
+        public String getNewtime() {
+            return newtime;
+        }
+
+        public void setNewtime(String newtime) {
+            this.newtime = newtime;
+        }
+
         public String getNewcontent() {
             return newcontent;
         }
@@ -148,12 +174,28 @@ public class XX_xq_Bean {
             this.newcontent = newcontent;
         }
 
+        public String getEnd() {
+            return end;
+        }
+
+        public void setEnd(String end) {
+            this.end = end;
+        }
+
         public int getId() {
             return id;
         }
 
         public void setId(int id) {
             this.id = id;
+        }
+
+        public String getHwid() {
+            return hwid;
+        }
+
+        public void setHwid(String hwid) {
+            this.hwid = hwid;
         }
     }
 }

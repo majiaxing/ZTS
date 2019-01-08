@@ -27,8 +27,10 @@ public class Sc_Lu_Presenter implements Lu_SC_Cotract.Presenter {
 
 
 
+
+
     @Override
-    public void SetU(String stuid, String hwid, String hw_type, String hw_content, String hw_answerId, String hw_video, String hw_score) {
+    public void SetU(String stuid, String hwid, String hw_type, String hw_content, String hw_answerId, String hw_video, String hw_score, String everyScore) {
 
     }
 

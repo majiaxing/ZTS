@@ -62,7 +62,7 @@ public class Task_fragment extends BaseFragment {
     @OnClick(R.id.Jr_Bj)
     public void onViewClicked(View view) {
 
-            Putils.PopupW(view,"非会员不能添加老师，请升级");
+            Putils.PopupW(view,"非会员不能加入班级，请升级");
 
             Putils.PopupDimiss();
 

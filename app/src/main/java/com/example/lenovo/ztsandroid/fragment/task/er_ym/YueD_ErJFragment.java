@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -30,6 +29,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * Created by Administrator on 2018/11/29.
@@ -45,8 +45,7 @@ public class YueD_ErJFragment extends BaseActivity implements ZuoY_Yd_Cotract.Vi
     TextView LeiXin;
     @BindView(R.id.YeShu)
     TextView YeShu;
-    @BindView(R.id.Zongyeshu)
-    TextView Zongyeshu;
+
     @BindView(R.id.LeiX)
     RelativeLayout LeiX;
     @BindView(R.id.viewPager)
@@ -64,6 +63,7 @@ public class YueD_ErJFragment extends BaseActivity implements ZuoY_Yd_Cotract.Vi
     private ZuoY_Yd_Cotract.Presenter presenter;
     private String read_content;
     private String hw_answerId;
+    private String zuoYs;
 
     @Override
     protected int getLayoutId() {
@@ -77,6 +77,7 @@ public class YueD_ErJFragment extends BaseActivity implements ZuoY_Yd_Cotract.Vi
         hw_content = intent.getStringExtra("hw_content");
         hwid = intent.getStringExtra("hwid");
         avgScores = String.valueOf(intent.getDoubleExtra("avgScore", 1));
+        LeiXin.setText("阅读");
     }
 
     @Override
@@ -167,7 +168,7 @@ public class YueD_ErJFragment extends BaseActivity implements ZuoY_Yd_Cotract.Vi
                 value = typeList.getJSONObject(a);
 
                 String word = value.optString("read_content");
-
+                String everyScore = value.optString("everyScore");
 
                 JSONArray read_questionList = value.getJSONArray("read_questionList");
 
@@ -201,6 +202,7 @@ public class YueD_ErJFragment extends BaseActivity implements ZuoY_Yd_Cotract.Vi
                 bundle = new Bundle();
                 bundle.putString("KWy", word);
                 bundle.putSerializable("mapO", (Serializable) list);
+                bundle.putString("everyScore", everyScore);
                 zy_yueDu_fragment.setParams(bundle);
                 nlist.add(zy_yueDu_fragment);
             }
@@ -229,7 +231,7 @@ public class YueD_ErJFragment extends BaseActivity implements ZuoY_Yd_Cotract.Vi
                         List<ZuoY_Yd_Bean.DataBean.TypeListBean.ReadQuestionListBean.ReadOptionListBean> read_optionList = read_questionList.get(i).getRead_optionList();
                         hw_answerId = read_questionList.get(i).getHw_answerId();
 
-                        MyLog.e("hw_answerId",hw_answerId);
+                        MyLog.e("hw_answerId", hw_answerId);
 
                         String read_question = read_questionList.get(i).getRead_question();
                         String read_answer = read_questionList.get(i).getRead_answer();
@@ -247,21 +249,25 @@ public class YueD_ErJFragment extends BaseActivity implements ZuoY_Yd_Cotract.Vi
                         String read_optionD = read_optionList.get(3).getRead_option();
                         String read_optionTextD = read_optionList.get(3).getRead_option();
 
-                             
-                        list.add(new Spinner_T_Bean(read_question, read_optionA, read_optionTextA, read_optionB, read_optionTextB, read_optionC, read_optionTextC, read_optionD, read_optionTextD, read_answer,hw_answerId));
+
+                        list.add(new Spinner_T_Bean(read_question, read_optionA, read_optionTextA, read_optionB, read_optionTextB, read_optionC, read_optionTextC, read_optionD, read_optionTextD, read_answer, hw_answerId));
 
                     }
                     zy_yueDu_fragment = new Zy_YueDu_Fragment();
                     bundle = new Bundle();
                     bundle.putString("KWy", word);
                     bundle.putSerializable("mapO", (Serializable) list);
-                    bundle.putString("hw_type",hw_type);
-                    bundle.putString("hw_content",hw_content);
-                    bundle.putString("hwid",hwid);
-                    bundle.putString("hw_answerId",hw_answerId);
+                    bundle.putString("hw_type", hw_type);
+                    bundle.putString("hw_content", hw_content);
+                    bundle.putString("hwid", hwid);
+                    bundle.putString("EveryScore", String.valueOf(zuoYDcBean.getData().getTypeList().get(0).getEveryScore()));
+                    bundle.putString("hw_answerId", hw_answerId);
+                    zuoYs = String.valueOf(mlist.size());
                     zy_yueDu_fragment.setParams(bundle);
                     nlist.add(zy_yueDu_fragment);
                 }
+
+                YeShu.setText(zuoYs);
                 adapter = new ViewPagerAdapter(getSupportFragmentManager(), nlist);
                 viewPager.setAdapter(adapter);
                 adapter.notifyDataSetChanged();
@@ -286,5 +292,11 @@ public class YueD_ErJFragment extends BaseActivity implements ZuoY_Yd_Cotract.Vi
         super.onCreate(savedInstanceState);
         // TODO: add setContentView(...) invocation
         ButterKnife.bind(this);
+    }
+
+    @OnClick(R.id.back_jt)
+    public void onViewClicked() {
+
+        App.activity.onBackPressed();
     }
 }

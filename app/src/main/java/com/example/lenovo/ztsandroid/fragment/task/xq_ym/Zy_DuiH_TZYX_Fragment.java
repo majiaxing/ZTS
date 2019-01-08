@@ -6,6 +6,7 @@ import android.media.MediaPlayer;
 import android.media.MediaRecorder;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -158,7 +159,7 @@ public class Zy_DuiH_TZYX_Fragment extends BaseFragment implements ZhiL_Yuyin_Co
     //设置音频的采样率，44100是目前的标准，但是某些设备仍然支持22050,16000,11025
     private static int sampleRateInHz = 16000;
     //设置音频的录制声道，CHANNEL_IN_STEREO 为双声道，CHANNEL_CONFIGURATION_MONO 为单声道
-    private static int channelConfig = AudioFormat.CHANNEL_IN_STEREO;
+    private static int channelConfig = AudioFormat.CHANNEL_CONFIGURATION_MONO;
     //设置音频数据格式:PCM 16位每个样本，保证设备支持。PCM 8位每个样本，不一定能得到设备的支持。
     private static int audioFormat = AudioFormat.ENCODING_PCM_16BIT;
     //AudioName裸音频数据文件
@@ -198,7 +199,7 @@ public class Zy_DuiH_TZYX_Fragment extends BaseFragment implements ZhiL_Yuyin_Co
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        unbinder1.unbind();
+        mPlayer.stop();
     }
 
     @OnClick({R.id.BF_zt, R.id.Ly_btn, R.id.BF_LY})
@@ -254,19 +255,6 @@ public class Zy_DuiH_TZYX_Fragment extends BaseFragment implements ZhiL_Yuyin_Co
         }
     }
 
-//    @Override
-//    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-//        // TODO: inflate a fragment view
-//        View rootView = super.onCreateView(inflater, container, savedInstanceState);
-//        unbinder = ButterKnife.bind(this, rootView);
-//        return rootView;
-//    }
-//
-//    @Override
-//    public void onDestroyView() {
-//        super.onDestroyView();
-//        unbinder.unbind();
-//    }
 
 
     private final class PrepareListener implements MediaPlayer.OnPreparedListener {
@@ -282,12 +270,6 @@ public class Zy_DuiH_TZYX_Fragment extends BaseFragment implements ZhiL_Yuyin_Co
      * 播放录制的音频
      */
     private void playMusic() {
-
-
-//        byte[] bytes = readBytesFromFile(NewAudioName);
-//        byte[] bytes1 = byteMerger(bytes);
-//
-//        writeBytesToFileClassic(bytes1,NewAudioName);
 
         File file = new File(NewAudioName);
         if (file.exists()) {
@@ -514,7 +496,8 @@ public class Zy_DuiH_TZYX_Fragment extends BaseFragment implements ZhiL_Yuyin_Co
     }
 
 
-
+    private int i =0;
+    private String string;
     public void setVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
         if (mPlayer == null) {
@@ -530,29 +513,37 @@ public class Zy_DuiH_TZYX_Fragment extends BaseFragment implements ZhiL_Yuyin_Co
 //                for (int i = 0; i<juese_video.size();i++){
                 mPlayer = null;
                 mPlayer = new MediaPlayer();
-                String s = URLEncoder.encode(juese_video.get(1), "utf-8").replaceAll("\\+", "%20");
+                if (i<=juese_video.size()) {
+                    string = URLEncoder.encode(juese_video.get(i), "utf-8").replaceAll("\\+", "%20");
+                    i++;
+                }
 
-                final String bofUrl = "https://zts100.com/demo/file/download" + "/?" + "Relative_path=" + relativepath + "&" + "type=2" + "&" + "fileName=" + s;
+                final String bofUrl = "https://zts100.com/demo/file/download" + "/?" + "Relative_path=" + relativepath + "&" + "type=2" + "&" + "fileName=" + string;
                 MyLog.e("拼接好的 播放 Url", bofUrl);
                 mPlayer.setDataSource(bofUrl);
                 //3 准备播放
                 mPlayer.prepareAsync();
+
                 mPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
                     @Override
                     public void onPrepared(MediaPlayer mp) {
                         mPlayer.start();
                     }
                 });
-
                 mPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                     @Override
                     public void onCompletion(MediaPlayer mp) {
 
-//                        MyLog.e("CheckBox_状态",BFZt.isChecked() + "");
-                        BFZt.setChecked(false);
+                        mPlayer.reset();
+                        if (i< juese_video.size()){
+                            setVisibleHint(true);
+                        }else {
+                            MyLog.e("CheckBox_状态",BFZt.isChecked() + "");
+                            BFZt.setChecked(false);
+                            bool[0] = false;
+                        }
                     }
                 });
-
 //                }
             } catch (IOException e) {
                 e.printStackTrace();
@@ -575,79 +566,6 @@ public class Zy_DuiH_TZYX_Fragment extends BaseFragment implements ZhiL_Yuyin_Co
     private Boolean[] bool = {false};
 
 
-//    @OnClick({R.id.BF_zt, R.id.BF_LY, R.id.Ly_btn})
-//    public void onViewClicked(View view) {
-//        switch (view.getId()) {
-////            case R.id.K_G:
-////                break;
-//            case R.id.BF_zt:
-//
-//                if (bool[0]) {
-//                    if (mPlayer.isPlaying()) {
-//                        MyLog.e("lalall", "ahahahahh");
-//
-//                        mPlayer.pause();
-//                    }
-//                    bool[0] = false;
-//                } else {
-//                    if (!mPlayer.isPlaying()) {
-//                        MyLog.e("holle dnsjk", "ahahahahh");
-//
-//                        setVisibleHint(true);
-//
-//                    }
-//                    bool[0] = true;
-//                }
-//                break;
-//            case R.id.Ly_btn:
-//                Log.e("AAAAAAAAAAAA", "WWWWWWWWWWWWWWWWWX");
-//                if (b[0]) {
-//                    stopAudioRecord();
-//                    b[0] = false;
-//                } else {
-////                            record();
-//                    startAudioRecord();
-//                    presenter = new ZhiL_Csh_Fy_Presenter(this);
-//                    presenter.setUrlsZhiL("1", mlist.get(0).getJuese_yw(), System.currentTimeMillis() + "", "1", "4.0");
-//                    b[0] = true;
-//
-//                }
-//                break;
-////            case R.id.linearLayout8:
-////                if (isShow)
-////                    isShow = false;
-////                else
-////                    isShow = true;
-////                myadapter.onClickeListener(isShow);
-////                break;
-//            case R.id.BF_LY:
-//                if (aBoolean[0]) {
-//
-//                    if (mediaPlayer.isPlaying()) {
-//
-//                        pause();
-//                    }
-//                    aBoolean[0] = false;
-//
-//                } else {
-//                    if (!mediaPlayer.isPlaying()) {
-//                        playMusic();
-//                    }
-//                    aBoolean[0] = true;
-//
-//                }
-//                break;
-////            case R.id.TZYX_Q:
-////
-////                Intent intent = new Intent(App.activity, DuiH_TZYX_Sy_Activity.class);
-////
-////                intent.putExtra("talk_id", type);
-////                intent.putExtra("relative_path", relative_path);
-////                intent.putExtra("title", title);
-////                startActivity(intent);
-////                break;
-//        }
-//    }
 
     private float f;
 
@@ -659,7 +577,6 @@ public class Zy_DuiH_TZYX_Fragment extends BaseFragment implements ZhiL_Yuyin_Co
 
         try {
             json = new JSONObject(string);
-
             JSONObject response = json.optJSONObject("Response");
             String PronAccuracy = response.optString("PronAccuracy");
             MyLog.e("dsahkdhawladjwli",PronAccuracy +"");
@@ -671,7 +588,12 @@ public class Zy_DuiH_TZYX_Fragment extends BaseFragment implements ZhiL_Yuyin_Co
                     public void run() {
                         linear.setVisibility(View.GONE);
                         LyBtn.setVisibility(View.VISIBLE);
-                        Toast.makeText(App.activity,"评估失败",Toast.LENGTH_LONG).show();
+
+                        Toast toast = Toast.makeText(App.activity, "评估失败", Toast.LENGTH_SHORT);
+                        toast.setGravity(Gravity.CENTER, 0, 0);
+                        toast.show();
+
+//                        Toast.makeText(App.activity,"评估失败",Toast.LENGTH_LONG).show();
                     }
                 });
                 return;
@@ -746,6 +668,12 @@ public class Zy_DuiH_TZYX_Fragment extends BaseFragment implements ZhiL_Yuyin_Co
                     public void run() {
                         linear.setVisibility(View.GONE);
                         LyBtn.setVisibility(View.VISIBLE);
+
+                        Toast toast = Toast.makeText(App.activity, "请正常朗读", Toast.LENGTH_SHORT);
+                        toast.setGravity(Gravity.CENTER, 0, 0);
+                        toast.show();
+
+
                         Toast.makeText(App.activity, "请正常朗读", Toast.LENGTH_SHORT).show();
                     }
                 });
@@ -762,19 +690,23 @@ public class Zy_DuiH_TZYX_Fragment extends BaseFragment implements ZhiL_Yuyin_Co
             App.activity.runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    Toast.makeText(App.activity, "评估失败", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(App.activity, "评估失败", Toast.LENGTH_SHORT).show();
+
+                    Toast toast = Toast.makeText(App.activity, "评估失败", Toast.LENGTH_SHORT);
+                    toast.setGravity(Gravity.CENTER, 0, 0);
+                    toast.show();
+
+
                 }
             });
         } else {
             MyLog.e("初始化发音", yuYinPinGBean.getResponse().getRequestId() + "________" + yuYinPinGBean.getResponse().getSessionId());
             sessionId = yuYinPinGBean.getResponse().getSessionId();
-
         }
     }
 
     @Override
     public void getManagerO(String pinC_fay_bean) {
-
         MyLog.e("请求成功——得到的json", pinC_fay_bean);
         JsonDemo(pinC_fay_bean);
     }

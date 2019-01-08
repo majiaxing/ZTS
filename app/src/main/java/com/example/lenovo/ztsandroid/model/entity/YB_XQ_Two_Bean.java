@@ -1,16 +1,17 @@
 package com.example.lenovo.ztsandroid.model.entity;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by Administrator on 2018/11/20.
  */
 
-public class YB_XQ_Two_Bean {
+public class YB_XQ_Two_Bean implements Serializable {
 
 
     /**
-     * data : [{"yb_human":"2_2.mp4","Relative_path":"yinbiao/2/","yb_cartoon":"2_1.mp3","yb_translate":"2_1.gif"}]
+     * data : [{"yb_photo":"2_1.gif","yb_human":"2_2.mp4","Relative_path":"yinbiao/2/","yb_cartoon":"2_1.mp3","yb_translate":"[i:]是长元音。发音时，舌尖抵住下齿龈，嘴角向两旁拉开，嘴成扁平型，上下齿基本全合，像微笑一样。发音秘诀:口腔肌肉拉紧。"}]
      * data2 : null
      * data3 : null
      * pageInfo : null
@@ -105,16 +106,26 @@ public class YB_XQ_Two_Bean {
 
     public static class DataBean {
         /**
+         * yb_photo : 2_1.gif
          * yb_human : 2_2.mp4
          * Relative_path : yinbiao/2/
          * yb_cartoon : 2_1.mp3
-         * yb_translate : 2_1.gif
+         * yb_translate : [i:]是长元音。发音时，舌尖抵住下齿龈，嘴角向两旁拉开，嘴成扁平型，上下齿基本全合，像微笑一样。发音秘诀:口腔肌肉拉紧。
          */
 
+        private String yb_photo;
         private String yb_human;
         private String Relative_path;
         private String yb_cartoon;
         private String yb_translate;
+
+        public String getYb_photo() {
+            return yb_photo;
+        }
+
+        public void setYb_photo(String yb_photo) {
+            this.yb_photo = yb_photo;
+        }
 
         public String getYb_human() {
             return yb_human;

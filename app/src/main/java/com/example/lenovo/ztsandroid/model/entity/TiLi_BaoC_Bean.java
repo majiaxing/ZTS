@@ -1,10 +1,12 @@
 package com.example.lenovo.ztsandroid.model.entity;
 
+import java.io.Serializable;
+
 /**
  * Created by Administrator on 2018/12/26.
  */
 
-public class TiLi_BaoC_Bean {
+public class TiLi_BaoC_Bean implements Serializable {
 
 
     /**
@@ -101,7 +103,7 @@ public class TiLi_BaoC_Bean {
         this.code = code;
     }
 
-    public static class DataBean {
+    public static class DataBean implements Serializable{
         /**
          * flag : 添加成功
          */

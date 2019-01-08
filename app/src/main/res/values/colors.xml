@@ -9,7 +9,11 @@
     <color name="live_china_grak">#656565</color>
     <color name="pe_text_bg_gray">#5d5d5d</color>
     <color name="pe_bg_light_blue">#E6EBEF</color>
-    <color name="pe_gray">#f4f3f3</color>
+
+    <color name="pe_bg_bantm">#858585</color>
+
+
+    <color name="pe_gray">#F4F7Fc</color>
     <color name="black">#30e451</color>
     <color name="yzml">#0069ff</color>
     <color name="colortext">#0069ff</color>
@@ -17,7 +21,8 @@
     <color name="ywceng">#ff6b2c</color>
     <color name="text_color_red">#ffff4444</color>
     <color name="text_color">#00000000</color>
-
+    <color name="text_true_text">#43bBcD</color>
+    <color name="heise">#ff000000</color>
     <!-- Activity background color -->
     <drawable name="class_zero_background">#7f040000</drawable>
 

@@ -24,6 +24,7 @@ import com.example.lenovo.ztsandroid.base.BaseActivity;
 import com.example.lenovo.ztsandroid.cotract.DanC_Cotract;
 import com.example.lenovo.ztsandroid.cotract.YB_XiangQ_Cotract;
 import com.example.lenovo.ztsandroid.fragment.DanCi_fragment;
+import com.example.lenovo.ztsandroid.fragment.study.yb_sy.ZHYX_DanCi_fragment;
 import com.example.lenovo.ztsandroid.model.entity.Dc_Xq_Bean;
 import com.example.lenovo.ztsandroid.model.entity.YB_XQ_Two_Bean;
 import com.example.lenovo.ztsandroid.model.entity.YB_XQ_four_Bean;
@@ -44,7 +45,7 @@ import butterknife.OnClick;
 /**
  * Created by Administrator on 2018/12/7.
  */
-public class TiaoZan_Activity extends BaseActivity implements YB_XiangQ_Cotract.View {
+public class TiaoZan_Activity extends BaseActivity implements YB_XiangQ_Cotract.View ,ZHYX_DanCi_fragment.FragmentToActivity {
 
 
     @BindView(R.id.back_jt)
@@ -165,15 +166,17 @@ public class TiaoZan_Activity extends BaseActivity implements YB_XiangQ_Cotract.
             public void run() {
 
                 for (int i = 0; i < yb_xq_one_bean.getData().size(); i++) {
-                    DanCi_fragment danCi_fragment = new DanCi_fragment();
+                    ZHYX_DanCi_fragment danCi_fragment = new ZHYX_DanCi_fragment();
                     bundle = new Bundle();
                     bundle.putString("word",yb_xq_one_bean.getData().get(i).getYb_word());
                     bundle.putString("word_tran",yb_xq_one_bean.getData().get(i).getYb_translate());
                     bundle.putString("Relative_path",yb_xq_one_bean.getData().get(i).getRelative_path());
                     bundle.putString("word_video",yb_xq_one_bean.getData().get(i).getYb_Avideo());
+                    bundle.putString("word_id", String.valueOf(yb_xq_one_bean.getData().get(i).getYb_wordId()));
+                    bundle.putString("yema",yb_xq_one_bean.getData().size() +"");
+                    bundle.putString("dangq",i+1+"");
 
-
-                    MyLog.e("打击我企鹅",yb_xq_one_bean.getData().get(i).getYb_word() + ""+yb_xq_one_bean.getData().get(i).getYb_translate() );
+                    MyLog.e("打击我企鹅",yb_xq_one_bean.getData().get(i).getYb_word() + "________"+yb_xq_one_bean.getData().get(i).getYb_translate() );
 
 
                     danCi_fragment.setParams(bundle);
@@ -204,4 +207,13 @@ public class TiaoZan_Activity extends BaseActivity implements YB_XiangQ_Cotract.
     public void setBasePresenter(YB_XiangQ_Cotract.Presenter presenter) {
 
     }
+
+
+    @Override
+    public void huidiao(String str) {
+        // 回调函数 取值
+//        Toast.makeText(getApplicationContext(),"我是 Fragment3 回调函数执行了",Toast.LENGTH_SHORT).show();
+        title.setText(str);
+    }
+
 }

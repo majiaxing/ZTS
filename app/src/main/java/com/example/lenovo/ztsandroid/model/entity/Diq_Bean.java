@@ -1,12 +1,13 @@
 package com.example.lenovo.ztsandroid.model.entity;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by Administrator on 2018/12/4.
  */
 
-public class Diq_Bean {
+public class Diq_Bean implements Serializable{
 
 
     /**

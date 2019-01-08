@@ -104,7 +104,7 @@ public class XiaoX_Bean  implements Serializable {
         this.data = data;
     }
 
-    public static class DataBean {
+    public static class DataBean implements Serializable{
         /**
          * newtype : 作业消息
          * newstate : 1

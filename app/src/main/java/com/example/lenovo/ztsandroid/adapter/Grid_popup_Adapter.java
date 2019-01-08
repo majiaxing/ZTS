@@ -29,6 +29,7 @@ public class Grid_popup_Adapter extends BaseAdapter {
     public Grid_popup_Adapter(Context context, ArrayList<JiaoC_Bean.DataBean> channels) {
         this.context = context;
         this.channels = channels;
+
     }
 
     @Override
@@ -57,14 +58,9 @@ public class Grid_popup_Adapter extends BaseAdapter {
         }else {
             viewHolder = (ViewHolder) view.getTag();
         }
-
         JiaoC_Bean.DataBean liveBean = channels.get(i);
-
         Log.e("AAAAAAAAABBBBBAAAAA",liveBean.getJclx()+"");
-
-            viewHolder.textView.setText(liveBean.getJclx()+liveBean.getNj()+liveBean.getSxc());
-
-
+        viewHolder.textView.setText(liveBean.getJclx()+liveBean.getNj()+liveBean.getSxc());
         return view;
     }
 

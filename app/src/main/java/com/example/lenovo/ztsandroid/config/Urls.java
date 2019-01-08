@@ -12,12 +12,12 @@ public class Urls {
     public static final String WaiWBASE = "http://192.168.0.103:8080/demo/student/";
 
 
-    public static final String FileBASE = "http://192.168.0.103:8080/demo/file/";
+    public static final String FileBASE = "https://zts100.com/demo/file/";
 
     public static final String BASE = "https://zts100.com/demo/student/";
 
     //登录
-    public static final String Login = BASE+"login";
+    public static final String Login ="https://zts100.com/demo/login/user";
 
     // 教材选择
     public static final String Jiaoc = BASE+"text/findByType";
@@ -28,9 +28,13 @@ public class Urls {
 //课文二级列表
     public static final String KwerjList = BASE +"text/findByDy";
 
+
     //听力提交
     public static final String TiJiaoTL = BASE + "learn/saveLearnListen";
 
+
+    //作业提交
+    public static final String TiJiaoZy = BASE + "homework/submitHomeWork";
     //课文详情
     public static final String KwXq = BASE +"text/detail";
 
@@ -40,6 +44,8 @@ public class Urls {
 
     //消息列表
     public static final String XXList = BASE +"news/findAllByNews";
+
+    public static final String XXDelete = BASE +"news/tagAll";
 
     //消息个数
     public static final String XXcontent = BASE+"news/findByUnReadCount";
@@ -68,6 +74,9 @@ public class Urls {
     public static final  String LuYinSC = BASE+"learn/saveLearnWord";
 
 
+    public static final  String LuYinSC_YB = BASE+"learn/saveLearnBySymbolWord";
+
+
     //录音上传 短语
     public static final  String LuYinSC_Dy = BASE+"learn/saveLearnPhrase";
 
@@ -91,13 +100,10 @@ public class Urls {
 
     //学生信息
     public static final  String Student_xinx = BASE+"findByStuid";
-
     //学校
     public static final  String Student_XueX = BASE+"findBySchool";
-
     //学校
     public static final  String Student_Sheng = BASE+"findBySheng";
-
     //学校
     public static final  String Student_Shi = BASE+"findByShi";
     //学校

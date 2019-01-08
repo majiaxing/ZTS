@@ -13,7 +13,7 @@
         android:layout_height="204px"
         android:orientation="horizontal"
         android:gravity="center_vertical"
-        android:background="@drawable/huiyuan"
+        android:background="@drawable/title"
         >
 
         <LinearLayout
@@ -111,7 +111,7 @@
         android:id="@+id/Ti_J_ChaK"
         android:layout_width="match_parent"
         android:layout_height="173px"
-        android:background="@drawable/huiyuan"
+        android:background="@drawable/title"
         android:gravity="center"
         android:text="提交并查看结果"
         android:textSize="48px"

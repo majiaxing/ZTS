@@ -1,10 +1,12 @@
 package com.example.lenovo.ztsandroid.model.entity;
 
+import java.io.Serializable;
+
 /**
  * Created by Administrator on 2018/12/26.
  */
 
-public class Read_TJ_Bean {
+public class Read_TJ_Bean implements Serializable {
 
 
     /**
@@ -101,7 +103,7 @@ public class Read_TJ_Bean {
         this.code = code;
     }
 
-    public static class DataBean {
+    public static class DataBean implements Serializable{
         /**
          * score : 0
          */

@@ -1,10 +1,12 @@
 package com.example.lenovo.ztsandroid.model.entity;
 
+import java.io.Serializable;
+
 /**
  * Created by Administrator on 2018/12/5.
  */
 
-public class Xz_Bj_Bean {
+public class Xz_Bj_Bean implements Serializable {
 
 
     /**

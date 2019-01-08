@@ -1,12 +1,13 @@
 package com.example.lenovo.ztsandroid.model.entity;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by Administrator on 2018/12/26.
  */
 
-public class ZuoY_TT_Bean {
+public class ZuoY_TT_Bean implements Serializable {
 
 
     /**
@@ -103,7 +104,7 @@ public class ZuoY_TT_Bean {
         this.code = code;
     }
 
-    public static class DataBean {
+    public static class DataBean implements Serializable{
         /**
          * typeList : [{"listen_require":"句子填空","listen_content":"She isn\u2019t ________.¬¬ of crossing the river.","listen_id":"05663253-5882-4591-86aa-94fab7af0272","listen_text":"句子填空","listen_questionList":[{"listen_resolve":"","hw_answerId":"d0d5a82b-2cf4-4f63-b4a5-40e55b5d2a05","HomeworkPath":"homework/10be4e7a-001d-490c-9e4a-b2288b96c059/12/5/05663253-5882-4591-86aa-94fab7af0272/d0d5a82b-2cf4-4f63-b4a5-40e55b5d2a05/","listen_answer":"afraid","listen_optionList":[],"listen_questId":"d0d5a82b-2cf4-4f63-b4a5-40e55b5d2a05"}],"everyScore":11.11,"listen_video":"She isn\u2019t 1. \u2014of crossing the river.mp3","listen_type":"2"}]
          * Relative_path : 1_2_7_1_2001/tingli/05663253-5882-4591-86aa-94fab7af0272/
@@ -128,7 +129,7 @@ public class ZuoY_TT_Bean {
             this.typeList = typeList;
         }
 
-        public static class TypeListBean {
+        public static class TypeListBean implements Serializable{
             /**
              * listen_require : 句子填空
              * listen_content : She isn’t ________.¬¬ of crossing the river.
@@ -213,7 +214,7 @@ public class ZuoY_TT_Bean {
                 this.listen_questionList = listen_questionList;
             }
 
-            public static class ListenQuestionListBean {
+            public static class ListenQuestionListBean implements Serializable{
                 /**
                  * listen_resolve :
                  * hw_answerId : d0d5a82b-2cf4-4f63-b4a5-40e55b5d2a05

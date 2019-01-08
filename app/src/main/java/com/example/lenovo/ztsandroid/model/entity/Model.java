@@ -1,10 +1,12 @@
 package com.example.lenovo.ztsandroid.model.entity;
 
+import java.io.Serializable;
+
 /**
  * Created by Administrator on 2018/12/6.
  */
 
-public class Model {
+public class Model implements Serializable {
 
 
     private boolean ischeck;

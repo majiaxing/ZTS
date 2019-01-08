@@ -1,10 +1,12 @@
 package com.example.lenovo.ztsandroid.model.entity;
 
+import java.io.Serializable;
+
 /**
  * Created by Administrator on 2018/12/11.
  */
 
-public class YuYinPinG_Bean {
+public class YuYinPinG_Bean implements Serializable {
 
 
     /**
@@ -21,7 +23,7 @@ public class YuYinPinG_Bean {
         this.Response = Response;
     }
 
-    public static class ResponseBean {
+    public static class ResponseBean implements Serializable{
         /**
          * RequestId : 4edc1f9b-e4f7-42b6-bf2c-5af0ab2b2f4e
          * SessionId : ygeghdflwsuhfsiudfhuh

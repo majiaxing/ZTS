@@ -19,6 +19,17 @@ android {
         }
     }
 
+    sourceSets{
+        main{
+            jniLibs.srcDirs 'libs'
+        }
+    }
+    repositories {
+        flatDir {
+            dirs 'libs'
+        }
+    }
+
     lintOptions {
         checkReleaseBuilds false
         abortOnError false
@@ -44,9 +55,11 @@ dependencies {
     compile 'com.youth.banner:banner:1.4.9'
     compile project(':autolayout')
     //    // 添加下面的内容
-
     compile files('libs/hutool-all-4.3.0.jar')
     compile 'com.android.support:multidex:1.0.1'
     compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.30'
-
+    compile 'com.android.support:support-v4:26.0.0-alpha1'
+    compile 'com.android.support:multidex:1.0.1'
+    compile(name: 'mp3recorder', ext: 'aar')
+    compile(name: 'soe-release', ext: 'aar')
 }

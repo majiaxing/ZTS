@@ -104,7 +104,7 @@ public class TingL_XQ_xz_Bean implements Serializable{
         this.data = data;
     }
 
-    public static class DataBean {
+    public static class DataBean implements Serializable{
         /**
          * listen_require : 句子填空
          * listen_content : Gina is in PEP ___________
@@ -169,7 +169,7 @@ public class TingL_XQ_xz_Bean implements Serializable{
             this.listen_questionList = listen_questionList;
         }
 
-        public static class ListenQuestionListBean {
+        public static class ListenQuestionListBean implements Serializable{
             /**
              * listen_resolve :
              * listen_answer : Middle School

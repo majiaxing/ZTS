@@ -1,12 +1,13 @@
 package com.example.lenovo.ztsandroid.model.entity;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by Administrator on 2018/12/4.
  */
 
-public class Diq_Shi_Bean {
+public class Diq_Shi_Bean implements Serializable {
 
 
     /**
@@ -103,7 +104,7 @@ public class Diq_Shi_Bean {
         this.data = data;
     }
 
-    public static class DataBean {
+    public static class DataBean implements Serializable{
         /**
          * shi_name : 银川市
          * shi_id : 6401

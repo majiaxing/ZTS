@@ -20,7 +20,7 @@ public interface Logincotract {
 
     interface Presenter extends BasePresenter {
 
-        void SetUrl(String name ,String possward);
+        void SetUrl(String name ,String possward ,String usertype_code);
     }
 
 }

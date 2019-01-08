@@ -2,6 +2,7 @@ package com.example.lenovo.ztsandroid.activity;
 
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,6 +20,9 @@ import com.example.lenovo.ztsandroid.presenter.WangJ_Presenter;
 import com.example.lenovo.ztsandroid.utils.CountDownButton;
 import com.example.lenovo.ztsandroid.utils.YZ_Utils;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -27,8 +31,8 @@ import butterknife.OnClick;
  * Created by Administrator on 2018/10/29.
  */
 public class WJ_Activity extends BaseActivity implements WangJ_Cotract.View{
-    @BindView(R.id.Back)
-    ImageView Back;
+    @BindView(R.id.back_jt)
+    ImageView back_jt;
     @BindView(R.id.SJH_)
     EditText SJH;
     @BindView(R.id.YZM_)
@@ -75,28 +79,55 @@ public class WJ_Activity extends BaseActivity implements WangJ_Cotract.View{
         // TODO: add setContentView(...) invocation
         ButterKnife.bind(this);
     }
-
-    @OnClick({R.id.Back, R.id.HQ_, R.id.CZ_})
+    private Boolean boo = false;
+    @OnClick({R.id.back_jt, R.id.HQ_, R.id.CZ_})
     public void onViewClicked(View view) {
         switch (view.getId()) {
-            case R.id.Back:
+            case R.id.back_jt:
                 App.activity.onBackPressed();
                 break;
             case R.id.HQ_:
-                shouji = SJH.getText().toString().trim();
-                if (TextUtils.isEmpty(shouji)) {
-                    Toast.makeText(this, "请输入手机号", Toast.LENGTH_SHORT).show();
-                    return;
+
+                if (boo){
+                   Timer timer = new Timer();
+                                 timer.schedule(new TimerTask() {
+                                  @Override
+                               public void run() {
+                                            //do something\
+                                      boo = false;
+                                        }
+                             },1000*60);//延时1s执行
+                    Toast toast = Toast.makeText(App.activity, "正在获取验证码", Toast.LENGTH_LONG);
+                        toast.setGravity(Gravity.CENTER,0,0);
+                        toast.show();
+                }else {
+
+                    shouji = SJH.getText().toString().trim();
+                    if (TextUtils.isEmpty(shouji)) {
+//                    Toast.makeText(this, "请输入手机号", Toast.LENGTH_SHORT).show();
+                        Toast toast = Toast.makeText(App.activity, "请输入手机号", Toast.LENGTH_SHORT);
+                        toast.setGravity(Gravity.CENTER, 0, 0);
+                        toast.show();
+
+                        return;
+                    }
+
+                    rult = YZ_Utils.isPhone(shouji);
+                    if (rult == false) {
+//                    Toast.makeText(this, "请输入正确的手机号", Toast.LENGTH_SHORT).show();
+
+                        Toast toast = Toast.makeText(App.activity, "请输入正确的手机号", Toast.LENGTH_SHORT);
+                        toast.setGravity(Gravity.CENTER, 0, 0);
+                        toast.show();
+
+                        return;
+                    }
+
+                    presenter = new WangJ_Presenter(this);
+                    presenter.setUrl(shouji, "2");
+                    boo = true;
                 }
 
-                rult = YZ_Utils.isPhone(shouji);
-                if (rult == false) {
-                    Toast.makeText(this, "请输入正确的手机号", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                presenter = new WangJ_Presenter(this);
-                presenter.setUrl(shouji,"2");
 
                 break;
             case R.id.CZ_:
@@ -105,16 +136,29 @@ public class WJ_Activity extends BaseActivity implements WangJ_Cotract.View{
                 yhm = YHM.getText().toString().trim();
                 password = ZCSrPassword.getText().toString().trim();
                 if (TextUtils.isEmpty(yhm)){
-                    Toast.makeText(this, "请输入用户名", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(this, "请输入用户名", Toast.LENGTH_SHORT).show();
+                    Toast toast = Toast.makeText(App.activity, "请输入用户名", Toast.LENGTH_SHORT);
+                    toast.setGravity(Gravity.CENTER, 0, 0);
+                    toast.show();
+
                     return;
                 }
                 if (TextUtils.isEmpty(shouji) &&TextUtils.isEmpty(yanzhengma)) {
-                    Toast.makeText(this, "请输入手机号和验证码", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(this, "请输入手机号和验证码", Toast.LENGTH_SHORT).show();
+
+                    Toast toast = Toast.makeText(App.activity, "请输入手机号和验证码", Toast.LENGTH_SHORT);
+                    toast.setGravity(Gravity.CENTER, 0, 0);
+                    toast.show();
+
+
                     return;
                 }
 
                 if (TextUtils.isEmpty(password)){
                     Toast.makeText(this, "请新的密码", Toast.LENGTH_SHORT).show();
+                    Toast toast = Toast.makeText(App.activity, "请输入新的密码", Toast.LENGTH_SHORT);
+                    toast.setGravity(Gravity.CENTER, 0, 0);
+                    toast.show();
                     return;
                 }
 
@@ -126,10 +170,6 @@ public class WJ_Activity extends BaseActivity implements WangJ_Cotract.View{
                     presenter = new WangJ_Password_Presenter(this);
                     presenter.setUrls("5",yhm,password,yanzhengma,shouji);
 //                }
-
-
-
-
                 break;
         }
     }
@@ -150,16 +190,25 @@ public class WJ_Activity extends BaseActivity implements WangJ_Cotract.View{
     @Override
     public void getManagerO(final XiuG_CG_Bean string) {
 
-
         App.activity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 if (string.getMessage().equals("")){
                     App.activity.finish();
-                    Toast.makeText(App.activity, string.getData().getSmg0(),Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(App.activity, string.getData().getSmg0(),Toast.LENGTH_SHORT).show();
+
+                    Toast toast = Toast.makeText(App.activity, string.getData().getSmg0(), Toast.LENGTH_SHORT);
+                    toast.setGravity(Gravity.CENTER, 0, 0);
+                    toast.show();
+
 
                 }else if (string.getMessage().equals("验证码不存在")){
-                    Toast.makeText(App.activity, string.getMessage(),Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(App.activity, string.getMessage(),Toast.LENGTH_SHORT).show();
+
+                    Toast toast = Toast.makeText(App.activity,string.getMessage(), Toast.LENGTH_SHORT);
+                    toast.setGravity(Gravity.CENTER, 0, 0);
+                    toast.show();
+
                 }
             }
         });

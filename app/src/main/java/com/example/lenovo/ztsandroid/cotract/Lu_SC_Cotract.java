@@ -28,7 +28,7 @@ public interface Lu_SC_Cotract {
     //    {"jclx":"人教版","nj":"一年级","sxc":"上册","flag":"text"}
     interface Presenter extends BasePresenter {
 
-        void SetU(String stuid, String hwid, String hw_type, String hw_content,String hw_answerId,String hw_video, String hw_score);
+        void SetU(String stuid, String hwid, String hw_type, String hw_content,String hw_answerId,String hw_video, String hw_score ,String everyScore);
         void  seturl(File file, String type, String save_path);
 
 

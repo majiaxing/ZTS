@@ -67,6 +67,9 @@ public class TianK_Adapter extends BaseAdapter {
 
         holder.text.setText(i+". "+channels.get(position).getListen_content());
         i++;
+
+
+
         return  convertView;
     }
     private class Holder{

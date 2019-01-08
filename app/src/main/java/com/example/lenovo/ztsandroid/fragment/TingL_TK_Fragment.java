@@ -1,12 +1,17 @@
 package com.example.lenovo.ztsandroid.fragment;
 
+import android.content.Context;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
@@ -38,7 +43,6 @@ import butterknife.Unbinder;
  */
 public class TingL_TK_Fragment extends BaseFragment implements TingL_XQ_xz_Cotract.View {
 
-
     @BindView(R.id.BF_zt)
     CheckBox BFZt;
     @BindView(R.id.TJ_Xyt)
@@ -49,10 +53,8 @@ public class TingL_TK_Fragment extends BaseFragment implements TingL_XQ_xz_Cotra
     Button nextT;
     @BindView(R.id.TM_title)
     TextView TMTitle;
-    @BindView(R.id.Xz_list)
-    ListView XzList;
-    @BindView(R.id.linear_layout_xz)
-    RelativeLayout linearLayoutXz;
+    //    @BindView(R.id.Xz_list)
+//    ListView XzList;
     @BindView(R.id.JX_)
     TextView JX;
     @BindView(R.id.JX_list)
@@ -68,6 +70,14 @@ public class TingL_TK_Fragment extends BaseFragment implements TingL_XQ_xz_Cotra
     android.widget.LinearLayout linearLayout5;
     @BindView(R.id.ChongZ)
     Button ChongZ;
+    @BindView(R.id.Tk_Nr)
+    TextView TkNr;
+    @BindView(R.id.edit_TK)
+    EditText editTK;
+    @BindView(R.id.ZhenQDA)
+    TextView ZhenQDA;
+    @BindView(R.id.linear_layout_xz)
+    RelativeLayout linearLayoutXz;
 
     private Bundle bundle;
     private ArrayList<TingL_XQ_xz_Bean.DataBean> mlist = new ArrayList<>();
@@ -81,6 +91,7 @@ public class TingL_TK_Fragment extends BaseFragment implements TingL_XQ_xz_Cotra
     private String listen_id;
     private String type;
     private String listen_questId;
+    private String listen_answer;
 
 
     @Override
@@ -100,13 +111,19 @@ public class TingL_TK_Fragment extends BaseFragment implements TingL_XQ_xz_Cotra
         type = bundle.getString("type");
         listen_questId = list.get(0).getListen_questionList().get(0).getListen_questId();
         TMTitle.setText(listen_text);
+        listen_answer = list.get(0).getListen_questionList().get(0).getListen_answer();
+        TkNr.setText(list.get(0).getListen_content());
 
-        mlist.addAll(list);
+//        mlist.addAll(list);
+//
+//        listadapter = new TianK_Adapter(App.activity, mlist);
+//
+//        XzList.setAdapter(listadapter);
 
-        listadapter = new TianK_Adapter(App.activity, mlist);
-
-        XzList.setAdapter(listadapter);
-
+        String yema = bundle.getString("yema");
+        String dangq = bundle.getString("dangq");
+        MyLog.e("一共有————",yema);
+        textView3.setText(dangq+"/"+yema);
 
         JX.setVisibility(View.GONE);
         ChongZ.setVisibility(View.GONE);
@@ -150,6 +167,7 @@ public class TingL_TK_Fragment extends BaseFragment implements TingL_XQ_xz_Cotra
 
                         MyLog.e("CheckBox_状态", BFZt.isChecked() + "");
                         BFZt.setChecked(false);
+                        bool[0] = false;
                     }
                 });
             } catch (IOException e) {
@@ -157,6 +175,13 @@ public class TingL_TK_Fragment extends BaseFragment implements TingL_XQ_xz_Cotra
             }
         }
     }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        mPlayer.stop();
+    }
+
 
     @Override
     protected void loadData() {
@@ -176,43 +201,50 @@ public class TingL_TK_Fragment extends BaseFragment implements TingL_XQ_xz_Cotra
         return rootView;
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        unbinder.unbind();
-    }
-
     private Boolean bool[] = {false};
 
     @OnClick({R.id.BF_zt, R.id.TJ_Xyt, R.id.next_T, R.id.XYT, R.id.ChongZ})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.BF_zt:
-
                 if (bool[0]) {
                     if (mPlayer.isPlaying()) {
                         MyLog.e("lalall", "ahahahahh");
                         mPlayer.pause();
+                        bool[0] = false;
                     }
-                    bool[0] = false;
                 } else {
                     if (!mPlayer.isPlaying()) {
                         MyLog.e("holle dnsjk", "ahahahahh");
                         mPlayer.start();
+                        bool[0] = true;
                     }
-                    bool[0] = true;
                 }
-
-
                 break;
             case R.id.TJ_Xyt:
+                String trim = editTK.getText().toString().trim();
+                if (trim.isEmpty()) {
+                    Toast toast = Toast.makeText(App.activity, "请输入答案后提交", Toast.LENGTH_SHORT);
+                    toast.setGravity(Gravity.CENTER, 0, 0);
+                    toast.show();
+                } else {
+                    if (trim.equals(listen_answer)) {
+                        editTK.setTextColor(this.getResources().getColor(R.color.text_true_text));
+                        presenter = new TiL_BaoC_Presenter(this);
+                        presenter.SetUrl(listen_id, type, App.stuid, "2", listen_questId, trim, "100");
+                    } else {
+//                        v.setTextColor(this.getResources().getColor(R.color.red));/
+                        editTK.setTextColor(this.getResources().getColor(R.color.text_color_red));
+                        presenter = new TiL_BaoC_Presenter(this);
+                        presenter.SetUrl(listen_id, type, App.stuid, "2", listen_questId, trim, "0");
 
-                presenter = new TiL_BaoC_Presenter(this);
-                presenter.SetUrl(listen_id,type,App.stuid,"2",listen_questId,"asdsaq","");
-
-                JX.setVisibility(View.VISIBLE);
-                XYT.setVisibility(View.VISIBLE);
-                ChongZ.setVisibility(View.VISIBLE);
+                        ZhenQDA.setText("正确答案："+listen_answer);
+                        ZhenQDA.setVisibility(View.VISIBLE);
+                    }
+                    JX.setVisibility(View.VISIBLE);
+                    XYT.setVisibility(View.VISIBLE);
+                    ChongZ.setVisibility(View.VISIBLE);
+                }
                 break;
             case R.id.next_T:
                 break;
@@ -228,6 +260,7 @@ public class TingL_TK_Fragment extends BaseFragment implements TingL_XQ_xz_Cotra
     @Override
     public void getManager(TingL_XQ_xz_Bean xqbean) {
 
+
     }
 
     @Override
@@ -238,15 +271,15 @@ public class TingL_TK_Fragment extends BaseFragment implements TingL_XQ_xz_Cotra
     @Override
     public void getManagerTiJ(TiLi_BaoC_Bean tiLi_baoC_bean) {
 
-        final String flag = tiLi_baoC_bean.getData().getFlag();
-
-        App.activity.runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                Toast.makeText(App.activity,flag,Toast.LENGTH_LONG).show();
-            }
-        });
-
+        if (tiLi_baoC_bean != null) {
+            final String flag = tiLi_baoC_bean.getData().getFlag();
+            App.activity.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+//                Toast.makeText(App.activity,flag,Toast.LENGTH_LONG).show();
+                }
+            });
+        }
     }
 
     @Override

@@ -42,6 +42,8 @@ public class My_E_Activity extends BaseActivity {
     private PopupWindow popupWindow;
     private Button G_mai, E_ka;
     private ImageView fanH;
+    private String kai;
+    private String jie;
 
     @Override
     protected int getLayoutId() {
@@ -64,8 +66,11 @@ public class My_E_Activity extends BaseActivity {
         String starttime = intent.getStringExtra("starttime");
         String endtime = intent.getStringExtra("endtime");
 
-        final String kai = starttime.substring(0, 9);
-        final String jie = endtime.substring(0,9);
+
+        if (starttime != null|| endtime != null){
+            kai = starttime.substring(0, 9);
+            jie = endtime.substring(0,9);
+        }
 
         switch (memberState){
             case "1":
@@ -106,6 +111,7 @@ public class My_E_Activity extends BaseActivity {
 
             }
         });
+
         fanH.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

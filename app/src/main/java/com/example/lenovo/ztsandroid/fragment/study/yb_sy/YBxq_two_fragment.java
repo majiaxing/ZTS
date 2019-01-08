@@ -1,30 +1,33 @@
 package com.example.lenovo.ztsandroid.fragment.study.yb_sy;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.MediaController;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.VideoView;
 
+import com.bumptech.glide.Glide;
 import com.example.lenovo.ztsandroid.App;
 import com.example.lenovo.ztsandroid.R;
 import com.example.lenovo.ztsandroid.activity.TiaoZan_Activity;
 import com.example.lenovo.ztsandroid.base.BaseFragment;
-import com.example.lenovo.ztsandroid.config.FragmantBuilder;
 import com.example.lenovo.ztsandroid.cotract.YB_XiangQ_Cotract;
 import com.example.lenovo.ztsandroid.model.entity.YB_XQ_Two_Bean;
 import com.example.lenovo.ztsandroid.model.entity.YB_XQ_four_Bean;
 import com.example.lenovo.ztsandroid.model.entity.YB_XQ_one_Bean;
 import com.example.lenovo.ztsandroid.model.entity.YB_XQ_three_Bean;
 import com.example.lenovo.ztsandroid.presenter.YB_Two_XQ_Presenter;
-import com.example.lenovo.ztsandroid.utils.ConfigFragment;
 import com.example.lenovo.ztsandroid.utils.MyLog;
 
 import butterknife.BindView;
@@ -45,16 +48,32 @@ public class YBxq_two_fragment extends BaseFragment implements YB_XiangQ_Cotract
     CheckBox RZR;
     @BindView(R.id.XZ_fy)
     LinearLayout XZFy;
-    @BindView(R.id.Frame_Louyout)
-    FrameLayout FYFrameLayout;
     @BindView(R.id.TZ_YX_t)
     Button TZYXT;
+    @BindView(R.id.Fa_Y_dongh)
+    ImageView FaYDongh;
+    @BindView(R.id.Button)
+    android.widget.Button Button;
+    @BindView(R.id.video_view)
+    VideoView videoView;
+    @BindView(R.id.ZR_FY_Rela)
+    RelativeLayout ZRFYRela;
+    @BindView(R.id.YB_Nr)
+    TextView YBNr;
+    @BindView(R.id.DH_Button)
+    android.widget.Button DHButton;
+    @BindView(R.id.DH_video_view)
+    VideoView DHVideoView;
+    @BindView(R.id.DH_FY_Rela)
+    RelativeLayout DHFYRela;
     private YB_XiangQ_Cotract.Presenter presenter;
-    private Bundle bundle , bundle1;
+    private Bundle bundle, bundle1;
     private String yBid;
     private String relative_path;
     private String yb_translate;
     private String yb_human;
+    private String yb_photo;
+    private String yb_cartoon;
 
 
     @Override
@@ -120,30 +139,82 @@ public class YBxq_two_fragment extends BaseFragment implements YB_XiangQ_Cotract
         yb_translate = yb_xq_two_bean.getData().get(0).getYb_translate();
         relative_path = yb_xq_two_bean.getData().get(0).getRelative_path();
         yb_human = yb_xq_two_bean.getData().get(0).getYb_human();
-
+        yb_photo = yb_xq_two_bean.getData().get(0).getYb_photo();
+        yb_cartoon = yb_xq_two_bean.getData().get(0).getYb_cartoon();
         App.activity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-//                YB_Nr.setText(yb_translate);
-                FragmentManager manager=App.activity.getSupportFragmentManager();
-                FragmentTransaction transaction=manager.beginTransaction();
-                FaY_DongH_Fragment fragment1=new FaY_DongH_Fragment();
-                transaction.add(R.id.Frame_Louyout, fragment1);
-                transaction.commit();
+
+                if (!yb_photo.equals("")) {
 
 
+                    DHFYRela.setVisibility(View.GONE);
+                    FaYDongh.setVisibility(View.VISIBLE);
+                    MyLog.e("现在是图片",yb_photo);
+                    String bofUrl = "https://zts100.com/demo/file/download" + "/?" + "Relative_path=" + relative_path + "&" + "type=1" + "&" + "fileName=" + yb_photo;
+                    Glide.with(App.activity).load(bofUrl).asGif().into(FaYDongh);
+                    MyLog.e("图片的Url",bofUrl);
+                } else if (!yb_cartoon.equals("")) {
 
-                if (yb_translate != null){
-                    bundle1.putString("relative_path",relative_path);
-                    bundle1.putString("yb_translate",yb_translate);
-                    MyLog.e("yb_translate+relative_path",yb_translate+relative_path);
-
-                    fragment1.setParams(bundle1);
+                    MyLog.e("现在是视频",yb_cartoon);
+                    FaYDongh.setVisibility(View.GONE);
+                    DHFYRela.setVisibility(View.VISIBLE);
+                    String bofUrlDH = "https://zts100.com/demo/file/download" + "/?" + "Relative_path=" + relative_path + "&" + "type=3" + "&" + "fileName=" + yb_cartoon;
+                    Uri uri = Uri.parse(bofUrlDH);
+                    MediaController mediaController = new MediaController(App.activity);
+                    mediaController.setVisibility(View.GONE);
+                    DHVideoView.setVideoURI(uri);
+                    DHVideoView.setBackgroundResource(R.drawable.ship_zwt);
+                    DHButton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            if (!DHVideoView.isPlaying()) {
+                                DHVideoView.start();
+                                DHVideoView.requestFocus();
+                                DHVideoView.setBackground(null);
+                                DHButton.setVisibility(View.GONE);
+                            }
+                        }
+                    });
+                    DHVideoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                        @Override
+                        public void onCompletion(MediaPlayer mp) {
+                            DHButton.setVisibility(View.VISIBLE);
+                        }
+                    });
                 }
 
+                YBNr.setText(yb_translate);
+
+
+                String bofUrlO = "https://zts100.com/demo/file/download" + "/?" + "Relative_path=" + relative_path + "&" + "type=3" + "&" + "fileName=" + yb_human;
+
+                MyLog.e("打印的Url", bofUrlO);
+
+                Uri uri = Uri.parse(bofUrlO);
+                MediaController mediaController = new MediaController(App.activity);
+                mediaController.setVisibility(View.GONE);
+                videoView.setVideoURI(uri);
+                videoView.setBackgroundResource(R.drawable.ship_zwt);
+                Button.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (!videoView.isPlaying()) {
+                            videoView.start();
+                            videoView.requestFocus();
+                            videoView.setBackground(null);
+                            Button.setVisibility(View.GONE);
+                        }
+                    }
+                });
+                videoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                    @Override
+                    public void onCompletion(MediaPlayer mp) {
+                        Button.setVisibility(View.VISIBLE);
+                    }
+                });
             }
         });
-
     }
 
     @Override
@@ -170,38 +241,24 @@ public class YBxq_two_fragment extends BaseFragment implements YB_XiangQ_Cotract
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.R_D_H:
-
-
-                FragmentManager manager1=App.activity.getSupportFragmentManager();
-                FragmentTransaction transaction1=manager1.beginTransaction();
-                FaY_DongH_Fragment fragment2=new FaY_DongH_Fragment();
-                transaction1.add(R.id.Frame_Louyout, fragment2);
-                transaction1.commit();
-
-                if (yb_translate != null){
-                    bundle1.putString("relative_path",relative_path);
-                    bundle1.putString("yb_translate",yb_translate);
-                    fragment2.setParams(bundle1);
-                    MyLog.e("yb_translate+relative_path",yb_translate+relative_path);
+                if (!yb_photo.equals("")){
+                    ZRFYRela.setVisibility(View.GONE);
+                    FaYDongh.setVisibility(View.VISIBLE);
+                    DHFYRela.setVisibility(View.GONE);
+                }else if (!yb_cartoon.equals("")){
+                ZRFYRela.setVisibility(View.GONE);
+                FaYDongh.setVisibility(View.GONE);
+                DHFYRela.setVisibility(View.VISIBLE);
                 }
-
-
                 RDH.setChecked(true);
                 RZR.setChecked(false);
-
                 break;
             case R.id.R_Z_R:
 
-                FragmentManager manager=App.activity.getSupportFragmentManager();
-                FragmentTransaction transaction=manager.beginTransaction();
-                ZhenR_FY_Fragment fragment1=new ZhenR_FY_Fragment();
-                transaction.add(R.id.Frame_Louyout, fragment1);
-                transaction.commit();
-                bundle1.putString("relative_path",relative_path);
-                bundle1.putString("yb_human",yb_human);
-                fragment1.setParams(bundle1);
-                MyLog.e("yb_translate+relative_path",yb_translate+relative_path);
 
+                ZRFYRela.setVisibility(View.VISIBLE);
+                FaYDongh.setVisibility(View.GONE);
+                DHFYRela.setVisibility(View.GONE);
 
                 RDH.setChecked(false);
                 RZR.setChecked(true);

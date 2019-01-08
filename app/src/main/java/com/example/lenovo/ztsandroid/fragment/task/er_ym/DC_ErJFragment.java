@@ -42,8 +42,8 @@ public class DC_ErJFragment extends BaseActivity implements ZuoY_Dc_Cotract.View
     TextView LeiXin;
     @BindView(R.id.YeShu)
     TextView YeShu;
-    @BindView(R.id.Zongyeshu)
-    TextView Zongyeshu;
+//    @BindView(R.id.Zongyeshu)
+//    TextView Zongyeshu;
     @BindView(R.id.LeiX)
     RelativeLayout LeiX;
     @BindView(R.id.viewPager)
@@ -57,6 +57,8 @@ public class DC_ErJFragment extends BaseActivity implements ZuoY_Dc_Cotract.View
     private String hw_content;
     private String hwid;
     private String avgScores;
+    private String zuoYs;
+    private int dangq;
 
     @Override
     protected int getLayoutId() {
@@ -77,7 +79,6 @@ public class DC_ErJFragment extends BaseActivity implements ZuoY_Dc_Cotract.View
         hw_content = intent.getStringExtra("hw_content");
         hwid = intent.getStringExtra("hwid");
         avgScores = String.valueOf(intent.getDoubleExtra("avgScore", 1));
-
 
     }
 
@@ -106,11 +107,9 @@ public class DC_ErJFragment extends BaseActivity implements ZuoY_Dc_Cotract.View
             @Override
             public void run() {
                 for (int a = 0; a < zuoYDcBean.getData().getTypeList().size(); a++) {
-
                     String word = zuoYDcBean.getData().getTypeList().get(a).getWord();
                     String word_tran = zuoYDcBean.getData().getTypeList().get(a).getWord_tran();
                     String hw_answerId = zuoYDcBean.getData().getTypeList().get(a).getHw_answerId();
-
                     Zy_Dc_Fragment zuYYinBFragment = new Zy_Dc_Fragment();
                     bundle = new Bundle();
                     bundle.putString("DanCy", word);
@@ -119,13 +118,20 @@ public class DC_ErJFragment extends BaseActivity implements ZuoY_Dc_Cotract.View
                     bundle.putString("hw_type", hw_type);
                     bundle.putString("hw_content", hw_content);
                     bundle.putString("hwid", hwid);
+                    bundle.putString("EveryScore", String.valueOf(zuoYDcBean.getData().getTypeList().get(a).getEveryScore()));
                     bundle.putString("Word_video",zuoYDcBean.getData().getTypeList().get(a).getWord_video());
                     bundle.putString("Relative_path",zuoYDcBean.getData().getRelative_path());
+                    bundle.putString("yema",zuoYDcBean.getData().getTypeList().size() +"");
+                    bundle.putString("dangq",a+1+"");
+                    zuoYs = String.valueOf(zuoYDcBean.getData().getTypeList().size());
+                    dangq = a + 1;
+
                     MyLog.e("DADT_____", word + word_tran);
                     zuYYinBFragment.setParams(bundle);
                     nlist.add(zuYYinBFragment);
                 }
-
+                YeShu.setText(zuoYs);
+                LeiXin.setText("单词");
                 adapter = new ViewPagerAdapter(getSupportFragmentManager(), nlist);
                 viewPager.setAdapter(adapter);
                 adapter.notifyDataSetChanged();

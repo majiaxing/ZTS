@@ -156,7 +156,7 @@
                 android:id="@+id/Jz_nr"
                 android:layout_width="700px"
                 android:layout_height="wrap_content"
-                android:text="***************************"
+                android:text="King Athamus of northern Greece had two children， Phrixus and Helle．After he left his first wife and mar ried Ino，a wicked woman，the two children received all the cruel treatment that a stepmother coulddevise ，At one timethe kingdom was ruined by a famine．"
                 android:textSize="45px"
                 android:textColor="#333333"
                 android:layout_marginTop="46px"
@@ -208,7 +208,7 @@
 
 
             <RelativeLayout
-                android:layout_width="370px"
+                android:layout_width="390px"
                 android:layout_height="200px"
                 android:layout_marginLeft="150px"
 
@@ -257,6 +257,7 @@
                     android:layout_centerInParent="true"
                     android:visibility="gone"
                     >
+
                     <ImageView
                         android:id="@+id/PinF_jd"
                         android:layout_width="156px"

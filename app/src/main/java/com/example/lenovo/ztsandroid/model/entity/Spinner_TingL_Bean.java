@@ -1,10 +1,12 @@
 package com.example.lenovo.ztsandroid.model.entity;
 
+import java.io.Serializable;
+
 /**
  * Created by Administrator on 2018/11/2.
  */
 
-public class Spinner_TingL_Bean {
+public class Spinner_TingL_Bean implements Serializable {
 
     private String personName;
 

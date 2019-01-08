@@ -54,6 +54,7 @@ public class Kw_Ld_Adapter extends BaseAdapter {
             view = LayoutInflater.from(context).inflate(R.layout.kew_ld_item,null);
             viewHolder.title = view.findViewById(R.id.kw_title_item);
             viewHolder.kw_image_item = view.findViewById(R.id.kw_image_item);
+            viewHolder.nr = view.findViewById(R.id.Kw_zt);
             view.setTag(viewHolder);
         }else {
             viewHolder = (ViewHolder) view.getTag();
@@ -65,10 +66,13 @@ public class Kw_Ld_Adapter extends BaseAdapter {
         String photos = liveBean.getPhotos();
         String relative_path = liveBean.getRelative_path();
         String str = "https://zts100.com/demo/file/download" + "/?" + "Relative_path=" + relative_path + "&" + "type=1" + "&" + "fileName=" +photos;
+
+        MyLog.e("打印的图片URL",str + "");
+        viewHolder.nr.setVisibility(View.GONE);
+
         Glide.with(App.activity).load(str).into(viewHolder.kw_image_item);
         return view;
     }
-
 
     static class ViewHolder {
         public TextView title ,nr;

@@ -1,12 +1,13 @@
 package com.example.lenovo.ztsandroid.model.entity;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by Administrator on 2018/12/8.
  */
 
-public class ZuoY_kw_Bean {
+public class ZuoY_kw_Bean implements Serializable{
 
 
     /**
@@ -102,7 +103,7 @@ public class ZuoY_kw_Bean {
         this.code = code;
     }
 
-    public static class DataBean {
+    public static class DataBean implements Serializable{
         /**
          * HomeworkPath : homework/4567/41/
          * typeList : [{"text_id":"02c8a26f-0f99-46e9-a1e4-80a8a78d53e5","text_zw":"学校注意：亲爱的同学们，我们很高兴和你们分享一些关于学习的注意事项，网同学们注意","hw_answerId":"02c8a26f-0f99-46e9-a1e4-80a8a78d53e5","text_video":"School notice.mp3","everyScore":12.5,"text_yw":"Dear students,\nWe have some interesting and fun things for you this term. On September twenty-first, we have a school trip in the afternoon.\nOctober is a great month. On the twelfth and the fifteenth, we have two ball games, soccer and volleyball. School Day is on October twenty-second. Your parents can come to our school. Next month, we have an art festival. It\u2019s on November third. We have an English party on November thirtieth. On December the third, we have a book sale in the school library.\nThis is a really busy term! Have a good time!\n"}]
@@ -137,7 +138,7 @@ public class ZuoY_kw_Bean {
             this.typeList = typeList;
         }
 
-        public static class TypeListBean {
+        public static class TypeListBean implements Serializable{
             /**
              * text_id : 02c8a26f-0f99-46e9-a1e4-80a8a78d53e5
              * text_zw : 学校注意：亲爱的同学们，我们很高兴和你们分享一些关于学习的注意事项，网同学们注意

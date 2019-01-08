@@ -40,9 +40,7 @@ public class XX_Adapter extends BaseAdapter implements OnItemListener{
     public ArrayList<XiaoX_Bean.DataBean> channels;
     private Boolean mIsShow = false;
     private QuanB_XX_Fragment.AllCheckListener allCheckListener;
-
-
-
+    private String id ,id1;
 
 
     public XX_Adapter(Context context, ArrayList<XiaoX_Bean.DataBean> channels ,QuanB_XX_Fragment.AllCheckListener allCheckListener ) {
@@ -100,8 +98,10 @@ public class XX_Adapter extends BaseAdapter implements OnItemListener{
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked){
                     channels.get(i).setIscheck(true);
+                    id = String.valueOf(channels.get(i).getId());
                 }else {
                     channels.get(i).setIscheck(false);
+                    id = String.valueOf(channels.get(i).getId());
                 }
             }
         });
@@ -128,8 +128,6 @@ public class XX_Adapter extends BaseAdapter implements OnItemListener{
 //
 //            }
 //        });
-
-
         switch (liveBean.getNewtype()){
             case "作业消息":
                 Glide.with(context).load(R.drawable.zuoy).into(viewHolder.touxiang);
@@ -176,7 +174,13 @@ public class XX_Adapter extends BaseAdapter implements OnItemListener{
         notifyDataSetChanged();
     }
 
-     class ViewHolder {
+    @Override
+    public String onClickeID() {
+
+        return id;
+    }
+
+    class ViewHolder {
         public ImageView touxiang;
         public TextView title,Wd_Ts;
         public TextView neirong;
@@ -189,4 +193,5 @@ public class XX_Adapter extends BaseAdapter implements OnItemListener{
 
 interface OnItemListener {
     void onClickeListener(Boolean isShow);
+    String onClickeID();
 }

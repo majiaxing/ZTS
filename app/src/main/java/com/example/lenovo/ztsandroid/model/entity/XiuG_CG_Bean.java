@@ -1,10 +1,12 @@
 package com.example.lenovo.ztsandroid.model.entity;
 
+import java.io.Serializable;
+
 /**
  * Created by Administrator on 2018/12/15.
  */
 
-public class XiuG_CG_Bean {
+public class XiuG_CG_Bean implements Serializable {
 
 
     /**
@@ -101,7 +103,7 @@ public class XiuG_CG_Bean {
         this.code = code;
     }
 
-    public static class DataBean {
+    public static class DataBean implements Serializable{
         /**
          * smg0 : 家长手机号下无学生
          * msg_ : 验证码通过

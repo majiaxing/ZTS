@@ -1,10 +1,12 @@
 package com.example.lenovo.ztsandroid.model.entity;
 
+import java.io.Serializable;
+
 /**
  * Created by Administrator on 2018/11/16.
  */
 
-public class XiaoX_content_Bean {
+public class XiaoX_content_Bean implements Serializable{
 
 
     /**

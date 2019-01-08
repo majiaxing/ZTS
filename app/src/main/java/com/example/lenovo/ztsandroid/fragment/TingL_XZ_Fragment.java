@@ -2,6 +2,7 @@ package com.example.lenovo.ztsandroid.fragment;
 
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,7 +11,6 @@ import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.RadioButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -37,7 +37,7 @@ import butterknife.OnClick;
 /**
  * Created by Administrator on 2018/11/21.
  */
-public class TingL_XZ_Fragment extends BaseFragment implements TingL_XQ_xz_Cotract.View{
+public class TingL_XZ_Fragment extends BaseFragment implements TingL_XQ_xz_Cotract.View {
 
     @BindView(R.id.BF_zt)
     CheckBox BFZt;
@@ -72,25 +72,25 @@ public class TingL_XZ_Fragment extends BaseFragment implements TingL_XQ_xz_Cotra
     @BindView(R.id.tm_title)
     TextView tmTitle;
     @BindView(R.id.BF_One)
-    RadioButton BFOne;
+    TextView BFOne;
     @BindView(R.id.BF_One_Xuanz)
-    RadioButton BFOneXuanz;
+    TextView BFOneXuanz;
     @BindView(R.id.Xuanz_nr_A)
     TextView XuanzNrA;
     @BindView(R.id.XX_A)
     LinearLayout XXA;
     @BindView(R.id.BF_Two)
-    RadioButton BFTwo;
+    TextView BFTwo;
     @BindView(R.id.BF_Two_Xuanz)
-    RadioButton BFTwoXuanz;
+    TextView BFTwoXuanz;
     @BindView(R.id.Xuanz_nr_B)
     TextView XuanzNrB;
     @BindView(R.id.XX_B)
     LinearLayout XXB;
     @BindView(R.id.BF_Three)
-    RadioButton BFThree;
+    TextView BFThree;
     @BindView(R.id.BF_Three_Xuanz)
-    RadioButton BFThreeXuanz;
+    TextView BFThreeXuanz;
     @BindView(R.id.Xuanz_nr_C)
     TextView XuanzNrC;
     @BindView(R.id.XX_C)
@@ -108,20 +108,20 @@ public class TingL_XZ_Fragment extends BaseFragment implements TingL_XQ_xz_Cotra
     @BindView(R.id.relativeLayout2)
     RelativeLayout relativeLayout2;
     @BindView(R.id.BF_Four)
-    RadioButton BFFour;
+    TextView BFFour;
     @BindView(R.id.BF_Four_Xuanz)
-    RadioButton BFFourXuanz;
+    TextView BFFourXuanz;
     @BindView(R.id.Xuanz_nr_D)
     TextView XuanzNrD;
     @BindView(R.id.XX_D)
     android.widget.LinearLayout XXD;
+    @BindView(R.id.ChongZ)
+    Button ChongZ;
     private Bundle bundle;
     private ArrayList<TingL_TK_Bean.DataBean.ListenQuestionListBean.ListenOptionListBean> mlist = new ArrayList<>();
     private String relative_path;
     private String word_video;
     private MediaPlayer mPlayer = new MediaPlayer();  //用于播放音频
-
-
     private TingL_XQ_xz_Cotract.Presenter presenter;
     private String listen_id;
     private String type;
@@ -129,6 +129,8 @@ public class TingL_XZ_Fragment extends BaseFragment implements TingL_XQ_xz_Cotra
     String str = null;
     private String listen_optionContent;
     private String listen_optionPhotoes;
+    private String listen_answer;
+    private String avgScore;
 
     @Override
     protected int getLayoutId() {
@@ -172,8 +174,12 @@ public class TingL_XZ_Fragment extends BaseFragment implements TingL_XQ_xz_Cotra
                     @Override
                     public void onCompletion(MediaPlayer mp) {
 
+                        if (BFZt != null){
+
                         MyLog.e("CheckBox_状态", BFZt.isChecked() + "");
                         BFZt.setChecked(false);
+                        bool[0] = false;
+                        }
                     }
                 });
             } catch (IOException e) {
@@ -181,6 +187,13 @@ public class TingL_XZ_Fragment extends BaseFragment implements TingL_XQ_xz_Cotra
             }
         }
     }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        mPlayer.stop();
+    }
+
 
     @Override
     protected void init(View view) {
@@ -198,22 +211,29 @@ public class TingL_XZ_Fragment extends BaseFragment implements TingL_XQ_xz_Cotra
         relativeLayout2 = view.findViewById(R.id.relativeLayout2);
 
 
-
         ArrayList<TingL_TK_Bean.DataBean.ListenQuestionListBean.ListenOptionListBean> list = (ArrayList<TingL_TK_Bean.DataBean.ListenQuestionListBean.ListenOptionListBean>) bundle.getSerializable("list");
 
         listen_optionContent = list.get(0).getListen_optionContent();
         listen_optionPhotoes = list.get(0).getListen_optionPhotoes();
 
+        MyLog.e("adhwahjakhlsa",listen_optionContent+listen_optionPhotoes);
 
+
+        listen_answer = bundle.getString("listen_answer");
         String title = bundle.getString("title");
         String ertitle = bundle.getString("ertitle");
         relative_path = bundle.getString("relative_path");
-
+        avgScore = bundle.getString("avgScore");
 
         listen_id = bundle.getString("listen_id");
         type = bundle.getString("type");
         listen_questId = bundle.getString("Listen_questId");
         TMTitle.setText(title);
+
+        String yema = bundle.getString("yema");
+        String dangq = bundle.getString("dangq");
+        MyLog.e("一共有————",yema);
+        textView3.setText(dangq+"/"+yema);
 
         if (listen_optionContent != null) {
 
@@ -244,6 +264,7 @@ public class TingL_XZ_Fragment extends BaseFragment implements TingL_XQ_xz_Cotra
             tmTitle.setText(ertitle);
 
         } else if (listen_optionPhotoes != null) {
+
             linearLayout.setVisibility(View.VISIBLE);
             linearLayoutZX.setVisibility(View.GONE);
 
@@ -264,11 +285,11 @@ public class TingL_XZ_Fragment extends BaseFragment implements TingL_XQ_xz_Cotra
             TextB.setText(list.get(1).getListen_option());
             TextC.setText(list.get(2).getListen_option());
 
-            if (XuanZA.getVisibility() == View.VISIBLE){
+            if (XuanZA.getVisibility() == View.VISIBLE) {
                 str = "A";
-            }else if (XuanZB.getVisibility() == View.VISIBLE){
+            } else if (XuanZB.getVisibility() == View.VISIBLE) {
                 str = "B";
-            }else if (XuanZC.getVisibility() == View.VISIBLE){
+            } else if (XuanZC.getVisibility() == View.VISIBLE) {
                 str = "C";
             }
 
@@ -287,40 +308,168 @@ public class TingL_XZ_Fragment extends BaseFragment implements TingL_XQ_xz_Cotra
     }
 
     private Boolean[] bool = {false};
+    private String FenS = null;
 
-    @OnClick({R.id.TJ_Xyt, R.id.next_T, R.id.Image_A, R.id.Image_B, R.id.Image_C, R.id.XX_A, R.id.XX_B, R.id.XX_C, R.id.XX_D,R.id.BF_zt})
+    @OnClick({R.id.TJ_Xyt, R.id.next_T, R.id.Image_A, R.id.Image_B, R.id.Image_C, R.id.XX_A, R.id.XX_B, R.id.XX_C, R.id.XX_D, R.id.BF_zt ,R.id.ChongZ})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.TJ_Xyt:
+                if (listen_optionContent != null) {
+                    if (BFOneXuanz.getVisibility() == View.GONE && BFTwoXuanz.getVisibility() == View.GONE && BFThreeXuanz.getVisibility() == View.GONE && BFFourXuanz.getVisibility() == View.GONE){
+                        Toast toast = Toast.makeText(App.activity, "请选择答案后提交", Toast.LENGTH_SHORT);
+                        toast.setGravity(Gravity.CENTER,0,0);
+                        toast.show();
+                        return;
+                    }else {
+                        if (BFOneXuanz.getVisibility() == View.VISIBLE) {
+                            str = "A";
+                            BFOneXuanz.setVisibility(View.GONE);
+                            BFTwoXuanz.setVisibility(View.GONE);
+                            BFThreeXuanz.setVisibility(View.GONE);
+                            BFFourXuanz.setVisibility(View.GONE);
+                            if (listen_answer.equals("A")) {
+                                FenS = avgScore;
+                                BFOne.setBackgroundResource(R.drawable.ture);
+                            } else {
+                                BFOne.setBackgroundResource(R.drawable.false_cuo);
+                                FenS = "0";
+                                if (listen_answer.equals("B")) {
+                                    BFTwo.setBackgroundResource(R.drawable.ture);
+                                } else if (listen_answer.equals("C")) {
+                                    BFThree.setBackgroundResource(R.drawable.ture);
+                                } else if (listen_answer.equals("D")) {
+                                    BFFour.setBackgroundResource(R.drawable.ture);
+                                }
+                            }
+                        } else if (BFTwoXuanz.getVisibility() == View.VISIBLE) {
+                            str = "B";
+                            BFOneXuanz.setVisibility(View.GONE);
+                            BFTwoXuanz.setVisibility(View.GONE);
+                            BFThreeXuanz.setVisibility(View.GONE);
+                            BFFourXuanz.setVisibility(View.GONE);
+                            if (listen_answer.equals("B")) {
+                                BFTwo.setBackgroundResource(R.drawable.ture);
+                                FenS = avgScore;
+                            } else {
+                                BFTwo.setBackgroundResource(R.drawable.false_cuo);
+                                FenS = "0";
+                                if (listen_answer.equals("A")) {
+                                    BFOne.setBackgroundResource(R.drawable.ture);
+                                } else if (listen_answer.equals("C")) {
+                                    BFThree.setBackgroundResource(R.drawable.ture);
+                                } else if (listen_answer.equals("D")) {
+                                    BFFour.setBackgroundResource(R.drawable.ture);
+                                }
+                            }
+                        } else if (BFThreeXuanz.getVisibility() == View.VISIBLE) {
+                            str = "C";
+                            BFOneXuanz.setVisibility(View.GONE);
+                            BFTwoXuanz.setVisibility(View.GONE);
+                            BFThreeXuanz.setVisibility(View.GONE);
+                            BFFourXuanz.setVisibility(View.GONE);
+                            if (listen_answer.equals("C")) {
+                                FenS = avgScore;
+                                BFThree.setBackgroundResource(R.drawable.ture);
+                            } else {
+                                BFThree.setBackgroundResource(R.drawable.false_cuo);
+                                FenS = "0";
+                                if (listen_answer.equals("A")) {
+                                    BFOne.setBackgroundResource(R.drawable.ture);
+                                } else if (listen_answer.equals("B")) {
+                                    BFTwo.setBackgroundResource(R.drawable.ture);
+                                } else if (listen_answer.equals("D")) {
+                                    BFFour.setBackgroundResource(R.drawable.ture);
+                                }
+                            }
+                        } else if (BFFourXuanz.getVisibility() == View.VISIBLE) {
+                            str = "D";
+                            BFOneXuanz.setVisibility(View.GONE);
+                            BFTwoXuanz.setVisibility(View.GONE);
+                            BFThreeXuanz.setVisibility(View.GONE);
+                            BFFourXuanz.setVisibility(View.GONE);
 
-
-                if (listen_optionContent != null){
-                    if (BFOneXuanz.getVisibility() == View.VISIBLE){
-                        str = "A";
-                    }else if (BFTwoXuanz.getVisibility() == View.VISIBLE) {
-                        str = "B";
-                    }else if (BFThreeXuanz.getVisibility() == View.VISIBLE){
-                        str ="C";
-                    }else if (BFFourXuanz.getVisibility() == View.VISIBLE){
-                        str = "D";
+                            if (listen_answer.equals("D")) {
+                                FenS = avgScore;
+                                BFFour.setBackgroundResource(R.drawable.ture);
+                            } else {
+                                FenS = "0";
+                                BFFour.setBackgroundResource(R.drawable.false_cuo);
+                                if (listen_answer.equals("A")) {
+                                    BFOne.setBackgroundResource(R.drawable.ture);
+                                } else if (listen_answer.equals("B")) {
+                                    BFTwo.setBackgroundResource(R.drawable.ture);
+                                } else if (listen_answer.equals("C")) {
+                                    BFThree.setBackgroundResource(R.drawable.ture);
+                                }
+                            }
+                        }
                     }
-                }else if (listen_optionPhotoes != null){
+                } else if (listen_optionPhotoes != null) {
 
-                    if (XuanZA.getVisibility() == View.VISIBLE){
-                        str = "A";
-                    }else if (XuanZB.getVisibility() == View.VISIBLE){
-                        str = "B";
-                    }else if (XuanZC.getVisibility() == View.VISIBLE){
-                        str = "C";
+                    if (XuanZA.getVisibility() == View.GONE && XuanZB.getVisibility() == View.GONE && XuanZC.getVisibility() == View.GONE) {
+                        Toast toast = Toast.makeText(App.activity, "请选择答案后提交", Toast.LENGTH_SHORT);
+                        toast.setGravity(Gravity.CENTER,0,0);
+                        toast.show();
+                    } else {
+                        if (XuanZA.getVisibility() == View.VISIBLE) {
+                            str = "A";
+                            if (listen_answer.equals("A")) {
+                                FenS = avgScore;
+                                XuanZA.setBackgroundResource(R.drawable.xuanz_true);
+                            } else {
+                                FenS = "0";
+                                XuanZA.setBackgroundResource(R.drawable.xuanz_false);
+                                if (listen_answer.equals("B")) {
+                                    XuanZB.setVisibility(View.VISIBLE);
+                                    XuanZB.setBackgroundResource(R.drawable.xuanz_true);
+                                } else if (listen_answer.equals("C")) {
+                                    XuanZC.setVisibility(View.VISIBLE);
+                                    XuanZC.setBackgroundResource(R.drawable.xuanz_true);
+                                }
+                            }
+                        } else if (XuanZB.getVisibility() == View.VISIBLE) {
+                            str = "B";
+
+                            if (listen_answer.equals("B")) {
+                                FenS = avgScore;
+                                XuanZB.setBackgroundResource(R.drawable.xuanz_true);
+                            } else {
+                                FenS = "0";
+                                XuanZB.setBackgroundResource(R.drawable.xuanz_false);
+                                if (listen_answer.equals("A")) {
+                                    XuanZA.setVisibility(View.VISIBLE);
+                                    XuanZA.setBackgroundResource(R.drawable.xuanz_true);
+                                } else if (listen_answer.equals("C")) {
+                                    XuanZC.setVisibility(View.VISIBLE);
+                                    XuanZC.setBackgroundResource(R.drawable.xuanz_true);
+                                }
+                            }
+                        } else if (XuanZC.getVisibility() == View.VISIBLE) {
+                            str = "C";
+                            if (listen_answer.equals("C")) {
+                                FenS = avgScore;
+                                XuanZC.setBackgroundResource(R.drawable.xuanz_true);
+                            } else {
+                                FenS = "0";
+                                XuanZC.setBackgroundResource(R.drawable.xuanz_false);
+                                if (listen_answer.equals("A")) {
+                                    XuanZA.setVisibility(View.VISIBLE);
+                                    XuanZA.setBackgroundResource(R.drawable.xuanz_true);
+                                } else if (listen_answer.equals("B")) {
+                                    XuanZB.setVisibility(View.VISIBLE);
+                                    XuanZB.setBackgroundResource(R.drawable.xuanz_true);
+                                }
+                            }
+                        }
                     }
-
                 }
-
-
                 presenter = new TiL_BaoC_Presenter(this);
-                presenter.SetUrl(listen_id,type,App.stuid,"2",listen_questId,str,"");
+                presenter.SetUrl(listen_id, type, App.stuid, "2", listen_questId, str, FenS);
 
+                TJXyt.setText("下一题");
+                ChongZ.setVisibility(View.VISIBLE);
                 break;
+
             case R.id.next_T:
                 break;
             case R.id.BF_zt:
@@ -328,14 +477,16 @@ public class TingL_XZ_Fragment extends BaseFragment implements TingL_XQ_xz_Cotra
                     if (mPlayer.isPlaying()) {
                         MyLog.e("lalall", "ahahahahh");
                         mPlayer.pause();
+                        bool[0] = false;
                     }
-                    bool[0] = false;
+
                 } else {
                     if (!mPlayer.isPlaying()) {
                         MyLog.e("holle dnsjk", "ahahahahh");
                         mPlayer.start();
+                        bool[0] = true;
                     }
-                    bool[0] = true;
+
                 }
 
                 break;
@@ -381,7 +532,11 @@ public class TingL_XZ_Fragment extends BaseFragment implements TingL_XQ_xz_Cotra
                 BFThreeXuanz.setVisibility(View.GONE);
                 BFFourXuanz.setVisibility(View.VISIBLE);
                 break;
+            case R.id.ChongZ:
 
+
+
+                break;
         }
     }
 
@@ -412,7 +567,7 @@ public class TingL_XZ_Fragment extends BaseFragment implements TingL_XQ_xz_Cotra
         App.activity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                Toast.makeText(App.activity,flag,Toast.LENGTH_LONG).show();
+//                Toast.makeText(App.activity,flag,Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -426,7 +581,6 @@ public class TingL_XZ_Fragment extends BaseFragment implements TingL_XQ_xz_Cotra
     public void setBasePresenter(TingL_XQ_xz_Cotract.Presenter presenter) {
 
     }
-
 
 //    @Override
 //    public void onDestroyView() {

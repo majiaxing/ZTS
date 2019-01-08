@@ -3,6 +3,7 @@ package com.example.lenovo.ztsandroid.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -106,9 +107,12 @@ public class JiaR_XuanZ_Activity extends BaseActivity implements JaR_Bj_Cotract.
                 break;
             case R.id.Jr_bj_btn:
                 if (classId == null){
-                    Toast.makeText(App.activity,"请选择班级",Toast.LENGTH_SHORT).show();
-                }else {
 
+                    Toast toast = Toast.makeText(App.activity,"请选择班级", Toast.LENGTH_SHORT);
+                    toast.setGravity(Gravity.CENTER, 0, 0);
+                    toast.show();
+//                    Toast.makeText(App.activity,"请选择班级",Toast.LENGTH_SHORT).show();
+                }else {
                     presenter = new Xz_Bj_Presenter(this);
                     presenter.SetUrl(App.stuid,classId);
                 }
@@ -121,7 +125,6 @@ public class JiaR_XuanZ_Activity extends BaseActivity implements JaR_Bj_Cotract.
     public void getManager(BanJBean duiHXqBean) {
 
     }
-
     @Override
     public void getManagerO(Xz_Bj_Bean str) {
 

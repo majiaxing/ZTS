@@ -14,26 +14,22 @@ import com.example.lenovo.ztsandroid.adapter.ViewPagerAdapter;
 import com.example.lenovo.ztsandroid.base.BaseActivity;
 import com.example.lenovo.ztsandroid.cotract.zuoye.ZuoY_Dh_Cotract;
 import com.example.lenovo.ztsandroid.fragment.task.xq_ym.Zy_DuiH_TZYX_Fragment;
-import com.example.lenovo.ztsandroid.fragment.task.xq_ym.Zy_Duihua_Fragment;
 import com.example.lenovo.ztsandroid.model.entity.Spinner_D_Bean;
 import com.example.lenovo.ztsandroid.model.entity.ZuoY_Dh_Bean;
 import com.example.lenovo.ztsandroid.presenter.zuoye.ZuoY_Dh_presenter;
 import com.example.lenovo.ztsandroid.utils.MyLog;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * Created by Administrator on 2018/11/29.
  */
-public class DuiH_TZYX_ErJFragment extends BaseActivity implements ZuoY_Dh_Cotract.View{
+public class DuiH_TZYX_ErJFragment extends BaseActivity implements ZuoY_Dh_Cotract.View {
 
     @BindView(R.id.back_jt)
     LinearLayout backJt;
@@ -43,8 +39,7 @@ public class DuiH_TZYX_ErJFragment extends BaseActivity implements ZuoY_Dh_Cotra
     TextView LeiXin;
     @BindView(R.id.YeShu)
     TextView YeShu;
-    @BindView(R.id.Zongyeshu)
-    TextView Zongyeshu;
+
     @BindView(R.id.LeiX)
     RelativeLayout LeiX;
     @BindView(R.id.viewPager)
@@ -72,19 +67,18 @@ public class DuiH_TZYX_ErJFragment extends BaseActivity implements ZuoY_Dh_Cotra
     protected void initView() {
 
         Intent intent = getIntent();
-    hw_type = intent.getStringExtra("hw_type");
-    hw_content = intent.getStringExtra("hw_content");
-    hwid = intent.getStringExtra("hwid");
-    avgScores = String.valueOf(intent.getDoubleExtra("avgScore",1));
-}
+        hw_type = intent.getStringExtra("hw_type");
+        hw_content = intent.getStringExtra("hw_content");
+        hwid = intent.getStringExtra("hwid");
+        avgScores = String.valueOf(intent.getDoubleExtra("avgScore", 1));
+        LeiXin.setText("对话");
+    }
 
     @Override
     public void initData() {
         presenter = new ZuoY_Dh_presenter(this);
-        presenter.SetUrl(App.stuid,hwid,"","",hw_type,hw_content,avgScores);
+        presenter.SetUrl(App.stuid, hwid, "", "", hw_type, hw_content, avgScores);
     }
-
-
 
 
     @Override
@@ -98,53 +92,60 @@ public class DuiH_TZYX_ErJFragment extends BaseActivity implements ZuoY_Dh_Cotra
         // TODO: add setContentView(...) invocation
         ButterKnife.bind(this);
     }
-    private Boolean isJS =false;
+
+    private Boolean isJS = false;
+
     @Override
     public void getManager(final ZuoY_Dh_Bean zuoYDyBean) {
-        MyLog.e("DSAHDKSAH",zuoYDyBean.getData().getTypeList().size() + "");
+        MyLog.e("DSAHDKSAH", zuoYDyBean.getData().getTypeList().size() + "");
         App.activity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
 
                 Zy_DuiH_TZYX_Fragment zuYYinBFragment = new Zy_DuiH_TZYX_Fragment();
-                    bundle = new Bundle();
+                bundle = new Bundle();
 
-                for (int i = 0; i<zuoYDyBean.getData().getTypeList().size();i++ ) {
-                    if (isJS){
+                for (int i = 0; i < zuoYDyBean.getData().getTypeList().size(); i++) {
+                    if (isJS) {
                         zuoYDyBean.getData().getTypeList().get(i).setJS(isJS);
-                        isJS =false;
-                    }else {
+                        isJS = false;
+                    } else {
                         zuoYDyBean.getData().getTypeList().get(i).setJS(isJS);
-                        isJS =true;
+                        isJS = true;
                     }
 
                     videolist.add(zuoYDyBean.getData().getTypeList().get(i).getJuese_video());
-                    bundle.putSerializable("Juese_videoList",videolist);
+                    bundle.putSerializable("Juese_videoList", videolist);
                     MyLog.e("listview 数据", zuoYDyBean.getData().toString() + "");
 
                 }
-                    bundle.putString("hw_type",hw_type);
-                    bundle.putString("hw_content",hw_content);
-                    bundle.putString("hwid",hwid);
-                    bundle.putString("Relative_path",zuoYDyBean.getData().getRelative_path());
-                    bundle.putSerializable("list", (Serializable) zuoYDyBean.getData().getTypeList());
-                    zuYYinBFragment.setParams(bundle);
-                    nlist.add(zuYYinBFragment);
+                bundle.putString("hw_type", hw_type);
+                bundle.putString("hw_content", hw_content);
+                bundle.putString("hwid", hwid);
+                bundle.putString("Relative_path", zuoYDyBean.getData().getRelative_path());
+                bundle.putSerializable("list", (Serializable) zuoYDyBean.getData().getTypeList());
+                zuYYinBFragment.setParams(bundle);
+                nlist.add(zuYYinBFragment);
                 adapter = new ViewPagerAdapter(getSupportFragmentManager(), nlist);
                 viewPager.setAdapter(adapter);
                 adapter.notifyDataSetChanged();
             }
         });
     }
+
     @Override
     public void showmessage(String str) {
 
     }
 
 
-
     @Override
     public void setBasePresenter(ZuoY_Dh_Cotract.Presenter presenter) {
 
+    }
+
+    @OnClick(R.id.back_jt)
+    public void onViewClicked() {
+        App.activity.onBackPressed();
     }
 }

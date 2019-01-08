@@ -1,11 +1,15 @@
 package com.example.lenovo.ztsandroid.fragment;
 
+import android.content.Context;
 import android.media.AudioFormat;
 import android.media.AudioRecord;
 import android.media.MediaPlayer;
 import android.media.MediaRecorder;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,8 +36,11 @@ import com.example.lenovo.ztsandroid.presenter.Lu_Study_Presenter;
 import com.example.lenovo.ztsandroid.presenter.PinC_Fay_presenter;
 import com.example.lenovo.ztsandroid.presenter.ZhiL_Csh_Fy_Presenter;
 import com.example.lenovo.ztsandroid.utils.ConvertUtil;
+import com.example.lenovo.ztsandroid.utils.FileAccessI;
 import com.example.lenovo.ztsandroid.utils.MyLog;
+import com.example.lenovo.ztsandroid.utils.ZhiL_Key_Velue;
 import com.example.lenovo.ztsandroid.view.RippleIntroView;
+
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -44,10 +51,16 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Properties;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -120,6 +133,7 @@ public class KeW_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.Vie
     private String sessionId;
     private String str;
     private String nr;
+    private String string2;
 
     @Override
     protected int getLayoutId() {
@@ -157,12 +171,14 @@ public class KeW_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.Vie
 
                     }
                 });
+
                 mPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                     @Override
                     public void onCompletion(MediaPlayer mp) {
 
                         MyLog.e("CheckBox_状态", BFZt.isChecked() + "");
                         BFZt.setChecked(false);
+                        bool[0] = false;
                     }
                 });
 
@@ -172,6 +188,13 @@ public class KeW_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.Vie
         }
     }
 
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        mPlayer.stop();
+    }
+
+
 
     private static final String TAG = "AudioRecordActivity";
     private int bufferSizeInBytes = 0;//缓冲区大小
@@ -180,7 +203,7 @@ public class KeW_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.Vie
     //设置音频的采样率，44100是目前的标准，但是某些设备仍然支持22050,16000,11025
     private static int sampleRateInHz = 16000;
     //设置音频的录制声道，CHANNEL_IN_STEREO为双声道，CHANNEL_CONFIGURATION_MONO为单声道
-    private static int channelConfig = AudioFormat.CHANNEL_IN_STEREO;
+    private static int channelConfig = AudioFormat.CHANNEL_CONFIGURATION_MONO;
     //设置音频数据格式:PCM 16位每个样本，保证设备支持。PCM 8位每个样本，不一定能得到设备的支持。
     private static int audioFormat = AudioFormat.ENCODING_PCM_16BIT;
     //AudioName裸音频数据文件
@@ -271,24 +294,107 @@ public class KeW_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.Vie
         }
     }
 
+
+    /**
+     *
+     * @param context
+     * @param tag  文件的唯一标识
+     * @param sourceFilePath  要分片文件的地址
+     * @param partFileLength  分片的大小 byte
+     * @return
+     * @throws Exception
+     */
+    private int partNumber = 0;
+
+    private  List<String> fileList( String sourceFilePath, int partFileLength) {
+
+        List<String> fileList = new ArrayList<>();
+
+        File sourceFile = null;//要分片的文件
+        File targetFile = null;//分片时实例出来的文件
+        InputStream ips = null;//要分片文件转换的输入流
+        OutputStream ops = null;//分片后，分片文件的输出流
+
+        OutputStream configOps = null;//该文件流用于存储文件分割后的相关信息，包括分割后的每个子文件的编号和路径,以及未分割前文件名
+        Properties partInfo = null;//properties用于存储文件分割的信息
+        byte[] buffer = null;
+
+
+        sourceFile = new File(sourceFilePath);//待分割文件
+        try {
+            ips = new FileInputStream(sourceFile);//找到读取源文件并获取输入流
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            configOps = new FileOutputStream(new File(""));
+
+        buffer = new byte[partFileLength];//开辟缓存空间
+        int tempLength = 0;
+        partInfo = new Properties();//key:1开始自动编号 value:文件路径
+
+            try {
+                while ((tempLength = ips.read(buffer, 0, partFileLength)) != -1) {
+
+                    String targetFilePath = "/sdcard/" + System.currentTimeMillis() + "_" + partNumber;//分割后的文件路径
+                    partInfo.setProperty((partNumber++) + "", targetFilePath);//将相关信息存储进properties
+                    targetFile = new File(targetFilePath);
+                    ops = new FileOutputStream(targetFile);//分割后文件
+                    ops.write(buffer, 0, tempLength);//将信息写入碎片文件
+
+                    ops.close();//关闭碎片文件
+                    fileList.add(targetFilePath);
+                }
+
+            partInfo.setProperty("name", sourceFile.getName());//存储源文件名
+        partInfo.store(configOps, "ConfigFile");//将properties存储进实体文件中
+        ips.close();//关闭源文件流
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        return fileList;
+    }
+
+private int anInt = 0;
     /**
      * 停止录制音频
      */
     private void stopAudioRecord() {
         close();
-        File file = new File(NewAudioName);
 
-        byte[] bytes = FileUtil.readBytes(file);
-        String toBase64 = Base64Encoder.encode(bytes, CharsetUtil.CHARSET_ISO_8859_1);
+                List<String> strings = fileList(NewAudioName, 102400);
+//
+                MyLog.e("分片 个数",strings.toString()+ "_____"+strings.size());
+//                if (strings.size() == 0){
+//                    Toast toast = Toast.makeText(App.activity, "请正常发音", Toast.LENGTH_LONG);
+//                    toast.setGravity(Gravity.CENTER,0,0);
+//                    toast.show();
+//                    linear.setVisibility(View.GONE);
+//                    line.setVisibility(View.VISIBLE);
+//                }
 
-        if (sessionId != null) {
+//                while (strings.size() > 0 ){
+//                    anInt  = anInt+1;
+                    File file = new File(NewAudioName);
+                    byte[] bytes = FileUtil.readBytes(file);
+                    String toBase64 = Base64Encoder.encode(bytes, CharsetUtil.CHARSET_ISO_8859_1);
+                    if (sessionId != null) {
+//                    if (anInt == strings.size()){
+                        presenter = new PinC_Fay_presenter(this);
+                        presenter.seturlZhiL("1", "1", "2", "1", toBase64, sessionId);
 
-            linear.setVisibility(View.VISIBLE);
-            line.setVisibility(View.GONE);
+                        linear.setVisibility(View.VISIBLE);
+                        line.setVisibility(View.GONE);
+//                    }else {
+//                        presenter = new PinC_Fay_presenter(this);
+//                        presenter.seturlZhiL(String.valueOf(anInt), "0", "2", "1", toBase64, sessionId);
+//                    }
+                  }
 
-            presenter = new PinC_Fay_presenter(this);
-            presenter.seturlZhiL("1", "1", "2", "1", toBase64, sessionId);
-        }
     }
 
     private void close() {
@@ -459,10 +565,9 @@ public class KeW_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.Vie
 
     @Override
     protected void init(View view) {
-
-
+//        TencentSOE tencentSOE = TencentSOE.newInstance(ZhiL_Key_Velue.SECRETID, ZhiL_Key_Velue.SECRETKEY);
+//        tencentSOE.startRecordMp3("/sdcard/","hahaha这是测试录音");
 //        mlist.add(new Spinner_Bean("When we asks parents for money and for other things, we are so naturally to do it and without thinking too much. If our parents refuse, we will be angry. But the fact is that they don’t owe us, instead, we owes them and most of us don’t know the meaning of gratitude. Don’t take everything from our parents as a necessary. "));
-
 
         nr = bundle.getString("nr");
         String fy = bundle.getString("fy");
@@ -481,9 +586,6 @@ public class KeW_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.Vie
         FyText.setText(fy);
         linearLayout.setVisibility(View.VISIBLE);
         }
-
-
-
 
         FyText.setVisibility(View.GONE);
 
@@ -516,10 +618,12 @@ public class KeW_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.Vie
         return rootView;
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        unbinder.unbind();
+
+    private void sendMessage(int what, Object obj) {
+        Message msg = new Message();
+        msg.what = what;
+        msg.obj = obj;
+        mMyHandler.sendMessage(msg);
     }
 
 
@@ -539,65 +643,139 @@ public class KeW_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.Vie
                     if (mPlayer.isPlaying()) {
                         MyLog.e("lalall", "ahahahahh");
                         mPlayer.pause();
+                        bool[0] = false;
                     }
-                    bool[0] = false;
                 } else {
                     if (!mPlayer.isPlaying()) {
                         MyLog.e("holle dnsjk", "ahahahahh");
                         mPlayer.start();
+                        bool[0] = true;
                     }
-                    bool[0] = true;
                 }
                 break;
             case R.id.Ly_btn:
                 if (b[0]) {
 
-                    stopAudioRecord();
+                        stopAudioRecord();
+//                    TencentSOE.stopFrameRecord();
+
                     Ripple.setColor(this.getResources().getColor(R.color.pe_gray));
                     b[0] = false;
                 } else {
                     startAudioRecord();
-                    presenter = new ZhiL_Csh_Fy_Presenter(this);
-
-                    String s = null;
-                    try {
-
-                        s = URLEncoder.encode(nr, "utf-8").replaceAll("\\+", "%3F");
-
-                    } catch (UnsupportedEncodingException e) {
-                        e.printStackTrace();
-                    }
-
+//                    TencentSOE tencentSOE = TencentSOE.newInstance(ZhiL_Key_Velue.SECRETID, ZhiL_Key_Velue.SECRETKEY);
+//                    tencentSOE.startRecordMp3("/sdcard/","hahaha这是测试录音");
+//                    presenter = new ZhiL_Csh_Fy_Presenter(this);
+//                    String s = null;
+//
                     String newStr = nr.replace("？", ""); //得到新的字符串
                     String string = newStr.replace("'", "");
                     MyLog.e("去掉中文字符串", string);
 
-                    presenter.setUrlsZhiL("2", string, System.currentTimeMillis() + "", "1", "4.0");
+                    try {
+                        string2 = URLEncoder.encode(string, "utf-8").replaceAll("\\+", "%20");
+
+                    } catch (UnsupportedEncodingException e) {
+                        e.printStackTrace();
+                    }
+                    presenter.setUrlsZhiL("2", string2, System.currentTimeMillis() + "", "1", "4.0");
                     b[0] = true;
                     Ripple.setColor(this.getResources().getColor(R.color.text_color_red));
+
+//                        try {
+//
+//                            TencentSOE.newInstance(ZhiL_Key_Velue.SECRETID, ZhiL_Key_Velue.SECRETKEY)
+//                                    .setRootUrl("soe.ap-guangzhou.tencentcloudapi.com/")// 非必要
+//                                    .setRegion("ap-guangzhou")// 非必要
+//                                    .setSoeAppId("default")// 非必要
+//                                    .setRefText(string2)
+//                                    .setEvalMode(2)
+//                                    .setWorkMode(TencentSOE.WORK_MODE_STREAM)
+//                                    .setScoreCoeff(1.0f)
+//                                    .setVoiceFileType(TencentSOE.AUDIO_TYPE_MP3)
+//                                    .setIsLongLifeSession(TencentSOE.SESSION_LIFE_SHORT)
+//                                    .setCallBack(callback)
+//                                    .startFrameRecord();
+//
+//                        }
+//                        catch (Exception e) {
+//                            sendMessage(ZhiL_Key_Velue.MSG_ERROR, e.getMessage());
+//                            TencentSOE.stopFrameRecord();
+//                        }
                 }
                 break;
         }
     }
 
-    private ArrayList<String> getAllSatisfyStr(String str, String regex) {
-        if (str == null || str.isEmpty()) {
-            return null;
-        }
-        ArrayList<String> allSatisfyStr = new ArrayList<>();
-        if (regex == null || regex.isEmpty()) {
-            allSatisfyStr.add(str);
-            return allSatisfyStr;
-        }
-        Pattern pattern = Pattern.compile(regex);
-        Matcher matcher = pattern.matcher(str);
-        while (matcher.find()) {
-            allSatisfyStr.add(matcher.group());
-        }
-        return allSatisfyStr;
+    private void toast(String text) {
+        final Toast toast = Toast.makeText(App.activity, text, Toast.LENGTH_LONG);
+        final Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                toast.show();
+            }
+        }, 0, 3000);
+        new Timer().schedule(new TimerTask() {
+            @Override
+            public void run() {
+                toast.cancel();
+                timer.cancel();
+            }
+        }, 1000);
     }
 
 
+    private Handler mMyHandler = new Handler(new HandlerCallback());
+
+    class HandlerCallback implements Handler.Callback {
+        @Override
+        public boolean handleMessage(Message msg) {
+            switch (msg.what) {
+                case ZhiL_Key_Velue.MSG_INIT_OK:
+
+                    toast("初始化成功");
+                    break;
+                case ZhiL_Key_Velue.MSG_INIT_ERROR:
+                    toast(msg.obj.toString());
+
+                    break;
+                case ZhiL_Key_Velue.MSG_TRANSMIT_OK:
+
+                    int index = msg.arg1;
+                    int isEnd = msg.arg2;
+                    toast(index + (isEnd == 1 ? " - 已完成" : " - 未完成"));
+                    break;
+                case ZhiL_Key_Velue.MSG_TRANSMIT_ERROR:
+                    toast(msg.obj.toString());
+                    break;
+                case ZhiL_Key_Velue.MSG_ERROR:
+                    toast(msg.obj.toString());
+                    break;
+            }
+            return true;
+        }
+    }
+
+
+
+//    private SOECallback callback = new SOECallback() {
+//        public void onInitSuccess(InitOralProcessResponse response) {
+//            sendMessage(ZhiL_Key_Velue.MSG_INIT_OK, response.toString());
+//
+//            MyLog.e("打印的评估结果",response.toString() + "");
+//        }
+//
+//        @Override
+//        public void onTransmitSuccess(int i, int i1, TransmitOralProcessResponse transmitOralProcessResponse) {
+//
+//        }
+//
+//        @Override
+//        public void onError(SOEError soeError) {
+//            sendMessage(ZhiL_Key_Velue.MSG_INIT_ERROR, soeError.getMessage());
+//        }
+//    };
     private float f;
     float fff = 0;
     float flo = 0;
@@ -619,7 +797,12 @@ public class KeW_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.Vie
                     public void run() {
                         linear.setVisibility(View.GONE);
                         line.setVisibility(View.VISIBLE);
-                        Toast.makeText(App.activity, "评估失败", Toast.LENGTH_LONG).show();
+//                        Toast.makeText(App.activity, "评估失败", Toast.LENGTH_LONG).show();
+
+                        Toast toast = Toast.makeText(App.activity, "评估失败", Toast.LENGTH_SHORT);
+                        toast.setGravity(Gravity.CENTER, 0, 0);
+                        toast.show();
+
                     }
                 });
                 return;
@@ -682,7 +865,11 @@ public class KeW_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.Vie
                     public void run() {
                         linear.setVisibility(View.GONE);
                         line.setVisibility(View.VISIBLE);
-                        Toast.makeText(App.activity, "请正常朗读", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(App.activity, "请正常朗读", Toast.LENGTH_SHORT).show();
+
+                        Toast toast = Toast.makeText(App.activity, "请正常朗读", Toast.LENGTH_SHORT);
+                        toast.setGravity(Gravity.CENTER, 0, 0);
+                        toast.show();
                     }
                 });
                 return;
@@ -699,7 +886,11 @@ public class KeW_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.Vie
             App.activity.runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    Toast.makeText(App.activity, "评估失败", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(App.activity, "评估失败", Toast.LENGTH_SHORT).show();
+
+                    Toast toast = Toast.makeText(App.activity, "评估失败", Toast.LENGTH_SHORT);
+                    toast.setGravity(Gravity.CENTER, 0, 0);
+                    toast.show();
                 }
             });
         } else {
@@ -707,18 +898,13 @@ public class KeW_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.Vie
             sessionId = yuYinPinGBean.getResponse().getSessionId();
         }
 
-
     }
-
     @Override
     public void getManagerO(String pinC_fay_bean) {
 
         MyLog.e("请求成功——得到的json", pinC_fay_bean);
         JsonDemo(pinC_fay_bean);
-
     }
-
-
     @Override
     public void getManagerT(Stdey_Bean xq_bean) {
         save_path = xq_bean.getData().getSave_path();

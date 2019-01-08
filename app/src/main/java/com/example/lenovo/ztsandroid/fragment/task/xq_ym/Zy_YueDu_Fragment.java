@@ -56,6 +56,8 @@ public class Zy_YueDu_Fragment extends BaseFragment implements Lu_SC_Cotract.Vie
     private String hw_content;
     private String hwid;
     private String hw_answerId;
+    private String everyScore;
+
     @Override
     protected int getLayoutId() {
         return R.layout.read_feagment;
@@ -76,7 +78,7 @@ public class Zy_YueDu_Fragment extends BaseFragment implements Lu_SC_Cotract.Vie
         hwid = bundle.getString("hwid");
 
         hw_answerId = bundle.getString("hw_answerId");
-
+        everyScore = bundle.getString("EveryScore");
         MyLog.e("@_@!!!!!!!!!!!", kWy + "" + hw_answerId);
 
         DuanWNr.setText(kWy);
@@ -94,32 +96,31 @@ public class Zy_YueDu_Fragment extends BaseFragment implements Lu_SC_Cotract.Vie
 //        TmListView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
         listadapter.setOnItemlick(this);
 
-        TmListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-                View view1 = TmListView.getChildAt(position);
-                TextView  checkBoxA= view1.findViewById(R.id.BF_A_Xuanz);
-                TextView  checkBoxB= view1.findViewById(R.id.BF_B_Xuanz);
-                TextView  checkBoxC= view1.findViewById(R.id.BF_C_Xuanz);
-                TextView  checkBoxD= view1.findViewById(R.id.BF_D_Xuanz);
-
-
-                if (checkBoxA.getVisibility() == View.VISIBLE){
-                    presenter = new Lu_SC_Presenter(Zy_YueDu_Fragment.this);
-                    presenter.SetU(App.stuid,hwid,"6",hw_content,hw_answerId,list.get(position).getRead_optionA(),"1");
-                } else if (checkBoxB.getVisibility() == View.VISIBLE) {
-                    presenter = new Lu_SC_Presenter(Zy_YueDu_Fragment.this);
-                    presenter.SetU(App.stuid,hwid,"6",hw_content,hw_answerId,list.get(position).getRead_optionB(),"1");
-                }else if (checkBoxC.getVisibility() == View.VISIBLE){
-                    presenter = new Lu_SC_Presenter(Zy_YueDu_Fragment.this);
-                    presenter.SetU(App.stuid,hwid,"6",hw_content,hw_answerId,list.get(position).getRead_optionC(),"1");
-                }else if (checkBoxD.getVisibility() == View.VISIBLE){
-                    presenter = new Lu_SC_Presenter(Zy_YueDu_Fragment.this);
-                    presenter.SetU(App.stuid,hwid,"6",hw_content,hw_answerId,list.get(position).getRead_optionD(),"1");
-                }
-            }
-        });
+//        TmListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//
+//                View view1 = TmListView.getChildAt(position);
+//                TextView  checkBoxA= view1.findViewById(R.id.BF_A_Xuanz);
+//                TextView  checkBoxB= view1.findViewById(R.id.BF_B_Xuanz);
+//                TextView  checkBoxC= view1.findViewById(R.id.BF_C_Xuanz);
+//                TextView  checkBoxD= view1.findViewById(R.id.BF_D_Xuanz);
+//
+//                if (checkBoxA.getVisibility() == View.VISIBLE){
+//                    presenter = new Lu_SC_Presenter(Zy_YueDu_Fragment.this);
+//                    presenter.SetU(App.stuid,hwid,"6",hw_content,hw_answerId,list.get(position).getRead_optionA(),"1",everyScore);
+//                } else if (checkBoxB.getVisibility() == View.VISIBLE) {
+//                    presenter = new Lu_SC_Presenter(Zy_YueDu_Fragment.this);
+//                    presenter.SetU(App.stuid,hwid,"6",hw_content,hw_answerId,list.get(position).getRead_optionB(),"1",everyScore);
+//                }else if (checkBoxC.getVisibility() == View.VISIBLE){
+//                    presenter = new Lu_SC_Presenter(Zy_YueDu_Fragment.this);
+//                    presenter.SetU(App.stuid,hwid,"6",hw_content,hw_answerId,list.get(position).getRead_optionC(),"1",everyScore);
+//                }else if (checkBoxD.getVisibility() == View.VISIBLE){
+//                    presenter = new Lu_SC_Presenter(Zy_YueDu_Fragment.this);
+//                    presenter.SetU(App.stuid,hwid,"6",hw_content,hw_answerId,list.get(position).getRead_optionD(),"1",everyScore);
+//                }
+//            }
+//        });
     }
 
 
@@ -203,19 +204,19 @@ public class Zy_YueDu_Fragment extends BaseFragment implements Lu_SC_Cotract.Vie
         switch (view.getId()){
             case R.id.Xuanz_btn_A:
                 presenter = new Lu_SC_Presenter(Zy_YueDu_Fragment.this);
-                presenter.SetU(App.stuid,hwid,hw_type,hw_content,hw_answerId,list.get(0).getRead_optionA(),"80");
+                presenter.SetU(App.stuid,hwid,hw_type,hw_content,hw_answerId,list.get(0).getRead_optionA(),"80",everyScore);
                 break;
             case R.id.Xuanz_btn_B:
                 presenter = new Lu_SC_Presenter(Zy_YueDu_Fragment.this);
-                presenter.SetU(App.stuid,hwid,hw_type,hw_content,hw_answerId,list.get(1).getRead_optionB(),"80");
+                presenter.SetU(App.stuid,hwid,hw_type,hw_content,hw_answerId,list.get(1).getRead_optionB(),"80",everyScore);
                 break;
             case R.id.Xuanz_btn_C:
                 presenter = new Lu_SC_Presenter(Zy_YueDu_Fragment.this);
-                presenter.SetU(App.stuid,hwid,hw_type,hw_content,hw_answerId,list.get(2).getRead_optionC(),"80");
+                presenter.SetU(App.stuid,hwid,hw_type,hw_content,hw_answerId,list.get(2).getRead_optionC(),"80",everyScore);
                 break;
             case R.id.Xuanz_btn_D:
                 presenter = new Lu_SC_Presenter(Zy_YueDu_Fragment.this);
-                presenter.SetU(App.stuid,hwid,hw_type,hw_content,hw_answerId,list.get(3).getRead_optionD(),"80");
+                presenter.SetU(App.stuid,hwid,hw_type,hw_content,hw_answerId,list.get(3).getRead_optionD(),"80",everyScore);
                 break;
         }
     }

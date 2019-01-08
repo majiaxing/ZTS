@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -13,10 +12,8 @@ import com.example.lenovo.ztsandroid.App;
 import com.example.lenovo.ztsandroid.R;
 import com.example.lenovo.ztsandroid.adapter.ViewPagerAdapter;
 import com.example.lenovo.ztsandroid.base.BaseActivity;
-import com.example.lenovo.ztsandroid.cotract.zuoye.ZuoY_Dc_Cotract;
 import com.example.lenovo.ztsandroid.cotract.zuoye.ZuoY_Kw_Cotract;
 import com.example.lenovo.ztsandroid.fragment.task.xq_ym.ZY_Kw_Fragment;
-import com.example.lenovo.ztsandroid.fragment.task.xq_ym.Zy_Dc_Fragment;
 import com.example.lenovo.ztsandroid.model.entity.ZuoY_kw_Bean;
 import com.example.lenovo.ztsandroid.presenter.zuoye.ZuoY_Kw_presenter;
 import com.example.lenovo.ztsandroid.utils.MyLog;
@@ -29,11 +26,12 @@ import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * Created by Administrator on 2018/11/29.
  */
-public class Kw_ErJFragment extends BaseActivity implements ZuoY_Kw_Cotract.View{
+public class Kw_ErJFragment extends BaseActivity implements ZuoY_Kw_Cotract.View {
 
     @BindView(R.id.back_jt)
     LinearLayout backJt;
@@ -43,8 +41,7 @@ public class Kw_ErJFragment extends BaseActivity implements ZuoY_Kw_Cotract.View
     TextView LeiXin;
     @BindView(R.id.YeShu)
     TextView YeShu;
-    @BindView(R.id.Zongyeshu)
-    TextView Zongyeshu;
+
     @BindView(R.id.LeiX)
     RelativeLayout LeiX;
     @BindView(R.id.viewPager)
@@ -58,6 +55,7 @@ public class Kw_ErJFragment extends BaseActivity implements ZuoY_Kw_Cotract.View
     private String hwid;
     private String avgScores;
     private ZuoY_Kw_Cotract.Presenter presenter;
+
     @Override
     protected int getLayoutId() {
         return R.layout.zy_dc_fragment;
@@ -70,14 +68,14 @@ public class Kw_ErJFragment extends BaseActivity implements ZuoY_Kw_Cotract.View
         hw_type = intent.getStringExtra("hw_type");
         hw_content = intent.getStringExtra("hw_content");
         hwid = intent.getStringExtra("hwid");
-        avgScores = String.valueOf(intent.getDoubleExtra("avgScore",1));
+        avgScores = String.valueOf(intent.getDoubleExtra("avgScore", 1));
 
     }
 
     @Override
     public void initData() {
         presenter = new ZuoY_Kw_presenter(this);
-        presenter.SetUrl(App.stuid,hwid,"","",hw_type,hw_content,avgScores);
+        presenter.SetUrl(App.stuid, hwid, "", "", hw_type, hw_content, avgScores);
     }
 
     @Override
@@ -174,7 +172,7 @@ public class Kw_ErJFragment extends BaseActivity implements ZuoY_Kw_Cotract.View
 
     @Override
     public void getManager(final ZuoY_kw_Bean zuoYDcBean) {
-        MyLog.e("DSAHDKSAH",zuoYDcBean.getData().getTypeList().size() + "");
+        MyLog.e("DSAHDKSAH", zuoYDcBean.getData().getTypeList().size() + "");
 
         App.activity.runOnUiThread(new Runnable() {
             @Override
@@ -190,17 +188,20 @@ public class Kw_ErJFragment extends BaseActivity implements ZuoY_Kw_Cotract.View
                     bundle.putString("DanCy", word);
                     bundle.putString("DanCz", word_tran);
                     bundle.putString("hw_answerId", hw_answerId);
-                    bundle.putString("hw_type",hw_type);
-                    bundle.putString("hw_content",hw_content);
-                    bundle.putString("hwid",hwid);
+                    bundle.putString("hw_type", hw_type);
+                    bundle.putString("hw_content", hw_content);
+                    bundle.putString("hwid", hwid);
 
-                    bundle.putString("Word_video",zuoYDcBean.getData().getTypeList().get(a).getText_video());
-                    bundle.putString("Relative_path",zuoYDcBean.getData().getRelative_path());
+                    bundle.putString("Word_video", zuoYDcBean.getData().getTypeList().get(a).getText_video());
+                    bundle.putString("Relative_path", zuoYDcBean.getData().getRelative_path());
 
                     MyLog.e("DADT_____", word + word_tran);
                     zuYYinBFragment.setParams(bundle);
                     nlist.add(zuYYinBFragment);
                 }
+                String size = String.valueOf(zuoYDcBean.getData().getTypeList().size());
+
+                YeShu.setText(size);
 
                 adapter = new ViewPagerAdapter(getSupportFragmentManager(), nlist);
                 viewPager.setAdapter(adapter);
@@ -218,5 +219,10 @@ public class Kw_ErJFragment extends BaseActivity implements ZuoY_Kw_Cotract.View
     @Override
     public void setBasePresenter(ZuoY_Kw_Cotract.Presenter presenter) {
 
+    }
+
+    @OnClick(R.id.back_jt)
+    public void onViewClicked() {
+        App.activity.onBackPressed();
     }
 }

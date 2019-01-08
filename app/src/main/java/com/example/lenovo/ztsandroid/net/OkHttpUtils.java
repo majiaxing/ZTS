@@ -139,10 +139,9 @@ public class OkHttpUtils implements IHttp {
                 String value = params.get(key);
                 builder.add(key,value);
                 Log.e("AAAAAAAAAAAAAAAAAAA",params.toString());
-
             }
         }
-
+        MyLog.e("Cookie",App.Cookie);
         Request request = new Request.Builder().url(url).addHeader("Cookie",App.Cookie).post(builder.build()).build();
         okHttpClient.newCall(request).enqueue(new Callback() {
 
@@ -495,8 +494,8 @@ public class OkHttpUtils implements IHttp {
         Type[] actualTypeArguments = ((ParameterizedType) types[0]).getActualTypeArguments();
         Type type = actualTypeArguments[0];
         T t = gson.fromJson(jsonData,type);
-//        ACache aCache = ACache.get(App.activity);
-//        aCache.put(t.getClass().getSimpleName(), (Serializable) t);
+        ACache aCache = ACache.get(App.activity);
+        aCache.put(t.getClass().getSimpleName(), (Serializable) t);
         return t;
     }
 

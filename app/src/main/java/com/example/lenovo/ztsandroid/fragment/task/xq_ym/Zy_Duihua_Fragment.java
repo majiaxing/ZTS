@@ -7,6 +7,7 @@ import android.media.MediaPlayer;
 import android.media.MediaRecorder;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -89,7 +90,6 @@ public class Zy_Duihua_Fragment extends BaseFragment implements Lu_SC_Cotract.Vi
     private ArrayList<ZuoY_Dh_Bean.DataBean.TypeListBean> mlist = new ArrayList<>();
     private Bundle bundle;
 
-
     private Lu_SC_Cotract.Presenter presenter;
     private String save_path;
 
@@ -104,6 +104,7 @@ public class Zy_Duihua_Fragment extends BaseFragment implements Lu_SC_Cotract.Vi
     private String avgScore;
     private String relativepath;
     private ArrayList<String> juese_video;
+    private String everyScore;
 
 
     @Override
@@ -123,7 +124,7 @@ public class Zy_Duihua_Fragment extends BaseFragment implements Lu_SC_Cotract.Vi
         hwid = bundle.getString("hwid");
         avgScore = bundle.getString("avgScore");
         relativepath = bundle.getString("Relative_path");
-
+        everyScore = bundle.getString("EveryScore");
 
         MyLog.e("relativepath+____++_+_",relativepath +hwid+hw_answerId+ "");
 
@@ -158,15 +159,9 @@ public class Zy_Duihua_Fragment extends BaseFragment implements Lu_SC_Cotract.Vi
         return rootView;
     }
 
-//    @Override
-//    public void onDestroyView() {
-//        super.onDestroyView();
-//        unbinder.unbind();
-//        mPlayer.stop();
-//        mediaPlayer.stop();
-//        mediaRecorder.stop();
-//    }
 
+    private int i = 0;
+    private String string;
     public void setVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
         if (mPlayer == null) {
@@ -180,34 +175,49 @@ public class Zy_Duihua_Fragment extends BaseFragment implements Lu_SC_Cotract.Vi
 
                 mPlayer = null;
                 mPlayer = new MediaPlayer();
-                String s = URLEncoder.encode(juese_video.get(1), "utf-8").replaceAll("\\+", "%20");
 
-                final String bofUrl = "https://zts100.com/demo/file/download" + "/?" + "Relative_path=" + relativepath + "&" + "type=2" + "&" + "fileName=" + s;
+                if (i<=juese_video.size()) {
+                    string = URLEncoder.encode(juese_video.get(i), "utf-8").replaceAll("\\+", "%20");
+                    i++;
+                }
+
+                final String bofUrl = "https://zts100.com/demo/file/download" + "/?" + "Relative_path=" + relativepath + "&" + "type=2" + "&" + "fileName=" + string;
                 MyLog.e("拼接好的 播放 Url", bofUrl);
                 mPlayer.setDataSource(bofUrl);
                 //3 准备播放
                 mPlayer.prepareAsync();
+
                 mPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
                     @Override
                     public void onPrepared(MediaPlayer mp) {
                         mPlayer.start();
                     }
                 });
-
                 mPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                     @Override
                     public void onCompletion(MediaPlayer mp) {
 
-//                        MyLog.e("CheckBox_状态",BFZt.isChecked() + "");
-                        BFZt.setChecked(false);
+                        mPlayer.reset();
+                        if (i< juese_video.size()){
+                            setVisibleHint(true);
+                        }else {
+                            MyLog.e("CheckBox_状态",BFZt.isChecked() + "");
+                            BFZt.setChecked(false);
+                            bool[0] = false;
+                        }
                     }
                 });
-
 //                }
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        mPlayer.stop();
     }
 
     private static final String TAG = "AudioRecordActivity";
@@ -577,7 +587,22 @@ public class Zy_Duihua_Fragment extends BaseFragment implements Lu_SC_Cotract.Vi
             final String p = decimalFormat.format(v);//format 返回的是字符串
 
             MyLog.e("得到的平均分值————", flo + "");
+            JSONObject Error = response.optJSONObject("Error");
+            if (Error != null){
+                App.activity.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+//                        linear.setVisibility(View.GONE);
+//                        LyBtn.setVisibility(View.VISIBLE);
 
+//                        Toast.makeText(App.activity,"评估失败",Toast.LENGTH_LONG).show();
+                        Toast toast = Toast.makeText(App.activity, "评估失败", Toast.LENGTH_SHORT);
+                        toast.setGravity(Gravity.CENTER, 0, 0);
+                        toast.show();
+                    }
+                });
+                return;
+            }
 
             if (PronAccuracy != "0") {
 
@@ -616,13 +641,17 @@ public class Zy_Duihua_Fragment extends BaseFragment implements Lu_SC_Cotract.Vi
                 });
 
                 presenter = new Lu_SC_Presenter(this);
-                presenter.SetU(App.stuid, hwid, hw_type, hw_content, hw_answerId, System.currentTimeMillis() + ".mp3", p);
+                presenter.SetU(App.stuid, hwid, hw_type, hw_content, hw_answerId, System.currentTimeMillis() + ".mp3", p,everyScore);
 
             } else {
                 App.activity.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        Toast.makeText(App.activity, "请正常朗读", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(App.activity, "请正常朗读", Toast.LENGTH_SHORT).show();
+
+                        Toast toast = Toast.makeText(App.activity, "请正常朗读", Toast.LENGTH_SHORT);
+                        toast.setGravity(Gravity.CENTER, 0, 0);
+                        toast.show();
                     }
                 });
                 return;
@@ -658,7 +687,12 @@ public class Zy_Duihua_Fragment extends BaseFragment implements Lu_SC_Cotract.Vi
             App.activity.runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    Toast.makeText(App.activity, "评估失败", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(App.activity, "评估失败", Toast.LENGTH_SHORT).show();
+
+                    Toast toast = Toast.makeText(App.activity, "评估失败", Toast.LENGTH_SHORT);
+                    toast.setGravity(Gravity.CENTER, 0, 0);
+                    toast.show();
+
                 }
             });
         } else {

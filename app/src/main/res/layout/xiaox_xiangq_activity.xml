@@ -8,7 +8,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="204px"
-        android:background="@drawable/huiyuan"
+        android:background="@drawable/title"
         android:gravity="center_vertical"
         >
         <ImageView
@@ -82,13 +82,16 @@
                 android:id="@+id/Xx_neirong"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="您好，xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+                android:text="您好，xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
                 android:textSize="36px"
                 android:textColor="#333333"
                 android:gravity="center"
                 android:layout_marginLeft="30px"
                 android:layout_marginRight="20px"
                 />
+
+
+
 
         </LinearLayout>
 

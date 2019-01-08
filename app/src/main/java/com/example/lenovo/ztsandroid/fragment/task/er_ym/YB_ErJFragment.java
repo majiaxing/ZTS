@@ -1,8 +1,11 @@
 package com.example.lenovo.ztsandroid.fragment.task.er_ym;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,10 +14,20 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.example.lenovo.ztsandroid.App;
 import com.example.lenovo.ztsandroid.R;
 import com.example.lenovo.ztsandroid.adapter.ViewPagerAdapter;
+import com.example.lenovo.ztsandroid.adapter.YB_FragmentAdapter;
 import com.example.lenovo.ztsandroid.base.BaseActivity;
 import com.example.lenovo.ztsandroid.base.BaseFragment;
+import com.example.lenovo.ztsandroid.fragment.study.yb_sy.YB_four_fragment;
+import com.example.lenovo.ztsandroid.fragment.study.yb_sy.YB_xq_one_fragment;
+import com.example.lenovo.ztsandroid.fragment.study.yb_sy.YB_xq_three_fragment;
+import com.example.lenovo.ztsandroid.fragment.study.yb_sy.YBxq_two_fragment;
+import com.example.lenovo.ztsandroid.fragment.task.xq_ym.YB_zy_four_fragment;
+import com.example.lenovo.ztsandroid.fragment.task.xq_ym.YB_zy_one_fragment;
+import com.example.lenovo.ztsandroid.fragment.task.xq_ym.YB_zy_three_fragment;
+import com.example.lenovo.ztsandroid.fragment.task.xq_ym.YB_zy_two_fragment;
 import com.example.lenovo.ztsandroid.fragment.task.xq_ym.ZY_Yb_Fragment;
 import com.example.lenovo.ztsandroid.utils.MyLog;
 
@@ -23,9 +36,11 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import butterknife.Unbinder;
 
 /**
@@ -34,32 +49,72 @@ import butterknife.Unbinder;
 public class YB_ErJFragment extends BaseActivity {
 
     @BindView(R.id.back_jt)
-    LinearLayout backJt;
-    @BindView(R.id.title)
-    TextView title;
-    @BindView(R.id.LeiXin)
-    TextView LeiXin;
-    @BindView(R.id.YeShu)
-    TextView YeShu;
-    @BindView(R.id.Zongyeshu)
-    TextView Zongyeshu;
-    @BindView(R.id.LeiX)
-    RelativeLayout LeiX;
-    @BindView(R.id.viewPager)
-    ViewPager viewPager;
-    Unbinder unbinder;
-    private ArrayList<Fragment> nlist = new ArrayList<>();
-    private ViewPagerAdapter adapter;
-
+    ImageView backJt;
+    @BindView(R.id.YB_xq_title)
+    TextView YBXqTitle;
+    @BindView(R.id.YB_Tablayout)
+    TabLayout YBTablayout;
+    @BindView(R.id.YB_viewPager)
+    ViewPager YBViewPager;
+    private List<Fragment> fragments = new ArrayList<>();
+    private YB_FragmentAdapter adapter;
     private Bundle bundle;
+    private String hw_type;
+    private String hw_content;
+    private String hwid;
+    private String avgScores;
 
     @Override
     protected int getLayoutId() {
-        return R.layout.zy_dc_fragment;
+        return R.layout.yin_b_xq_activity;
     }
-
     @Override
     protected void initView() {
+
+
+        Intent intent = getIntent();
+        hw_type = intent.getStringExtra("hw_type");
+        hw_content = intent.getStringExtra("hw_content");
+        hwid = intent.getStringExtra("hwid");
+        avgScores = String.valueOf(intent.getDoubleExtra("avgScore",1));
+        bundle = new Bundle();
+
+        YB_zy_one_fragment fragment1 = new YB_zy_one_fragment();
+        bundle.putString("hw_type",hw_type);
+        bundle.putString("hw_content",hw_content);
+        bundle.putString("hwid",hwid);
+        bundle.putString("avgScores",avgScores);
+        fragment1.setParams(bundle);
+
+        YB_zy_two_fragment fragment2 = new YB_zy_two_fragment();
+        bundle.putString("hw_type",hw_type);
+        bundle.putString("hw_content",hw_content);
+        bundle.putString("hwid",hwid);
+        bundle.putString("avgScores",avgScores);
+        fragment2.setParams(bundle);
+
+        YB_zy_three_fragment fragment3 = new YB_zy_three_fragment();
+        bundle.putString("hw_type",hw_type);
+        bundle.putString("hw_content",hw_content);
+        bundle.putString("hwid",hwid);
+        bundle.putString("avgScores",avgScores);
+        fragment3.setParams(bundle);
+
+        YB_zy_four_fragment fragment4 = new YB_zy_four_fragment();
+        bundle.putString("hw_type",hw_type);
+        bundle.putString("hw_content",hw_content);
+        bundle.putString("hwid",hwid);
+        bundle.putString("avgScores",avgScores);
+        fragment4.setParams(bundle);
+
+        fragments.add(fragment1);
+        fragments.add(fragment2);
+        fragments.add(fragment3);
+        fragments.add(fragment4);
+
+        adapter = new YB_FragmentAdapter(getSupportFragmentManager(),fragments);
+        YBViewPager.setAdapter(adapter);
+        YBTablayout.setupWithViewPager(YBViewPager);
 
     }
 
@@ -70,88 +125,18 @@ public class YB_ErJFragment extends BaseActivity {
 
     @Override
     public void loadData() {
-
     }
 
-//    @Override
-//    protected void init(View view) {
-//
-//
-//
-//        String typeList = bundle.getString("data");
-//
-//
-//        MyLog.e("List数据", typeList + "");
-//
-//        JsonDemo(typeList);
-//
-//
-////        for (int i = 0;i<list.size(); i++){
-////
-////            ZY_Yb_Fragment zyDanCFragment = new ZY_Yb_Fragment();
-////            bundle.putSerializable("list",list.get(i).getYb_word());
-////            zyDanCFragment.setParams(bundle);
-////            nlist.add(zyDanCFragment);
-////
-////        }
-//    }
-
-
-    private void JsonDemo(String string) {
-//
-//        Gson gson = new Gson();
-//        java.lang.reflect.Type type = new TypeToken<ZuoY_dc_Bean>() {}.getType();
-//        ZuoY_dc_Bean jsonBean = gson.fromJson(string, type);
-//        List<ZuoY_dc_Bean.TypeListBean> list = jsonBean.getTypeList();
-//        for (int i = 0; i<  list.size(); i++){
-//            Zy_Dc_Fragment zuYYinBFragment = new Zy_Dc_Fragment();
-//                bundle = new Bundle();
-//                bundle.putString("DanCy",list.get(i).getWord());
-//                bundle.putString("DanCz",list.get(i).getWord_tran());
-//
-//                MyLog.e("解析出来的单词数据",list.get(i).getWord() + "");
-//
-//                zuYYinBFragment.setParams(bundle);
-//                nlist.add(zuYYinBFragment);
-//        }
-
-
-        //第一步，string参数相当于一个JSON,依次解析下一步
-        JSONArray json = null;
-        JSONObject data = null;
-        try {
-            data = new JSONObject(string);
-
-            JSONArray typeList = data.getJSONArray("typeList");
-
-
-            for (int a = 0; a < typeList.length(); a++) {
-
-                JSONObject value = null;
-
-                value = typeList.getJSONObject(a);
-
-                String word = value.optString("yb_word");
-                String word_tran = value.optString("yb_translate");
-
-
-                ZY_Yb_Fragment zuYYinBFragment = new ZY_Yb_Fragment();
-                bundle = new Bundle();
-                bundle.putString("DanCy", word);
-                bundle.putString("DanCz", word_tran);
-
-                MyLog.e("解析到的数据", word + word_tran);
-
-                zuYYinBFragment.setParams(bundle);
-                nlist.add(zuYYinBFragment);
-            }
-
-            adapter = new ViewPagerAdapter(getSupportFragmentManager(), nlist);
-            viewPager.setAdapter(adapter);
-            adapter.notifyDataSetChanged();
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // TODO: add setContentView(...) invocation
+        ButterKnife.bind(this);
     }
+
+    @OnClick(R.id.back_jt)
+    public void onViewClicked() {
+        App.activity.onBackPressed();
+    }
+
 }

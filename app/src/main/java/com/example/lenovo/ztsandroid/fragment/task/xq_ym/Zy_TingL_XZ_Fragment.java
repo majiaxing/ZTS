@@ -11,6 +11,7 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.example.lenovo.ztsandroid.App;
 import com.example.lenovo.ztsandroid.R;
 import com.example.lenovo.ztsandroid.adapter.Read_zy_O_Adapter;
 import com.example.lenovo.ztsandroid.base.BaseFragment;
@@ -123,23 +124,13 @@ public class Zy_TingL_XZ_Fragment extends BaseFragment {
         return rootView;
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        unbinder.unbind();
-    }
-
-    @OnClick(R.id.Ti_J_ChaK)
-    public void onViewClicked() {
-
-//        listadapter.onClickeListener(isShow);
-
-    }
-
     @OnClick({R.id.BF_zt, R.id.TJ_Xyt, R.id.next_T, R.id.Xuanz_btn_A, R.id.Xuanz_btn_B, R.id.Xuanz_btn_C, R.id.Xuanz_btn_D})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.BF_zt:
+
+                App.activity.onBackPressed();
+
                 break;
             case R.id.TJ_Xyt:
                 break;

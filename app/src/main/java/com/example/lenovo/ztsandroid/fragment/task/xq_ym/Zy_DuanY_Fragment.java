@@ -6,6 +6,7 @@ import android.media.MediaPlayer;
 import android.media.MediaRecorder;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,6 +54,8 @@ import cn.hutool.core.codec.Base64Encoder;
 import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.util.CharsetUtil;
 
+import static com.example.lenovo.ztsandroid.App.activity;
+
 /**
  * Created by Administrator on 2018/11/27.
  */
@@ -64,8 +67,8 @@ public class Zy_DuanY_Fragment extends BaseFragment implements Lu_SC_Cotract.Vie
     TextView FyText;
     @BindView(R.id.textView3)
     TextView textView3;
-    @BindView(R.id.next_T)
-    Button nextT;
+//    @BindView(R.id.next_T)
+//    Button nextT;
     @BindView(R.id.relativeLayout2)
     RelativeLayout relativeLayout2;
     @BindView(R.id.BF_zt)
@@ -113,6 +116,7 @@ public class Zy_DuanY_Fragment extends BaseFragment implements Lu_SC_Cotract.Vie
     private String danCy;
     private String sessionId;
     private String str;
+    private String everyScore;
 
 
     @Override
@@ -122,9 +126,8 @@ public class Zy_DuanY_Fragment extends BaseFragment implements Lu_SC_Cotract.Vie
     private Animation hyperspaceJumpAnimation;
     @Override
     protected void init(View view) {
-
         relativeLayout.setVisibility(View.GONE);
-        nextT.setVisibility(View.GONE);
+//        nextT.setVisibility(View.GONE);
 
         bundle.getString("DanCy");
         bundle.getString("DanCz");
@@ -132,7 +135,7 @@ public class Zy_DuanY_Fragment extends BaseFragment implements Lu_SC_Cotract.Vie
 
         danCy = bundle.getString("DanCy");
         String danCz = bundle.getString("DanCz");
-
+        everyScore = bundle.getString("EveryScore");
         hw_answerId = bundle.getString("hw_answerId");
         hw_type = bundle.getString("hw_type");
         hw_content = bundle.getString("hw_content");
@@ -141,11 +144,18 @@ public class Zy_DuanY_Fragment extends BaseFragment implements Lu_SC_Cotract.Vie
         duanyText.setText(bundle.getString("DanCy"));
         FyText.setText(bundle.getString("DanCz"));
 
+        String yema = bundle.getString("yema");
+        String dangq = bundle.getString("dangq");
+        MyLog.e("一共有————",yema);
+        textView3.setText(dangq+"/"+yema);
+
+
         creatAudioRecord();
 
         hyperspaceJumpAnimation = AnimationUtils.loadAnimation(App.activity, R.anim.loading_animation);
         // 使用ImageView显示动画
         PinFJd.startAnimation(hyperspaceJumpAnimation);
+
     }
 
     @Override
@@ -206,6 +216,7 @@ public class Zy_DuanY_Fragment extends BaseFragment implements Lu_SC_Cotract.Vie
 
                         MyLog.e("CheckBox_状态", BFZt.isChecked() + "");
                         BFZt.setChecked(false);
+                        bool[0] = false;
                     }
                 });
 
@@ -220,53 +231,49 @@ public class Zy_DuanY_Fragment extends BaseFragment implements Lu_SC_Cotract.Vie
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        unbinder.unbind();
+        mPlayer.stop();
     }
 
     private Boolean b[] = {false};
     private Boolean bool[] = {false};
     private Boolean aBoolean[] = {false};
 
-    @OnClick({R.id.next_T, R.id.BF_zt, R.id.Ly_btn, R.id.BF_LY})
+    @OnClick({ R.id.BF_zt, R.id.Ly_btn, R.id.BF_LY})
     public void onViewClicked(View view) {
         switch (view.getId()) {
-            case R.id.next_T:
-                break;
+
             case R.id.BF_zt:
                 if (bool[0]) {
 
                     if (mPlayer.isPlaying()) {
                         MyLog.e("lalall", "ahahahahh");
                         mPlayer.pause();
-
+                        bool[0] = false;
                     }
-                    bool[0] = false;
+
                 } else {
                     if (!mPlayer.isPlaying()) {
                         MyLog.e("holle dnsjk", "ahahahahh");
                         mPlayer.start();
+                        bool[0] = true;
                     }
-                    bool[0] = true;
+
                 }
                 break;
             case R.id.Ly_btn:
 
 
                 if (b[0]) {
-                    if (isrecording) {
                         stopAudioRecord();
                         Ripple.setColor(this.getResources().getColor(R.color.pe_gray));
-                    }
-                    b[0] = false;
 
+                    b[0] = false;
                 } else {
-                    if (!isrecording) {
                         startAudioRecord();
                         presenter = new ZhiL_Csh_ZY_Fy_Presenter(this);
-                        presenter.setUrlsZhiL("0", danCy, System.currentTimeMillis() + "", "1", "4.0");
+                        presenter.setUrlsZhiL("1", danCy, System.currentTimeMillis() + "", "1", "4.0");
                         b[0] = true;
                         Ripple.setColor(this.getResources().getColor(R.color.text_color_red));
-                    }
                     b[0] = true;
 
                 }
@@ -405,6 +412,11 @@ public class Zy_DuanY_Fragment extends BaseFragment implements Lu_SC_Cotract.Vie
         String toBase64 = Base64Encoder.encode(bytes, CharsetUtil.CHARSET_ISO_8859_1);
 
         if (sessionId != null) {
+
+
+            linear.setVisibility(View.VISIBLE);
+            LyBtn.setVisibility(View.GONE);
+
             presenter = new PinC_ZY_Fay_presenter(this);
             presenter.seturlZhiL("0", "1", "2", "1", toBase64, sessionId);
         }
@@ -415,7 +427,7 @@ public class Zy_DuanY_Fragment extends BaseFragment implements Lu_SC_Cotract.Vie
 
             System.out.println("stopRecord");
             isRecord = false;//停止文件写入
-            Toast.makeText(App.activity, "录音成功", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(App.activity, "录音成功", Toast.LENGTH_SHORT).show();
             audioRecord.stop();
             audioRecord.release();//释放资源
             audioRecord = null;
@@ -599,7 +611,11 @@ public class Zy_DuanY_Fragment extends BaseFragment implements Lu_SC_Cotract.Vie
                     public void run() {
                         linear.setVisibility(View.GONE);
                         LyBtn.setVisibility(View.VISIBLE);
-                        Toast.makeText(App.activity,"评估失败",Toast.LENGTH_LONG).show();
+
+                        Toast toast = Toast.makeText(App.activity, "评估失败", Toast.LENGTH_SHORT);
+                        toast.setGravity(Gravity.CENTER, 0, 0);
+                        toast.show();
+//                        Toast.makeText(App.activity,"评估失败",Toast.LENGTH_LONG).show();
                     }
                 });
                 return;
@@ -619,7 +635,7 @@ public class Zy_DuanY_Fragment extends BaseFragment implements Lu_SC_Cotract.Vie
                     public void run() {
                         PFFs.setText(str);
                         relativeLayout.setVisibility(View.VISIBLE);
-                        nextT.setVisibility(View.VISIBLE);
+//                        nextT.setVisibility(View.VISIBLE);
                         float i = ConvertUtil.convertToFloat(str, f);
                         MyLog.e("评估出来的分数", i + "");
 
@@ -641,7 +657,7 @@ public class Zy_DuanY_Fragment extends BaseFragment implements Lu_SC_Cotract.Vie
                 });
 
                 presenter = new Lu_SC_Presenter(this);
-                presenter.SetU(App.stuid, hwid, hw_type, hw_content, hw_answerId, System.currentTimeMillis() + ".mp3", str);
+                presenter.SetU(App.stuid, hwid, hw_type, hw_content, hw_answerId, System.currentTimeMillis() + ".mp3", str,everyScore);
 
             } else {
                 App.activity.runOnUiThread(new Runnable() {
@@ -649,7 +665,11 @@ public class Zy_DuanY_Fragment extends BaseFragment implements Lu_SC_Cotract.Vie
                     public void run() {
                         linear.setVisibility(View.GONE);
                         LyBtn.setVisibility(View.VISIBLE);
-                        Toast.makeText(App.activity, "请正常朗读", Toast.LENGTH_SHORT).show();
+
+                        Toast toast = Toast.makeText(App.activity, "请正常朗读", Toast.LENGTH_SHORT);
+                        toast.setGravity(Gravity.CENTER, 0, 0);
+                        toast.show();
+//                        Toast.makeText(App.activity, "请正常朗读", Toast.LENGTH_SHORT).show();
                     }
                 });
                 return;
@@ -685,7 +705,12 @@ public class Zy_DuanY_Fragment extends BaseFragment implements Lu_SC_Cotract.Vie
             App.activity.runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    Toast.makeText(App.activity, "评估失败", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(App.activity, "评估失败", Toast.LENGTH_SHORT).show();
+
+                    Toast toast = Toast.makeText(App.activity, "评估失败", Toast.LENGTH_SHORT);
+                    toast.setGravity(Gravity.CENTER, 0, 0);
+                    toast.show();
+
                 }
             });
         } else {
@@ -694,7 +719,6 @@ public class Zy_DuanY_Fragment extends BaseFragment implements Lu_SC_Cotract.Vie
         }
 
     }
-
     @Override
     public void getManagerO(String pinC_fay_bean) {
         MyLog.e("请求成功——得到的json", pinC_fay_bean);

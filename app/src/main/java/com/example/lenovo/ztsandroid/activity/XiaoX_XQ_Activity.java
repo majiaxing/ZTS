@@ -42,6 +42,7 @@ public class XiaoX_XQ_Activity extends BaseActivity {
     private String xx_nr;
 
     private XX_xq_Cotract.Presenter presenter;
+    private String newtime;
 
 
     @Override
@@ -55,9 +56,11 @@ public class XiaoX_XQ_Activity extends BaseActivity {
         Intent intent = getIntent();
         xx_title = intent.getStringExtra("标题");
         xx_nr = intent.getStringExtra("内容");
+        newtime = intent.getStringExtra("时间");
         Log.e("获取消息标题",xx_title+""+xx_nr);
         XiaoXQ.setText(xx_title);
         XxNeirong.setText(xx_nr);
+        dataZs.setText(newtime);
 
     }
 

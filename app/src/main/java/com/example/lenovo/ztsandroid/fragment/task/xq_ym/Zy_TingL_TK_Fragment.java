@@ -7,16 +7,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.example.lenovo.ztsandroid.App;
 import com.example.lenovo.ztsandroid.R;
-import com.example.lenovo.ztsandroid.adapter.TianK_Adapter;
 import com.example.lenovo.ztsandroid.adapter.ZY_TianK_Adapter;
 import com.example.lenovo.ztsandroid.base.BaseFragment;
-import com.example.lenovo.ztsandroid.model.entity.TingL_XQ_xz_Bean;
 import com.example.lenovo.ztsandroid.model.entity.ZuoY_TL_xz_Bean;
 import com.example.lenovo.ztsandroid.utils.MyLog;
 
@@ -32,7 +31,7 @@ import butterknife.Unbinder;
 /**
  * Created by Administrator on 2018/11/27.
  */
-public class Zy_TingL_TK_Fragment extends BaseFragment{
+public class Zy_TingL_TK_Fragment extends BaseFragment {
 
     @BindView(R.id.BF_zt)
     CheckBox BFZt;
@@ -44,8 +43,8 @@ public class Zy_TingL_TK_Fragment extends BaseFragment{
     Button nextT;
     @BindView(R.id.TM_title)
     TextView TMTitle;
-    @BindView(R.id.Xz_list)
-    ListView XzList;
+    //    @BindView(R.id.Xz_list)
+//    ListView XzList;
     @BindView(R.id.linear_layout_xz)
     RelativeLayout linearLayoutXz;
     @BindView(R.id.JX_)
@@ -63,6 +62,10 @@ public class Zy_TingL_TK_Fragment extends BaseFragment{
     android.widget.LinearLayout linearLayout5;
     @BindView(R.id.ChongZ)
     Button ChongZ;
+    @BindView(R.id.Tk_Nr)
+    TextView TkNr;
+    @BindView(R.id.edit_TK)
+    EditText editTK;
 
     private Bundle bundle;
     private ArrayList<ZuoY_TL_xz_Bean.DataBean.TypeListBean> mlist = new ArrayList<>();
@@ -80,18 +83,18 @@ public class Zy_TingL_TK_Fragment extends BaseFragment{
     @Override
     protected void init(View view) {
 
-
         ArrayList<ZuoY_TL_xz_Bean.DataBean.TypeListBean> list = (ArrayList<ZuoY_TL_xz_Bean.DataBean.TypeListBean>) bundle.getSerializable("list");
         String listen_text = bundle.getString("title");
-
 
         TMTitle.setText(listen_text);
 
         mlist.addAll(list);
+//
+//        listadapter = new ZY_TianK_Adapter(App.activity, mlist);
+//
+//        XzList.setAdapter(listadapter);
 
-        listadapter = new ZY_TianK_Adapter(App.activity, mlist);
-
-        XzList.setAdapter(listadapter);
+        TkNr.setText(list.get(0).getListen_content());
 
 
         JX.setVisibility(View.GONE);
@@ -146,6 +149,13 @@ public class Zy_TingL_TK_Fragment extends BaseFragment{
     }
 
     @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        mPlayer.stop();
+    }
+
+
+    @Override
     protected void loadData() {
 
     }
@@ -163,11 +173,7 @@ public class Zy_TingL_TK_Fragment extends BaseFragment{
         return rootView;
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        unbinder.unbind();
-    }
+
 
     private Boolean bool[] = {false};
 
@@ -180,20 +186,19 @@ public class Zy_TingL_TK_Fragment extends BaseFragment{
                     if (mPlayer.isPlaying()) {
                         MyLog.e("lalall", "ahahahahh");
                         mPlayer.pause();
+                        bool[0] = false;
                     }
-                    bool[0] = false;
                 } else {
                     if (!mPlayer.isPlaying()) {
                         MyLog.e("holle dnsjk", "ahahahahh");
                         mPlayer.start();
+                        bool[0] = true;
                     }
-                    bool[0] = true;
                 }
 
 
                 break;
             case R.id.TJ_Xyt:
-
                 JX.setVisibility(View.VISIBLE);
                 XYT.setVisibility(View.VISIBLE);
                 ChongZ.setVisibility(View.VISIBLE);
