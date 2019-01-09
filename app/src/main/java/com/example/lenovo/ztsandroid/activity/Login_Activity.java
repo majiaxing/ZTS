@@ -144,11 +144,12 @@ public class Login_Activity extends BaseActivity implements Logincotract.View{
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.A_wangjiBtn:
+                //忘记密码按钮
                 Intent intent = new Intent(this,WJ_Activity.class);
                 startActivity(intent);
                 break;
             case R.id.loginBtn:
-
+                //登录按钮
                 UreName = AEditOne.getText().toString().trim();
                 PassWord = AEditTwo.getText().toString().trim();
                 boolean result = YZ_Utils.isPhone(UreName);
@@ -169,8 +170,8 @@ public class Login_Activity extends BaseActivity implements Logincotract.View{
 
     @Override
     public void getManager(final LoginBean loginBean) {
-        MyLog.e("TAG", loginBean.getMessage());
 
+        MyLog.e("TAG", loginBean.getMessage());
         App.activity.runOnUiThread(new Runnable() {
             @Override
             public void run() {

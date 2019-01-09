@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.example.lenovo.ztsandroid.App;
@@ -32,7 +33,7 @@ import butterknife.OnClick;
  */
 public class WJ_Activity extends BaseActivity implements WangJ_Cotract.View{
     @BindView(R.id.back_jt)
-    ImageView back_jt;
+    LinearLayout back_jt;
     @BindView(R.id.SJH_)
     EditText SJH;
     @BindView(R.id.YZM_)
@@ -73,12 +74,6 @@ public class WJ_Activity extends BaseActivity implements WangJ_Cotract.View{
 
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
-    }
     private Boolean boo = false;
     @OnClick({R.id.back_jt, R.id.HQ_, R.id.CZ_})
     public void onViewClicked(View view) {

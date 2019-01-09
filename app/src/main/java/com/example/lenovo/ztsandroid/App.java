@@ -5,7 +5,7 @@ import android.app.Application;
 import android.app.Dialog;
 import android.content.Context;
 import android.media.AudioManager;
-import android.net.wifi.hotspot2.pps.Credential;
+
 import android.support.annotation.RequiresApi;
 import android.util.Log;
 import android.widget.RadioGroup;
@@ -49,8 +49,6 @@ public class App extends Application {
 
     public static BaseActivity context = null;
 
-    public static RadioGroup mRadiogroup;
-
     public static BaseActivity activity;
 
     public static BaseFragment lastFragment;
@@ -72,7 +70,7 @@ public class App extends Application {
     public static Object token;
 
 
-    //    @RequiresApi(api = 26)
+    //初始化信鸽 注册
     @Override
     public void onCreate() {
         super.onCreate();

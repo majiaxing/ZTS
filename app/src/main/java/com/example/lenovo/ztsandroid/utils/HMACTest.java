@@ -1,6 +1,6 @@
 package com.example.lenovo.ztsandroid.utils;
 
-import android.net.wifi.hotspot2.pps.Credential;
+
 import android.util.Base64;
 import android.util.Log;
 
