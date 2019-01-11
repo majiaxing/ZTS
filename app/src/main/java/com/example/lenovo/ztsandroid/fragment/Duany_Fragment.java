@@ -128,7 +128,7 @@ public class Duany_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.V
     }
 
 
-
+//    回调 到父页面参数的回调方法
     public interface FragmentToActivity{
         public void huidiao(String str);
     }
@@ -136,11 +136,10 @@ public class Duany_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.V
 
     FragmentToActivity fragmentToActivity;
 
+//    在fragment 创建显示隐藏的时候 初始化 播放器
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
-
-
         fragmentToActivity=(FragmentToActivity) activity;
         yin = bundle.getString("yin");
         fragmentToActivity.huidiao(yin);
@@ -172,6 +171,8 @@ public class Duany_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.V
                     public void onPrepared(MediaPlayer mediaPlayer) {
                     }
                 });
+
+//                播放结束的监听
                 mPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                     @Override
                     public void onCompletion(MediaPlayer mp) {
@@ -216,7 +217,7 @@ public class Duany_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.V
 
     private boolean isRecord = false;//设置录制状态
 
-
+//   初始化录音
     private void creatAudioRecord() {
         //根据AudioRecord的音频采样率、音频录制声道、音频数据格式获取缓冲区大小
         bufferSizeInBytes = AudioRecord.getMinBufferSize(sampleRateInHz, channelConfig, audioFormat);
@@ -316,7 +317,7 @@ public class Duany_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.V
             presenter.seturlZhiL("1", "1", "", "", toBase64, sessionId);
         }
     }
-
+//  录音 结束  audioRecord 清空
     private void close() {
         if (audioRecord != null) {
 
@@ -384,7 +385,7 @@ public class Duany_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.V
         }
     }
 
-
+//    头文件写入文件中
     private void copyWaveFile(String inFileName, String outFileName) {
         FileInputStream in = null;
         FileOutputStream out = null;
@@ -473,7 +474,7 @@ public class Duany_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.V
         out.write(header, 0, 44);
     }
 
-
+//    暂停方法
     private void pause() {
         mediaPlayer.pause();
 //        playhandler.removeCallbacks(runnable_3);
@@ -531,18 +532,17 @@ public class Duany_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.V
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.BF_LY:
-
                 if (aBoolean[0]) {
-
                     if (mediaPlayer.isPlaying()) {
                         pause();
+//                        暂停
                     }
                     aBoolean[0] = false;
-
                 } else {
                     if (!mediaPlayer.isPlaying()) {
 //                        play();
                         playMusic();
+//                        播放
                     } else if (mediaPlayer.isPlaying()) {
                         BFLY.setChecked(false);
                     }
@@ -598,6 +598,8 @@ public class Duany_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.V
     }
 
     private float f;
+
+    //对评估返回结果  解析 以及操作
     private void JsonDemo(String string) {
 
 
@@ -681,7 +683,7 @@ public class Duany_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.V
         }
     }
 
-
+//    评估的回调
     @Override
     public void getManager(YuYinPinG_Bean yuYinPinGBean) {
         if (yuYinPinGBean.getResponse().getSessionId() == null) {
@@ -714,7 +716,7 @@ public class Duany_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.V
 
         JsonDemo(pinC_fay_bean);
     }
-
+//    上传 音频的回调
     @Override
     public void getManagerT(Stdey_Bean xq_bean) {
 

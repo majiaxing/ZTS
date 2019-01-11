@@ -32,7 +32,7 @@ public class DuoWJ_SC_Presenter implements TiJiao_ZY_Cotract.Presenter {
     public void SetU(String stuid, String hwid, ArrayList<Map<String, Object>> mapArrayList) {
 
     }
-
+    //    调用model层数据  把 model层数据传递到view层
     @Override
     public void SetUrl(File file, String type, String save_path) {
         csModel.postTiJiao_File(file, type, save_path, new MyNetWorkCallback<DWj_SC_Bean>() {

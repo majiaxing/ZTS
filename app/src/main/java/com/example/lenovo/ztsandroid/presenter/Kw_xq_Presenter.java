@@ -20,7 +20,7 @@ public class Kw_xq_Presenter implements Kw_Xq_Cotract.Presenter{
         this.view.setBasePresenter(this);
         Kw_Xq_Model  =new CSModelImpl();
     }
-
+    //    调用model层数据  把 model层数据传递到view层
     @Override
     public void SetU(String text_id) {
         Kw_Xq_Model.postKwXq(text_id, new MyNetWorkCallback<Kw_Xq_Bean>() {

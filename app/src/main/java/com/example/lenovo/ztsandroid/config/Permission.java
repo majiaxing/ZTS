@@ -9,6 +9,8 @@ import android.os.Build;
 
 public final class Permission {
 
+//   所有的 动态权限的调用
+
     public static final String[] CALENDAR;
     public static final String[] CAMERA;
     public static final String[] CONTACTS;

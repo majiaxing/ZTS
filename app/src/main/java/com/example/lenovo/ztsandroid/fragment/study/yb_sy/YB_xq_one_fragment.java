@@ -73,6 +73,8 @@ public class YB_xq_one_fragment extends BaseFragment implements YB_XiangQ_Cotrac
 
     @Override
     protected void init(View view) {
+
+//        初始化控件
         Dc = view.findViewById(R.id.Dc);
         BFOne = view.findViewById(R.id.BF_One);
         BFTwo = view.findViewById(R.id.BF_Two);
@@ -83,7 +85,7 @@ public class YB_xq_one_fragment extends BaseFragment implements YB_XiangQ_Cotrac
         BFTwoXuanZ = view.findViewById(R.id.BF_Two_Xuanz);
         FanY = view.findViewById(R.id.yb_one_item);
         Image = view.findViewById(R.id.YB_xx_image);
-
+//        四个按钮的点击事件
         BFOne.setOnClickListener(this);
         BFTwo.setOnClickListener(this);
         TZYXO.setOnClickListener(this);
@@ -95,13 +97,13 @@ public class YB_xq_one_fragment extends BaseFragment implements YB_XiangQ_Cotrac
 
     @Override
     protected void loadData() {
-
+//        开始网络请求 presenter 层的初始化
         yBid = bundle.getString("YBid");
         presenter = new YB_One_Xq_Presenter(this);
         presenter.SetUrl(yBid, "1" ,"1");
 
     }
-
+//  在fragment 显示隐藏的时候 加载 播放框架
     public void setVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
         if (mPlayer == null){
@@ -132,7 +134,7 @@ public class YB_xq_one_fragment extends BaseFragment implements YB_XiangQ_Cotrac
     }
 
 
-
+// 通过bundle 得到父级页面穿过来的 值
     @Override
     public void setParams(Bundle bundle) {
         this.bundle = bundle;
@@ -149,7 +151,7 @@ public class YB_xq_one_fragment extends BaseFragment implements YB_XiangQ_Cotrac
 
 
 
-
+// 网络请求 成功的回调
     @Override
     public void getManager(YB_XQ_four_Bean yb_bean) {
 
@@ -194,7 +196,7 @@ public class YB_xq_one_fragment extends BaseFragment implements YB_XiangQ_Cotrac
     public void getManagerTh(YB_XQ_three_Bean postYinB_XQ_three) {
 
     }
-
+//请求失呗是返回的message
     @Override
     public void showmessage(String str) {
 
@@ -241,8 +243,6 @@ public class YB_xq_one_fragment extends BaseFragment implements YB_XiangQ_Cotrac
                     }
                     bool[0] = true;
                 }
-
-
                 break;
 
         }

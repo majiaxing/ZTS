@@ -65,7 +65,7 @@ public class TingL_TK_Xz_Activity extends BaseActivity implements TingL_XQ_xz_Co
     @Override
     protected void initView() {
 
-
+//        接受参数
         Intent intent = getIntent();
         Title1 = intent.getStringExtra("title");
         listen_id = intent.getStringExtra("listen_id");
@@ -85,6 +85,7 @@ public class TingL_TK_Xz_Activity extends BaseActivity implements TingL_XQ_xz_Co
     @Override
     public void loadData() {
 
+//        开启网络请求
         presenter = new TingL_TK_Presenter(this);
         presenter.SetU(listen_id);
     }
@@ -118,10 +119,11 @@ public class TingL_TK_Xz_Activity extends BaseActivity implements TingL_XQ_xz_Co
 
         MyLog.e("QWE@#$", xqbean.toString() + "");
 
-
+//        主线程操作
         App.activity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
+//                遍历传值
                 for (int i = 0; i < xqbean.getData().get(0).getListen_questionList().size(); i++) {
                     TingL_XZ_Fragment fragment = new TingL_XZ_Fragment();
                     bundle = new Bundle();
@@ -141,9 +143,7 @@ public class TingL_TK_Xz_Activity extends BaseActivity implements TingL_XQ_xz_Co
                     }
                     bundle.putString("yema",xqbean.getData().get(0).getListen_questionList().size() +"");
                     bundle.putString("dangq",i+1+"");
-
                     MyLog.e("WYFL",xqbean.getData().get(0).getListen_video());
-
                     fragment.setParams(bundle);
                     list.add(fragment);
                 }
@@ -169,6 +169,5 @@ public class TingL_TK_Xz_Activity extends BaseActivity implements TingL_XQ_xz_Co
 
     @Override
     public void setBasePresenter(TingL_XQ_xz_Cotract.Presenter presenter) {
-
     }
 }

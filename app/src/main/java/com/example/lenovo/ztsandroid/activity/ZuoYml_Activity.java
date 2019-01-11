@@ -83,6 +83,7 @@ public class ZuoYml_Activity extends Activity implements Zuoy_Cotract.View {
     }
     protected void initView() {
 
+//        获取参数
         final Intent intent = getIntent();
         title = intent.getStringExtra("title");
         hwid = intent.getStringExtra("hwid");
@@ -90,13 +91,13 @@ public class ZuoYml_Activity extends Activity implements Zuoy_Cotract.View {
         scoreAll = intent.getStringExtra("scoreAll");
         flag = intent.getStringExtra("flag");
         Title.setText(title);
-
+//        判断是否开始作业
         if (scoreAll != null) {
             XueShengFenS.setText(scoreAll);
         } else {
             XueShengFenS.setText("未开始作业");
         }
-
+//        点击ListView  根据类型 跳转相应的页面
         ListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -219,7 +220,7 @@ public class ZuoYml_Activity extends Activity implements Zuoy_Cotract.View {
 
 
     public void loadData() {
-
+//        开启网络请求 初始化 presenter
         presenter = new Zuoye_erji_list_Presenter(this);
         presenter.SetU(hwid, homework_cishu, flag, scoreAll);
     }
@@ -231,12 +232,13 @@ public class ZuoYml_Activity extends Activity implements Zuoy_Cotract.View {
 
     @Override
     public void getManagZuoY(ZuoY_erJ_Bean erJ_bean) {
-
+//        添加数据
         list.addAll(erJ_bean.getData().getHomeworkType());
-
+//        在主线程中操作
         App.activity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
+//                初始化 adapter 创建item
                 adapter = new ZY_ml_Adapter(list, App.activity);
                 ListView.setAdapter(adapter);
                 adapter.notifyDataSetChanged();

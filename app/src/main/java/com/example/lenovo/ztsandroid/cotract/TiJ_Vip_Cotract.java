@@ -16,13 +16,12 @@ import java.util.Map;
 
 public interface TiJ_Vip_Cotract {
 
-
-
+    //    定义view里面的 方法
     interface View extends BaseView<TiJ_Vip_Cotract.Presenter> {
         void getManager(TiJ_Vip_Bean xqbean);
         void showmessage(String str);
     }
-
+    //    presenter 里面需要传递的参数
     interface Presenter extends BasePresenter {
 
         void SetUrl(String stuid , String cardName, String cardPassword);

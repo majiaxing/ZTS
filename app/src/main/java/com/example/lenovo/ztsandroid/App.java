@@ -93,7 +93,7 @@ public class App extends Application {
                 xgNotifaction.doNotify();
             }
         });
-
+//          信鸽初始化方法
         XGPushConfig.enableDebug(this,true);
         XGPushConfig.enableOtherPush(getApplicationContext(), true);
         XGPushConfig.setHuaweiDebug(true);
@@ -101,7 +101,7 @@ public class App extends Application {
         XGPushConfig.setMiPushAppKey(getApplicationContext(), "AZ998UTKC49Q");
         XGPushConfig.setMzPushAppId(this, "2100322577");
         XGPushConfig.setMzPushAppKey(this, "AZ998UTKC49Q");
-
+//            注册信鸽
         XGPushManager.registerPush(this, new XGIOperateCallback() {
             @Override
             public void onSuccess(Object data, int flag) {

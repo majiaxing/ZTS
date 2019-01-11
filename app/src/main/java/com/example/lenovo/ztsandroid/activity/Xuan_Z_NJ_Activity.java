@@ -39,7 +39,7 @@ public class Xuan_Z_NJ_Activity extends BaseActivity {
 
     @Override
     protected void initView() {
-
+//        选择年级
         list.add(new Spinner_Bean("一年级"));
         list.add(new Spinner_Bean("二年级"));
         list.add(new Spinner_Bean("三年级"));

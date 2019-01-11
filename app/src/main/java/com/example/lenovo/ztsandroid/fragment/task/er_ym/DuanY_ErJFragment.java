@@ -76,6 +76,7 @@ public class DuanY_ErJFragment extends BaseActivity implements ZuoY_DY_Cotract.V
 
     @Override
     public void loadData() {
+        //        开始网络请求  初始化presenter  传参
         presenter = new ZuoY_Dy_presenter(this);
         presenter.SetUrl(App.stuid, hwid, "", "", hw_type, hw_content, avgScores);
     }
@@ -122,19 +123,24 @@ public class DuanY_ErJFragment extends BaseActivity implements ZuoY_DY_Cotract.V
         // TODO: add setContentView(...) invocation
         ButterKnife.bind(this);
     }
+    //请求成功的回调
 
     @Override
     public void getManager(final ZuoY_dy_Bean zuoYDyBean) {
         MyLog.e("DSAHDKSAH", zuoYDyBean.getData().getTypeList().size() + "");
+            //得到数据 在主线程里面 操作
 
         App.activity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
+                // for循环 遍历 data 集合
+
                 for (int a = 0; a < zuoYDyBean.getData().getTypeList().size(); a++) {
 
                     String word = zuoYDyBean.getData().getTypeList().get(a).getPhrase();
                     String word_tran = zuoYDyBean.getData().getTypeList().get(a).getPhrase_tran();
                     String hw_answerId = zuoYDyBean.getData().getTypeList().get(a).getHw_answerId();
+                    // 创建fragment 传递数据
 
                     Zy_DuanY_Fragment zuYYinBFragment = new Zy_DuanY_Fragment();
                     bundle = new Bundle();
@@ -150,10 +156,12 @@ public class DuanY_ErJFragment extends BaseActivity implements ZuoY_DY_Cotract.V
                     bundle.putString("yema", zuoYDyBean.getData().getTypeList().size() + "");
                     bundle.putString("dangq", a + 1 + "");
                     MyLog.e("DADT_____", word + word_tran);
+                    //bundle 传到 子页面
+
                     zuYYinBFragment.setParams(bundle);
                     nlist.add(zuYYinBFragment);
                 }
-
+                    //初始化适配器 创建页面
                 String size = String.valueOf(zuoYDyBean.getData().getTypeList().size());
                 YeShu.setText(size);
                 adapter = new ViewPagerAdapter(getSupportFragmentManager(), nlist);

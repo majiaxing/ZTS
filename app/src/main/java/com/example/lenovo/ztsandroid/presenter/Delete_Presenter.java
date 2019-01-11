@@ -25,7 +25,7 @@ public class Delete_Presenter implements XX_Cotract.Presenter {
     }
 
 
-
+    //    调用model层数据  把 model层数据传递到view层
     @Override
     public void SetUrl(String useId, String pageNumber, String pageSize) {
 

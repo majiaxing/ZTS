@@ -38,6 +38,9 @@ public class Xuan_Z_Bj_Activity extends BaseActivity {
 
     @Override
     protected void initView() {
+
+//        选择班级  班级列表
+
         list.add(new Spinner_Bean("一班"));
         list.add(new Spinner_Bean("二班"));
         list.add(new Spinner_Bean("三班"));

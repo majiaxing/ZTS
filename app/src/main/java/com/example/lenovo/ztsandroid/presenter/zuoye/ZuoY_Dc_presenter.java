@@ -24,7 +24,7 @@ public class ZuoY_Dc_presenter implements ZuoY_Dc_Cotract.Presenter {
     }
 
 
-
+    //    调用model层数据  把 model层数据传递到view层
     @Override
     public void SetUrl(String stuid, String hwid, String flag, String listen_type, String hw_type, String hw_content, String avgScore) {
 

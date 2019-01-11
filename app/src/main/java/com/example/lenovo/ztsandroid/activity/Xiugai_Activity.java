@@ -101,7 +101,7 @@ public class Xiugai_Activity extends BaseActivity implements TouX_SC_Cotract.Vie
     };
     private File file;
     private String student;
-
+//        动态获取权限
     public static void verifyStoragePermissions(Activity activity) {
 
         try {
@@ -147,7 +147,7 @@ public class Xiugai_Activity extends BaseActivity implements TouX_SC_Cotract.Vie
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
-
+//            选择相册 图片
         if (resultCode == RESULT_CANCELED) {
 
             Toast.makeText(App.activity, "点击取消从相册选择", Toast.LENGTH_LONG).show();
@@ -197,7 +197,7 @@ public class Xiugai_Activity extends BaseActivity implements TouX_SC_Cotract.Vie
                     String img_path = actualimagecursor.getString(actual_image_column_index);
 
                     file = new File(img_path);
-
+//                   网络请求  开始
                     presenter = new Use_Toux_Presenter(this);
                     presenter.SetU(student, "", App.stuid);
 
@@ -210,7 +210,7 @@ public class Xiugai_Activity extends BaseActivity implements TouX_SC_Cotract.Vie
         super.onActivityResult(requestCode, resultCode, data);
 
     }
-
+//    获取  图片的Uri
     public void choosePhoto(){
         Intent intentToPickPic = new Intent(Intent.ACTION_PICK, null);
         // 如果限制上传到服务器的图片类型时可以直接写如："image/jpeg 、 image/png等的类型" 所有类型则写 "image/*"

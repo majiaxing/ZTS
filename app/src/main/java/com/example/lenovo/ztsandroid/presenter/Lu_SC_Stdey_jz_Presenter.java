@@ -35,7 +35,7 @@ public class Lu_SC_Stdey_jz_Presenter implements ZhiL_Yuyin_Cotract.Presenter{
     public void seturlZhiL(String SeqId, String IsEnd, String VoiceFileType, String VoiceEncodeType, String UserVoiceData, String SessionId) {
 
     }
-
+    //    调用model层数据  把 model层数据传递到view层
     @Override
     public void SetU(String stuid, String word_id, String learn_video, String learn_score, String type) {
 

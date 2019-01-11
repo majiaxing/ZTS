@@ -80,6 +80,7 @@ public class TingL_TK_ErJFragment extends BaseActivity implements ZuoY_TingL_XZ_
 
     @Override
     public void initData() {
+        //        开始网络请求  初始化presenter  传参
         presenter = new ZuoY_TL_presenter(this);
         presenter.SetUrl(App.stuid, hwid, "", "2", hw_type, hw_content, avgScore);
     }
@@ -88,7 +89,7 @@ public class TingL_TK_ErJFragment extends BaseActivity implements ZuoY_TingL_XZ_
     public void loadData() {
 
     }
-
+    //请求成功的回调
     @Override
     public void getManager(final ZuoY_TL_xz_Bean zuoYDcBean) {
 
@@ -97,7 +98,11 @@ public class TingL_TK_ErJFragment extends BaseActivity implements ZuoY_TingL_XZ_
         App.activity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-
+                    //得到数据 在主线程里面 操作
+                    // for循环 遍历 data 集合
+                    // 创建fragment 传递数据
+                    //bundle 传到 子页面
+                    //初始化适配器 创建页面
                 for (int i = 0; i < zuoYDcBean.getData().getTypeList().size(); i++) {
 
                     Zy_TingL_TK_Fragment fragment = new Zy_TingL_TK_Fragment();

@@ -54,12 +54,12 @@ public class JiaR_XuanZ_Activity extends BaseActivity implements JaR_Bj_Cotract.
 
     @Override
     protected void initView() {
-
+//        得到腹肌页面传过来的集合
         Intent intent = getIntent();
         ArrayList<BanJBean.DataBean> data1 = (ArrayList<BanJBean.DataBean>) intent.getSerializableExtra("data");
 
         data.addAll(data1);
-
+//        初始化 adapter 加载item
         z_bj_adapter = new XuanZ_BJ_Adapter(App.activity,data);
         BanjiXZ.setAdapter(z_bj_adapter);
         z_bj_adapter.notifyDataSetChanged();

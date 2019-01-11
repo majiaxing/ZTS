@@ -78,7 +78,7 @@ public class JuZ_Sy_Activity extends BaseActivity implements Juz_XQ_Cotract.View
     @Override
     protected void initView() {
 
-
+//        得到父级页面传过来的参数
         Intent intent = getIntent();
         Title1 = intent.getStringExtra("title");
         sentence_id = intent.getStringExtra("sentence_id");
@@ -86,9 +86,8 @@ public class JuZ_Sy_Activity extends BaseActivity implements Juz_XQ_Cotract.View
         relative_path = intent.getStringExtra("Relative_path");
 
     }
-
+//    设置弹窗  点击 下拉列表 展示所有的内容
     public void upPopupWindow(View view) {
-
         View v = LayoutInflater.from(App.activity).inflate(R.layout.danc_popup_qh, null);
         popupView(v);
         popupWindow = new PopupWindow(v, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -97,7 +96,7 @@ public class JuZ_Sy_Activity extends BaseActivity implements Juz_XQ_Cotract.View
         popupWindow.showAsDropDown(view, 0, 0);
 
     }
-
+//初始化弹窗的控件
     public void popupView(View v) {
 
         listView = v.findViewById(R.id.popup_listview);
@@ -125,7 +124,7 @@ public class JuZ_Sy_Activity extends BaseActivity implements Juz_XQ_Cotract.View
 
     @Override
     public void loadData() {
-
+//      开启网络请求 初始化presenter 传参
         presenter = new Juz_XQ_Presenter(this);
         presenter.SetU(sentence_id);
     }
@@ -151,15 +150,16 @@ public class JuZ_Sy_Activity extends BaseActivity implements Juz_XQ_Cotract.View
                 break;
         }
     }
-
+//    请求成功的会低
     @Override
     public void getManager(final Juz_Xq_Bean xqbean) {
-
+//        在主线程中操作
         App.activity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
+//                for 遍历data 创建页面
                 for (int i = 0; i < xqbean.getData().size(); i++) {
-
+//                    初始化 fragment  传参
                     Duany_Fragment fragment = new Duany_Fragment();
                     bundle = new Bundle();
                     bundle.putString("yin",xqbean.getData().get(i).getSentence_yw());
@@ -172,13 +172,14 @@ public class JuZ_Sy_Activity extends BaseActivity implements Juz_XQ_Cotract.View
                     bundle.putString("yema",xqbean.getData().size() +"");
                     bundle.putString("dangq",i+1+"");
                     fragment.setParams(bundle);
+//                    添加fragment  创建页面
                     list.add(fragment);
                 }
+//                初始化适配器  加载viewpager 页面
                 adapter = new ViewPagerAdapter(getSupportFragmentManager(),list);
                 danciViewPager.setAdapter(adapter);
                 adapter.notifyDataSetChanged();
-
-
+//                把内容加载到下拉列表上
                 nlist.addAll(xqbean.getData());
 
             }
@@ -196,7 +197,7 @@ public class JuZ_Sy_Activity extends BaseActivity implements Juz_XQ_Cotract.View
     public void setBasePresenter(Juz_XQ_Cotract.Presenter presenter) {
 
     }
-
+//    子页面回调过来的 内容
     @Override
     public void huidiao(String str) {
         title.setText("句子");

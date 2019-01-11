@@ -61,7 +61,7 @@ public class TingL_TK_Activity extends BaseActivity implements TingL_XQ_xz_Cotra
 
     @Override
     protected void initView() {
-
+//        接收参数
         Intent intent = getIntent();
         Title1 = intent.getStringExtra("title");
         listen_id = intent.getStringExtra("listen_id");
@@ -69,13 +69,13 @@ public class TingL_TK_Activity extends BaseActivity implements TingL_XQ_xz_Cotra
         type = intent.getStringExtra("type");
         MyLog.e("AdsDSc传过来的数据", listen_id);
 
-
         title.setText("听力填空");
 
     }
 
     @Override
     public void initData() {
+//        开始网络请求
         presenter = new TingL_Xq_xz_Presenter(this);
         presenter.SetU(listen_id);
     }
@@ -101,7 +101,7 @@ public class TingL_TK_Activity extends BaseActivity implements TingL_XQ_xz_Cotra
 
         MyLog.e("QWE@#$", xqbean.toString() + "");
 
-
+//            主线程进行操作
         App.activity.runOnUiThread(new Runnable() {
             @Override
             public void run() {

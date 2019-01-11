@@ -13,12 +13,14 @@ import java.io.File;
 
 public interface TouX_SC_Cotract {
 
+    //    定义view里面的 方法
+
     interface View extends BaseView<TouX_SC_Cotract.Presenter> {
         void getManager(LiY_SC_WJ_Bean xq_bean);
         void getWJSC(SC_YX_Bean sc_yx_bean);
         void showmessage(String str);
     }
-
+    //    presenter 里面需要传递的参数
     //    {"jclx":"人教版","nj":"一年级","sxc":"上册","flag":"text"}
     interface Presenter extends BasePresenter {
 

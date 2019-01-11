@@ -76,7 +76,7 @@ public class TiaoZan_Activity extends BaseActivity implements YB_XiangQ_Cotract.
 
         Intent intent = getIntent();
         String yb_id = intent.getStringExtra("YB_id");
-
+//        初始化 presenter 传参
         presenter = new YB_Tiaoz_Presenter(this);
         presenter.SetU(yb_id, "1");
     }

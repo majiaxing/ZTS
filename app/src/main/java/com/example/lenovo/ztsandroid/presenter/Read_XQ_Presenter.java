@@ -21,7 +21,7 @@ public class Read_XQ_Presenter implements Read_XQ_Cotract.Presenter {
         view.setBasePresenter(this);
         csModel = new CSModelImpl();
     }
-
+    //    调用model层数据  把 model层数据传递到view层
     @Override
     public void SetUrl(String read_Id) {
         csModel.postRead_xq(read_Id, new MyNetWorkCallback<Read_XQ_Bean>() {

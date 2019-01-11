@@ -21,7 +21,7 @@ public class Diq_qu_Presenter implements Diq_QieH_Cotract.Presenter {
         view.setBasePresenter(this);
         DancModel = new CSModelImpl();
     }
-
+    //    调用model层数据  把 model层数据传递到view层
     @Override
     public void start() {
 
@@ -33,7 +33,7 @@ public class Diq_qu_Presenter implements Diq_QieH_Cotract.Presenter {
 
 
     }
-
+    //    调用model层数据  把 model层数据传递到view层
     @Override
     public void SetU(String shi_id) {
         DancModel.post_DiqQu(shi_id,new MyNetWorkCallback<Diq_Qu_Bean>() {

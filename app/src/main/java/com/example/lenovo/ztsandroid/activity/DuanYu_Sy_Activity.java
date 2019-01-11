@@ -68,7 +68,7 @@ public class DuanYu_Sy_Activity extends BaseActivity implements Dy_erj_Cotract.V
 
     @Override
     protected void initView() {
-
+//传过来的值
         Intent intent = getIntent();
         type = intent.getStringExtra("type");
         extra = intent.getStringExtra("extra");
@@ -80,8 +80,8 @@ public class DuanYu_Sy_Activity extends BaseActivity implements Dy_erj_Cotract.V
     public void initData() {
 
     }
-
-    public void upPopupWindow(View view) {
+//        弹出窗口  下拉列表
+        public void upPopupWindow(View view) {
         View v = LayoutInflater.from(App.activity).inflate(R.layout.danc_popup_qh, null);
         popupView(v);
         popupWindow = new PopupWindow(v, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -90,7 +90,7 @@ public class DuanYu_Sy_Activity extends BaseActivity implements Dy_erj_Cotract.V
         popupWindow.showAsDropDown(view, 0, 0);
 
     }
-
+// 弹窗控件的 初始化控件
     public void popupView(View v) {
 
         listView = v.findViewById(R.id.popup_listview);
@@ -115,7 +115,7 @@ public class DuanYu_Sy_Activity extends BaseActivity implements Dy_erj_Cotract.V
 
     @Override
     public void loadData() {
-
+//        开启网络请求 传参
         presenter = new Dy_Xq_Presenter(this);
         presenter.setUrl(extra, type, App.stuid);
     }
@@ -140,15 +140,16 @@ public class DuanYu_Sy_Activity extends BaseActivity implements Dy_erj_Cotract.V
                 break;
         }
     }
-
+//    请求成功的回调
     @Override
     public void getManager(final Dy_Xq_Bean xqBean) {
-
+//      得到数据 在主线程里面 操作
         App.activity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
+//                for循环 遍历 data 集合
                 for (int i = 0; i < xqBean.getData().size(); i++) {
-
+//                    创建fragment 传递数据
                     Duany_Fragment duany_fragment = new Duany_Fragment();
                     bundle = new Bundle();
                     bundle.putString("yin", xqBean.getData().get(i).getPhrase());
@@ -160,14 +161,15 @@ public class DuanYu_Sy_Activity extends BaseActivity implements Dy_erj_Cotract.V
                     bundle.putString("word_video", xqBean.getData().get(i).getPhrase_video());
                     bundle.putString("yema",xqBean.getData().size() +"");
                     bundle.putString("dangq",i+1+"");
-
+//                  bundle 传到 子页面
                     duany_fragment.setParams(bundle);
+//                    把fragment  添加到list 集合中
                     list.add(duany_fragment);
                 }
+//                初始化适配器 创建页面
                 adapter = new ViewPagerAdapter(getSupportFragmentManager(), list);
                 danciViewPager.setAdapter(adapter);
                 adapter.notifyDataSetChanged();
-
 
                 nlist.addAll(xqBean.getData());
             }
@@ -186,7 +188,7 @@ public class DuanYu_Sy_Activity extends BaseActivity implements Dy_erj_Cotract.V
 
     }
 
-
+//    子页面 回调过来的 展示 的单词
     @Override
     public void huidiao(String str) {
 

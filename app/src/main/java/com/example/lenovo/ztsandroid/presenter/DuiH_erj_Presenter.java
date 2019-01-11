@@ -31,7 +31,7 @@ public class DuiH_erj_Presenter implements Juz_list_Cotract.Presenter {
     public void SetU(String flag, String type) {
 
     }
-
+    //    调用model层数据  把 model层数据传递到view层
     @Override
     public void setUrl(String flag, String type) {
 

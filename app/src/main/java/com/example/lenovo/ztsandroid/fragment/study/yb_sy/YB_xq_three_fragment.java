@@ -100,23 +100,22 @@ public class YB_xq_three_fragment extends BaseFragment implements YB_XiangQ_Cotr
 
     @Override
     protected void init(View view) {
+//        初始化控件
         YBTitle = view.findViewById(R.id.YB_title);
         BFCsFay = view.findViewById(R.id.BF_cs_fay);
         CsFayLY = view.findViewById(R.id.Ly_btn);
         TZYXT = view.findViewById(R.id.TZ_YX_t);
-
-
+//        设置点击事件
         TZYXT.setOnClickListener(this);
-
         CsFayLY.setOnClickListener(this);
         BFCsFay.setOnClickListener(this);
-
-        rippleIntroView = view.findViewById(R.id.Ripple);
+//       初始化 水波纹
+         rippleIntroView = view.findViewById(R.id.Ripple);
 
         linearLayout = view.findViewById(R.id.linear);
 
         pinF_jd = view.findViewById(R.id.PinF_jd);
-
+//      评估加载 设置动画
         hyperspaceJumpAnimation = AnimationUtils.loadAnimation(App.activity, R.anim.loading_animation);
         // 使用ImageView显示动画
         pinF_jd.startAnimation(hyperspaceJumpAnimation);
@@ -126,7 +125,7 @@ public class YB_xq_three_fragment extends BaseFragment implements YB_XiangQ_Cotr
 
 
         yBid = bundle.getString("YBid");
-
+//       开始网络请求 初始化presenter 需要传的参数
         presenter = new YB_three_Xq_Presenter(this);
         presenter.SetUrl(yBid,"3","");
 
@@ -137,7 +136,7 @@ public class YB_xq_three_fragment extends BaseFragment implements YB_XiangQ_Cotr
 
 
 
-
+//  设置 加载 播放方法
     public void setVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
         if (mPlayer == null){
@@ -373,7 +372,7 @@ public class YB_xq_three_fragment extends BaseFragment implements YB_XiangQ_Cotr
 
 
 
-
+//  把头部信息写入到 文件中
     private void copyWaveFile(String inFileName, String outFileName) {
         FileInputStream in = null;
         FileOutputStream out = null;
@@ -467,7 +466,7 @@ public class YB_xq_three_fragment extends BaseFragment implements YB_XiangQ_Cotr
         out.write(header, 0, 44);
     }
 
-
+//结束方法
     private void pause(){
         mediaPlayer.pause();
 //        playhandler.removeCallbacks(runnable_3);
@@ -511,7 +510,7 @@ public class YB_xq_three_fragment extends BaseFragment implements YB_XiangQ_Cotr
     public void getManagerR(YB_XQ_one_Bean yb_xq_one_bean) {
 
     }
-
+// 请求成功的回调
     @Override
     public void getManagerTh(YB_XQ_three_Bean postYinB_XQ_three) {
         symbol = postYinB_XQ_three.getData().get(0).getSymbol();
@@ -544,19 +543,21 @@ public class YB_xq_three_fragment extends BaseFragment implements YB_XiangQ_Cotr
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.BF_cs_fay:
-
+//                按钮的两种状态  bool【0】=false走播放  bool【0】=true走暂停
                 if (bool[0]){
                     if (mPlayer.isPlaying()){
                         MyLog.e("lalall","ahahahahh");
                         setVisibleHint(false);
+//                      点击暂停
+                        bool[0] = false;
                     }
-                    bool[0] = false;
                 }else {
                     if (!mPlayer.isPlaying()){
+                        //点击播放
                         MyLog.e("holle dnsjk","ahahahahh");
                         setVisibleHint(true);
+                        bool[0] = true;
                     }
-                    bool[0] = true;
                 }
 
 

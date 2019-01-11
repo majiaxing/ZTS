@@ -28,7 +28,7 @@ public class Sc_toux_file_Presenter implements TouX_SC_Cotract.Presenter {
     public void SetU(String student, String stuTupian, String stuid) {
 
     }
-
+    //    调用model层数据  把 model层数据传递到view层
     @Override
     public void seturl(File file, String type, String save_path) {
     csModel.postSC_file(file, type, save_path, new MyNetWorkCallback<SC_YX_Bean>() {

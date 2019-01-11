@@ -129,7 +129,7 @@ public class TingL_TK_Fragment extends BaseFragment implements TingL_XQ_xz_Cotra
         ChongZ.setVisibility(View.GONE);
     }
 
-
+//    初始化播放器
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);

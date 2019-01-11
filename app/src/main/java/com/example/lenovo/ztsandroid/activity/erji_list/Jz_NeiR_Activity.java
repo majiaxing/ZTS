@@ -55,20 +55,21 @@ public class Jz_NeiR_Activity extends BaseActivity implements Juz_list_Cotract.V
 
     @Override
     protected void initView() {
+//        得到父页面传过来的 参数
         Intent intent = getIntent();
         String xxx = intent.getStringExtra("title");
         extra= intent.getStringExtra("extra");
         type = intent.getStringExtra("type");
         title.setText(xxx);
 
-
-
-
+//        listview点击时间
         ListKewR.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+//                得到  每一个item 的name 和id
                 String  Xx = list.get(i).getSentence_name();
                 String sentence_id = list.get(i).getSentence_id();
+//                初始化 intent 传参
                 Intent intent = new Intent(App.activity,JuZ_Sy_Activity.class);
                 intent.putExtra("title",Xx);
                 intent.putExtra("sentence_id",sentence_id);
@@ -90,6 +91,7 @@ public class Jz_NeiR_Activity extends BaseActivity implements Juz_list_Cotract.V
 
     @Override
     public void loadData() {
+//        开启网络请求 初始化 ppresenter 传参
     presenter = new Jz_erj_Presenter(this);
 
         presenter.SetU(extra,type);
@@ -108,7 +110,7 @@ public class Jz_NeiR_Activity extends BaseActivity implements Juz_list_Cotract.V
         App.activity.onBackPressed();
     }
 
-
+//   请求成功的会掉
     @Override
     public void getManager(Juz_erj_Bean erjBean) {
 
@@ -124,10 +126,7 @@ public class Jz_NeiR_Activity extends BaseActivity implements Juz_list_Cotract.V
                 adapter.notifyDataSetChanged();
             }
         });
-
-
     }
-
     @Override
     public void getManager(DuiH_erj_Bean erjBean) {
 

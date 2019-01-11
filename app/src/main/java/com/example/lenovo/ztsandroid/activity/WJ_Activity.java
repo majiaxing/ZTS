@@ -82,7 +82,7 @@ public class WJ_Activity extends BaseActivity implements WangJ_Cotract.View{
                 App.activity.onBackPressed();
                 break;
             case R.id.HQ_:
-
+//              获取验证码
                 if (boo){
                    Timer timer = new Timer();
                                  timer.schedule(new TimerTask() {
@@ -117,7 +117,7 @@ public class WJ_Activity extends BaseActivity implements WangJ_Cotract.View{
 
                         return;
                     }
-
+                    //获取验证码网络请求
                     presenter = new WangJ_Presenter(this);
                     presenter.setUrl(shouji, "2");
                     boo = true;
@@ -126,6 +126,7 @@ public class WJ_Activity extends BaseActivity implements WangJ_Cotract.View{
 
                 break;
             case R.id.CZ_:
+                //重置密码
                 shouji = SJH.getText().toString().trim();
                 yanzhengma = YZM.getText().toString().trim();
                 yhm = YHM.getText().toString().trim();
@@ -144,8 +145,6 @@ public class WJ_Activity extends BaseActivity implements WangJ_Cotract.View{
                     Toast toast = Toast.makeText(App.activity, "请输入手机号和验证码", Toast.LENGTH_SHORT);
                     toast.setGravity(Gravity.CENTER, 0, 0);
                     toast.show();
-
-
                     return;
                 }
 
@@ -162,6 +161,7 @@ public class WJ_Activity extends BaseActivity implements WangJ_Cotract.View{
 //                if (rult == false || yanz == false) {
 //                    Toast.makeText(this, "请输入正确的手机号和验证码", Toast.LENGTH_SHORT).show();
 //                } else {
+                //重置密码 网络请求
                     presenter = new WangJ_Password_Presenter(this);
                     presenter.setUrls("5",yhm,password,yanzhengma,shouji);
 //                }

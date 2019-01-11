@@ -78,6 +78,7 @@ public class TJ_Vip_Avtivity extends BaseActivity implements TiJ_Vip_Cotract.Vie
 
 //                    Toast.makeText(App.activity,"卡号密码不能为空",Toast.LENGTH_SHORT).show();
                 }else {
+//                    添加vip卡
                     presenter = new TiJ_Vip_Presenter(this);
                     presenter.SetUrl(App.stuid,UseName.getText().toString(),PasWard.getText().toString());
                 }

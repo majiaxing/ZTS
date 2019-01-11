@@ -137,7 +137,7 @@ public class TingL_XZ_Fragment extends BaseFragment implements TingL_XQ_xz_Cotra
         return R.layout.viewpager_xuanz;
     }
 
-
+//    初始化播放器
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);

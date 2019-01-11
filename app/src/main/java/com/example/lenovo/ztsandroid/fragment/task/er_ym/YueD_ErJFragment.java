@@ -87,6 +87,7 @@ public class YueD_ErJFragment extends BaseActivity implements ZuoY_Yd_Cotract.Vi
 
     @Override
     public void loadData() {
+        //        开始网络请求  初始化presenter  传参
         presenter = new ZuoY_YD_presenter(this);
         presenter.SetUrl(App.stuid, hwid, "", "", hw_type, hw_content, avgScores);
     }
@@ -214,6 +215,7 @@ public class YueD_ErJFragment extends BaseActivity implements ZuoY_Yd_Cotract.Vi
 
 
     }
+    //请求成功的回调
 
     @Override
     public void getManager(final ZuoY_Yd_Bean zuoYDcBean) {
@@ -223,6 +225,11 @@ public class YueD_ErJFragment extends BaseActivity implements ZuoY_Yd_Cotract.Vi
             @Override
             public void run() {
                 ArrayList<ZuoY_Yd_Bean.DataBean.TypeListBean> mlist = (ArrayList<ZuoY_Yd_Bean.DataBean.TypeListBean>) zuoYDcBean.getData().getTypeList();
+                //得到数据 在主线程里面 操作
+                // for循环 遍历 data 集合
+                // 创建fragment 传递数据
+                //bundle 传到 子页面
+                //初始化适配器 创建页面
                 for (int a = 0; a < mlist.size(); a++) {
 
                     String word = mlist.get(a).getRead_content();

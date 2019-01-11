@@ -94,7 +94,7 @@ public class ZuoY_Activity extends BaseActivity implements TiJao_Cotract.View ,V
 
     @Override
     protected void initView() {
-
+//            获取到 父页面传过来的参数
         Intent intent = getIntent();
         hwid = intent.getStringExtra("hwid");
 
@@ -107,7 +107,7 @@ public class ZuoY_Activity extends BaseActivity implements TiJao_Cotract.View ,V
         }).start();
 
     }
-
+//    网络请求
     private void postParams() {
         //创建一个OkHttpClient对象
         OkHttpClient okHttpClient = new OkHttpClient();
@@ -122,7 +122,6 @@ public class ZuoY_Activity extends BaseActivity implements TiJao_Cotract.View ,V
                 .url(Urls.BASE + "homework/findDetail")
                 .post(builder.build())
                 .build();
-
         //发送请求获取响应
         Response response = null;
         try {
@@ -141,7 +140,7 @@ public class ZuoY_Activity extends BaseActivity implements TiJao_Cotract.View ,V
         }
     }
 
-
+//    对数据解析
     private void JsonDemo(String string) {
 
 

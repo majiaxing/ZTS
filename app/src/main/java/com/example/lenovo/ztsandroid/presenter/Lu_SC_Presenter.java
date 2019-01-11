@@ -24,7 +24,7 @@ public class Lu_SC_Presenter implements Lu_SC_Cotract.Presenter {
         this.view.setBasePresenter(this);
         csModel = new CSModelImpl();
     }
-
+    //    调用model层数据  把 model层数据传递到view层
     @Override
     public void SetU(String stuid, String hwid, String hw_type, String hw_content, String hw_answerId, String hw_video, String hw_score, String everyScore) {
         csModel.postSC_Lu( stuid,  hwid,  hw_type,  hw_content,  hw_answerId,  hw_video,  hw_score ,everyScore, new MyNetWorkCallback<LiY_SC_WJ_Bean>() {

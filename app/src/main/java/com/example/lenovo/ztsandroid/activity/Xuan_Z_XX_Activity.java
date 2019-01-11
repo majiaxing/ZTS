@@ -50,13 +50,15 @@ public class Xuan_Z_XX_Activity extends BaseActivity {
 
     @Override
     protected void initView() {
+
+//        创建数据
         List<Spinner_Bean> persons=new ArrayList<Spinner_Bean>();
         persons.add(new Spinner_Bean( "宁夏"));
         persons.add(new Spinner_Bean("银川市"));
         persons.add(new Spinner_Bean("金凤区" ));
-//  建立Adapter绑定数据源
+        //  建立Adapter绑定数据源
         Spinner_Adapter _MyAdapter=new Spinner_Adapter(persons,this);
-//绑定Adapter
+            //绑定Adapter
         XXShenjDqSpinner.setAdapter(_MyAdapter);
         XXSjDqSpinner.setAdapter(_MyAdapter);
         XXXJSpinner.setAdapter(_MyAdapter);

@@ -11,13 +11,14 @@ import com.example.lenovo.ztsandroid.model.entity.XiaoX_content_Bean;
  */
 
 public interface JiaoC_xz_Cotract {
-
+    //    定义view里面的 方法
     interface View extends BaseView<JiaoC_xz_Cotract.Presenter> {
         void getManager(JiaoC_Bean ceSBean);
         void getXiaoXContent(XiaoX_content_Bean xiaoX_content_bean);
 
         void showmessage(String str);
     }
+//    presenter 里面需要传递的参数
 
     interface Presenter extends BasePresenter {
 

@@ -140,7 +140,7 @@ public class KeW_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.Vie
         return R.layout.kw_viewpager;
     }
 
-
+//    播放  在fragment 显示隐藏 的时候
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);

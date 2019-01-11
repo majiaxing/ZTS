@@ -83,11 +83,12 @@ public class YBxq_two_fragment extends BaseFragment implements YB_XiangQ_Cotract
 
     @Override
     protected void init(View view) {
+//        初始化控件
         RDH = view.findViewById(R.id.R_D_H);
         RZR = view.findViewById(R.id.R_Z_R);
         XZFy = view.findViewById(R.id.XZ_fy);
         TZYXT = view.findViewById(R.id.TZ_YX_t);
-
+//按钮的点击事件
         RDH.setOnClickListener(this);
         RZR.setOnClickListener(this);
         TZYXT.setOnClickListener(this);
@@ -96,13 +97,13 @@ public class YBxq_two_fragment extends BaseFragment implements YB_XiangQ_Cotract
 
     @Override
     protected void loadData() {
-
+//开启网络请求 presenter 层初始化 需要传的参数
         yBid = bundle.getString("YBid");
         presenter = new YB_Two_XQ_Presenter(this);
         presenter.SetUrl(yBid, "2", "");
 
     }
-
+//        得到父级页面 传过来的bundle
     @Override
     public void setParams(Bundle bundle) {
         this.bundle = bundle;
@@ -133,7 +134,7 @@ public class YBxq_two_fragment extends BaseFragment implements YB_XiangQ_Cotract
     public void getManagerO(YB_XQ_one_Bean yb_xq_one_bean) {
 
     }
-
+//请求成功的回调
     @Override
     public void getManagerT(YB_XQ_Two_Bean yb_xq_two_bean) {
         yb_translate = yb_xq_two_bean.getData().get(0).getYb_translate();
@@ -141,13 +142,13 @@ public class YBxq_two_fragment extends BaseFragment implements YB_XiangQ_Cotract
         yb_human = yb_xq_two_bean.getData().get(0).getYb_human();
         yb_photo = yb_xq_two_bean.getData().get(0).getYb_photo();
         yb_cartoon = yb_xq_two_bean.getData().get(0).getYb_cartoon();
+
+//        开启主线程
         App.activity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-
+//                判断图片字段是否为空  如果为空 判断 mp4 文件是否为空  那个不为空加载那个
                 if (!yb_photo.equals("")) {
-
-
                     DHFYRela.setVisibility(View.GONE);
                     FaYDongh.setVisibility(View.VISIBLE);
                     MyLog.e("现在是图片",yb_photo);
@@ -155,7 +156,6 @@ public class YBxq_two_fragment extends BaseFragment implements YB_XiangQ_Cotract
                     Glide.with(App.activity).load(bofUrl).asGif().into(FaYDongh);
                     MyLog.e("图片的Url",bofUrl);
                 } else if (!yb_cartoon.equals("")) {
-
                     MyLog.e("现在是视频",yb_cartoon);
                     FaYDongh.setVisibility(View.GONE);
                     DHFYRela.setVisibility(View.VISIBLE);
@@ -186,7 +186,7 @@ public class YBxq_two_fragment extends BaseFragment implements YB_XiangQ_Cotract
 
                 YBNr.setText(yb_translate);
 
-
+//                加载真人发音的 mp4
                 String bofUrlO = "https://zts100.com/demo/file/download" + "/?" + "Relative_path=" + relative_path + "&" + "type=3" + "&" + "fileName=" + yb_human;
 
                 MyLog.e("打印的Url", bofUrlO);

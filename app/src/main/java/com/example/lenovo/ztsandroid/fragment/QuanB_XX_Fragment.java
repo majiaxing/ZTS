@@ -99,11 +99,11 @@ public class QuanB_XX_Fragment extends BaseFragment implements XX_xq_Cotract.Vie
             }
         });
     }
-
+//    列表 选中 button 回调
     public void isShow(Boolean b){
         myadapter.onClickeListener(b);
     }
-
+//监听 按钮 点击删除
    public void onShow(Boolean b){
 
         if (b){
@@ -122,7 +122,7 @@ public class QuanB_XX_Fragment extends BaseFragment implements XX_xq_Cotract.Vie
         }
 
     }
-
+//        把 消息ID 回调到父级页面  操作删除 标为已读
     public ArrayList<Map<String,String>> XXID(){
 //        for (int i= 0;i<list.size();i++){
 //            if (list.get(i).ischeck()){
@@ -141,6 +141,7 @@ public class QuanB_XX_Fragment extends BaseFragment implements XX_xq_Cotract.Vie
         return this.id;
     }
 
+//    父级页面点击删除  执行的回调
     public void delete(){
         for (int i = 0; i < list.size(); i++) {
             if (list.get(i).ischeck()){
@@ -149,7 +150,7 @@ public class QuanB_XX_Fragment extends BaseFragment implements XX_xq_Cotract.Vie
         }
         myadapter.notifyDataSetChanged();
     }
-
+//  父级 页面  点击已读 执行回调
     public void changeIsRead(){
         for (int i = 0; i < list.size(); i++) {
             if (list.get(i).ischeck()){
@@ -196,7 +197,7 @@ public class QuanB_XX_Fragment extends BaseFragment implements XX_xq_Cotract.Vie
 //
 //
 //    }
-//
+//  请求成功的回调
     @Override
     public void getManager(XX_xq_Bean xx_xq_bean) {
 

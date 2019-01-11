@@ -15,13 +15,14 @@ import com.example.lenovo.ztsandroid.model.entity.ZuoY_list_Bean;
  */
 
 public interface Zuoy_Cotract {
+    //    定义view里面的 方法
 
     interface View extends BaseView<Zuoy_Cotract.Presenter> {
         void getManager(ZuoY_list_Bean listBean);
         void getManagZuoY(ZuoY_erJ_Bean erJ_bean);
         void showmessage(String str);
     }
-
+    //    presenter 里面需要传递的参数
     interface Presenter extends BasePresenter {
 
         void SetUrl(String stuid);

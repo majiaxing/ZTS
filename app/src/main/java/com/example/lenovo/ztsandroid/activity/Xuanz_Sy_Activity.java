@@ -45,18 +45,18 @@ public class Xuanz_Sy_Activity extends BaseActivity {
     @Override
     protected void initView() {
 
-
+//        添加 fragment 的 页面
         for (int i = 1; i <= 5; i++) {
 
             XuanZ_Fragment fragment = new XuanZ_Fragment();
             list.add(fragment);
         }
-
+//        初始化adapter  创建页面
         adapter = new ViewPagerAdapter(getSupportFragmentManager(),list);
         danciViewPager.setAdapter(adapter);
         adapter.notifyDataSetChanged();
         danciViewPager.setOffscreenPageLimit(0);
-
+//        监听 viewpager
         danciViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {

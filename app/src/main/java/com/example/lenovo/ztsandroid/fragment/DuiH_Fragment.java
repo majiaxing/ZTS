@@ -131,6 +131,7 @@ public class DuiH_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.Vi
     //播放音频
     private MediaPlayer mediaPlayer;
     private boolean isRecord = false;//设置录制状态
+//    初始化 录音
     private void creatAudioRecord() {
         //根据AudioRecord的音频采样率、音频录制声道、音频数据格式获取缓冲区大小
         bufferSizeInBytes = AudioRecord.getMinBufferSize(sampleRateInHz, channelConfig, audioFormat);
@@ -242,7 +243,7 @@ public class DuiH_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.Vi
             presenter.seturlZhiL("1", "1", "2", "1", toBase64, sessionId);
         }
     }
-
+//    结束录音 清空资源
     private void close() {
         if (audioRecord != null) {
 
@@ -310,7 +311,7 @@ public class DuiH_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.Vi
             e.printStackTrace();
         }
     }
-
+//     把头文件写入到文件中
     private void copyWaveFile(String inFileName, String outFileName) {
         FileInputStream in = null;
         FileOutputStream out = null;
@@ -403,7 +404,7 @@ public class DuiH_Fragment extends BaseFragment implements ZhiL_Yuyin_Cotract.Vi
 private int i = 0;
     @Override
     protected void init(View view) {
-
+//        获取父页面传过来的集合
         ArrayList<DuiH_XQ_Bean.DataBean> list = (ArrayList<DuiH_XQ_Bean.DataBean>) bundle.getSerializable("list");
         mlist.addAll(list);
 
@@ -411,15 +412,16 @@ private int i = 0;
         type = bundle.getString("type");
         relative_path = bundle.getString("Relative_path");
         title = bundle.getString("title");
-
+//       初始化 listview
         ListView listView = view.findViewById(R.id.Danc_list);
+//        初始化 adapter
         myadapter = new Juz_Adapter(App.activity, mlist);
         listView.setAdapter(myadapter);
 
         creatAudioRecord();
         relativeLayout.setVisibility(View.GONE);
     }
-
+//     定义播放方法
     public void setVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
         if (mPlayer == null) {
@@ -448,13 +450,14 @@ private int i = 0;
                 mPlayer.setDataSource(bofUrl);
                 //3 准备播放
                 mPlayer.prepareAsync();
-
+//                播放流  准备完成
                 mPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
                     @Override
                     public void onPrepared(MediaPlayer mp) {
                         mPlayer.start();
                     }
                 });
+//                播放结束的 监听
                 mPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                     @Override
                     public void onCompletion(MediaPlayer mp) {

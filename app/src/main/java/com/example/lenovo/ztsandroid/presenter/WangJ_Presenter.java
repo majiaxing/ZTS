@@ -23,7 +23,7 @@ public class WangJ_Presenter implements WangJ_Cotract.Presenter {
         this.view.setBasePresenter(this);
         totallabelModel  =new CSModelImpl();
     }
-
+    //    调用model层数据  把 model层数据传递到view层
     @Override
     public void setUrl(String shoujihao, String use_type_d) {
     totallabelModel.postWangJ(shoujihao, use_type_d, new MyNetWorkCallback<WangJ_Bean>() {

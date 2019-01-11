@@ -83,6 +83,7 @@ public class JiaR_BanJ_Activity extends BaseActivity implements JaR_Bj_Cotract.V
 
 
                 text = SRLs.getText().toString();
+//                判读 是否 有这个班级存在
                 presenter = new JaR_Bj_Presenter(this);
                 presenter.SetUrl(App.stuid,text);
 
@@ -109,6 +110,7 @@ public class JiaR_BanJ_Activity extends BaseActivity implements JaR_Bj_Cotract.V
                 }
             });
         }else {
+//            显示所有的班级 在列表上
             ArrayList<BanJBean.DataBean> data = (ArrayList<BanJBean.DataBean>) duiHXqBean.getData();
             Intent intent = new Intent(App.activity,JiaR_XuanZ_Activity.class);
             intent.putExtra("data", data);

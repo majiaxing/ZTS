@@ -76,7 +76,7 @@ public abstract class BaseFragment extends Fragment {
     //当前Fragment隐藏时调用，可以做数据保存
     protected void onHidden() {
     }
-
+//传递参数
     public abstract void  setParams(Bundle bundle);
 
     @Override

@@ -11,6 +11,7 @@ import com.example.lenovo.ztsandroid.model.entity.XiaoX_Bean;
  */
 
 public interface XX_Cotract {
+    //    定义view里面的 方法
 
     interface View extends BaseView<XX_Cotract.Presenter> {
         void getManager(XiaoX_Bean xiaoX_bean);
@@ -21,6 +22,7 @@ public interface XX_Cotract {
 
 
     }
+    //    presenter 里面需要传递的参数
     interface Presenter extends BasePresenter {
 
         void SetUrl(String useId,String pageNumber , String pageSize);

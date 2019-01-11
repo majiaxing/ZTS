@@ -29,7 +29,7 @@ public class WangJ_Password_Presenter implements WangJ_Cotract.Presenter{
     public void setUrl(String shoujihao, String use_type_d) {
 
     }
-
+    //    调用model层数据  把 model层数据传递到view层
     @Override
     public void setUrls(String usertype_code, String user_zhanghao, String user_password, String user_yanzhengma, String user_dianhua) {
         totallabelModel.postWangJ_TJ(usertype_code, user_zhanghao, user_password, user_yanzhengma, user_dianhua, new MyNetWorkCallback<XiuG_CG_Bean>() {

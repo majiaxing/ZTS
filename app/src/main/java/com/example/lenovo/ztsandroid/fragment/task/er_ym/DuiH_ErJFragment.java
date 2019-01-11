@@ -76,6 +76,7 @@ public class DuiH_ErJFragment extends BaseActivity implements ZuoY_Dh_Cotract.Vi
 
     @Override
     public void initData() {
+        //        开始网络请求  初始化presenter  传参
         presenter = new ZuoY_Dh_presenter(this);
         presenter.SetUrl(App.stuid, hwid, "", "", hw_type, hw_content, avgScores);
     }
@@ -94,15 +95,18 @@ public class DuiH_ErJFragment extends BaseActivity implements ZuoY_Dh_Cotract.Vi
     }
 
     private Boolean isJS = false;
+    //请求成功的回调
 
     @Override
     public void getManager(final ZuoY_Dh_Bean zuoYDyBean) {
         MyLog.e("DSAHDKSAH", zuoYDyBean.getData().getTypeList().size() + "");
+            //得到数据 在主线程里面 操作
 
         App.activity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
 
+            // for循环 遍历 data 集合
 
                 for (int i = 0; i < zuoYDyBean.getData().getTypeList().size(); i++) {
                     bundle = new Bundle();
@@ -115,6 +119,8 @@ public class DuiH_ErJFragment extends BaseActivity implements ZuoY_Dh_Cotract.Vi
                     }
                     videolist.add(zuoYDyBean.getData().getTypeList().get(i).getJuese_video());
                 }
+                // 创建fragment 传递数据
+
                 Zy_Duihua_Fragment zuYYinBFragment = new Zy_Duihua_Fragment();
                 bundle = new Bundle();
                 bundle.putSerializable("Juese_videoList", videolist);
@@ -128,9 +134,10 @@ public class DuiH_ErJFragment extends BaseActivity implements ZuoY_Dh_Cotract.Vi
                 MyLog.e("准备传过去的Relative_path", zuoYDyBean.getData().getRelative_path() + "");
                 bundle.putSerializable("list", (Serializable) zuoYDyBean.getData().getTypeList());
                 zuYYinBFragment.setParams(bundle);
+                //bundle 传到 子页面
 
                 YeShu.setText("1");
-
+                    //初始化适配器 创建页面
                 nlist.add(zuYYinBFragment);
                 adapter = new ViewPagerAdapter(getSupportFragmentManager(), nlist);
                 viewPager.setAdapter(adapter);

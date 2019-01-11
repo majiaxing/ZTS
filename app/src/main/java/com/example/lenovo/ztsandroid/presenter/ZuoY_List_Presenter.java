@@ -20,7 +20,7 @@ public class ZuoY_List_Presenter implements Zuoy_Cotract.Presenter {
         view.setBasePresenter(this);
         csModel = new CSModelImpl();
     }
-
+    //    调用model层数据  把 model层数据传递到view层
     @Override
     public void SetUrl(String stuid) {
 

@@ -20,7 +20,7 @@ public class DuiH_XQ_Presenter implements DuiH_XQ_Cotract.Presenter{
         view.setBasePresenter(this);
         DuihModel = new CSModelImpl();
     }
-
+    //    调用model层数据  把 model层数据传递到view层
     @Override
     public void SetUrl(String talk_id) {
 

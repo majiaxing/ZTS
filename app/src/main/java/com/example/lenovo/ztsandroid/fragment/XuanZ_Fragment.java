@@ -213,7 +213,7 @@ public class XuanZ_Fragment extends BaseFragment {
         }
     }
 
-
+//        初始化播放器
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);

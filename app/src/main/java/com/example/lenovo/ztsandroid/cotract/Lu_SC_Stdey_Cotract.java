@@ -13,13 +13,14 @@ import java.io.File;
  */
 
 public interface Lu_SC_Stdey_Cotract{
+    //    定义view里面的 方法
 
     interface View extends BaseView<Lu_SC_Stdey_Cotract.Presenter> {
         void getManager(Stdey_Bean xq_bean);
         void getWJSC(SC_YX_Bean sc_yx_bean);
         void showmessage(String str);
     }
-
+    //    presenter 里面需要传递的参数
     //    {"jclx":"人教版","nj":"一年级","sxc":"上册","flag":"text"}
     interface Presenter extends BasePresenter {
 

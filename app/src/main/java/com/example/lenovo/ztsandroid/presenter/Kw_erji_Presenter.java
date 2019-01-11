@@ -35,7 +35,7 @@ public class Kw_erji_Presenter implements KeW_list_Cotract.Presenter {
     public void SetUrl(String jclx, String nj, String sxc, String flag, String listen_type, String stuid) {
 
     }
-
+    //    调用model层数据  把 model层数据传递到view层
     @Override
     public void SetU(String flag, String type) {
 

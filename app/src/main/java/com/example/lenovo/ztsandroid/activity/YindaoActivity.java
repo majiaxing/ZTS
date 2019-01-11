@@ -70,7 +70,7 @@ public class YindaoActivity extends AppCompatActivity implements View.OnClickLis
         views = new ArrayList<View>();
         // 实例化ViewPager适配器
         vpAdapter = new FirstPagerAdapter(views);
-        //实例化开始按钮
+        //实例化开始按钮————
 //        startBt = (TextView) view3.findViewById(R.id.mText);
         startBt = (TextView)view3.findViewById(R.id.mText);
         startBt.setOnClickListener(new View.OnClickListener() {

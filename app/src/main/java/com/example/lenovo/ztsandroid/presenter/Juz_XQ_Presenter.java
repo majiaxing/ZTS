@@ -22,7 +22,7 @@ public class Juz_XQ_Presenter implements Juz_XQ_Cotract.Presenter {
         jXQModel = new CSModelImpl();
 
     }
-
+    //    调用model层数据  把 model层数据传递到view层
     @Override
     public void SetU(String sentence_id) {
 

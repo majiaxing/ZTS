@@ -89,7 +89,7 @@ public class CSModelImpl implements CSModel {
 
         HttpFactroy.create().get(Urls.CSUrls,null,callback);
     }
-
+    //登录
     @Override
     public void postLogin(String name, String possward ,String usertype_code, MyNetWorkCallback<LoginBean> callback) {
 
@@ -100,12 +100,12 @@ public class CSModelImpl implements CSModel {
         HttpFactroy.create().post(Urls.Login,map,callback);
 
     }
-
+// 教材
     @Override
     public void postJC(String url, MyNetWorkCallback<JiaoC_Bean> callback) {
         HttpFactroy.create().post(Urls.Jiaoc,null,callback);
     }
-
+//课文
     @Override
     public void postKw(String jclx, String nj, String sxc, String flag, String listen_type, String stuid, MyNetWorkCallback<Kw_Bean> callback) {
         Map<String, String> map = new HashMap<>();
@@ -124,8 +124,8 @@ public class CSModelImpl implements CSModel {
 
         HttpFactroy.create().post(Urls.KwList,map1,callback);
     }
-
-    @Override
+//课文列表
+@Override
     public void postKwerjList(String flag, String type, MyNetWorkCallback<Kw_erji_list_Bean> callback) {
 
         Map<String, String> map = new HashMap<>();
@@ -135,7 +135,7 @@ public class CSModelImpl implements CSModel {
         HttpFactroy.create().post(Urls.KwerjList,map,callback);
 
     }
-
+//    课文详情
     @Override
     public void postKwXq(String text_id, MyNetWorkCallback<Kw_Xq_Bean> callback) {
 
@@ -144,7 +144,7 @@ public class CSModelImpl implements CSModel {
 
         HttpFactroy.create().post(Urls.KwXq,map,callback);
     }
-
+//    消息列表
     @Override
     public void postXX(String urseId, String pageNumber, String pageSize, MyNetWorkCallback<XiaoX_Bean> callback) {
         Map<String, String> map = new HashMap<>();
@@ -153,7 +153,7 @@ public class CSModelImpl implements CSModel {
         map.put("pageSize",pageSize );
         HttpFactroy.create().post(Urls.XXList,map,callback);
     }
-
+//删除消息
     @Override
     public void postXXDelete(String json, MyNetWorkCallback<Delete_XX_Bean> callback) {
         Map<String, String> map = new HashMap<>();
@@ -161,7 +161,7 @@ public class CSModelImpl implements CSModel {
         HttpFactroy.create().post(Urls.XXDelete,map,callback);
     }
 
-
+//    消息个数
     @Override
     public void postXiaoXContent(String urseId, MyNetWorkCallback<XiaoX_content_Bean> callback) {
 
@@ -169,14 +169,14 @@ public class CSModelImpl implements CSModel {
         map.put("stuid",urseId );
         HttpFactroy.create().post(Urls.XXcontent,map,callback);
     }
-
+//        消息详情
     @Override
     public void postXiaoXxq(String id, MyNetWorkCallback<XX_xq_Bean> callback) {
         Map<String, String> map = new HashMap<>();
         map.put("id",id );
         HttpFactroy.create().post(Urls.XXxq,map,callback);
     }
-
+//        音标列表
     @Override
     public void postYinB(String jclx, String nj, String sxc, String flag, MyNetWorkCallback<YB_Bean> callback) {
         Map<String, String> map = new HashMap<>();
@@ -200,7 +200,7 @@ public class CSModelImpl implements CSModel {
     }
 
 
-
+//    音标4
     @Override
     public void postYinB_XQ_four(String ybid, String flag, String shiliType, MyNetWorkCallback<YB_XQ_four_Bean> callback) {
         Map<String, String> map = new HashMap<>();
@@ -208,7 +208,7 @@ public class CSModelImpl implements CSModel {
         map.put("flag",flag );
         HttpFactroy.create().post(Urls.YB_Xq,map,callback);
     }
-
+//音标1
     @Override
     public void postYinB_XQ_one(String ybid, String flag,String shiliType, MyNetWorkCallback<YB_XQ_one_Bean> callback) {
 
@@ -218,7 +218,7 @@ public class CSModelImpl implements CSModel {
         map.put("shiliType","1");
         HttpFactroy.create().post(Urls.YB_Xq,map,callback);
     }
-
+// 音标详情
     @Override
     public void postYinB_TZ_YX(String ybid, String flag, MyNetWorkCallback<YB_XQ_one_Bean> callback) {
         Map<String, String> map = new HashMap<>();
@@ -227,7 +227,7 @@ public class CSModelImpl implements CSModel {
         HttpFactroy.create().post(Urls.YB_Xq,map,callback);
     }
 
-
+//    音标详情
     @Override
     public void postYinB_XQ_two(String ybid, String flag, String shiliType, MyNetWorkCallback<YB_XQ_Two_Bean> callback) {
 
@@ -236,7 +236,7 @@ public class CSModelImpl implements CSModel {
         map.put("flag",flag );
         HttpFactroy.create().post(Urls.YB_Xq,map,callback);
     }
-
+//    音标详情
     @Override
     public void postYinB_XQ_three(String ybid, String flag, String shiliType, MyNetWorkCallback<YB_XQ_three_Bean> callback) {
 
@@ -245,7 +245,7 @@ public class CSModelImpl implements CSModel {
         map.put("flag",flag );
         HttpFactroy.create().post(Urls.YB_Xq,map,callback);
     }
-
+//        课文二级列表
     @Override
     public void postJuz_list(String flag, String type, MyNetWorkCallback<Juz_erj_Bean> callback) {
         Map<String, String> map = new HashMap<>();
@@ -253,7 +253,7 @@ public class CSModelImpl implements CSModel {
         map.put("flag",flag );
         HttpFactroy.create().post(Urls.KwerjList,map,callback);
     }
-
+//        单词二级列表
     @Override
     public void postDanc_Xq(String flag, String type, MyNetWorkCallback<Dc_Xq_Bean> callback) {
         Map<String, String> map = new HashMap<>();
@@ -261,7 +261,7 @@ public class CSModelImpl implements CSModel {
         map.put("flag",flag );
         HttpFactroy.create().post(Urls.KwerjList,map,callback);
     }
-
+//        短语二级列表
     @Override
     public void postDY_Xq(String flag, String type, String stuid, MyNetWorkCallback<Dy_Xq_Bean> callback) {
         Map<String, String> map = new HashMap<>();
@@ -270,7 +270,7 @@ public class CSModelImpl implements CSModel {
         map.put("stuid",stuid );
         HttpFactroy.create().post(Urls.KwerjList,map,callback);
     }
-
+//    句子二级列表
     @Override
     public void postJuz_Xq(String sentence_id, MyNetWorkCallback<Juz_Xq_Bean> callback) {
 
@@ -281,7 +281,7 @@ public class CSModelImpl implements CSModel {
 
 
     }
-
+//        对话二级列表
     @Override
     public void postDuiH_er_list(String flag, String type, MyNetWorkCallback<DuiH_erj_Bean> callback) {
         Map<String, String> map = new HashMap<>();
@@ -289,7 +289,7 @@ public class CSModelImpl implements CSModel {
         map.put("flag",flag );
         HttpFactroy.create().post(Urls.KwerjList,map,callback);
     }
-
+//        对话详情
     @Override
     public void postDuiH_XQ(String talk_id, MyNetWorkCallback<DuiH_XQ_Bean> callback) {
 
@@ -299,7 +299,7 @@ public class CSModelImpl implements CSModel {
         HttpFactroy.create().post(Urls.KwXq,map,callback);
 
     }
-
+//        听力二级列表
     @Override
     public void postTingL(String flag, String type,String listen_type, MyNetWorkCallback<TingL_erj_Bean> callback) {
 
@@ -309,7 +309,7 @@ public class CSModelImpl implements CSModel {
         map.put("listen_type",listen_type );
         HttpFactroy.create().post(Urls.KwerjList,map,callback);
     }
-
+//        听力详情
     @Override
     public void postTingL_XQ_xz(String listen_id, MyNetWorkCallback<TingL_XQ_xz_Bean> callback) {
 
@@ -319,7 +319,7 @@ public class CSModelImpl implements CSModel {
         HttpFactroy.create().post(Urls.KwXq,map,callback);
 
     }
-
+//    听力 详情
     @Override
     public void postTiJ_TinL(String listen_id, String type, String stuid, String listen_type, String listen_questId, String learn_video, String learn_score, MyNetWorkCallback<TiLi_BaoC_Bean> callback) {
 
@@ -334,7 +334,7 @@ public class CSModelImpl implements CSModel {
         HttpFactroy.create().post(Urls.TiJiaoTL,map,callback);
 
     }
-
+//        听力详情
     @Override
     public void postTingL_XQ_tk(String listen_id, MyNetWorkCallback<TingL_TK_Bean> callback) {
         Map<String, String> map = new HashMap<>();
@@ -342,7 +342,7 @@ public class CSModelImpl implements CSModel {
 
         HttpFactroy.create().post(Urls.KwXq,map,callback);
     }
-
+//        挑战一下
     @Override
     public void postTingL_ZY(String stuid, String hwid, MyNetWorkCallback<TiJiao_ZY_Bean> callback) {
 
@@ -353,7 +353,7 @@ public class CSModelImpl implements CSModel {
 
     }
 
-
+//    阅读二级列表
     @Override
     public void postRead_erj(String flag, String type, MyNetWorkCallback<Read_erj_Bean> callback) {
 
@@ -365,7 +365,7 @@ public class CSModelImpl implements CSModel {
 
 
     }
-
+//    阅读详情
     @Override
     public void postRead_xq(String read_id, MyNetWorkCallback<Read_XQ_Bean> callback) {
         Map<String, String> map = new HashMap<>();
@@ -373,7 +373,7 @@ public class CSModelImpl implements CSModel {
 
         HttpFactroy.create().post(Urls.KwXq,map,callback);
     }
-
+//        阅读提交
     @Override
     public void postRead_TJ(String read_id, MyNetWorkCallback<Read_TJ_Bean> callback) {
 
@@ -383,7 +383,7 @@ public class CSModelImpl implements CSModel {
         HttpFactroy.create().post(Urls.Read_TJ,map,callback);
 
     }
-
+//    作业列表
     @Override
     public void postZuoY_List(String stuid, MyNetWorkCallback<ZuoY_list_Bean> callback) {
         Map<String, String> map = new HashMap<>();
@@ -391,7 +391,7 @@ public class CSModelImpl implements CSModel {
 
         HttpFactroy.create().post(Urls.ZuoY_List,map,callback);
     }
-
+//作业二级列表
     @Override
     public void postZuoY_erJ(String hwid, String homework_cishu, String flag, String scoreAll, MyNetWorkCallback<ZuoY_erJ_Bean> callback) {
         Map<String, String> map = new HashMap<>();
@@ -402,7 +402,7 @@ public class CSModelImpl implements CSModel {
 
         HttpFactroy.create().post(Urls.ZuoY_ErJ,map,callback);
     }
-
+//        作业详情页
     @Override
     public void postZuoY_Xq(String stuid, String hwid, String flag, MyNetWorkCallback<ZuoY_Xq_Bean> callback) {
 
@@ -414,7 +414,7 @@ public class CSModelImpl implements CSModel {
 
 
     }
-
+//作业录音上传
     @Override
     public void postSC_Lu(String stuid, String hwid, String hw_type, String hw_content,String hw_answerId,String hw_video, String hw_score , String everyScore,  MyNetWorkCallback<LiY_SC_WJ_Bean> callback) {
 
@@ -429,7 +429,7 @@ public class CSModelImpl implements CSModel {
         map.put("everyScore",everyScore);
         HttpFactroy.create().post(Urls.LuYinSC_BC,map,callback);
     }
-
+//        头像上传
     @Override
     public void postSC_tx(String student, String stuTupian, String stuid, MyNetWorkCallback<LiY_SC_WJ_Bean> callback) {
         Map<String, String> map = new HashMap<>();
@@ -438,7 +438,7 @@ public class CSModelImpl implements CSModel {
         map.put("stuTupian",stuTupian );
         HttpFactroy.create().post(Urls.Toux_SC,map,callback);
     }
-
+//    上传文件
     @Override
     public void postSC_file(File file, String type, String save_path, MyNetWorkCallback<SC_YX_Bean> callback) {
         Map<String, Object> map = new HashMap<>();
@@ -448,7 +448,7 @@ public class CSModelImpl implements CSModel {
 
         HttpFactroy.create().postSC_File(Urls.LuYinSC_Flie,map,callback);
     }
-
+//       录音上传
     @Override
     public void postSC_Lu_StdeyDc(String stuid, String word_id, String learn_video, String learn_score, String type, MyNetWorkCallback<Stdey_Bean> callback) {
         Map<String, String> map = new HashMap<>();
@@ -459,7 +459,7 @@ public class CSModelImpl implements CSModel {
         map.put("type",type );
         HttpFactroy.create().post(Urls.LuYinSC,map,callback);
     }
-
+// 音标录音上传
     @Override
     public void postSC_Lu_YB_StdeyDc(String stuid, String word_id, String learn_video, String learn_score, MyNetWorkCallback<Stdey_Bean> callback) {
 
@@ -471,7 +471,7 @@ public class CSModelImpl implements CSModel {
         HttpFactroy.create().post(Urls.LuYinSC_YB,map,callback);
 
     }
-
+//        单词录音上传
     @Override
     public void postSC_Lu_StdeyDy(String stuid, String word_id, String learn_video, String learn_score, String type, MyNetWorkCallback<Stdey_Bean> callback) {
         Map<String, String> map = new HashMap<>();
@@ -482,6 +482,7 @@ public class CSModelImpl implements CSModel {
         map.put("type",type );
         HttpFactroy.create().post(Urls.LuYinSC_Dy,map,callback);
     }
+//        单词录音上传
 
     @Override
     public void postSC_Lu_StdeyDh(String stuid, String word_id, String learn_video, String learn_score, String type, MyNetWorkCallback<Stdey_Bean> callback) {
@@ -494,6 +495,7 @@ public class CSModelImpl implements CSModel {
         map.put("talk_id",type );
         HttpFactroy.create().post(Urls.LuYinSC_Dh,map,callback);
     }
+//        单词录音上传
 
 @Override
     public void postSC_Lu_Stdeykw(String stuid, String word_id, String learn_video, String learn_score, String type, MyNetWorkCallback<Stdey_Bean> callback) {
@@ -506,6 +508,7 @@ public class CSModelImpl implements CSModel {
         map.put("type",type );
         HttpFactroy.create().post(Urls.LuYinSC_Dh,map,callback);
     }
+//        单词录音上传
 
 @Override
     public void postSC_Lu_Stdeyjz(String stuid, String word_id, String learn_video, String learn_score, String type, MyNetWorkCallback<Stdey_Bean> callback) {
@@ -519,6 +522,7 @@ public class CSModelImpl implements CSModel {
         HttpFactroy.create().post(Urls.LuYinSC_Dh,map,callback);
     }
 
+//        单词录音上传
 
     @Override
     public void postStudent_xinx(String stuid, MyNetWorkCallback<Student_Xinx_Bean> callback) {
@@ -526,13 +530,14 @@ public class CSModelImpl implements CSModel {
         map.put("stuid",stuid );
         HttpFactroy.create().post(Urls.Student_xinx,map,callback);
     }
-
+//        单词录音上传
     @Override
     public void post_DiqSheng(MyNetWorkCallback<Diq_Bean> callback) {
         HttpFactroy.create().post(Urls.Student_Sheng,null,callback);
     }
 
 
+//        单词录音上传
 
     @Override
     public void post_DiqShi(String shiID,MyNetWorkCallback<Diq_Shi_Bean> callback) {
@@ -541,6 +546,7 @@ public class CSModelImpl implements CSModel {
         map.put("sheng_id",shiID );
         HttpFactroy.create().post(Urls.Student_Shi,map,callback);
     }
+//        单词录音上传
 
     @Override
     public void post_DiqQu(String quID,MyNetWorkCallback<Diq_Qu_Bean> callback) {
@@ -548,7 +554,7 @@ public class CSModelImpl implements CSModel {
         map.put("shi_id",quID );
         HttpFactroy.create().post(Urls.Student_Qu,map,callback);
     }
-
+    //添加班级
     @Override
     public void post_JR_BJ(String stuid, String infor, MyNetWorkCallback<BanJBean> callback) {
         Map<String, String> map = new HashMap<>();
@@ -556,7 +562,7 @@ public class CSModelImpl implements CSModel {
         map.put("infor",infor );
         HttpFactroy.create().post(Urls.TianJBan,map,callback);
     }
-
+    //添加班级
     @Override
     public void post_Xz_Bj(String stuid, String infor, MyNetWorkCallback<Xz_Bj_Bean> callback) {
         Map<String, String> map = new HashMap<>();
@@ -564,7 +570,7 @@ public class CSModelImpl implements CSModel {
         map.put("classId",infor );
         HttpFactroy.create().post(Urls.XuanzJBan,map,callback);
     }
-
+//添加年级
     @Override
     public void postTiJao_ZY(String stuid, String hwid, ArrayList<Map<String, Object>> typeList, MyNetWorkCallback<TiJao_ZY_Bean> callback) {
 
@@ -582,7 +588,7 @@ public class CSModelImpl implements CSModel {
 
         HttpFactroy.create().post(Urls.TiaoJ_ZY,map1,callback);
     }
-
+//提交文件
     @Override
     public void postTiJiao_File(File stuid, String type, String save_path, MyNetWorkCallback<DWj_SC_Bean> callback) {
 
@@ -592,7 +598,7 @@ public class CSModelImpl implements CSModel {
         map.put("save_path",save_path );
         HttpFactroy.create().postSC_File(Urls.LuYinSC_Flie,map,callback);
     }
-
+//忘记密码
     @Override
     public void postWangJ(String shoujihao, String use_type_d, MyNetWorkCallback<WangJ_Bean> callback) {
 
@@ -601,7 +607,7 @@ public class CSModelImpl implements CSModel {
         map.put("use_type_d",use_type_d );
         HttpFactroy.create().post(Urls.WangJ,map,callback);
     }
-
+//忘记密码调剂
     @Override
     public void postWangJ_TJ(String usertype_code, String user_zhanghao, String user_password, String user_yanzhengma, String user_dianhua, MyNetWorkCallback<XiuG_CG_Bean> callback) {
         Map<String, String> map = new HashMap<>();
@@ -612,7 +618,7 @@ public class CSModelImpl implements CSModel {
         map.put("user_dianhua",user_dianhua );
         HttpFactroy.create().post_ZlYYin(Urls.WangJ_TiJiao,map,callback);
     }
-
+//修改密码
     @Override
     public void postXiuG_password(String stuid, String username, String afterpassword, String password, MyNetWorkCallback<XiuG_Bean> callback) {
         Map<String, String> map = new HashMap<>();
@@ -622,7 +628,7 @@ public class CSModelImpl implements CSModel {
         map.put("password",password );
         HttpFactroy.create().post_ZlYYin(Urls.XiuG_password,map,callback);
     }
-
+//添加vip
     @Override
     public void postTiJ_Vip(String stuid, String cardName, String cardPassword, MyNetWorkCallback<TiJ_Vip_Bean> callback) {
         Map<String, String> map = new HashMap<>();
@@ -631,7 +637,7 @@ public class CSModelImpl implements CSModel {
         map.put("cardPassword",cardPassword );
         HttpFactroy.create().post(Urls.TianJ_Vip,map,callback);
     }
-
+//作业单词
     @Override
     public void postZuoY_DC(String stuid, String hwid, String flag, String listen_type, String hw_type, String hw_content, String avgScore, MyNetWorkCallback<ZuoY_dc_Bean> callback) {
 
@@ -645,7 +651,7 @@ public class CSModelImpl implements CSModel {
         map.put("avgScore",avgScore );
         HttpFactroy.create().post(Urls.ZuoYXQ,map,callback);
     }
-
+    //作业单词
     @Override
     public void postZuoY_DY(String stuid, String hwid, String flag, String listen_type, String hw_type, String hw_content, String avgScore, MyNetWorkCallback<ZuoY_dy_Bean> callback) {
 
@@ -659,7 +665,7 @@ public class CSModelImpl implements CSModel {
         map.put("avgScore",avgScore );
         HttpFactroy.create().post(Urls.ZuoYXQ,map,callback);
     }
-
+    //作业单词
     @Override
     public void postZuoY_TL(String stuid, String hwid, String flag, String listen_type, String hw_type, String hw_content, String avgScore, MyNetWorkCallback<ZuoY_TL_xz_Bean> callback) {
         Map<String, String> map = new HashMap<>();
@@ -672,7 +678,7 @@ public class CSModelImpl implements CSModel {
         map.put("avgScore",avgScore );
         HttpFactroy.create().post(Urls.ZuoYXQ,map,callback);
     }
-
+    //作业单词
     @Override
     public void postZuoY_Kw(String stuid, String hwid, String flag, String listen_type, String hw_type, String hw_content, String avgScore, MyNetWorkCallback<ZuoY_kw_Bean> callback) {
         Map<String, String> map = new HashMap<>();
@@ -685,7 +691,7 @@ public class CSModelImpl implements CSModel {
         map.put("avgScore",avgScore );
         HttpFactroy.create().post(Urls.ZuoYXQ,map,callback);
     }
-
+    //音标
     @Override
     public void postZuoY_Yb_One(String stuid, String hwid, String flag, String listen_type, String hw_type, String hw_content, String avgScore ,String shiliType, MyNetWorkCallback<YB_Zy_One_Bean> callback) {
         Map<String, String> map = new HashMap<>();
@@ -699,6 +705,7 @@ public class CSModelImpl implements CSModel {
         map.put("shiliType",shiliType);
         HttpFactroy.create().post(Urls.ZuoYXQ,map,callback);
     }
+    //音标
 
     @Override
     public void postZuoY_Yb_Two(String stuid, String hwid, String flag, String listen_type, String hw_type, String hw_content, String avgScore, MyNetWorkCallback<YB_Zy_Two_Bean> callback) {
@@ -712,6 +719,7 @@ public class CSModelImpl implements CSModel {
         map.put("avgScore",avgScore );
         HttpFactroy.create().post(Urls.ZuoYXQ,map,callback);
     }
+    //音标
 
     @Override
     public void postZuoY_Yb_Three(String stuid, String hwid, String flag, String listen_type, String hw_type, String hw_content, String avgScore, MyNetWorkCallback<YB_Zy_Three_Bean> callback) {
@@ -725,6 +733,7 @@ public class CSModelImpl implements CSModel {
         map.put("avgScore",avgScore );
         HttpFactroy.create().post(Urls.ZuoYXQ,map,callback);
     }
+    //音标
 
     @Override
     public void postZuoY_Yb_Four(String stuid, String hwid, String flag, String listen_type, String hw_type, String hw_content, String avgScore, MyNetWorkCallback<YB_Zy_four_Bean> callback) {
@@ -739,6 +748,7 @@ public class CSModelImpl implements CSModel {
         HttpFactroy.create().post(Urls.ZuoYXQ,map,callback);
     }
 
+    //音标
 
     @Override
     public void postZuoY_Jz(String stuid, String hwid, String flag, String listen_type, String hw_type, String hw_content, String avgScore, MyNetWorkCallback<ZuoY_Jz_Bean> callback) {
@@ -752,7 +762,7 @@ public class CSModelImpl implements CSModel {
         map.put("avgScore",avgScore );
         HttpFactroy.create().post(Urls.ZuoYXQ,map,callback);
     }
-
+    //音标
     @Override
     public void postZuoY_Yd(String stuid, String hwid, String flag, String listen_type, String hw_type, String hw_content, String avgScore, MyNetWorkCallback<ZuoY_Yd_Bean> callback) {
         Map<String, String> map = new HashMap<>();
@@ -765,7 +775,7 @@ public class CSModelImpl implements CSModel {
         map.put("avgScore",avgScore );
         HttpFactroy.create().post(Urls.ZuoYXQ,map,callback);
     }
-
+//作业对话
     @Override
     public void postZuoY_Dh(String stuid, String hwid, String flag, String listen_type, String hw_type, String hw_content, String avgScore, MyNetWorkCallback<ZuoY_Dh_Bean> callback) {
         Map<String, String> map = new HashMap<>();
@@ -779,7 +789,7 @@ public class CSModelImpl implements CSModel {
         HttpFactroy.create().post(Urls.ZuoYXQ,map,callback);
     }
 
-
+    //智聆初始化接口
     @Override
     public void postYYin_JK( String EvalMode, String RefText, String SessionId, String WorkMode,String ScoreCoeff , MyNetWorkCallback<YuYinPinG_Bean> callback) {
 
@@ -814,6 +824,8 @@ public class CSModelImpl implements CSModel {
         params.put("Signature", signature);
         HttpFactroy.create().postCSh(Urls.ZL_KY_PC,params,callback);
     }
+
+    //智聆 评测接口
     @Override
     public void getFy_PG(String SeqId, String IsEnd, String VoiceFileType, String VoiceEncodeType, String UserVoiceData, String SessionId, MyNetWorkCallback<String> callback) {
         final TreeMap<String, Object> params = new TreeMap<String, Object>();

@@ -23,7 +23,7 @@ public class Read_TJ_Presenter implements Read_XQ_Cotract.Presenter {
 
     }
 
-
+    //    调用model层数据  把 model层数据传递到view层
     @Override
     public void SetUrl(String read_Id) {
 

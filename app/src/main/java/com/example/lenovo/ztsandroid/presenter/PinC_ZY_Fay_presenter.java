@@ -35,7 +35,7 @@ public class PinC_ZY_Fay_presenter implements  Lu_SC_Cotract.Presenter {
     public void setUrlsZhiL(String EvalMode, String RefText, String SessionId, String WorkMode, String ScoreCoeff) {
 
     }
-
+    //    调用model层数据  把 model层数据传递到view层
     @Override
     public void seturlZhiL(String SeqId, String IsEnd, String VoiceFileType, String VoiceEncodeType, String UserVoiceData, String SessionId) {
         csModel.getFy_PG(SeqId, IsEnd, VoiceFileType, VoiceEncodeType, UserVoiceData, SessionId, new MyNetWorkCallback<String>() {

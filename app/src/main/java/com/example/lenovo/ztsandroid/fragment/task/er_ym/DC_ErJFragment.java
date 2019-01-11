@@ -84,6 +84,7 @@ public class DC_ErJFragment extends BaseActivity implements ZuoY_Dc_Cotract.View
 
     @Override
     public void loadData() {
+//        开始网络请求  初始化presenter  传参
         presenter = new ZuoY_Dc_presenter(this);
         presenter.SetUrl(App.stuid, hwid, "", "", hw_type, hw_content, avgScores);
     }
@@ -96,20 +97,27 @@ public class DC_ErJFragment extends BaseActivity implements ZuoY_Dc_Cotract.View
         // TODO: add setContentView(...) invocation
         ButterKnife.bind(this);
     }
-
+//请求成功的回调
+//得到数据 在主线程里面 操作
+// for循环 遍历 data 集合
+// 创建fragment 传递数据
+//bundle 传到 子页面
+//初始化适配器 创建页面
     @Override
     public void getManager(final ZuoY_dc_Bean zuoYDcBean) {
 
 
         MyLog.e("DSAHDKSAH", zuoYDcBean.getData().getTypeList().size() + "");
-
+//      得到数据 在主线程里面 操作
         App.activity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
+                //                for循环 遍历 data 集合
                 for (int a = 0; a < zuoYDcBean.getData().getTypeList().size(); a++) {
                     String word = zuoYDcBean.getData().getTypeList().get(a).getWord();
                     String word_tran = zuoYDcBean.getData().getTypeList().get(a).getWord_tran();
                     String hw_answerId = zuoYDcBean.getData().getTypeList().get(a).getHw_answerId();
+                    //                    创建fragment 传递数据
                     Zy_Dc_Fragment zuYYinBFragment = new Zy_Dc_Fragment();
                     bundle = new Bundle();
                     bundle.putString("DanCy", word);
@@ -125,13 +133,14 @@ public class DC_ErJFragment extends BaseActivity implements ZuoY_Dc_Cotract.View
                     bundle.putString("dangq",a+1+"");
                     zuoYs = String.valueOf(zuoYDcBean.getData().getTypeList().size());
                     dangq = a + 1;
-
+//                  bundle 传到 子页面
                     MyLog.e("DADT_____", word + word_tran);
                     zuYYinBFragment.setParams(bundle);
                     nlist.add(zuYYinBFragment);
                 }
                 YeShu.setText(zuoYs);
                 LeiXin.setText("单词");
+                //                初始化适配器 创建页面
                 adapter = new ViewPagerAdapter(getSupportFragmentManager(), nlist);
                 viewPager.setAdapter(adapter);
                 adapter.notifyDataSetChanged();

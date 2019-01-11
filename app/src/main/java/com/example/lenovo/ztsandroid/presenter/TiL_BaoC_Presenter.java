@@ -28,7 +28,7 @@ public class TiL_BaoC_Presenter implements TingL_XQ_xz_Cotract.Presenter {
     public void SetU(String listen_id) {
 
     }
-
+    //    调用model层数据  把 model层数据传递到view层
     @Override
     public void SetUrl(String listen_id, String type, String stuid, String listen_type, String listen_questId, String learn_video, String learn_score) {
 

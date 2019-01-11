@@ -23,7 +23,7 @@ public class XX_xq_Presenter implements XX_xq_Cotract.Presenter {
         csModel = new CSModelImpl();
     }
 
-
+    //    调用model层数据  把 model层数据传递到view层
     @Override
     public void SetUrl(String Id) {
     csModel.postXiaoXxq(Id, new MyNetWorkCallback<XX_xq_Bean>() {

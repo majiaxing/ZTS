@@ -145,7 +145,7 @@ public class Study_fragment extends BaseFragment implements JiaoC_xz_Cotract.Vie
             TextSXiaC.setText("上册");
         }
     }
-
+//    选择教材  弹出下来列表
     public void upPopupWindow(View view) {
         View v = LayoutInflater.from(App.activity).inflate(R.layout.activity_popup_columns, null);
         popupView(v);
@@ -154,6 +154,7 @@ public class Study_fragment extends BaseFragment implements JiaoC_xz_Cotract.Vie
         popupWindow.setBackgroundDrawable(new BitmapDrawable()); // 响应返回键必须的语句
         popupWindow.showAsDropDown(view, 0, 0);
     }
+
     public void popupView(View v) {
 
 //        stuid = bundle.getInt("stuid");
@@ -209,10 +210,11 @@ public class Study_fragment extends BaseFragment implements JiaoC_xz_Cotract.Vie
     }
     @Override
     protected void loadData() {
-
+//            下拉列表数据请求
         presenter = new JiaoC_Presenter(this);
         presenter.start();
         presenter.SetUrl(null);
+//        消息个数请求
         presenter = new XiaoX_content_Presenter(this);
         String stuid = String.valueOf(App.stuid);
         presenter.start();
@@ -237,6 +239,7 @@ public class Study_fragment extends BaseFragment implements JiaoC_xz_Cotract.Vie
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.XX_Btn:
+
                 Intent intent1 = new Intent(App.activity, XX_Activity.class);
                 intent1.putExtra("stuid", App.stuid);
                 startActivity(intent1);

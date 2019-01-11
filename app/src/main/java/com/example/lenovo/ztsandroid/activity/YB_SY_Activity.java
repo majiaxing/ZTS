@@ -43,17 +43,16 @@ public class YB_SY_Activity extends BaseActivity implements YB_Cotract.View {
     protected int getLayoutId() {
         return R.layout.yb_xz_acitvity;
     }
-
     @Override
     protected void initView() {
-
-
+//        接收父级页面传过来的值
         Intent intent = getIntent();
         jc = intent.getStringExtra("教材");
         nj = intent.getStringExtra("年级");
         sxc = intent.getStringExtra("上下册");
         flag = intent.getStringExtra("flag");
 
+//        listview 的item点击事件
         YbGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -74,6 +73,7 @@ public class YB_SY_Activity extends BaseActivity implements YB_Cotract.View {
 
     @Override
     public void loadData() {
+//        网络请求Presenter层 发起
         presenter = new YinB_Presenter(this);
         presenter.SetUrl(jc, nj, sxc, flag);
         presenter.start();
@@ -90,7 +90,7 @@ public class YB_SY_Activity extends BaseActivity implements YB_Cotract.View {
     public void onViewClicked() {
         App.activity.onBackPressed();
     }
-
+//请求成功的回调
     @Override
     public void getManager(YB_Bean yb_bean) {
 
@@ -103,8 +103,6 @@ public class YB_SY_Activity extends BaseActivity implements YB_Cotract.View {
                 myadapter.notifyDataSetChanged();
             }
         });
-
-
     }
 
     @Override

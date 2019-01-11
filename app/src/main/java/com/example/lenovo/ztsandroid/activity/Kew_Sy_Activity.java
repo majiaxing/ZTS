@@ -72,7 +72,7 @@ public class Kew_Sy_Activity extends BaseActivity implements Kw_Xq_Cotract.View{
 
     @Override
     protected void initView() {
-
+//    获取腹级 传过来的参数
         Intent intent = getIntent();
         text_id = intent.getStringExtra("text_id");
         String mtitle = intent.getStringExtra("title");
@@ -93,8 +93,7 @@ public class Kew_Sy_Activity extends BaseActivity implements Kw_Xq_Cotract.View{
     public static Button G_mai, E_ka;
     public static TextView text;
     public static LinearLayout fanH;
-
-
+//  弹出询问是否退出弹窗
     public static void PopupW(View view, String str) {
 
 
@@ -136,14 +135,14 @@ public class Kew_Sy_Activity extends BaseActivity implements Kw_Xq_Cotract.View{
 
 
     }
-
+//        遮挡空白区域
     public static void backgroundAlpha(float bgAlpha) {
         WindowManager.LayoutParams lp = App.activity.getWindow().getAttributes();
         lp.alpha = bgAlpha; //0.0-1.0
         App.activity.getWindow().setAttributes(lp);
         App.activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
     }
-
+//    隐藏
     public static void PopupDimiss() {
         popupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
             @Override
@@ -179,20 +178,22 @@ public class Kew_Sy_Activity extends BaseActivity implements Kw_Xq_Cotract.View{
                 break;
         }
     }
+
+
+//    请求成功的回调
     @Override
     public void getManager(final Kw_Xq_Bean xq_bean) {
-
+//            在主线程中操作
         App.activity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-
+//                for 循环创建页面
                 for (int i = 0; i < xq_bean.getData().size(); i++) {
-
                     keW_fragment = new KeW_Fragment();
                     bundle = new Bundle();
 //                    bundle.putSerializable("list", (Serializable) xq_bean.getData());
 //                    MyLog.e("准备传过去的数据",xq_bean.getData() + "");
-
+//                    传参
                     bundle.putString("nr",xq_bean.getData().get(i).getText_yw());
                     bundle.putString("fy",xq_bean.getData().get(i).getText_zw());
 
@@ -202,11 +203,11 @@ public class Kew_Sy_Activity extends BaseActivity implements Kw_Xq_Cotract.View{
                     bundle.putString("word_video", xq_bean.getData().get(i).getText_video());
                     bundle.putString("type",text_id );
                     bundle.putString("relative_path",relative_path);
-
+//                    传递参数  添加页面
                     keW_fragment.setParams(bundle);
                     list.add(keW_fragment);
                 }
-
+//                  初始化  adapter  加载页面
                 adapter = new ViewPagerAdapter(getSupportFragmentManager(),list);
                 danciViewPager.setAdapter(adapter);
                 adapter.notifyDataSetChanged();

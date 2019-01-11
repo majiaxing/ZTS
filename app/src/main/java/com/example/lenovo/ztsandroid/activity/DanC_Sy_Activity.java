@@ -92,7 +92,7 @@ public class DanC_Sy_Activity extends BaseActivity implements DanC_Cotract.View 
         presenter = new DanC_Presenter(this);
         presenter.SetUrl(extra, type);
     }
-
+//弹出 窗口  询问 是否退出
     public void upPopupWindow(View view) {
         View v = LayoutInflater.from(App.activity).inflate(R.layout.danc_popup_qh, null);
         popupView(v);
@@ -102,7 +102,7 @@ public class DanC_Sy_Activity extends BaseActivity implements DanC_Cotract.View 
         popupWindow.showAsDropDown(view, 0, 0);
 
     }
-
+//  初始化窗口控件
     public void popupView(View v) {
 
         listView = v.findViewById(R.id.popup_listview);
@@ -143,10 +143,10 @@ public class DanC_Sy_Activity extends BaseActivity implements DanC_Cotract.View 
 
         }
     }
-
+// 请求成功的回调
     @Override
     public void getManager(final Dc_Xq_Bean dcXqBean) {
-
+//      得到数据  通过bundle 传到子页面
         App.activity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -167,16 +167,15 @@ public class DanC_Sy_Activity extends BaseActivity implements DanC_Cotract.View 
                     danCi_fragment.setParams(bundle);
                     list.add(danCi_fragment);
                 }
-
+//                初始化 viewpager 适配器  加载viewpager
                 adapter = new ViewPagerAdapter(getSupportFragmentManager(), list);
-
                 viewPager.setAdapter(adapter);
                 nlist.addAll(dcXqBean.getData());
 
             }
         });
     }
-
+// 请求失败   获取缓存里面的值
     @Override
     public void showmessage(String str) {
 

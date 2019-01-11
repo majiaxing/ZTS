@@ -12,6 +12,7 @@ import com.example.lenovo.ztsandroid.model.entity.XiuG_CG_Bean;
 
 public interface WangJ_Cotract {
 
+    //    定义view里面的 方法
 
     interface View extends BaseView<WangJ_Cotract.Presenter> {
 
@@ -24,6 +25,7 @@ public interface WangJ_Cotract {
 
         void showmessage(String str);
     }
+    //    presenter 里面需要传递的参数
     interface Presenter extends BasePresenter {
 
         void setUrl(String shoujihao ,String use_type_d);

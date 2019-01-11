@@ -33,7 +33,7 @@ public class Sc_Lu_Presenter implements Lu_SC_Cotract.Presenter {
     public void SetU(String stuid, String hwid, String hw_type, String hw_content, String hw_answerId, String hw_video, String hw_score, String everyScore) {
 
     }
-
+    //    调用model层数据  把 model层数据传递到view层
     @Override
     public void seturl(File file, String type, String save_path) {
     csModel.postSC_file(file, type, save_path, new MyNetWorkCallback<SC_YX_Bean>() {

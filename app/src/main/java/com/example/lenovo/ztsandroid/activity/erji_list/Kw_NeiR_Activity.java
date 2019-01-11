@@ -55,13 +55,7 @@ public class Kw_NeiR_Activity extends BaseActivity implements KeW_list_Cotract.V
         extra= intent.getStringExtra("extra");
         type = intent.getStringExtra("type");
         title.setText(xxx);
-
-
-
-//        for(int i = 0; i <10; i++){
-//            list.add(new Spinner_Bean("Starter Unit "+i));
-//        }
-
+//        列表的点击事件
         ListKewR.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -75,9 +69,6 @@ public class Kw_NeiR_Activity extends BaseActivity implements KeW_list_Cotract.V
                 intent.putExtra("relative_path",relative_path);
                 MyLog.e("要传过去的数据",relative_path);
                 startActivity(intent);
-
-
-
             }
         });
 
@@ -90,8 +81,9 @@ public class Kw_NeiR_Activity extends BaseActivity implements KeW_list_Cotract.V
 
     @Override
     public void loadData() {
-    presenter = new Kw_erji_Presenter(this);
 
+//        开启 网络请求 初始化presenter 传参
+    presenter = new Kw_erji_Presenter(this);
         presenter.SetU(extra,type);
 
     }
@@ -112,12 +104,12 @@ public class Kw_NeiR_Activity extends BaseActivity implements KeW_list_Cotract.V
     public void getManager(Kw_Bean kw_bean) {
 
     }
-
+//   请求成功的回调
     @Override
     public void getKw_erjlist(Kw_erji_list_Bean kw_erji_list_bean) {
-
+//得到数据 填充在list 集合里
         list.addAll(kw_erji_list_bean.getData());
-
+//        开启主线程  初始化适配器  填充数据
         App.activity.runOnUiThread(new Runnable() {
             @Override
             public void run() {

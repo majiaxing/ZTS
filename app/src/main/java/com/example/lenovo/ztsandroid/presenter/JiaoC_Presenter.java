@@ -22,7 +22,7 @@ public class JiaoC_Presenter implements JiaoC_xz_Cotract.Presenter {
         csModel  =new CSModelImpl();
 
     }
-
+    //    调用model层数据  把 model层数据传递到view层
     @Override
     public void SetUrl(String string) {
         csModel.postJC(string, new MyNetWorkCallback<JiaoC_Bean>() {

@@ -22,6 +22,7 @@ public class YinB_Presenter implements YB_Cotract.Presenter {
         this.view.setBasePresenter(this);
         totallabelModel  =new CSModelImpl();
     }
+    //    调用model层数据  把 model层数据传递到view层
     @Override
     public void SetUrl(String jclx, String nj, String sxc, String flag) {
 

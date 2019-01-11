@@ -26,7 +26,7 @@ import butterknife.OnClick;
 /**
  * Created by Administrator on 2018/11/28.
  */
-public class DY_NeiR_Activity extends BaseActivity {
+public class  DY_NeiR_Activity extends BaseActivity {
 
 
     @BindView(R.id.back_jt)
@@ -65,6 +65,7 @@ public class DY_NeiR_Activity extends BaseActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 String  Xx = list.get(i).getSentence_name();
                 String sentence_id = list.get(i).getSentence_id();
+//                点击item  传参
                 Intent intent = new Intent(App.activity,JuZ_Sy_Activity.class);
                 intent.putExtra("title",Xx);
                 intent.putExtra("sentence_id",sentence_id);
@@ -85,7 +86,7 @@ public class DY_NeiR_Activity extends BaseActivity {
     @Override
     public void loadData() {
 //        presenter = new Jz_erj_Presenter(this);
-
+//        开启请求
         presenter.SetU(extra,type);
 
     }

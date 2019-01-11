@@ -22,7 +22,7 @@ public class Zy_Xq_Presenter implements Zy_Xq_Cotract.Presenter {
         csModel = new CSModelImpl();
 
     }
-
+    //    调用model层数据  把 model层数据传递到view层
     @Override
     public void SetUrl(String stuid, String hwid, String flag) {
 

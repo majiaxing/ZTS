@@ -24,7 +24,7 @@ public class JaR_Bj_Presenter implements JaR_Bj_Cotract.Presenter{
         csModel  =new CSModelImpl();
 
     }
-
+    //    调用model层数据  把 model层数据传递到view层
     @Override
     public void SetUrl(String stuid, String infor) {
 

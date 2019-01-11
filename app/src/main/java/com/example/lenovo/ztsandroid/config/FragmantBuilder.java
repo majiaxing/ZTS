@@ -19,11 +19,11 @@ public class FragmantBuilder {
     private int containerViewId;
     private BaseFragment lastFragment;
     private BaseFragment fragment;
-
+//构造方法（无参）
     private FragmantBuilder() {
 
     }
-
+    //构造方法（有参）
     public static FragmantBuilder getInstance() {
         if (builder == null) {
             synchronized (FragmantBuilder.class) {
@@ -40,7 +40,7 @@ public class FragmantBuilder {
         this.containerViewId = containerViewId;
         return this;
     }
-
+//    动态管理 开始fragment 方法
     public FragmantBuilder start(Class<? extends BaseFragment> fragmentClass) {
 
         FragmentManager fragmentManager = App.activity.getSupportFragmentManager();

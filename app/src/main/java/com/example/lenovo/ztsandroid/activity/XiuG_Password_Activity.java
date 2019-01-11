@@ -123,7 +123,7 @@ public class XiuG_Password_Activity extends BaseActivity implements XiuG_passwor
                 break;
         }
     }
-
+//    修改密码成功的回调
     @Override
     public void getManager(XiuG_Bean s) {
 

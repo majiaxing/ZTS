@@ -14,6 +14,7 @@ import com.example.lenovo.ztsandroid.model.entity.YB_XQ_three_Bean;
 
 public interface YB_XiangQ_Cotract {
 
+    //    定义view里面的 方法
 
 
     interface View extends BaseView<YB_XiangQ_Cotract.Presenter> {
@@ -29,7 +30,7 @@ public interface YB_XiangQ_Cotract {
 
         void showmessage(String str);
     }
-
+    //    presenter 里面需要传递的参数
     interface Presenter extends BasePresenter {
 
         void SetUrl(String ybid ,String flag ,String  shiliType);

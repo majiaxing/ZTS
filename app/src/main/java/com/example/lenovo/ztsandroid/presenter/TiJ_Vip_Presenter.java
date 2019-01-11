@@ -23,7 +23,7 @@ public class TiJ_Vip_Presenter implements TiJ_Vip_Cotract.Presenter {
     }
 
 
-
+    //    调用model层数据  把 model层数据传递到view层
     @Override
     public void SetUrl(String stuid, String cardName, String cardPassword) {
         csModel.postTiJ_Vip(stuid, cardName, cardPassword, new MyNetWorkCallback<TiJ_Vip_Bean>() {

@@ -22,7 +22,7 @@ public class YB_Two_XQ_Presenter implements YB_XiangQ_Cotract.Presenter {
         this.view.setBasePresenter(this);
         ybModel = new CSModelImpl();
     }
-
+    //    调用model层数据  把 model层数据传递到view层
     @Override
     public void SetUrl(String ybid, String flag, String shiliType) {
 

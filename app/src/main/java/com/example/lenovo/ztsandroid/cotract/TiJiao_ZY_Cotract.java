@@ -16,6 +16,7 @@ import java.util.Map;
 
 public interface TiJiao_ZY_Cotract {
 
+    //    定义view里面的 方法
 
     interface View extends BaseView<TiJiao_ZY_Cotract.Presenter> {
         void getManager(TiJao_ZY_Bean xqbean);
@@ -23,7 +24,7 @@ public interface TiJiao_ZY_Cotract {
         void getD_ShangC(DWj_SC_Bean sc_bean);
         void showmessage(String str);
     }
-
+    //    presenter 里面需要传递的参数
     interface Presenter extends BasePresenter {
 
         void SetU(String stuid, String hwid, ArrayList<Map<String,Object>> mapArrayList);

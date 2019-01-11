@@ -12,7 +12,7 @@ import com.example.lenovo.ztsandroid.model.entity.Diq_Shi_Bean;
  */
 
 public interface Diq_QieH_Cotract {
-
+    //    定义view里面的 方法
     interface View extends BaseView<Diq_QieH_Cotract.Presenter> {
 
         void getManagerSheng(Diq_Bean diqBean);
@@ -21,6 +21,7 @@ public interface Diq_QieH_Cotract {
         void getManager(Diq_Bean diqBean);
         void showmessage(String str);
     }
+//    presenter 里面需要传递的参数
 
     interface Presenter extends BasePresenter {
 

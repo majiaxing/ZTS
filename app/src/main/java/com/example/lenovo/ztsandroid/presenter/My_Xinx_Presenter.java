@@ -24,7 +24,7 @@ public class My_Xinx_Presenter implements My_Xinx_Cotract.Presenter {
 
 
 
-
+    //    调用model层数据  把 model层数据传递到view层
     @Override
     public void seturl(String stuid) {
     csModel.postStudent_xinx(stuid, new MyNetWorkCallback<Student_Xinx_Bean>() {

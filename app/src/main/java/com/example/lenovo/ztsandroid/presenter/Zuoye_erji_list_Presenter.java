@@ -33,7 +33,7 @@ public class Zuoye_erji_list_Presenter implements Zuoy_Cotract.Presenter {
     public void SetUrl(String stuid) {
 
     }
-
+    //    调用model层数据  把 model层数据传递到view层
     @Override
     public void SetU(String stuid, String homework_cishu, String flag, String scoreAll) {
 

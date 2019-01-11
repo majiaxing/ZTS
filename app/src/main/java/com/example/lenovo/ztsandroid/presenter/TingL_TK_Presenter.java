@@ -22,7 +22,7 @@ public class TingL_TK_Presenter implements TingL_XQ_xz_Cotract.Presenter {
         view.setBasePresenter(this);
         csModel = new CSModelImpl();
     }
-
+    //    调用model层数据  把 model层数据传递到view层
     @Override
     public void SetU(String listen_id) {
         csModel.postTingL_XQ_tk(listen_id, new MyNetWorkCallback<TingL_TK_Bean>() {

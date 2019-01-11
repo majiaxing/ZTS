@@ -77,7 +77,7 @@ public class ZuoY_TiaoZan_Activity extends BaseActivity implements ZuoY_Yb_Cotra
 
     @Override
     protected void initView() {
-
+//        获取数据
         Intent intent = getIntent();
         String yb_id = intent.getStringExtra("YB_id");
         String hw_answerId = intent.getStringExtra("hw_answerId");
@@ -86,7 +86,7 @@ public class ZuoY_TiaoZan_Activity extends BaseActivity implements ZuoY_Yb_Cotra
         String hwid = intent.getStringExtra("hwid");
         String avgScores = intent.getStringExtra("avgScores");
 
-
+//            开启网络请求
         presenter = new ZuoY_YB_One_presenter(this);
         presenter.SetU(App.stuid,hwid,"1","",hw_type,hw_content,avgScores);
     }
@@ -100,7 +100,7 @@ public class ZuoY_TiaoZan_Activity extends BaseActivity implements ZuoY_Yb_Cotra
     public void loadData() {
 
     }
-
+//        监听back 询问是否退出
     public void upPopupWindow(View view) {
         View v = LayoutInflater.from(App.activity).inflate(R.layout.danc_popup_qh, null);
         popupView(v);
@@ -110,7 +110,7 @@ public class ZuoY_TiaoZan_Activity extends BaseActivity implements ZuoY_Yb_Cotra
         popupWindow.showAsDropDown(view, 0, 0);
 
     }
-
+//    初始化 窗口 控件
     public void popupView(View v) {
 
         listView = v.findViewById(R.id.popup_listview);
@@ -150,12 +150,15 @@ public class ZuoY_TiaoZan_Activity extends BaseActivity implements ZuoY_Yb_Cotra
                 break;
         }
     }
+
+
+//    请求成功的回调
     @Override
     public void getManagerOne(final YB_Zy_One_Bean yb_xq_one_bean) {
         App.activity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-
+//                    循环创建页面
                 for (int i = 0; i < yb_xq_one_bean.getData().getTypeList().size(); i++) {
                     ZHYX_DanCi_fragment danCi_fragment = new ZHYX_DanCi_fragment();
                     bundle = new Bundle();
@@ -172,6 +175,8 @@ public class ZuoY_TiaoZan_Activity extends BaseActivity implements ZuoY_Yb_Cotra
                     danCi_fragment.setParams(bundle);
                     list.add(danCi_fragment);
                 }
+
+//                初始化 adapter 加载页面
                 adapter = new ViewPagerAdapter(getSupportFragmentManager(),list);
                 viewPager.setAdapter(adapter);
                 nlist.addAll(yb_xq_one_bean.getData().getTypeList());
@@ -199,7 +204,7 @@ public class ZuoY_TiaoZan_Activity extends BaseActivity implements ZuoY_Yb_Cotra
     public void showmessage(String str) {
 
     }
-
+//        获取 腹级页面的 内容
     @Override
     public void huidiao(String str) {
         // 回调函数 取值

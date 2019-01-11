@@ -152,6 +152,7 @@ public class Qrdd_Activity extends BaseActivity {
 //                editor2.commit();
 //            }
 //        }
+
         FyTXMO.getPaint().setFlags(Paint. STRIKE_THRU_TEXT_FLAG );
         FyTXMS.getPaint().setFlags(Paint. STRIKE_THRU_TEXT_FLAG );
 

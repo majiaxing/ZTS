@@ -124,7 +124,7 @@ public class ZY_Kw_Activity extends BaseActivity implements TiJiao_ZY_Cotract.Vi
     public void initData() {
 
     }
-
+//    弹出弹窗 询问 师傅退出
     public void upPopupWindow(View view) {
         View v = LayoutInflater.from(App.activity).inflate(R.layout.danc_popup_qh, null);
         popupView(v);
@@ -201,7 +201,7 @@ public class ZY_Kw_Activity extends BaseActivity implements TiJiao_ZY_Cotract.Vi
 //        }).start();
     }
 
-
+//        网络请求
     private void postParams() {
         //创建一个OkHttpClient对象
         OkHttpClient okHttpClient = new OkHttpClient();
@@ -235,7 +235,7 @@ public class ZY_Kw_Activity extends BaseActivity implements TiJiao_ZY_Cotract.Vi
         }
     }
 
-
+//    对数据解析
     private void JsonDemo(String string) {
 
 

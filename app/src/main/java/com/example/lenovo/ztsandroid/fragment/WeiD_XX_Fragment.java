@@ -64,7 +64,6 @@ public class WeiD_XX_Fragment extends BaseFragment{
 
         list.addAll(groups);
 
-
     }
 
     @Override

@@ -20,7 +20,7 @@ public class TingL_erj_Presenter implements TingL_erj_Cotract.Presenter {
         view.setBasePresenter(this);
         csModel = new CSModelImpl();
     }
-
+    //    调用model层数据  把 model层数据传递到view层
     @Override
     public void SetU(String flag, String type, String listen_type) {
 

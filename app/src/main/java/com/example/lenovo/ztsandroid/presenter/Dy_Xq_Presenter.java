@@ -25,7 +25,7 @@ public class Dy_Xq_Presenter implements Dy_erj_Cotract.Presenter {
     }
 
 
-
+    //    调用model层数据  把 model层数据传递到view层
     @Override
     public void setUrl(String flag, String type, String stuid) {
 

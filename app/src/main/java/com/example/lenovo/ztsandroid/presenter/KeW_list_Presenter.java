@@ -25,7 +25,7 @@ public class KeW_list_Presenter  implements KeW_list_Cotract.Presenter{
         this.KwView.setBasePresenter(this);
         totallabelModel  =new CSModelImpl();
     }
-
+    //    调用model层数据  把 model层数据传递到view层
     @Override
     public void SetUrl(String jclx, String nj, String sxc, String flag, String listen_type, String stuid) {
 

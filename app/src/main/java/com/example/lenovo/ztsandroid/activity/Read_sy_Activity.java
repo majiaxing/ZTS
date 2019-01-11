@@ -76,6 +76,7 @@ public class Read_sy_Activity extends BaseActivity implements Read_XQ_Cotract.Vi
 
     @Override
     protected void initView() {
+//      获取数据
         Intent intent = getIntent();
         text_id = intent.getStringExtra("Read_id");
         String mtitle = intent.getStringExtra("title");
@@ -89,7 +90,7 @@ public class Read_sy_Activity extends BaseActivity implements Read_XQ_Cotract.Vi
 
     }
 
-
+//      点击back 键  弹出窗口询问 是否退出
     public void upPopupWindow(View view) {
         View v = LayoutInflater.from(App.activity).inflate(R.layout.popup_yuedu, null);
         popupView(v);
@@ -99,7 +100,7 @@ public class Read_sy_Activity extends BaseActivity implements Read_XQ_Cotract.Vi
         popupWindow.showAsDropDown(view, 0, 0);
 
     }
-
+//
     public void popupView(View v) {
 
         grid = v.findViewById(R.id.Grid_view);

@@ -71,7 +71,7 @@ public class My_E_Activity extends BaseActivity {
             kai = starttime.substring(0, 9);
             jie = endtime.substring(0,9);
         }
-
+//            判断用户类型
         switch (memberState){
             case "1":
                 ZtText.setText("有效期："+kai+"至"+jie);

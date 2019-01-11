@@ -76,6 +76,7 @@ public class DuiH_TZYX_ErJFragment extends BaseActivity implements ZuoY_Dh_Cotra
 
     @Override
     public void initData() {
+        //        开始网络请求  初始化presenter  传参
         presenter = new ZuoY_Dh_presenter(this);
         presenter.SetUrl(App.stuid, hwid, "", "", hw_type, hw_content, avgScores);
     }
@@ -94,17 +95,21 @@ public class DuiH_TZYX_ErJFragment extends BaseActivity implements ZuoY_Dh_Cotra
     }
 
     private Boolean isJS = false;
+    //请求成功的回调
 
     @Override
     public void getManager(final ZuoY_Dh_Bean zuoYDyBean) {
         MyLog.e("DSAHDKSAH", zuoYDyBean.getData().getTypeList().size() + "");
+        //得到数据 在主线程里面 操作
+
         App.activity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
 
+
                 Zy_DuiH_TZYX_Fragment zuYYinBFragment = new Zy_DuiH_TZYX_Fragment();
                 bundle = new Bundle();
-
+                // for循环 遍历 data 集合
                 for (int i = 0; i < zuoYDyBean.getData().getTypeList().size(); i++) {
                     if (isJS) {
                         zuoYDyBean.getData().getTypeList().get(i).setJS(isJS);
@@ -113,6 +118,7 @@ public class DuiH_TZYX_ErJFragment extends BaseActivity implements ZuoY_Dh_Cotra
                         zuoYDyBean.getData().getTypeList().get(i).setJS(isJS);
                         isJS = true;
                     }
+                        // 创建fragment 传递数据
 
                     videolist.add(zuoYDyBean.getData().getTypeList().get(i).getJuese_video());
                     bundle.putSerializable("Juese_videoList", videolist);
@@ -126,6 +132,8 @@ public class DuiH_TZYX_ErJFragment extends BaseActivity implements ZuoY_Dh_Cotra
                 bundle.putSerializable("list", (Serializable) zuoYDyBean.getData().getTypeList());
                 zuYYinBFragment.setParams(bundle);
                 nlist.add(zuYYinBFragment);
+                //bundle 传到 子页面
+                    //初始化适配器 创建页面
                 adapter = new ViewPagerAdapter(getSupportFragmentManager(), nlist);
                 viewPager.setAdapter(adapter);
                 adapter.notifyDataSetChanged();

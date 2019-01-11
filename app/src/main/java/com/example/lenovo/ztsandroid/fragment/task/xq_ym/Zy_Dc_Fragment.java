@@ -82,7 +82,7 @@ public class Zy_Dc_Fragment extends BaseFragment implements View.OnClickListener
 
     private RelativeLayout relativeLayout;
     private LinearLayout bf_ly;
-//    private Button next_t;
+    private Button next_t;
     private RadioButton CheckO, CheckT,CheckOXanz,CheckTXanz;
     private TextView dc_jx_text;
     private Bundle bundle;
@@ -144,17 +144,17 @@ public class Zy_Dc_Fragment extends BaseFragment implements View.OnClickListener
         pf_fs = view.findViewById(R.id.PF_fs);
         gl_ = view.findViewById(R.id.GL_);
         xinx_bar = view.findViewById(R.id.Xinx_bar);
-//        next_t = view.findViewById(R.id.next_T);
+        next_t = view.findViewById(R.id.next_T);
         bf_ly = view.findViewById(R.id.BF_LY);
         bf_zt = view.findViewById(R.id.BF_zt);
         ly_btn = view.findViewById(R.id.Ly_btn);
         bf_ly.setOnClickListener(this);
         bf_zt.setOnClickListener(this);
         ly_btn.setOnClickListener(this);
-//        next_t.setOnClickListener(this);
+        next_t.setOnClickListener(this);
 
         relativeLayout.setVisibility(View.GONE);
-//        next_t.setVisibility(View.GONE);
+        next_t.setVisibility(View.GONE);
 
         creatAudioRecord();
 

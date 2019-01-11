@@ -26,7 +26,7 @@ public class XiaoX_content_Presenter implements JiaoC_xz_Cotract.Presenter{
 
 
 
-
+    //    调用model层数据  把 model层数据传递到view层
     @Override
     public void SetUrl(String string) {
         csModel.postXiaoXContent(string, new MyNetWorkCallback<XiaoX_content_Bean>() {

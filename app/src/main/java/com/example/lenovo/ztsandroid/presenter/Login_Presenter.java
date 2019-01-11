@@ -22,7 +22,7 @@ public class Login_Presenter implements Logincotract.Presenter {
         totallabelModel = new CSModelImpl();
 
     }
-
+    //    调用model层数据  把 model层数据传递到view层
     @Override
     public void SetUrl(String name, String possward ,String usertype_code) {
 

@@ -109,7 +109,7 @@ public class DanCi_fragment extends BaseFragment implements View.OnClickListener
     private CheckBox bf_zt;
     private Boolean[] bool  = {false};
 
-
+    //评估 返回结果
     private Handler mMyHandler = new Handler(new HandlerCallback());
 
     class HandlerCallback implements Handler.Callback {
@@ -146,6 +146,7 @@ public class DanCi_fragment extends BaseFragment implements View.OnClickListener
         return R.layout.viewpager_danci;
     }
 
+//    动态获取权限
     public void getPersimmions() {
         try {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -167,14 +168,14 @@ public class DanCi_fragment extends BaseFragment implements View.OnClickListener
     protected void init(View view) {
 
         getPersimmions();
-
+//初始化控件
         title = view.findViewById(R.id.Nr_danci);
         CheckO = view.findViewById(R.id.BF_One);
         CheckOXanz = view.findViewById(R.id.BF_One_Xuanz);
         CheckTXanz = view.findViewById(R.id.BF_Two_Xuanz);
         CheckT = view.findViewById(R.id.BF_Two);
 
-
+//初始化点击事件
         CheckO.setOnClickListener(this);
         CheckT.setOnClickListener(this);
         CheckOXanz.setOnClickListener(this);
@@ -191,6 +192,7 @@ public class DanCi_fragment extends BaseFragment implements View.OnClickListener
         linearLayout = view.findViewById(R.id.linear);
         pinF_jd = view.findViewById(R.id.PinF_jd);
         YeMa = view.findViewById(R.id.textView3);
+//        定义评估加载的 动画
         hyperspaceJumpAnimation = AnimationUtils.loadAnimation(activity, R.anim.loading_animation);
         // 使用ImageView显示动画
         pinF_jd.startAnimation(hyperspaceJumpAnimation);
@@ -213,7 +215,7 @@ public class DanCi_fragment extends BaseFragment implements View.OnClickListener
 //        creatAudioRecord();
     }
 
-
+//     评估 的toast
     private void toast(String text) {
         final Toast toast = Toast.makeText(App.activity, text, Toast.LENGTH_LONG);
             toast.setGravity(Gravity.CENTER,0,0);
@@ -257,7 +259,7 @@ public class DanCi_fragment extends BaseFragment implements View.OnClickListener
 
     private boolean isRecord = false;//设置录制状态
 
-
+    // 初始化录音
     private void creatAudioRecord() {
         //根据AudioRecord的音频采样率、音频录制声道、音频数据格式获取缓冲区大小
         bufferSizeInBytes = AudioRecord.getMinBufferSize(sampleRateInHz, channelConfig, audioFormat);
@@ -355,7 +357,7 @@ public class DanCi_fragment extends BaseFragment implements View.OnClickListener
             presenter.seturlZhiL("1", "1", "2","1",toBase64, sessionId);
         }
     }
-
+//    结束录音
     private void close() {
         if (audioRecord != null) {
 
@@ -426,7 +428,7 @@ public class DanCi_fragment extends BaseFragment implements View.OnClickListener
             e.printStackTrace();
         }
     }
-
+// 把 头文件 写入音频中
     private void copyWaveFile(String inFileName, String outFileName) {
         FileInputStream in = null;
         FileOutputStream out = null;
@@ -518,13 +520,14 @@ public class DanCi_fragment extends BaseFragment implements View.OnClickListener
         header[43] = (byte) ((totalAudioLen >> 24) & 0xff);
         out.write(header, 0, 44);
     }
-
+//    结束 方法
     private void pause(){
         mediaPlayer.pause();
 //        playhandler.removeCallbacks(runnable_3);
 //        play.setImageResource(ic_media_play);
     }
 
+//    页面滑动的回调
     public interface FragmentToActivity{
         public void huidiao(String str);
     }
@@ -543,7 +546,7 @@ public class DanCi_fragment extends BaseFragment implements View.OnClickListener
         dc_jx_text.setText(word_tran);
 
     }
-
+//    在fragment 构建的时候  开始加载播放方法  fragment隐藏以后  销毁
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
@@ -606,7 +609,7 @@ public class DanCi_fragment extends BaseFragment implements View.OnClickListener
     public void setParams(Bundle bundle) {
         this.bundle = bundle;
     }
-
+//        智聆评估录音
     private String filePath = "/sdcard/SOE/soe.mp3";
     private void sendMessage(int what, Object obj) {
         Message msg = new Message();
@@ -614,19 +617,18 @@ public class DanCi_fragment extends BaseFragment implements View.OnClickListener
         msg.obj = obj;
         mMyHandler.sendMessage(msg);
     }
-
+//    评估结果的回调
     private SOECallback callback = new SOECallback() {
         public void onInitSuccess(InitOralProcessResponse response) {
             sendMessage(MSG_INIT_OK, response.toString());
         }
-
+//        评估成功的回调
         public void onTransmitSuccess(int index, int isEnd, TransmitOralProcessResponse response) {
             Message msg = new Message();
             msg.what = ZhiL_Key_Velue.MSG_TRANSMIT_OK;
             msg.arg1 = index;
             msg.arg2 = isEnd;
             msg.obj = response.toString();
-
             MyLog.e("评估结果___",response.toString() +"");
             JsonDemo(response.toString());
             mMyHandler.sendMessage(msg);
@@ -635,7 +637,7 @@ public class DanCi_fragment extends BaseFragment implements View.OnClickListener
             linearLayout.setVisibility(View.GONE);
             ly_btn.setVisibility(View.VISIBLE);
         }
-
+//        评估失败的回调
         public void onError(SOEError e) {
             sendMessage(ZhiL_Key_Velue.MSG_INIT_ERROR, e.getMessage());
 
@@ -648,7 +650,7 @@ public class DanCi_fragment extends BaseFragment implements View.OnClickListener
             });
         }
     };
-
+// 执行一次性 评估
     private void doExecuteOnce() {
         try {
 
@@ -744,6 +746,8 @@ public class DanCi_fragment extends BaseFragment implements View.OnClickListener
     }
     private CustomProgressDialog mProgressDialog;
     private float f;
+
+//    评估结果的解析
     private void JsonDemo(String string) {
 
 //        第一步，string参数相当于一个JSON,依次解析下一步
@@ -853,14 +857,11 @@ public class DanCi_fragment extends BaseFragment implements View.OnClickListener
 
         MyLog.e("请求成功——得到的json",pinC_fay_bean);
         JsonDemo(pinC_fay_bean);
-
-
-
-
     }
 
     @Override
     public void getManagerT(Stdey_Bean xq_bean) {
+//        上传成功的回调
         save_path = xq_bean.getData().getSave_path();
 
         MyLog.e("获取到的 上传文件路径",save_path+ "");

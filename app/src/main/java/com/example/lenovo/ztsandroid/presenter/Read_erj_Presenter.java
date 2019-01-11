@@ -21,7 +21,7 @@ public class Read_erj_Presenter implements Read_erj_Cotract.Presenter {
         view.setBasePresenter(this);
         csModel = new CSModelImpl();
     }
-
+    //    调用model层数据  把 model层数据传递到view层
     @Override
     public void SetU(String flag, String type) {
         csModel.postRead_erj(flag, type, new MyNetWorkCallback<Read_erj_Bean>() {

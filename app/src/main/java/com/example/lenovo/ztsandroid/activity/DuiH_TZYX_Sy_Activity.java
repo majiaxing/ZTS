@@ -84,9 +84,8 @@ public class DuiH_TZYX_Sy_Activity extends BaseActivity implements DuiH_XQ_Cotra
     public static TextView text;
     public static LinearLayout FanH;
 
+//    创建弹窗 询问是否退出
     public static void PopupW(View view, String str) {
-
-
         final View inflate = View.inflate(App.activity, R.layout.back_popup, null);
         popupWindow = new PopupWindow(inflate, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         text = inflate.findViewById(R.id.back_text);
@@ -124,14 +123,14 @@ public class DuiH_TZYX_Sy_Activity extends BaseActivity implements DuiH_XQ_Cotra
 
 
     }
-
+//    添加蒙板层  遮挡空白区域
     public static void backgroundAlpha(float bgAlpha) {
         WindowManager.LayoutParams lp = App.activity.getWindow().getAttributes();
         lp.alpha = bgAlpha; //0.0-1.0
         App.activity.getWindow().setAttributes(lp);
         App.activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
     }
-
+//    popupwindiw 隐藏方法
     public static void PopupDimiss() {
         popupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
             @Override
@@ -143,7 +142,7 @@ public class DuiH_TZYX_Sy_Activity extends BaseActivity implements DuiH_XQ_Cotra
 
     @Override
     public void loadData() {
-
+//      开启网络请求  创建presenter 传参
         presenter = new DuiH_XQ_Presenter(this);
         presenter.SetUrl(talk_id);
 
@@ -168,19 +167,19 @@ public class DuiH_TZYX_Sy_Activity extends BaseActivity implements DuiH_XQ_Cotra
                 break;
         }
     }
-
+//    请求成功的回调
     @Override
     public void getManager(final DuiH_XQ_Bean duiHXqBean) {
-
+//        在主线程中操作
         App.activity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-
+//                    for 遍历data 循环 创建 页面
                 for (int i = 0; i < duiHXqBean.getData().size(); i++) {
-
+//                    初始化fragemnt 传参
                     fragment = new DuiH_TZYX_Fragment();
                     bundle = new Bundle();
-
+//                        在data集合中添加 isJS 数据 用于 区分A  B  角色
                     if (isJS){
                         duiHXqBean.getData().get(i).setJS(isJS);
                         isJS =false;
@@ -188,11 +187,11 @@ public class DuiH_TZYX_Sy_Activity extends BaseActivity implements DuiH_XQ_Cotra
                         duiHXqBean.getData().get(i).setJS(isJS);
                         isJS =true;
                     }
-
+//                把 bundle 放入 fragment  在list集合中添加fragment
                     bundle.putSerializable("list", (Serializable) duiHXqBean.getData());
                     bundle.putString("word_id", duiHXqBean.getData().get(i).getJuese_id());
                     bundle.putString("type", talk_id);
-
+//                初始化 adapter  创建页面
                     bundle.putString("Relative_path",save_path);
 
 

@@ -65,12 +65,12 @@ public class Login_Activity extends BaseActivity implements Logincotract.View{
 
 //        AEditOne.setFocusable(false);
 //        AEditTwo.setFocusable(false);
-
+//        隐藏 光标
         AEditOne.setFocusable(true);
         AEditOne.setFocusableInTouchMode(true);
         AEditOne.requestFocus();
 
-
+//        隐藏 光标
         AEditTwo.setFocusable(true);
         AEditTwo.setFocusableInTouchMode(true);
         AEditTwo.requestFocus();
@@ -89,7 +89,7 @@ public class Login_Activity extends BaseActivity implements Logincotract.View{
         }
     }
 
-
+//    监听 屏幕  强制隐藏键盘
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
         if (ev.getAction() == MotionEvent.ACTION_DOWN) {

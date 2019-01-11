@@ -32,7 +32,7 @@ public class ZhiL_Csh_Fy_Presenter implements ZhiL_Yuyin_Cotract.Presenter{
     public void start() {
 
     }
-
+    //    调用model层数据  把 model层数据传递到view层
     @Override
     public void setUrlsZhiL(String EvalMode, String RefText, String SessionId, String WorkMode, String ScoreCoeff) {
         csModel.postYYin_JK(EvalMode, RefText, SessionId, WorkMode, ScoreCoeff, new MyNetWorkCallback<YuYinPinG_Bean>() {

@@ -10,6 +10,7 @@ import com.example.lenovo.ztsandroid.model.entity.XiuG_Bean;
  */
 
 public interface XiuG_password_Cotract {
+    //    定义view里面的 方法
 
     interface View extends BaseView<XiuG_password_Cotract.Presenter> {
 
@@ -17,6 +18,7 @@ public interface XiuG_password_Cotract {
 
         void showmessage(String str);
     }
+    //    presenter 里面需要传递的参数
     interface Presenter extends BasePresenter {
 
         void setUrl(String stuid ,String username,String afterpassword,String password);

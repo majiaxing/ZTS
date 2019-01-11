@@ -34,7 +34,7 @@ public class TiJao_ZY_Presenter implements TiJiao_ZY_Cotract.Presenter {
     public void start() {
 
     }
-
+    //    调用model层数据  把 model层数据传递到view层
     @Override
     public void SetU(String stuid, String hwid, ArrayList<Map<String, Object>> mapArrayList) {
 

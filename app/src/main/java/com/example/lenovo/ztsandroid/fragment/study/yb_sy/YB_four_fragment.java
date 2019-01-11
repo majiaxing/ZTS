@@ -63,7 +63,7 @@ public class YB_four_fragment extends BaseFragment implements YB_XiangQ_Cotract.
     protected void init(View view) {
 
         yBid = bundle.getString("YBid");
-
+//        初始化 适配器
         letterGroupAdapter =new LetterGroupAdapter(R.layout.zm_zh_grid_item,list);
         GridZMHe.setLayoutManager(new GridLayoutManager(getActivity(),2));
         GridZMHe.setAdapter(letterGroupAdapter);
@@ -72,6 +72,7 @@ public class YB_four_fragment extends BaseFragment implements YB_XiangQ_Cotract.
 
     @Override
     protected void loadData() {
+//        开启网络请求  presenter 传递参数
     presenter = new YinB_Xq_Presenter(this);
         presenter.SetUrl(yBid,"4","");
     }
@@ -97,7 +98,7 @@ public class YB_four_fragment extends BaseFragment implements YB_XiangQ_Cotract.
 
     @OnClick(R.id.TZ_YX_o)
     public void onViewClicked() {
-
+//        传递参数
         Intent intent = new Intent(App.activity,TiaoZan_Activity.class);
         intent.putExtra("YB_id",yBid);
         startActivity(intent);
@@ -105,14 +106,14 @@ public class YB_four_fragment extends BaseFragment implements YB_XiangQ_Cotract.
 
     @Override
     public void getManager(YB_XQ_four_Bean yb_bean) {
-
+//  判断list 是否添加过  添加过 清除以后再添加  没有添加过 直接添加
         if (list == null){
             list.addAll(yb_bean.getData());
         }else {
             list.clear();
             list.addAll(yb_bean.getData());
         }
-
+// 开启主线程  刷新 列表
         App.activity.runOnUiThread(new Runnable() {
             @Override
             public void run() {

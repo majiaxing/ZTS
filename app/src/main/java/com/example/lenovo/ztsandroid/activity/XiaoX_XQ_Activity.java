@@ -52,7 +52,7 @@ public class XiaoX_XQ_Activity extends BaseActivity {
 
     @Override
     protected void initView() {
-
+//        获取父页面的  参数
         Intent intent = getIntent();
         xx_title = intent.getStringExtra("标题");
         xx_nr = intent.getStringExtra("内容");

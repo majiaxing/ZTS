@@ -85,14 +85,17 @@ public class SheZ_Activity extends BaseActivity {
                 App.activity.onBackPressed();
                 break;
             case R.id.XiuG_password:
+//                修改密码
                 Intent intent = new Intent(App.activity,XiuG_Password_Activity.class);
                 startActivity(intent);
                 break;
             case R.id.Chang_Yong_Sb:
+//                常用设备
                 Intent intent1 = new Intent(App.activity,ChY_SB_Activity.class);
                 startActivity(intent1);
                 break;
             case R.id.HuanC_gl:
+//                清理缓存
                 Intent intent2 = new Intent(App.activity,HuanC_clian_Activity.class);
                 startActivity(intent2);
                 break;
@@ -101,7 +104,7 @@ public class SheZ_Activity extends BaseActivity {
             case R.id.Gy_mine:
                 break;
             case R.id.TuiC_login:
-
+//                退出登录
                 editor.clear();
                 editor.commit();
                 Intent intent3 = new Intent(App.activity,Login_Activity.class);

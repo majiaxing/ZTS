@@ -26,7 +26,7 @@ public class YB_Tiaoz_Presenter implements YB_XiangQ_Cotract.Presenter {
     public void SetUrl(String ybid, String flag ,String  shiliType) {
 
     }
-
+    //    调用model层数据  把 model层数据传递到view层
     @Override
     public void SetU(String ybid, String flag) {
 

@@ -60,7 +60,7 @@ public class KW_LD_Activity extends BaseActivity implements KeW_list_Cotract.Vie
 
     @Override
     protected void initView() {
-
+//        获取父级传过来的参数
         final Intent intent = getIntent();
         extra = intent.getStringExtra("title");
         MyLog.e("lalalalallsahduaw",extra);
@@ -71,6 +71,9 @@ public class KW_LD_Activity extends BaseActivity implements KeW_list_Cotract.Vie
         Log.e("获取到的数据", jclx + nj_jc + sxc);
         MyLog.e("略略略",listen_type+" ");
         String stuid = String.valueOf(App.stuid);
+//        判断 extra 是什么类型  开始走相应的网络请求
+//        text-课文 word-单词 phrase-短语 sentence-句子 talk-对话
+//        listen-听力 read-阅读
         switch (extra){
             case "text":
                 title.setText("课文");
@@ -127,9 +130,10 @@ public class KW_LD_Activity extends BaseActivity implements KeW_list_Cotract.Vie
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                      String dy = list.get(i).getDy();
                 String type = list.get(i).getType();
-
+//                    根据extra 判断 跳转到相应的页面
+                //        text-课文 word-单词 phrase-短语 sentence-句子 talk-对话
+//        listen-听力 read-阅读
                 switch (extra){
-
                     case "text":
                         Intent intent1 = new Intent(App.activity, Kw_NeiR_Activity.class);
                         intent1.putExtra("title", dy);
@@ -137,17 +141,13 @@ public class KW_LD_Activity extends BaseActivity implements KeW_list_Cotract.Vie
                         intent1.putExtra("extra",extra);
                         startActivity(intent1);
                         break;
-
                     case "word":
                         Intent intent7 = new Intent(App.activity, DanC_Sy_Activity.class);
                         intent7.putExtra("type",type);
                         intent7.putExtra("extra",extra);
-
                         startActivity(intent7);
                         break;
-
                     case "phrase":
-
                         Intent intent2 = new Intent(App.activity, DuanYu_Sy_Activity.class);
                         intent2.putExtra("title", dy);
                         intent2.putExtra("type",type);
@@ -207,11 +207,6 @@ public class KW_LD_Activity extends BaseActivity implements KeW_list_Cotract.Vie
 
 
                 }
-
-
-//
-//
-
             }
         });
 
@@ -240,21 +235,21 @@ public class KW_LD_Activity extends BaseActivity implements KeW_list_Cotract.Vie
     public void onViewClicked() {
         App.activity.onBackPressed();
     }
-
+//请求成功的回调
     @Override
     public void getManager(Kw_Bean kw_bean) {
 
 
 
             Log.e("huoqudaode shuji",kw_bean.toString() +"");
-
+//            得到的数据填充在集合里
             list.addAll(kw_bean.getData());
 
 
             App.activity.runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-
+//                        初始化适配器   填充数据
                     myadapter = new Kw_Ld_Adapter(App.activity, list);
                     KeWenListview.setAdapter(myadapter);
                     myadapter.notifyDataSetChanged();

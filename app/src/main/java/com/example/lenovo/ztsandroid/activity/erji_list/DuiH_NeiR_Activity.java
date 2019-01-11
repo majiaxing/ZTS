@@ -52,6 +52,7 @@ public class DuiH_NeiR_Activity extends BaseActivity implements Juz_list_Cotract
 
     @Override
     protected void initView() {
+//        得到父页面的 参数
         Intent intent = getIntent();
         String xxx = intent.getStringExtra("title");
         extra= intent.getStringExtra("extra");
@@ -60,13 +61,12 @@ public class DuiH_NeiR_Activity extends BaseActivity implements Juz_list_Cotract
 
 
 
-//        for(int i = 0; i <10; i++){
-//            list.add(new Spinner_Bean("Starter Unit "+i));
-//        }
 
         ListKewR.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+//                点击时间 获取 irem 的name 和id  初始化 intent
+//                传递参数
                 String  Xx = list.get(i).getTalk_name();
                 String sentence_id = list.get(i).getTalk_id();
                 String save_path = list.get(i).getRelative_path();
@@ -91,6 +91,7 @@ public class DuiH_NeiR_Activity extends BaseActivity implements Juz_list_Cotract
 
     @Override
     public void loadData() {
+//        开启网络请求 初始化 presenter 传参
     presenter = new DuiH_erj_Presenter(this);
 
         presenter.setUrl(extra,type);
@@ -116,19 +117,17 @@ public class DuiH_NeiR_Activity extends BaseActivity implements Juz_list_Cotract
 
 
     }
-
+//    网络请求成功的回调
     @Override
     public void getManager(DuiH_erj_Bean erjBean) {
-
+//        得到数据放在 集合里
         list.addAll(erjBean.getData());
-
-
 //        MyLog.e("ADASDASDWQWQQQQ",erjBean.getData().get(0).getTalk_name() +"");
-
+//            在主线程里操作
         App.activity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-
+//                初始化adapter 创建item
                 adapter = new Dh_nr_Adapter(App.activity,list);
                 ListKewR.setAdapter(adapter);
                 adapter.notifyDataSetChanged();

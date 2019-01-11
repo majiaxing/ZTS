@@ -49,6 +49,7 @@ public class YB_XQ_Activity extends BaseActivity {
 
     @Override
     protected void initView() {
+//        接收父级页面传过来的值
         Intent intent = getIntent();
         Log.e("AAAAAAAAAAAAAAAAAA",intent.getStringExtra("音标"));
         YBXqTitle.setText(intent.getStringExtra("音标"));
@@ -57,6 +58,7 @@ public class YB_XQ_Activity extends BaseActivity {
         MyLog.e("ADASDSADSADSA",id + "");
         bundle = new Bundle();
 
+//        初始化三个fragment
         YB_xq_one_fragment fragment1 = new YB_xq_one_fragment();
         bundle.putString("YBid",ids);
 
@@ -75,7 +77,7 @@ public class YB_XQ_Activity extends BaseActivity {
         fragments.add(fragment2);
         fragments.add(fragment3);
         fragments.add(fragment4);
-
+//        viewpager +tablayout 加载四个fragment
         adapter = new YB_FragmentAdapter(getSupportFragmentManager(),fragments);
         YBViewPager.setAdapter(adapter);
         YBTablayout.setupWithViewPager(YBViewPager);
@@ -97,7 +99,7 @@ public class YB_XQ_Activity extends BaseActivity {
         // TODO: add setContentView(...) invocation
         ButterKnife.bind(this);
     }
-
+//back 键 的点击事件
     @OnClick(R.id.back_jt)
     public void onViewClicked() {
         App.activity.onBackPressed();

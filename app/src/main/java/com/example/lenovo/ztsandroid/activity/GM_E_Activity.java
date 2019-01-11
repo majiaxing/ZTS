@@ -95,7 +95,7 @@ public class GM_E_Activity extends BaseActivity implements Diq_QieH_Cotract.View
 
     @Override
     public void loadData() {
-
+//            判断用户类型
         if (shenglist.isEmpty()) {
             presenter = new Diq_Presenter(this);
             presenter.start();
@@ -113,7 +113,7 @@ public class GM_E_Activity extends BaseActivity implements Diq_QieH_Cotract.View
 
 
     }
-
+//        弹窗弹窗   选择 省
     public void upPopupWindowsheng(View view) {
         View v = LayoutInflater.from(App.activity).inflate(R.layout.danc_popup_qh, null);
         popupViewsheng(v);
@@ -147,7 +147,7 @@ public class GM_E_Activity extends BaseActivity implements Diq_QieH_Cotract.View
 
     }
 
-
+    //        弹窗弹窗   选择 市
     public void upPopupWindowshi(View view) {
 
         View v = LayoutInflater.from(App.activity).inflate(R.layout.danc_popup_qh, null);
@@ -181,7 +181,7 @@ public class GM_E_Activity extends BaseActivity implements Diq_QieH_Cotract.View
         });
 
     }
-
+    //        弹窗弹窗   选择 区
     public void upPopupWindowqu(View view) {
         View v = LayoutInflater.from(App.activity).inflate(R.layout.danc_popup_qh, null);
         popupViewqu(v);

@@ -26,7 +26,7 @@ public class XiuG_password_Presenter implements XiuG_password_Cotract.Presenter 
 
 
 
-
+    //    调用model层数据  把 model层数据传递到view层
     @Override
     public void setUrl(String stuid, String username, String afterpassword, String password) {
 

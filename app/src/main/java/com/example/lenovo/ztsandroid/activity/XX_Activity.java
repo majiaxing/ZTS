@@ -103,7 +103,7 @@ public class XX_Activity extends BaseActivity implements XX_Cotract.View {
 
     }
 
-
+//        tabLayout 下划线和字的宽度一样长
        public void setIndicator(TabLayout tabs, int leftDip, int rightDip) {
         Class<?> tabLayout = tabs.getClass();
         Field tabStrip = null;
@@ -146,7 +146,7 @@ public class XX_Activity extends BaseActivity implements XX_Cotract.View {
     @Override
     public void loadData() {
     }
-
+//    弹出popupwiden 询问 是否标为已读 是否删除
     public void PopupW(View view) {
 
         final View inflate = View.inflate(App.activity, R.layout.bwyd_popup, null);
@@ -252,18 +252,6 @@ public class XX_Activity extends BaseActivity implements XX_Cotract.View {
 
                 fragment1.onShow(true);
 
-
-
-                //根据不同的情况对maincheckbox做处理
-//                if (!b && !mMainCkb.isChecked()) {
-//                    return;
-//                } else if (!b && mMainCkb.isChecked()) {
-//                    mIsFromItem = true;
-//                    mMainCkb.setChecked(false);
-//                } else if (b) {
-//                    mIsFromItem = true;
-//                    mMainCkb.setChecked(true);
-//                }
                 break;
             case R.id.BiaoW_Yd:
                 fragment1.changeIsRead();
@@ -305,7 +293,7 @@ public class XX_Activity extends BaseActivity implements XX_Cotract.View {
                 break;
         }
     }
-
+//    网络请求回调
     @Override
     public void getManager(final XiaoX_Bean xiaoX_bean) {
 

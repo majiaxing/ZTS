@@ -11,6 +11,7 @@ import com.example.lenovo.ztsandroid.model.entity.Kw_erji_list_Bean;
  */
 
 public interface KeW_list_Cotract {
+    //    定义view里面的 方法
 
     interface View extends BaseView<KeW_list_Cotract.Presenter> {
         void getManager(Kw_Bean kw_bean);
@@ -18,6 +19,7 @@ public interface KeW_list_Cotract {
         void showmessage(String str);
     }
 //    {"jclx":"人教版","nj":"一年级","sxc":"上册","flag":"text"}
+//    presenter 里面需要传递的参数
     interface Presenter extends BasePresenter {
 
         void SetUrl(String jclx ,String nj ,String sxc ,String flag ,String listen_type,String stuid);

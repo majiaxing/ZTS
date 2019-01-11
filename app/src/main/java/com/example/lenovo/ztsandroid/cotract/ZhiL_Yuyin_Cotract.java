@@ -17,6 +17,7 @@ import java.io.File;
 
 public interface ZhiL_Yuyin_Cotract {
 
+    //    定义view里面的 方法
 
 
     interface View extends BaseView<ZhiL_Yuyin_Cotract.Presenter> {
@@ -29,7 +30,7 @@ public interface ZhiL_Yuyin_Cotract {
 
         void showmessage(String str);
     }
-
+    //    presenter 里面需要传递的参数
     interface Presenter extends BasePresenter {
 
         void setUrlsZhiL(String EvalMode, String RefText, String SessionId, String WorkMode,String ScoreCoeff);
